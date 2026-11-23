@@ -164,7 +164,12 @@ body[data-skin=clair] .ib{background:rgba(255,255,255,.8);color:#121212}
 /* page body */
 .pad{padding:8px 32px 40px;display:flex;flex-direction:column;gap:40px}
 .blk h2{font:800 24px/1.2 var(--f-head);letter-spacing:-.02em}
-.bh{display:flex;align-items:flex-end;justify-content:space-between;gap:16px;margin-bottom:14px}
+.bh{display:flex;align-items:baseline;justify-content:space-between;gap:16px;margin-bottom:14px}
+.bh>div{min-width:0}
+.bh>.more,details.logd>summary .more{flex:none}
+#rkMore,#logMore{display:block;margin:14px auto 0;padding:9px 22px;border:1px solid var(--chip2);border-radius:999px;color:var(--ink)}
+#rkMore:hover,#logMore:hover{background:var(--chip);text-decoration:none}
+#rkMore[hidden],#logMore[hidden]{display:none}
 .sub{color:var(--muted);font-size:14px;margin-top:4px}
 .card{background:var(--card);border-radius:8px;padding:20px}
 .cols{display:grid;grid-template-columns:1fr 1fr;gap:24px 32px}
@@ -300,7 +305,7 @@ button.rec:hover{background:var(--card2)}
 .otd b{display:block;font-weight:600;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .otd small{display:block;color:var(--muted);font-size:13px}
 .otd .v{color:var(--muted);font-size:14px}
-details.logd>summary{cursor:pointer;list-style:none;display:flex;align-items:center;justify-content:space-between;gap:12px}
+details.logd>summary{cursor:pointer;list-style:none;display:flex;align-items:baseline;justify-content:space-between;gap:12px}
 details.logd>summary::-webkit-details-marker{display:none}
 details.logd>summary h2{font:800 24px/1.2 var(--f-head);letter-spacing:-.02em}
 details.logd>summary .more::after{content:"Afficher"}
@@ -326,6 +331,108 @@ table.rk td.nm button:hover{text-decoration:underline}
 table.rk td.nm small{display:block;color:var(--muted);font-size:12px}
 table.rk tbody tr:hover td{background:var(--hover)}
 .actrow{display:flex;flex-wrap:wrap;align-items:center;gap:12px 16px}
+
+/* récaps : affiche */
+.pst{--ink:#fff;--sub:rgba(255,255,255,.8);--lab:hsl(calc(var(--h) + 160) 85% 62%);position:relative;display:flex;flex-direction:column;gap:clamp(14px,3.6cqi,24px);padding:clamp(20px,7cqi,40px);border-radius:14px;background:var(--bg);color:var(--ink);overflow:hidden;container-type:inline-size}
+.pstart{position:relative;width:40cqi;max-width:220px;margin-bottom:16px}
+.pstart .slv{position:relative;z-index:1;display:grid;grid-template-columns:1fr 1fr;aspect-ratio:1;border-radius:3px;overflow:hidden;box-shadow:0 16px 36px rgba(0,0,0,.42)}
+.pstart .slv.one{grid-template-columns:1fr}
+.pstart .slv .cv{width:100%;border-radius:0;box-shadow:none}
+.pstart .slv .cv b{display:none}
+.pstart .slv.one .cv b{display:block;font-size:14cqi}
+.vinyl{position:absolute;border-radius:50%;background:radial-gradient(circle,#0d0d0d 0 2.2%,var(--lab) 2.6% 15%,#0d0d0d 15.5% 17%,transparent 17.5%),repeating-radial-gradient(circle,#151515 0 .9%,#222 .9% 1.6%);box-shadow:0 14px 34px rgba(0,0,0,.35)}
+.pstart .vinyl{top:5%;left:44%;width:90%;aspect-ratio:1}
+.psth p{margin:0;font-weight:700;font-size:clamp(14px,3.8cqi,18px);color:var(--sub)}
+.psth h2{margin-top:2px;font:900 clamp(32px,10.5cqi,60px)/.95 var(--f-head);letter-spacing:-.045em;overflow-wrap:anywhere;text-wrap:balance}
+.pstcols{display:grid;grid-template-columns:1fr 1fr;gap:clamp(12px,4cqi,24px)}
+.pstcols h3{margin:0 0 6px;font:800 clamp(13px,3.4cqi,16px)/1.2 var(--f-ui);color:var(--sub)}
+.pstcols ol{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:3px}
+.pstcols li{display:grid;grid-template-columns:1.4em minmax(0,1fr);font:700 clamp(14px,4.2cqi,19px)/1.3 var(--f-ui)}
+.pstcols li i{font-style:normal;color:var(--sub)}
+.pstcols li span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.pstnums{display:grid;grid-template-columns:1fr 1fr;gap:clamp(12px,4cqi,24px)}
+.pstnums small{display:block;font:800 clamp(13px,3.4cqi,16px)/1.2 var(--f-ui);color:var(--sub)}
+.pstnums b{display:block;font:900 clamp(26px,8.4cqi,44px)/1.05 var(--f-num);letter-spacing:-.03em;overflow-wrap:anywhere}
+.pstfoot{font:800 13px/1 var(--f-ui);color:var(--sub)}
+.rcbox .pst{box-shadow:0 24px 60px rgba(0,0,0,.6)}
+
+/* récaps : stories */
+.sto{position:fixed;inset:0;z-index:85;display:grid;place-items:center;background:rgba(0,0,0,.9)}
+.stoframe{position:relative;width:min(100vw,calc(min(92dvh,880px) * 9 / 16));height:min(100dvh,92dvh,880px);aspect-ratio:9/16;border-radius:16px;overflow:hidden;background:#111;container-type:size;touch-action:manipulation;user-select:none;-webkit-user-select:none}
+.stobars{position:absolute;z-index:4;left:10px;right:10px;top:10px;display:flex;gap:4px}
+.stobars span{flex:1;height:3px;border-radius:2px;background:rgba(255,255,255,.35);overflow:hidden}
+.stobars i{display:block;height:100%;width:0;background:#fff}
+.stobars .done i{width:100%}
+.stobars .on i{animation:stoprog var(--dur,6s) linear forwards}
+.sto.paused .stobars .on i{animation-play-state:paused}
+@keyframes stoprog{from{width:0}to{width:100%}}
+.stotop{position:absolute;z-index:5;left:12px;right:8px;top:20px;display:flex;align-items:center;gap:6px;color:#fff}
+.stok{flex:1;font:800 14px/1.2 var(--f-ui);text-shadow:0 1px 8px rgba(0,0,0,.4)}
+.stotop .ib{background:rgba(0,0,0,.28);color:#fff;width:34px;height:34px}
+.stotop .x{display:grid;place-items:center;width:34px;height:34px;border-radius:50%;background:rgba(0,0,0,.28);color:#fff;font-size:24px;line-height:1}
+.sto.paused #stoPause svg{display:none}
+.sto.paused #stoPause::after{content:"";width:0;height:0;border-left:11px solid #fff;border-top:7px solid transparent;border-bottom:7px solid transparent;margin-left:3px}
+.stoslides{position:absolute;inset:0}
+.stonav{position:absolute;z-index:3;top:64px;bottom:0;border:0;background:none;color:#fff;opacity:0;display:flex;align-items:center;padding:0 10px}
+.stonav.prev{left:0;width:30%;justify-content:flex-start}
+.stonav.next{right:0;width:70%;justify-content:flex-end}
+.stonav .ic{width:30px;height:30px;padding:4px;border-radius:50%;background:rgba(0,0,0,.35)}
+.stonav:focus-visible{opacity:1;outline:none}
+.sto.fin .stonav{display:none}
+@media (hover:hover){.stoframe:hover .stonav{opacity:.85}}
+.ss{--ink:#fff;--sub:rgba(255,255,255,.82);--lab:hsl(calc(var(--h) + 160) 85% 62%);position:absolute;inset:0;display:flex;flex-direction:column;justify-content:center;gap:4cqh;padding:16cqh 8cqi 9cqh;background:var(--bg);color:var(--ink);overflow:hidden;isolation:isolate;visibility:hidden}
+.ss.on{visibility:visible}
+.ss .vy{z-index:-1;width:104cqi;aspect-ratio:1}
+.ss .vy.p0{right:-52cqi;top:-20cqh}
+.ss .vy.p1{left:-58cqi;bottom:-22cqh}
+.ss .vy.p2{right:-60cqi;bottom:-24cqh}
+.ss .vy.p3{left:-50cqi;top:-26cqh}
+.ss .vy.spin{animation:spin 9s linear infinite}
+@keyframes spin{to{transform:rotate(1turn)}}
+.ss .k{margin:0;font:800 clamp(14px,4.6cqi,22px)/1.2 var(--f-ui);color:var(--sub)}
+.ss .t{margin:0;font:900 clamp(30px,11.5cqi,64px)/.95 var(--f-head);letter-spacing:-.045em;overflow-wrap:anywhere;text-wrap:balance}
+.ss .n{margin:0;font:900 clamp(56px,24cqi,128px)/.9 var(--f-num);letter-spacing:-.05em;font-variant-numeric:tabular-nums}
+.ss .d{margin:0;font:600 clamp(15px,4.6cqi,22px)/1.35 var(--f-ui);color:var(--sub);max-width:30ch}
+.ss .d b{color:var(--ink)}
+.ss .nd{display:flex;align-items:center;gap:4cqi}
+.ss .nd .cv{width:24cqi;flex:none;box-shadow:0 10px 26px rgba(0,0,0,.3)}
+.ss .nd .d{margin:0}
+.ss .big1{width:58cqi;box-shadow:0 24px 60px rgba(0,0,0,.35)}
+.ss .mos4{display:grid;grid-template-columns:1fr 1fr;gap:1.4cqi;width:66cqi;transform:rotate(-4deg);box-shadow:0 24px 60px rgba(0,0,0,.4)}
+.ss .mos4 .cv{width:100%;border-radius:0}
+.ss .mos4 .cv b{display:none}
+.ss ol.big{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:2.2cqh}
+.ss ol.big li{display:grid;grid-template-columns:2.2ch 15cqi minmax(0,1fr);gap:4cqi;align-items:center}
+.ss ol.big li>i{font:900 clamp(22px,8cqi,40px)/1 var(--f-num);font-style:normal}
+.ss ol.big .cv{width:15cqi;box-shadow:0 8px 20px rgba(0,0,0,.3)}
+.ss ol.big b{display:block;font:800 clamp(16px,5.4cqi,26px)/1.15 var(--f-ui);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.ss ol.big small{display:block;font:600 clamp(12px,3.8cqi,17px)/1.2 var(--f-ui);color:var(--sub);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.ss .bars{display:flex;align-items:flex-end;gap:.7cqi;height:16cqh}
+.ss .bars i{flex:1;min-width:1px;border-radius:2px 2px 0 0;background:color-mix(in srgb,var(--ink) 42%,transparent)}
+.ss .bars i.pk{background:var(--ink)}
+.ss .gl{display:flex;flex-direction:column;gap:2.2cqh}
+.ss .gl div{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:4px 12px;font:800 clamp(15px,5cqi,24px)/1.2 var(--f-ui)}
+.ss .gl em{grid-column:1/-1;display:block;height:1.4cqh;border-radius:99px;background:color-mix(in srgb,var(--ink) 22%,transparent);overflow:hidden;font-style:normal}
+.ss .gl em s{display:block;height:100%;border-radius:99px;background:var(--ink)}
+.ss .sl .w{font-size:clamp(13px,4cqi,18px)}
+.ss .sls2{display:flex;flex-direction:column;gap:3cqh}
+.ss .sls2 .sl{grid-template-columns:minmax(0,1fr) minmax(0,1fr);grid-template-areas:"l r" "t t";gap:1.2cqh 10px}
+.ss .sls2 .sl .w{grid-area:l}
+.ss .sls2 .sl .w.r{grid-area:r}
+.ss .sls2 .sl .trk{grid-area:t;background:color-mix(in srgb,var(--ink) 25%,transparent)}
+.ss .sls2 .sl .trk b{background:var(--ink)}
+.ss .sls2 .sl .trk::before{background:color-mix(in srgb,var(--ink) 50%,transparent)}
+.ss.fin{justify-content:center;gap:3cqh;padding-top:11cqh;background:#121212}
+.ss.fin .pst{border-radius:12px}
+.ss .acts{display:flex;flex-wrap:wrap;gap:8px;position:relative;z-index:6}
+.ss .acts .btn{color:#fff;border-color:rgba(255,255,255,.35)}
+.ss .acts .btn.pri{color:#000;border-color:transparent}
+.ss .acts .sp{flex:1}
+.ss .hint{position:absolute;bottom:4cqh;left:0;right:0;text-align:center;font:700 13px/1 var(--f-ui);color:var(--sub)}
+.ss.on .rv{animation:rv .55s cubic-bezier(.2,.7,.2,1) both;animation-delay:calc(var(--d,0) * 90ms)}
+@keyframes rv{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+@media (max-width:720px){.sto{background:#000}.stoframe{width:100vw;height:100dvh;border-radius:0;aspect-ratio:auto}}
+@media (prefers-reduced-motion:reduce){.ss.on .rv{animation:none}.ss .vy.spin{animation:none}.stobars .on i{animation:none;width:100%}}
 
 /* récaps */
 .rcp{position:fixed;inset:0;z-index:80;display:flex;justify-content:center;align-items:flex-start;padding:16px;background:rgba(0,0,0,.82);overflow:auto}
@@ -556,6 +663,8 @@ code.cp{display:inline-block;max-width:100%;padding:4px 8px;border-radius:6px;ba
 .how{margin-top:16px;font-size:14px}
 .how summary{cursor:pointer;font-weight:700}
 .how ol{padding-left:20px;display:flex;flex-direction:column;gap:6px;margin:10px 0}
+.svcs{margin-top:12px}
+.svcs button{min-height:36px}
 .btns{display:flex;flex-wrap:wrap;gap:8px}
 .danger{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin-top:18px;font-size:14px}
 #copyBox{width:100%;min-height:120px;margin-top:10px;padding:10px;border-radius:6px;background:var(--chip);border:0}
@@ -626,6 +735,7 @@ code.cp{display:inline-block;max-width:100%;padding:4px 8px;border-radius:6px;ba
   .idc{grid-template-columns:1fr;padding:20px;gap:18px}
   .sty{padding:20px}
   .sls{grid-template-columns:1fr}
+  #rkMore,#logMore{width:100%}
   .rcsty .sl{grid-template-columns:minmax(0,1fr) minmax(0,1fr);grid-template-areas:"l r" "t t";gap:7px 10px}
   .rcsty .sl .w{grid-area:l}
   .rcsty .sl .w.r{grid-area:r}
@@ -758,10 +868,10 @@ code.cp{display:inline-block;max-width:100%;padding:4px 8px;border-radius:6px;ba
   </div>
   <div class="demo" id="demoBar" hidden>
     <div><p><b>Bienvenue sur Sillon.</b> Ce que tu vois, c'est un exemple inventé. Pour tes vraies stats :</p>
-      <ol><li>Sur la page Confidentialité de Spotify, demande <b>Intégralité de votre historique de streaming</b>.</li><li>Quand le mail de Spotify arrive (en général quelques jours), dépose le ZIP ici.</li></ol>
+      <ol><li>Demande ton historique d'écoute à ta plateforme : Spotify, Apple Music, YouTube Music ou Deezer. Les étapes sont dans « Comment faire ».</li><li>Quand le fichier arrive (de quelques minutes à quelques jours selon la plateforme), dépose-le ici.</li></ol>
       <p class="note" id="obSp" hidden>C'est tout : pas de compte à créer. En option, les vraies pochettes s'activent en connectant Spotify dans Données, seulement si la personne qui t'a partagé le site t'a ajouté à son app Spotify.</p>
       <p class="note">Tes données restent à toi : personne d'autre ne les voit, même pas la personne qui t'a partagé le site.</p></div>
-    <div class="row2"><a class="btn" href="https://www.spotify.com/account/privacy/" target="_blank" rel="noopener">Demander mon historique</a><button class="btn pri" data-act="data">Importer mon ZIP</button></div>
+    <div class="row2"><button class="btn" data-act="how">Comment faire</button><button class="btn pri" data-act="data">Importer mon fichier</button></div>
   </div>
   <div class="pad">
     <div class="kpis" id="nums"></div>
@@ -862,8 +972,8 @@ code.cp{display:inline-block;max-width:100%;padding:4px 8px;border-radius:6px;ba
     <p class="small" id="rkHint"></p>
     <div class="podium" id="podium"></div>
     <div class="scroll"><table class="stack rk" id="rkTable"></table></div>
+    <button class="more" id="rkMore" hidden>Voir plus</button>
     <div class="actrow">
-      <button class="more" id="rkMore" hidden>Voir plus</button>
       <button class="btn" id="rkDisco">Estimer les discographies avec Claude</button>
       <span class="small" id="rkDiscoMsg"></span>
     </div>
@@ -917,7 +1027,7 @@ code.cp{display:inline-block;max-width:100%;padding:4px 8px;border-radius:6px;ba
 
   <footer class="foot">
     <p id="footStore">Ton fichier est lu dans ton navigateur. On garde seulement titres, artistes, dates, durées et appareils : les adresses IP de l'export sont ignorées.</p>
-    <p>Sillon n'est pas affilié à Spotify. Raccourcis : ← → pour naviguer, 1 à 5 pour la période.</p>
+    <p>Sillon n'est affilié ni à Spotify, ni à Apple, ni à Google, ni à Deezer. Raccourcis : ← → pour naviguer, 1 à 5 pour la période.</p>
   </footer>
 </main>
 </div>
@@ -945,7 +1055,21 @@ code.cp{display:inline-block;max-width:100%;padding:4px 8px;border-radius:6px;ba
       <button class="btn" id="rcOpen" title="Ouvrir cette période dans l'accueil" aria-label="Ouvrir cette période dans l'accueil">Ouvrir</button>
       <button class="x" data-close aria-label="Fermer le récap">×</button>
     </div>
-    <div class="rcard" id="rcard"></div>
+    <div id="rcard"></div>
+  </div>
+</div>
+
+<div class="sto" id="sto" role="dialog" aria-modal="true" aria-labelledby="stoKind" hidden>
+  <div class="stoframe" id="stoFrame">
+    <div class="stobars" id="stoBars" aria-hidden="true"></div>
+    <div class="stotop">
+      <span class="stok" id="stoKind"></span>
+      <button class="ib" id="stoPause" aria-label="Mettre en pause" aria-pressed="false"><svg class="ic" viewBox="0 0 24 24"><path d="M8 5v14M16 5v14"/></svg></button>
+      <button class="x" data-close aria-label="Fermer le récap">×</button>
+    </div>
+    <div class="stoslides" id="stoSlides"></div>
+    <button class="stonav prev" id="stoPrev" aria-label="Écran précédent"><svg class="ic" viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7"/></svg></button>
+    <button class="stonav next" id="stoNext" aria-label="Écran suivant"><svg class="ic" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg></button>
   </div>
 </div>
 
@@ -954,32 +1078,33 @@ code.cp{display:inline-block;max-width:100%;padding:4px 8px;border-radius:6px;ba
   <p class="dstatus" id="dmStatus"></p>
   <div class="syncb" id="syncBox"></div>
   <div class="drop" id="drop">
-    <p><b>Dépose ici ton export Spotify</b><br><span class="note">Le fichier my_spotify_data.zip tel quel, ou les fichiers .json qu'il contient.</span></p>
+    <p><b>Dépose ici ton export</b><br><span class="note">Spotify, Apple Music, YouTube Music ou Deezer : le fichier reçu tel quel, ou ce qu'il contient.</span></p>
     <button class="btn pri" id="pick">Choisir un fichier</button>
     <div class="prog" id="prog" hidden><i id="progBar"></i></div>
     <p class="msg" id="impMsg" aria-live="polite"></p>
   </div>
   <div class="mergeb" id="mergeBox">
-    <h3>Fusionner un autre compte Spotify</h3>
+    <h3>Fusionner un autre compte</h3>
     <p class="note">Spotify ne sait pas fusionner deux comptes : chaque historique reste sur son compte. Sillon, lui, les additionne en une seule histoire, sans doublons, et garde la date de création la plus ancienne.</p>
     <ol>
       <li>Connecte-toi à ton autre compte (en navigation privée, c'est plus simple) sur <a href="https://www.spotify.com/account/privacy/" target="_blank" rel="noopener">la page Confidentialité de spotify.com</a>.</li>
-      <li>Demande <b>Intégralité de votre historique de streaming</b>. Pas « Données de compte » : celle-là ne couvre que la dernière année, donc elle serait vide pour un vieux compte.</li>
+      <li>Demande <b>Intégralité de votre historique de streaming</b>. Pas « Données de compte » : celle-là ne couvre que la dernière année, donc elle serait vide pour un vieux compte.</li>
       <li>Quand le mail arrive, clique ci-dessous et choisis son ZIP.</li>
     </ol>
+    <p class="note">Tu as aussi écouté sur Apple Music, YouTube Music ou Deezer ? Dépose simplement leur fichier : tout s'additionne de la même façon.</p>
     <button class="btn lite" id="pickMerge"><svg class="ic" viewBox="0 0 24 24"><path d="M6 4v5a6 6 0 0 0 6 6h0a6 6 0 0 1 6 6"/><path d="M18 4v5a6 6 0 0 1-3 5.2"/></svg>Fusionner un compte</button>
     <ul class="srcs" id="srcList"></ul>
   </div>
   <div class="mergeb" id="spBox" hidden><h3>Connexion à Spotify, optionnelle</h3><div id="spBody"></div></div>
   <details class="how" id="how">
-    <summary>Récupérer ton historique complet</summary>
-    <ol>
-      <li>Ouvre <a href="https://www.spotify.com/account/privacy/" target="_blank" rel="noopener">la page Confidentialité du compte sur spotify.com</a> et connecte-toi.</li>
-      <li>Dans « Télécharger vos données », coche <b>Intégralité de votre historique de streaming</b> : c'est celui qui remonte à la création du compte. Valide, puis confirme via le mail de Spotify.</li>
-      <li>Spotify t'envoie le fichier par mail, en général en quelques jours (jusqu'à 30 jours).</li>
-      <li>Dépose le .zip ici. Les nouvelles écoutes s'ajoutent sans doublons. Le site te le rappelle tous les mois.</li>
-    </ol>
-    <p class="note">L'export « Données de compte » marche aussi (plus rapide, mais seulement la dernière année, sans appareils ni zappés).</p>
+    <summary>Récupérer ton historique</summary>
+    <div class="chips svcs" id="howTabs" role="group" aria-label="Ta plateforme">
+      <button type="button" data-svc="spotify" aria-pressed="true">Spotify</button>
+      <button type="button" data-svc="apple" aria-pressed="false">Apple Music</button>
+      <button type="button" data-svc="ytm" aria-pressed="false">YouTube Music</button>
+      <button type="button" data-svc="deezer" aria-pressed="false">Deezer</button>
+    </div>
+    <div id="howBody"></div>
   </details>
   <h3 class="h3">Apparence</h3>
   <div class="appear skins" role="group" aria-label="Thème">
@@ -1011,7 +1136,7 @@ code.cp{display:inline-block;max-width:100%;padding:4px 8px;border-radius:6px;ba
 <div id="tip" role="tooltip"></div>
 <div id="toast" role="status" aria-live="polite"></div>
 <div id="dropHint" hidden>Lâche ton fichier pour l'importer</div>
-<input type="file" id="file" accept=".zip,.json,application/zip,application/json" multiple hidden>
+<input type="file" id="file" accept=".zip,.json,.csv,.xlsx,.html,application/zip,application/json,text/csv" multiple hidden>
 
 <script src="config.js"></script>
 <script>
@@ -1963,7 +2088,7 @@ function renderRanks() {
   $('#artSub').textContent = `Classés ${ua}` + (cmpOk ? ', avec l\'évolution par rapport à ' + prevName[S.gran] : '');
   const art = $('#artList'); art.classList.toggle('grid', S.top.art > 10);
   art.innerHTML = A.length ? A.map((e, j) => tileA(e.i, val(e), `<span class="rk">n°${NS}${j + 1} ${chg(pa, e.i, j + 1)}</span>`)).join('') : none;
-  $('#trkTitle').textContent = Tt.length ? `« ${D.tn[Tt[0].i]} », ton ${l.t1} n°${NS}1` : 'Tes ' + l.t.toLowerCase();
+  $('#trkTitle').textContent = Tt.length ? `« ${D.tn[Tt[0].i]} », ton ${l.t1} n°${NS}1` : 'Tes ' + l.t.toLowerCase();
   $('#trkSub').textContent = `${l.t} classés ${ua}`;
   $('#trkList').innerHTML = Tt.length ? Tt.map((e, j) => trRow(e.i, j + 1, S.metric === 'ms' ? fmtDur(e.ms) : fmtN(e.p), chg(pt, e.i, j + 1))).join('') : `<li class="empty">${S.focus ? 'Rien avec ce focus sur la période.' : 'Rien sur cette période.'}</li>`;
   $('#albTitle').textContent = B.length ? `${D.albums[B[0].i]}, l'album de la période` : 'Tes albums';
@@ -2050,7 +2175,7 @@ function renderHabits() {
   const mt = (name, v, w) => `<div class="mt"><span>${esc(name)}</span><span class="tr"><i style="width:${(w * 100).toFixed(1)}%"></i></span><b>${v}</b></div>`;
   let h = '';
   if (known.length) h += '<div class="meters">' + plats.slice(0, 6).map(([n, v]) => mt(n, fmtPct(v / tot), v / plats[0][1])).join('') + '</div>';
-  else h += '<p class="empty">Appareils inconnus : l\'export simple ne les donne pas.</p>';
+  else h += '<p class="empty">Appareils inconnus : ce fichier ne les donne pas.</p>';
   if (p.ext) {
     const r = [['Zappés', p.sk / p.ext], ['En aléatoire', p.sh / p.ext], ['Hors ligne', p.of / p.ext], ['Écoutés jusqu\'au bout', p.dn / p.ext]];
     h += '<h3>Tes réflexes</h3><div class="meters">' + r.map(([n, v]) => mt(n, fmtPct(v), v)).join('') + '</div>';
@@ -2214,7 +2339,7 @@ function renderRank() {
   const th = (so2, label, cls) => `<th class="${cls || 'n'}"${so === so2 ? ' aria-sort="descending"' : ''}><button data-so="${so2}">${label}</button></th>`;
   $('#rkTable').innerHTML = rows.length ? `<thead><tr><th class="n">#</th><th>Artiste</th>${th('plays', 'Écoutes')}${th('ms', 'Temps')}${th('tracks', 'Titres')}${th('albums', 'Albums')}${th('months', 'Mois actifs')}${th('first', 'Depuis', 't')}${th('skip', 'Zappés')}${th('rel', 'Sortis ≈')}${th('cov', 'Discographie')}</tr></thead><tbody>` +
     shown.map((r, j) => `<tr><td class="n" data-l="Rang">${j + 1}</td><td class="nm" data-l="Artiste">${covA(r.a)}<span><button data-open="a:${r.a}">${esc(D.artists[r.a])}</button>${r.genre ? `<small>${esc(r.genre)}</small>` : ''}</span></td><td class="n" data-l="Écoutes">${fmtN(r.p)}</td><td class="n" data-l="Temps">${fmtDur(r.ms)}</td><td class="n" data-l="Titres">${fmtN(r.tr)}</td><td class="n" data-l="Albums">${fmtN(r.al)}</td><td class="n" data-l="Mois actifs">${fmtN(r.mo)}</td><td class="t" data-l="Depuis">${r.first >= 0 ? fmtDay(D.day[r.first]) : '–'}</td><td class="n" data-l="Zappés">${r.n ? fmtPct(r.sk) : '–'}</td><td class="n" data-l="Sortis ≈">${r.rel ? '≈' + NS + fmtN(r.rel) : '–'}</td><td class="n" data-l="Discographie">${r.cov != null ? fmtPct(r.cov) : '–'}</td></tr>`).join('') + '</tbody>'
-    : `<tbody><tr><td class="empty">${so === 'rel' || so === 'cov' ? 'Pas encore d\'estimation : clique « Estimer les discographies avec Claude » plus bas.' : 'Rien à classer ici.'}</td></tr></tbody>`;
+    : `<tbody><tr><td class="empty">${so === 'rel' || so === 'cov' ? 'Pas encore d\'estimation : clique « Estimer les discographies avec Claude » plus bas.' : 'Rien à classer ici.'}</td></tr></tbody>`;
   const more = $('#rkMore'); more.hidden = rows.length <= S.rk.n; more.textContent = `Voir plus (${fmtN(rows.length - S.rk.n)} autres)`;
   $('#rkDisco').hidden = DEMO || SA;
   $$('#rkSort [data-so=rel], #rkSort [data-so=cov]').forEach(b => b.hidden = SA);
@@ -2576,6 +2701,7 @@ function openData() {
   $('#dataModal').hidden = false; $('#ov').hidden = false; $('#notif').hidden = true;
   updateDataStatus();
   $('#how').open = DEMO;
+  renderHow();
   $('#copyBox').hidden = true; $('#wipeConfirm').hidden = true; $('#wipe').hidden = DEMO;
   $('[data-close]', $('#dataModal')).focus();
 }
@@ -2590,6 +2716,7 @@ function updateDataStatus() {
 }
 function closeAll() {
   $('#drawer').hidden = true; $('#dataModal').hidden = true; $('#recap').hidden = true; $('#ov').hidden = true; hideTip(); mergeMode = false;
+  if (STO) { STO = null; $('#sto').hidden = true; $('#stoSlides').innerHTML = ''; }
   if (lastFocus && document.contains(lastFocus)) lastFocus.focus();
 }
 
@@ -2601,56 +2728,56 @@ async function importFiles(files) {
   if ($('#dataModal').hidden) openData();
   const msg = $('#impMsg'), prog = $('#prog'), bar = $('#progBar');
   prog.hidden = false; bar.style.width = '2%';
-  const log = []; const say = t => { log.push(t); msg.textContent = log.slice(-7).join('\n'); };
-  const recs = []; let created = null, backup = null;
-  const onJson = async (name, text) => {
-    const base = name.split('/').pop();
-    if (/^userdata\.json$/i.test(base)) { try { const u = JSON.parse(text); if (u && u.creationTime) created = String(u.creationTime).slice(0, 10); } catch (e) {} return; }
-    if (!/streaming_?history|endsong|sillon/i.test(base)) return;
-    let arr; try { arr = JSON.parse(text); } catch (e) { say(base + ' : illisible, ignoré'); return; }
-    if (arr && arr.format === 'sillon-backup' && arr.data) { backup = arr; say(base + ' : sauvegarde Sillon'); return; }
-    if (!Array.isArray(arr)) return;
-    let c = 0; for (const r of arr) { const x = normRecord(r); if (x) { recs.push(x); c++; } }
-    say(`${base} : ${fmtN(c)} ${pl(c, 'écoute')}`);
-    await sleep(0);
-  };
+  const log = []; const say = t => { log.push(t); msg.textContent = log.slice(-8).join('\n'); };
+  let fi = 0;
+  const ctx = { recs: [], created: null, backup: null, svcs: new Set(), ytm: [], ytmJson: 0, dz: [], ap: { ev: [], dt: [], amap: new Map(), byDay: new Map() }, say, prog: fr => { bar.style.width = (4 + 56 * (fi + fr) / files.length) + '%'; } };
   try {
-    for (let fi = 0; fi < files.length; fi++) {
+    for (fi = 0; fi < files.length; fi++) {
       const f = files[fi];
-      say('Lecture de ' + f.name + '…');
-      if (/\.zip$/i.test(f.name) || f.type === 'application/zip' || f.type === 'application/x-zip-compressed') await unzip(await f.arrayBuffer(), n => /\.json$/i.test(n), onJson);
-      else await onJson(f.name, await f.text());
-      bar.style.width = (10 + 50 * (fi + 1) / files.length) + '%';
+      say('Lecture de ' + f.name + '…'); await sleep(0);
+      await ingest(f.name, f, ctx);
+      ctx.prog(1);
     }
+    const recs = ctx.recs;
+    if (ctx.ap.ev.length || ctx.ap.dt.length) {
+      const r = apFinish(ctx.ap, recs);
+      if (r.n) { ctx.svcs.add('apple'); say(`Apple Music : ${fmtN(r.n)} ${pl(r.n, 'écoute')}${r.unk ? `, artiste introuvable pour ${fmtPct(r.unk / r.n)} d'entre elles` : ''}${ctx.ap.ev.length ? '' : ' (heures approximatives : il manque « Apple Music Play Activity.csv »)'}.`); }
+    }
+    if (ctx.ytm.length) { const n = ytmFinish(ctx.ytm, recs); if (n) { ctx.svcs.add('ytm'); say(`YouTube Music : ${fmtN(n)} ${pl(n, 'écoute')}. Google ne donne pas la durée écoutée : elle est estimée.`); } }
+    if (ctx.dz.length) { const n = dzFinish(ctx.dz, recs); if (n) { ctx.svcs.add('deezer'); say(`Deezer : ${fmtN(n)} ${pl(n, 'écoute')}.`); } }
     let X;
-    if (backup) {
-      X = unpack(await gunz(unb64(backup.data)));
+    if (ctx.backup) {
+      X = unpack(await gunz(unb64(ctx.backup.data)));
       if (recs.length || !DEMO) X = build(mergeRecs((DEMO ? [] : toRecs(D)).concat(toRecs(X), recs)), oldestDate(X.created, DEMO ? null : D.created));
     } else {
-      if (!recs.length) { say('Aucun historique d\'écoute trouvé dans ce fichier. Il faut le fichier Spotify qui contient « Streaming_History » ou « StreamingHistory ».'); bar.style.width = '0%'; return; }
+      if (!recs.length) { say('Aucun historique d\'écoute trouvé. Fichiers acceptés : le ZIP de Spotify, d\'Apple, de Google Takeout (YouTube Music) ou de Deezer, ou les fichiers qu\'ils contiennent.'); bar.style.width = '0%'; return; }
       say('Fusion et suppression des doublons…'); await sleep(20);
       let rtx = -Infinity; for (const r of recs) if (r.t > rtx) rtx = r.t;
       const old = DEMO ? [] : toRecs(D).filter(r => !(r.f & 128) || r.t > rtx);
       const merged = mergeRecs(old.concat(recs)), added = merged.length - old.length, dup = Math.max(0, old.length + recs.length - merged.length);
-      X = build(merged, oldestDate(created, DEMO ? null : D.created));
+      X = build(merged, oldestDate(ctx.created, DEMO ? null : D.created));
       say(`${fmtN(Math.max(0, added))} ${pl(added, 'écoute')} ${added >= 2 ? 'ajoutées' : 'ajoutée'}, ${fmtN(dup)} ${dup >= 2 ? 'doublons ignorés' : 'doublon ignoré'}.`);
     }
+    const recs2 = ctx.recs;
     bar.style.width = '70%';
     setData(X, false);
     const lastTs = D.n ? D.s[D.n - 1] + Math.round(D.m[D.n - 1] / 1000) : 0;
     Prefs.data.live = Prefs.data.live.filter(e => e.t > lastTs);
-    let rf = Infinity, rt = -Infinity; for (const r of recs) { if (r.t < rf) rf = r.t; if (r.t > rt) rt = r.t; }
-    const sy = Prefs.data.sync;
+    let rf = Infinity, rt = -Infinity; for (const r of recs2) { if (r.t < rf) rf = r.t; if (r.t > rt) rt = r.t; }
+    const sy = Prefs.data.sync, svcs = [...ctx.svcs];
     sy.importedAt = Date.now(); sy.requestedAt = null; sy.snooze = 0;
-    if (recs.length) sy.sources = (sy.sources || []).concat({ at: Date.now(), n: recs.length, from: Math.floor(rf / 86400), to: Math.floor(rt / 86400), merge: merging }).slice(-12);
+    if (svcs.length === 1) sy.svc = svcs[0];
+    if (recs2.length) sy.sources = (sy.sources || []).concat({ at: Date.now(), n: recs2.length, from: Math.floor(rf / 86400), to: Math.floor(rt / 86400), merge: merging, svc: svcs.map(k => SVCS[k].n).join(' + ') }).slice(-12);
     Prefs.save(); notifClosed = false;
     say('Sauvegarde…');
     const where = await Store.save(D, f => bar.style.width = (70 + 30 * f) + '%');
     bar.style.width = '100%';
     say(where === 'db' ? 'C\'est bon, tes stats sont prêtes et sauvegardées.' : where === 'idb' ? 'C\'est bon. Sauvegardé dans ce navigateur.' : 'C\'est bon, mais la sauvegarde a échoué : réimporte le fichier à la prochaine visite.');
-    if (merging && recs.length) say(`Compte fusionné : ses écoutes vont du ${fmtDay(Math.floor(rf / 86400))} au ${fmtDay(Math.floor(rt / 86400))}. Ton historique commence maintenant le ${fmtDay(D.firstDay)}.`);
-    if (log.some(t => /StreamingHistory_music|StreamingHistory\d/i.test(t)) && !log.some(t => /Streaming_History_Audio|endsong/i.test(t))) say('Info : c\'est l\'export simple (1 an). Pour tout depuis la création du compte, demande l\'historique complet.');
-    updateDataStatus(); renderHead(); $('#wipe').hidden = false;
+    if (merging && recs2.length) say(`Compte fusionné : ses écoutes vont du ${fmtDay(Math.floor(rf / 86400))} au ${fmtDay(Math.floor(rt / 86400))}. Ton historique commence maintenant le ${fmtDay(D.firstDay)}.`);
+    if (log.some(t => /StreamingHistory_music|StreamingHistory\d/i.test(t)) && !log.some(t => /Streaming_History_Audio|endsong/i.test(t))) say('Info : c\'est l\'export simple de Spotify (1 an). Pour tout depuis la création du compte, demande l\'historique complet.');
+    const noSk = ['ytm', 'deezer'].filter(k => ctx.svcs.has(k)).map(k => SVCS[k].n);
+    if (noSk.length) say(`Info : ${noSk.join(' et ')} ne ${noSk.length > 1 ? 'disent' : 'dit'} pas quand tu zappes ni si tu es en aléatoire${ctx.svcs.size > noSk.length ? ' : ces stats-là se basent sur tes autres écoutes' : ' : ces stats-là restent vides'}.`);
+    updateDataStatus(); renderHead(); howSvc = null; renderHow(); $('#wipe').hidden = false;
   } catch (e) { console.error(e); say('Oups : ' + (e && e.message ? e.message : 'import impossible') + '.'); }
 }
 
@@ -2666,7 +2793,7 @@ function topsCsv() {
 function summary() {
   const [r0, r1] = range(S.gran, S.anchor), l = L();
   const A = topList(P, 'a', 3), Tt = topList(P, 't', 3);
-  const lines = [`Mes stats Spotify, ${periodText(S.gran, r0, r1)}`, `${fmtPlays(P.plays)}, ${fmtDur(P.ms)} d'écoute, ${fmtN(P.uT)} ${l.tt} différents`];
+  const lines = [`Mes stats d'écoute, ${periodText(S.gran, r0, r1)}`, `${fmtPlays(P.plays)}, ${fmtDur(P.ms)} d'écoute, ${fmtN(P.uT)} ${l.tt} différents`];
   if (A.length) lines.push(`Top ${l.a.toLowerCase()} : ` + A.map(e => `${D.artists[e.i]} (${fmtN(e.p)})`).join(', '));
   if (Tt.length) lines.push(`Top ${l.t.toLowerCase()} : ` + Tt.map(e => `${D.tn[e.i]} de ${D.artists[D.ta[e.i]]} (${fmtN(e.p)})`).join(', '));
   if (P.nT) lines.push(`${fmtN(P.nT)} découvertes`);
@@ -2774,6 +2901,7 @@ function shortPeak(R) { const X = R.X, i = R.pk; if (i < 0) return '–'; if (R.
 function recapDelta(R) { if (!R.Qd || !R.Qd.ms) return ''; const d = R.X.ms / R.Qd.ms - 1; return `${d >= 0 ? '+' : '−'}${fmtPct(Math.abs(d))} ${recapPrev(R)}`; }
 function openRecap(g, a) {
   if (!D) return;
+  if (g === 'month' || g === 'year' || g === 'all') { openStories(g, a); return; }
   RC = { g, a: clamp(a, D.firstDay, D.lastDay) };
   lastFocus = document.activeElement; hideTip();
   $('#recap').hidden = false; drawRecap();
@@ -2781,30 +2909,10 @@ function openRecap(g, a) {
 }
 function rcGo(k) { if (!RC || RC.g === 'all') return; const a = shift(RC.g, RC.a, k), [r0, r1] = range(RC.g, a); if (r1 <= D.firstDay || r0 > D.lastDay) return; RC.a = clamp(a, D.firstDay, D.lastDay); drawRecap(); }
 function drawRecap() {
-  const R = recapData(RC.g, RC.a), X = R.X, l = L();
+  const R = recapData(RC.g, RC.a);
   RC.R = R;
-  const title = periodText(R.g, R.r0, R.r1), card = $('#rcard');
-  card.style.setProperty('--hh', R.A.length ? hueA(R.A[0]) : 140);
-  if (!X.plays) card.innerHTML = `<div><p class="rk">${RC_KIND[R.g]}</p><h2 id="rcT">${esc(title)}</h2></div><p>Rien d'écouté sur cette période.</p>`;
-  else {
-    const a1 = R.A[0], dl = recapDelta(R), gs = genreShare(X.aM), tr = traitsOf(X)[0];
-    const per = tr && tr.s >= 1 ? tr : { k: 'équilibré', d: 'un peu de tout, sans excès' };
-    const albs = topIdx(X.lM, 6, 1);
-    const bars = Array.from(X.bM), mx = Math.max(1, ...bars), bw = 100 / Math.max(1, bars.length);
-    const pk = bars.indexOf(Math.max(...bars));
-    card.innerHTML = `${albs.length >= 3 ? `<div class="rcmos">${albs.map(covL).join('')}</div>` : ''}
-      <div><p class="rk">${RC_KIND[R.g]}</p><h2 id="rcT">${esc(title)}</h2></div>
-      <div class="big"><b>${esc(fmtDur(X.ms))}</b><span>d'écoute${dl ? ', ' + esc(dl) : ''}</span></div>
-      <svg class="rcbars" viewBox="0 0 100 40" preserveAspectRatio="none" aria-hidden="true">${bars.map((v, i) => v > 0 ? `<rect x="${(i * bw + bw * 0.14).toFixed(2)}" y="${(40 - v / mx * 38).toFixed(2)}" width="${(bw * 0.72).toFixed(2)}" height="${(v / mx * 38).toFixed(2)}" rx="0.6"${i === pk ? ' class="pk"' : ''}/>` : '').join('')}</svg>
-      <div class="rc1">${covA(a1)}<div><small>Ton ${esc(l.a1)} n°${NS}1</small><b>${esc(D.artists[a1])}</b><span>${esc(fmtDur(X.aM[a1]))}, ${esc(fmtPlays(X.aP[a1]))}</span></div></div>
-      <div class="rccols"><div><h3>Top ${esc(l.a.toLowerCase())}</h3><ol>${R.A.map((a, j) => `<li><i>${j + 1}</i>${covA(a)}<span><b>${esc(D.artists[a])}</b><small>${esc(fmtDur(X.aM[a]))}</small></span></li>`).join('')}</ol></div>
-      <div><h3>Top ${esc(l.t.toLowerCase())}</h3><ol>${R.T.map((t, j) => `<li><i>${j + 1}</i>${covT(t)}<span><b>${esc(D.tn[t])}</b><small>${esc(D.artists[D.ta[t]])}, ${esc(fmtPlays(X.tP[t]))}</small></span></li>`).join('')}</ol></div></div>
-      ${gs.known ? `<div class="rcgen">${gs.mac.slice(0, 4).map(x => `<span>${esc(x.g)} <b>${fmtPct(x.p)}</b></span>`).join('')}</div>` : ''}
-      <div class="rcper"><small>Ton profil sur la période</small><b>Profil ${esc(per.k)}</b><span>${esc(cap(per.d))}</span></div>
-      ${(() => { const st = styleOf(R.r0, R.r1).sort((x, y) => lean(y) - lean(x)).slice(0, 4); return st.length ? `<div class="rcsty"><small>Ton style sur la période</small>${styleRows(st, true)}</div>` : ''; })()}
-      <dl class="rcfacts"><div><dt>Écoutes</dt><dd>${fmtN(X.plays)}</dd></div><div><dt>${esc(l.t)} différents</dt><dd>${fmtN(X.uT)}</dd></div><div><dt>${esc(cap(l.nan))}</dt><dd>${fmtN(X.nA)}</dd></div><div><dt>${esc(cap(l.nt))}</dt><dd>${fmtN(X.nT)}</dd></div><div><dt>${R.g === 'year' || R.g === 'all' ? 'Mois record' : R.g === 'day' ? 'Heure record' : 'Jour record'}</dt><dd>${esc(shortPeak(R))}</dd></div><div><dt>Jours d'écoute</dt><dd>${fmtN(X.active)}</dd></div></dl>
-      <div class="rcfoot"><span>Sillon</span><span>${DEMO ? 'Exemple fictif' : 'Mes stats Spotify'}</span></div>`;
-  }
+  $('#rcard').innerHTML = posterHTML(R, true);
+  if (SA) queueCovers();
   const canPrev = R.g !== 'all' && range(R.g, shift(R.g, R.a, -1))[1] > D.firstDay, canNext = R.g !== 'all' && range(R.g, shift(R.g, R.a, 1))[0] <= D.lastDay;
   $('#rcPrev').disabled = !canPrev; $('#rcNext').disabled = !canNext;
   let can = false; try { can = SA && !!navigator.canShare && navigator.canShare({ files: [new File(['x'], 'x.png', { type: 'image/png' })] }); } catch (e) {}
@@ -3073,7 +3181,7 @@ function renderPredict() {
   if (R.wr) {
     const W = R.wr;
     $('#pdWrT').textContent = `Ton Wrapped ${W.y}, en avance`;
-    $('#pdWrS').textContent = `Spotify compte à peu près du 1er janvier à mi-novembre. Sur cette période : ${fmtN(Math.round(W.ms / 6e4))} minutes d'écoute${W.t >= 0 ? `, et ton titre n°${NS}1 devrait être « ${D.tn[W.t]} »` : ''}. Voilà ton top 5 probable.`;
+    $('#pdWrS').textContent = `Spotify compte à peu près du 1er janvier à mi-novembre. Sur cette période : ${fmtN(Math.round(W.ms / 6e4))} minutes d'écoute${W.t >= 0 ? `, et ton titre n°${NS}1 devrait être « ${D.tn[W.t]} »` : ''}. Voilà ton top 5 probable.`;
     $('#pdWr').innerHTML = W.A.map((a, j) => tileA(a, `n°${NS}${j + 1}, ${fmtN(Math.round(W.aM[a] / 6e4))} min`)).join('');
   }
 }
@@ -3099,12 +3207,14 @@ function showNotif(st) {
   const days = Math.floor((Date.now() - syncBase()) / DAYMS);
   if (st.startsWith('due')) {
     $('#ntT').textContent = 'C\'est l\'heure de mettre tes stats à jour';
-    $('#ntP').textContent = `Ta dernière importation date d'il y a ${fmtN(days)} jours. Redemande ton historique à Spotify : il arrive par mail, en général en quelques jours.`;
-    $('#ntA').innerHTML = `<a class="btn pri" href="${SPOTIFY_PRIVACY}" target="_blank" rel="noopener" data-nt="req">Demander mon export</a><button class="btn" data-nt="later">Plus tard</button>`;
+    const v = svcOf();
+    $('#ntP').textContent = `Ta dernière importation date d'il y a ${fmtN(days)} jours. Redemande ton historique à ${v.n} : il arrive par mail, en général en ${v.wait}.`;
+    $('#ntA').innerHTML = `<a class="btn pri" href="${v.url}" target="_blank" rel="noopener" data-nt="req">Demander mon export</a><button class="btn" data-nt="later">Plus tard</button>`;
   } else {
-    $('#ntT').textContent = 'Ton export Spotify est en route';
-    $('#ntP').textContent = 'Dès que tu reçois le mail de Spotify, dépose le ZIP ici : tes nouvelles écoutes s\'ajoutent sans doublons.';
-    $('#ntA').innerHTML = `<button class="btn pri" data-nt="imp">Importer</button><a class="btn" href="${SPOTIFY_PRIVACY}" target="_blank" rel="noopener">Page Spotify</a><button class="btn" data-nt="later">Pas encore</button>`;
+    const v = svcOf();
+    $('#ntT').textContent = `Ton export ${v.n} est en route`;
+    $('#ntP').textContent = `Dès que tu reçois le mail de ${v.n}, dépose le fichier ici : tes nouvelles écoutes s'ajoutent sans doublons.`;
+    $('#ntA').innerHTML = `<button class="btn pri" data-nt="imp">Importer</button><a class="btn" href="${v.url}" target="_blank" rel="noopener">Page ${esc(v.n)}</a><button class="btn" data-nt="later">Pas encore</button>`;
   }
   $('#notif').hidden = false;
 }
@@ -3119,11 +3229,11 @@ function renderSyncBox() {
   if (DEMO || !D) { box.hidden = true; return; }
   box.hidden = false;
   const s = Prefs.data.sync || {}, base = syncBase(), days = Math.floor((Date.now() - base) / DAYMS), next = base + 30 * DAYMS, st = syncState() || '';
-  box.innerHTML = `<p><b>Dernière mise à jour il y a ${days <= 0 ? 'moins d\'un jour' : fmtN(days) + ' ' + pl(days, 'jour')}</b><small>${st.startsWith('wait') ? 'Export demandé le ' + fmtDay(Math.floor(s.requestedAt / DAYMS)) + ' : dépose-le ici dès qu\'il arrive.' : 'Prochain rappel ' + (next <= Date.now() ? 'maintenant' : 'le ' + fmtDay(Math.floor(next / DAYMS))) + '. Tes données vont jusqu\'au ' + fmtDay(D.lastDay) + '.'}</small></p><a class="btn" href="${SPOTIFY_PRIVACY}" target="_blank" rel="noopener" data-nt="req2">Demander mon export</a>`;
+  box.innerHTML = `<p><b>Dernière mise à jour il y a ${days <= 0 ? 'moins d\'un jour' : fmtN(days) + ' ' + pl(days, 'jour')}</b><small>${st.startsWith('wait') ? 'Export demandé le ' + fmtDay(Math.floor(s.requestedAt / DAYMS)) + ' : dépose-le ici dès qu\'il arrive.' : 'Prochain rappel ' + (next <= Date.now() ? 'maintenant' : 'le ' + fmtDay(Math.floor(next / DAYMS))) + '. Tes données vont jusqu\'au ' + fmtDay(D.lastDay) + '.'}</small></p><a class="btn" href="${svcOf().url}" target="_blank" rel="noopener" data-nt="req2">Demander mon export ${esc(svcOf().n)}</a>`;
 }
 function renderSources() {
   const list = (Prefs.data.sync && Prefs.data.sync.sources) || [];
-  $('#srcList').innerHTML = DEMO || !list.length ? '' : list.slice().reverse().map(s => `<li><span>${s.merge ? 'Compte fusionné' : 'Import'} le ${fmtDay(Math.floor(s.at / DAYMS))}</span><small>${fmtN(s.n)} écoutes, du ${fmtDay(s.from)} au ${fmtDay(s.to)}</small></li>`).join('');
+  $('#srcList').innerHTML = DEMO || !list.length ? '' : list.slice().reverse().map(s => `<li><span>${s.merge ? 'Compte fusionné' : 'Import'}${s.svc ? ' ' + esc(s.svc) : ''} le ${fmtDay(Math.floor(s.at / DAYMS))}</span><small>${fmtN(s.n)} écoutes, du ${fmtDay(s.from)} au ${fmtDay(s.to)}</small></li>`).join('');
 }
 
 /* ================= version autonome : API Spotify, pochettes, appli ================= */
@@ -3259,7 +3369,7 @@ function renderSpBox() {
   box.hidden = false;
   const red = esc(SPA.redirect()), b = $('#spBody'), cfg = SPA.cfgId();
   if (!SPA.cid || SPA.editing) {
-    b.innerHTML = `<p class="note">Pour utiliser ta propre app Spotify : crée-la sur le <a href="https://developer.spotify.com/dashboard" target="_blank" rel="noopener">tableau de bord développeur Spotify</a> (Spotify demande un compte Premium pour ça), coche « Web API » et mets cette adresse de redirection :</p><p><code class="cp">${red}</code></p><div class="sprow"><input class="field" id="spCid" placeholder="Client ID de ton app" autocomplete="off" spellcheck="false" aria-label="Client ID de ton app Spotify"><button class="btn pri" id="spSave">Enregistrer</button>${cfg || SPA.cid ? '<button class="more" id="spCancel">Annuler</button>' : ''}</div>`;
+    b.innerHTML = `<p class="note">Pour utiliser ta propre app Spotify : crée-la sur le <a href="https://developer.spotify.com/dashboard" target="_blank" rel="noopener">tableau de bord développeur Spotify</a> (Spotify demande un compte Premium pour ça), coche « Web API » et mets cette adresse de redirection :</p><p><code class="cp">${red}</code></p><div class="sprow"><input class="field" id="spCid" placeholder="Client ID de ton app" autocomplete="off" spellcheck="false" aria-label="Client ID de ton app Spotify"><button class="btn pri" id="spSave">Enregistrer</button>${cfg || SPA.cid ? '<button class="more" id="spCancel">Annuler</button>' : ''}</div>`;
   } else if (!SPA.ok()) {
     b.innerHTML = (SPA.fromCfg ? `<p class="note">Pas obligatoire : tes stats marchent sans. Ça ajoute seulement les vraies pochettes et tes 50 derniers morceaux à chaque ouverture. Il faut que la personne qui a mis le site en ligne ait ajouté ton compte à son app Spotify (5 comptes maximum). Sinon, Spotify refusera la connexion.</p>` : `<p class="note">Client ID enregistré. L'adresse de redirection déclarée dans ton app doit être exactement : <code class="cp">${red}</code></p>`) +
       `<div class="sprow"><button class="btn pri" id="spLogin">Connecter Spotify</button><button class="more" id="spReset">${SPA.fromCfg ? 'Utiliser ma propre app Spotify' : 'Changer de Client ID'}</button></div>`;
@@ -3573,7 +3683,7 @@ function styleOf(r0, r1) {
     if (h >= 20 || h < 4) night += m; else if (h >= 6 && h < 18) day += m;
     if (dow(d) >= 5) wkMs += m; else wdMs += m;
     if (!(f & 64) && !(f & 128)) { ext++; if (f & 1) sk++; if (f & 2) sh++; }
-    const pn = D.plats[D.p[i]] || ''; if (/android|ios/i.test(pn)) mob += m; else if (/windows|macos|linux|web/i.test(pn)) desk += m;
+    const pn = D.plats[D.p[i]] || ''; if (/android|ios/i.test(pn)) mob += m; else if (/windows|macos|linux|web|desktop|ordi/i.test(pn)) desk += m;
     const st = D.s[i], en = st + m / 1000;
     if (cS < 0 || st - cE > 900) { if (cS >= 0) { sesN++; sesMs += cM; } cS = st; cE = en; cM = m; } else { if (en > cE) cE = en; cM += m; }
     if (m >= thr) {
@@ -3630,6 +3740,593 @@ async function styPng() {
   return K.blob();
 }
 
+/* ================= import : Spotify, Apple Music, YouTube Music, Deezer ================= */
+const SVCS = {
+  spotify: { n: 'Spotify', url: 'https://www.spotify.com/account/privacy/', wait: 'quelques jours' },
+  apple: { n: 'Apple Music', url: 'https://privacy.apple.com/', wait: 'jusqu\'à 7 jours' },
+  ytm: { n: 'YouTube Music', url: 'https://takeout.google.com/', wait: 'quelques minutes à quelques heures' },
+  deezer: { n: 'Deezer', url: 'https://www.deezer.com/', wait: 'quelques jours' }
+};
+const svcKey = () => { const k = Prefs.data.sync && Prefs.data.sync.svc; return SVCS[k] ? k : 'spotify'; };
+const svcOf = () => SVCS[svcKey()];
+
+/* lecture d'un ZIP sans tout décompresser : chaque fichier se décompresse à la demande */
+function zipList(u8) {
+  const dv = new DataView(u8.buffer, u8.byteOffset, u8.byteLength), out = [];
+  let eocd = -1;
+  for (let i = u8.length - 22; i >= Math.max(0, u8.length - 22 - 65535); i--) if (dv.getUint32(i, true) === 0x06054b50) { eocd = i; break; }
+  if (eocd < 0) throw new Error('ce fichier ne ressemble pas à un ZIP valide');
+  let count = dv.getUint16(eocd + 10, true), off = dv.getUint32(eocd + 16, true);
+  if ((off === 0xFFFFFFFF || count === 0xFFFF) && eocd >= 20 && dv.getUint32(eocd - 20, true) === 0x07064b50) {
+    const z = Number(dv.getBigUint64(eocd - 12, true));
+    count = Number(dv.getBigUint64(z + 32, true)); off = Number(dv.getBigUint64(z + 48, true));
+  }
+  const td = new TextDecoder();
+  let p = off;
+  for (let n = 0; n < count; n++) {
+    if (p + 46 > u8.length || dv.getUint32(p, true) !== 0x02014b50) break;
+    const method = dv.getUint16(p + 10, true);
+    let csize = dv.getUint32(p + 20, true), usize = dv.getUint32(p + 24, true);
+    const nlen = dv.getUint16(p + 28, true), xlen = dv.getUint16(p + 30, true), clen = dv.getUint16(p + 32, true);
+    let loff = dv.getUint32(p + 42, true);
+    const name = td.decode(u8.subarray(p + 46, p + 46 + nlen));
+    if (csize === 0xFFFFFFFF || usize === 0xFFFFFFFF || loff === 0xFFFFFFFF) {
+      let q = p + 46 + nlen; const end = q + xlen;
+      while (q + 4 <= end) {
+        const id = dv.getUint16(q, true), sz = dv.getUint16(q + 2, true);
+        if (id === 1) { let r = q + 4; if (usize === 0xFFFFFFFF) { usize = Number(dv.getBigUint64(r, true)); r += 8; } if (csize === 0xFFFFFFFF) { csize = Number(dv.getBigUint64(r, true)); r += 8; } if (loff === 0xFFFFFFFF) loff = Number(dv.getBigUint64(r, true)); }
+        q += 4 + sz;
+      }
+    }
+    p += 46 + nlen + xlen + clen;
+    if (name.endsWith('/')) continue;
+    const lo = loff, cs = csize, me = method;
+    out.push({ name, size: usize, bytes: async () => {
+      const start = lo + 30 + dv.getUint16(lo + 26, true) + dv.getUint16(lo + 28, true), data = u8.subarray(start, start + cs);
+      if (me === 0) return data;
+      if (me === 8) return inflateRaw(data);
+      throw new Error('compression non gérée dans ' + name);
+    } });
+  }
+  return out;
+}
+async function* textChunks(src) {
+  if (src instanceof Uint8Array) {
+    const td = new TextDecoder(), N = 1 << 22;
+    for (let i = 0; i < src.length; i += N) yield td.decode(src.subarray(i, Math.min(src.length, i + N)), { stream: i + N < src.length });
+    return;
+  }
+  const rd = src.stream().pipeThrough(new TextDecoderStream()).getReader();
+  for (;;) { const { done, value } = await rd.read(); if (done) return; yield value; }
+}
+const asText = src => src instanceof Uint8Array ? new TextDecoder().decode(src) : src.text();
+const srcSize = src => src instanceof Uint8Array ? src.length : (src.size || 1);
+
+/* CSV en flux : ne garde que les colonnes utiles, supporte les gros fichiers (plusieurs centaines de Mo) */
+async function csvEach(src, onHeader, onRow, onProg) {
+  let map = null, nk = 0, row = [], hdr = [], col = 0, buf = '', inQ = false, pendQ = false, stop = false, seen = 0;
+  const want = () => map === null || (col < map.length && map[col] > 0);
+  const endField = () => { if (map === null) hdr.push(buf); else if (col < map.length && map[col] > 0) row[map[col] - 1] = buf; buf = ''; col++; };
+  const endRow = () => {
+    if (map === null) {
+      const keep = onHeader(hdr.map(s => s.replace(/^﻿/, '').trim()));
+      if (!keep) { stop = true; return; }
+      map = new Int32Array(hdr.length); keep.forEach((c, j) => { if (c >= 0 && c < hdr.length) map[c] = j + 1; }); nk = keep.length;
+    } else if (col > 1 || row.some(v => v)) onRow(row);
+    row = new Array(nk).fill(''); col = 0;
+  };
+  for await (const ch of textChunks(src)) {
+    const n = ch.length; let i = 0;
+    if (pendQ) { pendQ = false; if (n && ch.charCodeAt(0) === 34) { if (want()) buf += '"'; i = 1; } else inQ = false; }
+    while (i < n) {
+      if (inQ) {
+        const j = ch.indexOf('"', i);
+        if (j < 0) { if (want()) buf += ch.slice(i); i = n; break; }
+        if (want()) buf += ch.slice(i, j);
+        if (j + 1 < n) { if (ch.charCodeAt(j + 1) === 34) { if (want()) buf += '"'; i = j + 2; } else { inQ = false; i = j + 1; } }
+        else { pendQ = true; i = n; }
+        continue;
+      }
+      const c = ch.charCodeAt(i);
+      if (c === 44) { endField(); i++; }
+      else if (c === 10) { endField(); endRow(); if (stop) return; i++; }
+      else if (c === 13) i++;
+      else if (c === 34 && buf === '') { inQ = true; i++; }
+      else {
+        let j = i + 1; while (j < n) { const d = ch.charCodeAt(j); if (d === 44 || d === 10 || d === 13) break; j++; }
+        if (want()) buf += ch.slice(i, j);
+        i = j;
+      }
+    }
+    seen += n; if (onProg) onProg(seen);
+    await sleep(0);
+  }
+  if (!stop && (buf !== '' || col > 0)) { endField(); endRow(); }
+}
+const hk = s => norm(s).replace(/[^a-z0-9]/g, '');
+function colPick(h, groups) {
+  const n = h.map(hk);
+  return groups.map(g => { for (const a of g) { const i = n.indexOf(hk(a)); if (i >= 0) return i; } return -1; });
+}
+const truthy = x => /^(true|1|yes|oui)$/i.test(String(x || '').trim());
+const dayKey = ms => { const d = new Date(ms); return d.getUTCFullYear() * 10000 + (d.getUTCMonth() + 1) * 100 + d.getUTCDate(); };
+
+/* ---------- Apple Music ---------- */
+const AP_PA = [['Song Name', 'Content Name'], ['Artist Name'], ['Album Name'], ['Container Album Name'], ['Container Artist Name'], ['Container Type'], ['Event Type'], ['Event End Timestamp'], ['Event Start Timestamp'], ['Event Timestamp'], ['Play Duration Milliseconds'], ['End Reason Type'], ['Shuffle Play'], ['Offline'], ['Device OS Name'], ['Build Version'], ['Client Device Name'], ['IP Country Code']];
+const AP_DT = [['Track Description'], ['Date Played'], ['Hours'], ['Play Duration Milliseconds'], ['Play Count'], ['Skip Count'], ['Source Type']];
+const AP_RT = [['Track Description'], ['Total plays']];
+function apAdd(ap, desc, w, day) {
+  desc = String(desc || '').trim();
+  let k = desc.indexOf(' - ');
+  while (k > 0) {
+    const a = desc.slice(0, k).trim(), s = norm(desc.slice(k + 3).trim());
+    if (a && s) {
+      let m = ap.amap.get(s); if (!m) ap.amap.set(s, m = new Map());
+      m.set(a, (m.get(a) || 0) + w);
+      if (day) ap.byDay.set(day + '|' + s, a);
+    }
+    k = desc.indexOf(' - ', k + 3);
+  }
+}
+function apRow(ap, v) {
+  const et = v[6]; if (et && et !== 'PLAY_END') return;
+  const ms = Math.round(+v[10] || 0); if (!(ms > 0)) return;
+  const name = (v[0] || '').trim(); if (!name) return;
+  let te = Date.parse(v[7]);
+  if (!isFinite(te)) { const ts = Date.parse(v[8] || v[9]); if (!isFinite(ts)) return; te = ts + ms; }
+  const r = v[11] || '';
+  const f = (/SKIPPED_FORWARDS/.test(r) ? 1 : 0) | (truthy(v[12]) ? 2 : 0) | (truthy(v[13]) ? 4 : 0) | (r === 'NATURAL_END_OF_TRACK' ? 16 : 0);
+  ap.ev.push({ te, ms: Math.min(ms, 432e5), name, artist: (v[1] || '').trim(), album: (v[2] || v[3] || '').trim(), cart: /album/i.test(v[5] || '') ? (v[4] || '').trim() : '', f, plat: normPlat(v[14] || v[15] || v[16] || ''), cc: (v[17] || '').trim().slice(0, 3) });
+}
+function apFinish(ap, recs) {
+  const best = s => { const m = ap.amap.get(s); if (!m) return ''; let b = '', bw = -1; for (const [a, w] of m) if (w > bw) { b = a; bw = w; } return b; };
+  let unk = 0, n = 0;
+  if (ap.ev.length) {
+    for (const e of ap.ev) {
+      let a = e.artist;
+      if (!a) { const s = norm(e.name); a = ap.byDay.get(dayKey(e.te) + '|' + s) || ap.byDay.get(dayKey(e.te - 864e5) + '|' + s) || ap.byDay.get(dayKey(e.te + 864e5) + '|' + s) || best(s) || e.cart; }
+      if (!a) { a = 'Artiste inconnu'; unk++; }
+      recs.push({ t: Math.round(e.te / 1000), ms: e.ms, name: e.name, artist: a, album: e.album, uri: '', kind: 0, f: e.f, plat: e.plat, cc: e.cc });
+      n++;
+    }
+  } else {
+    for (const d of ap.dt) {
+      const desc = String(d[0] || '').trim(), dt = String(d[1] || '').replace(/\D/g, '');
+      if (!desc || dt.length !== 8) continue;
+      const k = desc.indexOf(' - '), artist = k > 0 ? desc.slice(0, k).trim() : 'Artiste inconnu', name = k > 0 ? desc.slice(k + 3).trim() : desc;
+      const y = +dt.slice(0, 4), mo = +dt.slice(4, 6) - 1, da = +dt.slice(6, 8);
+      const hs = String(d[2] || '').split(/[^\d]+/).filter(x => x !== '').map(Number).filter(h => h >= 0 && h < 24); if (!hs.length) hs.push(12);
+      const c = Math.max(1, Math.min(500, Math.round(+d[4] || 1))), tot = Math.max(0, +d[3] || 0), per = Math.round(tot / c), sk = Math.round(+d[5] || 0);
+      if (!per) continue;
+      for (let j = 0; j < c; j++) {
+        const te = Date.UTC(y, mo, da, hs[j % hs.length], Math.min(59, Math.floor(j / hs.length) * 4 + 1)) + per;
+        recs.push({ t: Math.round(te / 1000), ms: Math.min(per, 432e5), name, artist, album: '', uri: '', kind: 0, f: j < sk ? 1 : 16, plat: normPlat(d[6] || ''), cc: '' });
+        n++;
+      }
+    }
+  }
+  return { n, unk };
+}
+
+/* ---------- YouTube Music (Google Takeout) ---------- */
+const YT_PRE = /^(watched|vous avez regardé|vous avez écouté|a regardé|visionné|has visto|viste|assistiu a|assistiu|hai guardato|guardato|angesehen:?|bekeken|obejrzano|просмотрено:?)\s+/i;
+function ytmFromJson(arr, out) {
+  let n = 0;
+  for (const x of arr) {
+    if (!x || typeof x !== 'object' || !x.time) continue;
+    if (!(x.header === 'YouTube Music' || /music\.youtube\.com/.test(x.titleUrl || ''))) continue;
+    const sub = Array.isArray(x.subtitles) ? x.subtitles.find(s => s && s.name) : null;
+    if (!sub) continue;
+    const ts = Date.parse(x.time); if (!isFinite(ts)) continue;
+    out.push({ ts, title: String(x.title || '').replace(/[\u00a0\u202f]/g, ' '), artist: String(sub.name) }); n++;
+  }
+  return n;
+}
+const xun = s => String(s).replace(/&#x([0-9a-f]+);/gi, (_, h) => String.fromCodePoint(parseInt(h, 16))).replace(/&#(\d+);/g, (_, d) => String.fromCodePoint(+d)).replace(/&nbsp;/g, ' ').replace(/&quot;/g, '"').replace(/&apos;|&#39;/g, '\'').replace(/&lt;/g, '<').replace(/&gt;/g, '>').replace(/&amp;/g, '&');
+function monIdx(w) {
+  const k = norm(w).replace(/[^a-z]/g, '');
+  if (k.startsWith('juil') || k.startsWith('jul')) return 6;
+  if (k.startsWith('juin') || k.startsWith('jun')) return 5;
+  const v = { jan: 0, feb: 1, fev: 1, mar: 2, apr: 3, avr: 3, may: 4, mai: 4, aug: 7, aou: 7, sep: 8, oct: 9, nov: 10, dec: 11 }[k.slice(0, 3)];
+  return v == null ? -1 : v;
+}
+function tzOff(tz) {
+  if (!tz) return null;
+  const t = tz.trim().toUpperCase(), fix = { UTC: 0, GMT: 0, Z: 0, WET: 0, WEST: 60, CET: 60, CEST: 120, BST: 60, EET: 120, EEST: 180, EST: -300, EDT: -240, CST: -360, CDT: -300, MST: -420, MDT: -360, PST: -480, PDT: -420 };
+  if (t in fix) return fix[t];
+  const m = t.match(/^(?:UTC|GMT)\s*([+-])(\d{1,2})(?::?(\d{2}))?$/);
+  return m ? (m[1] === '-' ? -1 : 1) * (+m[2] * 60 + +(m[3] || 0)) : null;
+}
+function looseDate(s) {
+  s = String(s).replace(/[  ]/g, ' ').replace(/\s+/g, ' ').trim();
+  let m = s.match(/^([A-Za-zÀ-ÿ]+)\.? (\d{1,2}), (\d{4}),? (\d{1,2}):(\d{2})(?::(\d{2}))? ?([AaPp]\.? ?[Mm]\.?)?(?: (.+))?$/), y, mo, d, h, mi, se, tz;
+  if (m) { mo = monIdx(m[1]); d = +m[2]; y = +m[3]; h = +m[4]; mi = +m[5]; se = +(m[6] || 0); if (m[7]) h = h % 12 + (/p/i.test(m[7]) ? 12 : 0); tz = m[8]; }
+  else if ((m = s.match(/^(\d{1,2}) ([A-Za-zÀ-ÿ]+)\.? (\d{4}),?(?: à)? (\d{1,2}):(\d{2})(?::(\d{2}))?(?: (.+))?$/))) { d = +m[1]; mo = monIdx(m[2]); y = +m[3]; h = +m[4]; mi = +m[5]; se = +(m[6] || 0); tz = m[7]; }
+  else { const t = Date.parse(s); return isFinite(t) ? t : NaN; }
+  if (mo < 0) return NaN;
+  const off = tzOff(tz);
+  return off == null ? new Date(y, mo, d, h, mi, se).getTime() : Date.UTC(y, mo, d, h, mi, se) - off * 60000;
+}
+function ytmFromHtml(html, out) {
+  let n = 0;
+  for (const b of html.split('outer-cell').slice(1)) {
+    const hm = b.match(/mdl-typography--title"?>([^<]*)</);
+    if (!(hm && /youtube music/i.test(hm[1])) && !/music\.youtube\.com\/watch/.test(b)) continue;
+    const cm = b.match(/content-cell[^>]*>([\s\S]*?)<\/div>/); if (!cm) continue;
+    const links = [...cm[1].matchAll(/<a [^>]*href="([^"]*)"[^>]*>([\s\S]*?)<\/a>/g)];
+    if (links.length < 2) continue;
+    const parts = cm[1].split(/<br\s*\/?>/i).map(x => xun(x.replace(/<[^>]+>/g, '')).trim()).filter(Boolean);
+    const ts = looseDate(parts[parts.length - 1] || ''); if (!isFinite(ts)) continue;
+    out.push({ ts, title: xun(links[0][2].replace(/<[^>]+>/g, '')), artist: xun(links[1][2].replace(/<[^>]+>/g, '')), raw: true }); n++;
+  }
+  return n;
+}
+const ytArtist = a => String(a).replace(/\s*-\s*topic\.?$/i, '').replace(/\s*vevo$/i, '').replace(/\s+(official|officiel)$/i, '').trim();
+const ck = s => norm(s).replace(/[^a-z0-9]/g, '');
+function ytTitle(t, a) {
+  let s = t.replace(/\s*[\(\[]\s*(?:official|officiel|offizielles)?\s*(?:music\s+|lyric\s+)?(?:video|vidéo|videoclip|audio|clip|lyrics?|paroles|visuali[sz]er|hd|hq|4k)(?:\s*(?:officiel(?:le)?|official|hd|4k))?\s*[\)\]]/gi, '').replace(/\s*\|\s*(?:official|clip|vid[ée]o|audio|lyrics?).*$/i, '').trim();
+  const m = s.match(/^(.+?)\s+[-–—]\s+(.+)$/);
+  if (m && ck(m[1]) === ck(a)) s = m[2].trim();
+  return s || t;
+}
+function ytmFinish(list, recs) {
+  if (!list.length) return 0;
+  list.sort((a, b) => a.ts - b.ts);
+  const raw = list.filter(x => !x.raw), cnt = new Map();
+  for (const x of raw) { const w = x.title.split(' '); for (let k = 1; k <= 3 && k < w.length; k++) { const p = w.slice(0, k).join(' ') + ' '; cnt.set(p, (cnt.get(p) || 0) + 1); } }
+  let pre = ''; if (raw.length >= 8) for (const [p, c] of cnt) if (c >= raw.length * 0.9 && p.length > pre.length) pre = p;
+  const names = new Map();
+  for (const x of list) {
+    x.a = ytArtist(x.artist); const k = ck(x.a); if (!k) continue;
+    let m = names.get(k); if (!m) names.set(k, m = new Map());
+    m.set(x.a, (m.get(x.a) || 0) + (/topic\.?$/i.test(x.artist) ? 3 : 1) + (/\s/.test(x.a) ? 1 : 0));
+  }
+  const canon = new Map(); for (const [k, m] of names) { let b = '', bw = -1; for (const [a, w] of m) if (w > bw) { b = a; bw = w; } canon.set(k, b); }
+  let n = 0;
+  for (let i = 0; i < list.length; i++) {
+    const x = list[i];
+    let t = x.title;
+    if (!x.raw) t = pre && t.startsWith(pre) ? t.slice(pre.length) : t.replace(YT_PRE, '');
+    t = t.trim();
+    if (!t || /^https?:\/\//.test(t)) continue;
+    const artist = canon.get(ck(x.a)) || x.a; if (!artist) continue;
+    const gap = i + 1 < list.length ? list[i + 1].ts - x.ts : Infinity, ms = gap > 0 && gap <= 42e4 ? gap : 21e4;
+    recs.push({ t: Math.round((x.ts + ms) / 1000), ms, name: ytTitle(t, artist), artist, album: '', uri: '', kind: 0, f: 64, plat: '', cc: '' });
+    n++;
+  }
+  return n;
+}
+
+/* ---------- Deezer (données personnelles : .xlsx, ou .csv / .json) ---------- */
+const DZ = [['Song Title', 'Titre du morceau', 'Titre de la chanson', 'Titre', 'Title', 'Track Title', 'Track Name', 'Track'], ['Artist', 'Artiste', 'Artists', 'Artistes', 'Artist Name'], ['Album Title', 'Titre de l\'album', 'Album', 'Album Name'], ['Listening Time', 'Durée d\'écoute', 'Temps d\'écoute', 'Écoute', 'Listening Duration'], ['Date', 'Date d\'écoute', 'Date de l\'écoute', 'Listening Date'], ['Platform Name', 'Nom de la plateforme', 'Plateforme', 'Platform']];
+const dzCols = h => { const c = colPick(h, DZ); return c[0] >= 0 && c[1] >= 0 && c[3] >= 0 && c[4] >= 0 ? c : null; };
+function dzDate(x) {
+  const s = String(x ?? '').trim(); if (!s) return NaN;
+  if (/^\d+(\.\d+)?$/.test(s)) { const v = +s; if (v > 1e11) return v; if (v > 1e9) return v * 1000; if (v > 2e4 && v < 8e4) return Math.round((v - 25569) * 864e5); return NaN; }
+  let m = s.match(/^(\d{4})-(\d{2})-(\d{2})[ T](\d{2}):(\d{2})(?::(\d{2}))?(?:\.\d+)?$/);
+  if (m) return Date.UTC(+m[1], +m[2] - 1, +m[3], +m[4], +m[5], +(m[6] || 0));
+  if ((m = s.match(/^(\d{2})\/(\d{2})\/(\d{4})[ T](\d{2}):(\d{2})(?::(\d{2}))?$/))) return Date.UTC(+m[3], +m[2] - 1, +m[1], +m[4], +m[5], +(m[6] || 0));
+  const t = Date.parse(s); return isFinite(t) ? t : NaN;
+}
+function dzRow(v, out) {
+  const name = String(v[0] ?? '').trim(), artist = String(v[1] ?? '').trim(); if (!name || !artist) return;
+  const ts = dzDate(v[4]); if (!isFinite(ts)) return;
+  const s = parseFloat(String(v[3] ?? '').replace(',', '.'));
+  out.push({ ts, secs: isFinite(s) ? s : -1, name, artist, album: String(v[2] ?? '').trim(), plat: String(v[5] ?? '') });
+}
+function dzFinish(list, recs) {
+  list.sort((a, b) => a.ts - b.ts);
+  let n = 0;
+  for (let i = 0; i < list.length; i++) {
+    const x = list[i];
+    let ms = x.secs >= 0 ? Math.round(x.secs * 1000) : -1;
+    if (ms < 0) { const gap = i + 1 < list.length ? list[i + 1].ts - x.ts : Infinity; ms = gap > 0 && gap <= 42e4 ? gap : 21e4; }
+    recs.push({ t: Math.round((x.ts + ms) / 1000), ms: Math.min(ms, 432e5), name: x.name, artist: x.artist, album: x.album, uri: '', kind: 0, f: 64, plat: normPlat(x.plat), cc: '' });
+    n++;
+  }
+  return n;
+}
+const xattr = (s, a) => { const m = s.match(new RegExp('\\s' + a.replace(':', '\\:') + '="([^"]*)"')); return m ? xun(m[1]) : ''; };
+const colIdx = r => { let n = 0, i = 0; for (; i < r.length; i++) { const c = r.charCodeAt(i); if (c < 65 || c > 90) break; n = n * 26 + c - 64; } return i ? n - 1 : -1; };
+async function xlsxRows(u8) {
+  const ents = zipList(u8), get = async nm => { const e = ents.find(x => x.name === nm || x.name === '/' + nm); return e ? new TextDecoder().decode(await e.bytes()) : ''; };
+  const wb = await get('xl/workbook.xml'), rels = await get('xl/_rels/workbook.xml.rels');
+  const sheets = [...wb.matchAll(/<sheet\b[^>]*>/g)].map(m => ({ name: xattr(m[0], 'name'), rid: xattr(m[0], 'r:id') }));
+  const target = s => { const m = rels.match(new RegExp('<Relationship\\b[^>]*Id="' + s.rid + '"[^>]*>')); if (!m) return ''; const t = xattr(m[0], 'Target'); return t.startsWith('/') ? t.slice(1) : 'xl/' + t.replace(/^\.\//, ''); };
+  const order = sheets.slice().sort((a, b) => (/listeninghistory|historique|ecoute/i.test(hk(b.name)) ? 1 : 0) - (/listeninghistory|historique|ecoute/i.test(hk(a.name)) ? 1 : 0));
+  const ssx = await get('xl/sharedStrings.xml');
+  const SS = [...ssx.matchAll(/<si>([\s\S]*?)<\/si>/g)].map(m => xun([...m[1].matchAll(/<t\b[^>]*>([\s\S]*?)<\/t>/g)].map(t => t[1]).join('')));
+  for (const sh of order) {
+    const xml = await get(target(sh)); if (!xml) continue;
+    const rows = [];
+    for (const rm of xml.matchAll(/<row\b[^>]*>([\s\S]*?)<\/row>/g)) {
+      const cells = [];
+      for (const cm of rm[1].matchAll(/<c\b([^>]*?)(?:\/>|>([\s\S]*?)<\/c>)/g)) {
+        const a = cm[1], t = xattr(a, 't'), inner = cm[2] || '', ci = colIdx(xattr(a, 'r'));
+        let v = '';
+        if (t === 's') { const vm = inner.match(/<v>([^<]*)<\/v>/); v = vm ? (SS[+vm[1]] ?? '') : ''; }
+        else if (t === 'inlineStr') v = xun([...inner.matchAll(/<t\b[^>]*>([\s\S]*?)<\/t>/g)].map(x => x[1]).join(''));
+        else { const vm = inner.match(/<v>([^<]*)<\/v>/); v = vm ? xun(vm[1]) : ''; }
+        cells[ci >= 0 ? ci : cells.length] = v;
+      }
+      rows.push(Array.from(cells, x => x ?? ''));
+    }
+    const hi = rows.slice(0, 6).findIndex(r => dzCols(r));
+    if (hi >= 0) return { sheet: sh.name, cols: dzCols(rows[hi]), rows: rows.slice(hi + 1) };
+  }
+  return null;
+}
+
+/* ---------- aiguillage ---------- */
+const HIST_RX = /history|historique|historial|hist[oó]rico|verlauf|cronologia|geschiedenis|historia|istoric/i, NOT_HIST_RX = /search|recherche|busqueda|búsqueda|suche|ricerca|pesquisa|comment|chat|subscri|abonnement|playlist|like/i;
+function wantEntry(name) {
+  const n = name.toLowerCase(), b = n.split('/').pop();
+  if (!b || b.startsWith('._') || n.includes('__macosx')) return false;
+  if (b.endsWith('.json')) return /streaming_?history|endsong|sillon|^userdata\.json$/.test(b) || (HIST_RX.test(b) && !NOT_HIST_RX.test(b));
+  if (/\.html?$/.test(b)) return HIST_RX.test(b) && !NOT_HIST_RX.test(b);
+  if (b.endsWith('.csv')) return /play activity|play history daily tracks|recently played tracks|listening|ecoute|écoute|history|historique|deezer/.test(b);
+  if (b.endsWith('.xlsx')) return /deezer|listening|history|historique|ecoute|écoute/.test(b);
+  if (b.endsWith('.zip')) return /apple|media|music|deezer|spotify|takeout|youtube/.test(b);
+  return false;
+}
+async function ingestJson(base, text, ctx) {
+  if (/^userdata\.json$/i.test(base)) { try { const u = JSON.parse(text); if (u && u.creationTime) ctx.created = String(u.creationTime).slice(0, 10); } catch (e) {} return; }
+  let arr; try { arr = JSON.parse(text); } catch (e) { ctx.say(base + ' : illisible, ignoré'); return; }
+  if (arr && arr.format === 'sillon-backup' && arr.data) { ctx.backup = arr; ctx.say(base + ' : sauvegarde Sillon'); return; }
+  if (!Array.isArray(arr) || !arr.length) return;
+  const x0 = arr.find(x => x && typeof x === 'object') || {};
+  if (('ts' in x0 && 'ms_played' in x0) || ('endTime' in x0 && 'msPlayed' in x0)) {
+    let c = 0; for (const r of arr) { const x = normRecord(r); if (x) { ctx.recs.push(x); c++; } }
+    if (c) ctx.svcs.add('spotify');
+    ctx.say(`${base} : ${fmtN(c)} ${pl(c, 'écoute')} Spotify`);
+  } else if ('header' in x0 && ('titleUrl' in x0 || 'subtitles' in x0 || 'time' in x0)) {
+    const c = ytmFromJson(arr, ctx.ytm); ctx.ytmJson++;
+    ctx.say(c ? `${base} : ${fmtN(c)} ${pl(c, 'écoute')} YouTube Music` : `${base} : aucune écoute YouTube Music dedans (seulement des vidéos YouTube)`);
+  } else {
+    const keys = Object.keys(x0), cols = dzCols(keys);
+    if (!cols) { ctx.say(base + ' : format non reconnu, ignoré'); return; }
+    let c = 0; for (const r of arr) if (r && typeof r === 'object') { dzRow(cols.map(i => i >= 0 ? r[keys[i]] : ''), ctx.dz); c++; }
+    ctx.say(`${base} : ${fmtN(c)} ${pl(c, 'écoute')} Deezer`);
+  }
+  await sleep(0);
+}
+async function ingestCsv(base, src, ctx) {
+  let kind = null, c = 0; const size = srcSize(src);
+  await csvEach(src, h => {
+    const l = h.map(x => x.toLowerCase()), has = s => l.includes(s.toLowerCase());
+    if ((has('Song Name') || has('Content Name')) && has('Play Duration Milliseconds')) { kind = 'apa'; return colPick(h, AP_PA); }
+    if (has('Track Description') && has('Date Played')) { kind = 'adt'; return colPick(h, AP_DT); }
+    if (has('Track Description')) { kind = 'art'; return colPick(h, AP_RT); }
+    const dz = dzCols(h); if (dz) { kind = 'dz'; return dz; }
+    return null;
+  }, v => {
+    c++;
+    if (kind === 'apa') apRow(ctx.ap, v);
+    else if (kind === 'adt') { ctx.ap.dt.push(v.slice()); apAdd(ctx.ap, v[0], Math.max(1, +v[4] || 1), +String(v[1]).replace(/\D/g, '')); }
+    else if (kind === 'art') apAdd(ctx.ap, v[0], Math.max(1, +v[1] || 1), 0);
+    else if (kind === 'dz') dzRow(v, ctx.dz);
+  }, seen => ctx.prog(Math.min(1, seen / size)));
+  if (!kind) { ctx.say(base + ' : tableau non reconnu, ignoré'); return; }
+  if (kind !== 'dz') ctx.svcs.add('apple'); else ctx.svcs.add('deezer');
+  ctx.say(`${base} : ${fmtN(c)} ${pl(c, 'ligne')} ${kind === 'dz' ? 'Deezer' : 'Apple Music'}`);
+}
+async function ingest(name, src, ctx, depth = 0) {
+  const base = name.split('/').pop(), low = base.toLowerCase();
+  if (low.endsWith('.xlsx')) {
+    const R = await xlsxRows(src instanceof Uint8Array ? src : new Uint8Array(await src.arrayBuffer()));
+    if (!R) { ctx.say(base + ' : pas d\'historique d\'écoute Deezer dedans'); return; }
+    for (const r of R.rows) dzRow(R.cols.map(i => i >= 0 ? r[i] : ''), ctx.dz);
+    ctx.svcs.add('deezer'); ctx.say(`${base} : ${fmtN(R.rows.length)} ${pl(R.rows.length, 'ligne')} Deezer (onglet ${R.sheet})`);
+    return;
+  }
+  if (low.endsWith('.zip') || (!(src instanceof Uint8Array) && /zip/.test(src.type || ''))) {
+    if (depth > 2) return;
+    const ents = zipList(src instanceof Uint8Array ? src : new Uint8Array(await src.arrayBuffer()));
+    const rank = e => /\.json$/i.test(e.name) ? 0 : /\.csv$/i.test(e.name) ? 1 : /\.xlsx$/i.test(e.name) ? 2 : /\.zip$/i.test(e.name) ? 3 : 4;
+    const pick = ents.filter(e => wantEntry(e.name)).sort((a, b) => rank(a) - rank(b));
+    if (!pick.length) ctx.say(base + ' : rien d\'utile dedans');
+    for (const e of pick) {
+      if (/\.html?$/i.test(e.name) && ctx.ytmJson) continue;
+      if (rank(e) > 0) ctx.say('Lecture de ' + e.name.split('/').pop() + '…');
+      await ingest(e.name, await e.bytes(), ctx, depth + 1);
+    }
+    return;
+  }
+  if (low.endsWith('.json')) return ingestJson(base, await asText(src), ctx);
+  if (low.endsWith('.csv')) return ingestCsv(base, src, ctx);
+  if (/\.html?$/.test(low)) {
+    const c = ytmFromHtml(await asText(src), ctx.ytm);
+    ctx.say(c ? `${base} : ${fmtN(c)} ${pl(c, 'écoute')} YouTube Music` : base + ' : aucune écoute YouTube Music dedans');
+    return;
+  }
+  ctx.say(base + ' : format non reconnu, ignoré');
+}
+const HOW_A = u => `<a href="${u}" target="_blank" rel="noopener">`;
+const HOW = {
+  spotify: `<ol><li>Ouvre ${HOW_A(SVCS.spotify.url)}la page Confidentialité du compte sur spotify.com</a> et connecte-toi.</li><li>Dans « Télécharger vos données », coche <b>Intégralité de votre historique de streaming</b> : c'est celui qui remonte à la création du compte. Valide, puis confirme via le mail de Spotify.</li><li>Spotify t'envoie le fichier par mail, en général en quelques jours (jusqu'à 30 jours).</li><li>Dépose le .zip ici. Les nouvelles écoutes s'ajoutent sans doublons. Le site te le rappelle tous les mois.</li></ol><p class="note">L'export « Données de compte » marche aussi (plus rapide, mais seulement la dernière année, sans appareils ni zappés).</p>`,
+  apple: `<ol><li>Ouvre ${HOW_A(SVCS.apple.url)}privacy.apple.com</a> et connecte-toi avec ton compte Apple.</li><li>Choisis <b>Demander une copie de vos données</b>, puis coche seulement <b>Apple Media Services</b> (les services multimédias d'Apple). Inutile de prendre le reste.</li><li>Apple te prévient par mail quand c'est prêt, jusqu'à 7 jours plus tard.</li><li>Dépose le .zip ici tel quel. Si tu l'as déjà ouvert : dans le dossier « Apple Music Activity », dépose <b>Apple Music Play Activity.csv</b> et <b>Apple Music - Play History Daily Tracks.csv</b> ensemble.</li></ol><p class="note">Apple n'écrit pas le nom de l'artiste à côté de chaque écoute : Sillon le retrouve grâce au deuxième fichier.</p>`,
+  ytm: `<ol><li>Ouvre ${HOW_A(SVCS.ytm.url)}Google Takeout</a>, clique sur <b>Tout désélectionner</b>, puis coche <b>YouTube et YouTube Music</b>.</li><li>Dans <b>Toutes les données YouTube incluses</b>, ne garde que <b>historique</b>. Dans <b>Plusieurs formats</b>, choisis <b>JSON</b> pour l'historique (le HTML marche aussi, mais moins bien).</li><li>Crée l'export : Google l'envoie par mail, en quelques minutes ou quelques heures.</li><li>Dépose le .zip ici. Sillon garde seulement ce que tu as écouté sur YouTube Music, pas tes vidéos YouTube.</li></ol><p class="note">Google ne donne ni la durée écoutée ni les zappés : la durée est estimée avec l'écart entre deux morceaux.</p>`,
+  deezer: `<ol><li>Sur ${HOW_A(SVCS.deezer.url)}deezer.com</a>, ouvre les <b>Paramètres du compte</b>, puis la partie sur tes <b>données personnelles</b>.</li><li>Demande tes données et confirme via le mail de Deezer.</li><li>Deezer t'envoie un lien de téléchargement par mail, en quelques jours. Il marche 30 jours.</li><li>Dépose le fichier ici : le tableur « deezer-data… » ou le .zip qui le contient.</li></ol><p class="note">Deezer ne dit pas quand tu zappes ni si tu es en aléatoire : ces stats-là se basent sur tes autres écoutes.</p>`
+};
+let howSvc = null;
+function renderHow() {
+  const k = howSvc || svcKey();
+  $$('#howTabs [data-svc]').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.svc === k)));
+  $('#howBody').innerHTML = HOW[k] || HOW.spotify;
+}
+
+/* ================= récaps : affiche (semaine, fin des stories, image) ================= */
+function lumOf(h, s, l) {
+  s /= 100; l /= 100;
+  const k = n => (n + h / 30) % 12, a = s * Math.min(l, 1 - l), f = n => l - a * Math.max(-1, Math.min(k(n) - 3, Math.min(9 - k(n), 1)));
+  const c = x => x <= 0.03928 ? x / 12.92 : Math.pow((x + 0.055) / 1.055, 2.4);
+  return 0.2126 * c(f(0)) + 0.7152 * c(f(8)) + 0.0722 * c(f(4));
+}
+/* couleur franche mais assez sombre pour du texte blanc lisible (contraste ≥ 4,5) */
+function deepCol(h, s = 74, lmax = 50) { h = ((h % 360) + 360) % 360; let l = lmax; while (l > 18 && lumOf(h, s, l) > 0.18) l--; return `hsl(${h} ${s}% ${l}%)`; }
+const KIND_ME = { day: 'Ma journée', week: 'Ma semaine', month: 'Mon mois', year: 'Mon année', all: 'Toute mon histoire' };
+function posterTitle(R) { return R.g === 'all' ? 'Depuis ' + ymd(D.firstDay)[0] : periodText(R.g, R.r0, R.r1); }
+function posterNums(R) {
+  const X = R.X, gs = genreShare(X.aM), g1 = gs.known && gs.mac.length ? gs.mac[0] : null;
+  return [['Minutes d\'écoute', fmtN(X.ms / 60000)], g1 ? ['Genre n° 1', g1.g] : [cap(L().nan), fmtN(X.nA)]];
+}
+function posterHTML(R, withId) {
+  const X = R.X, l = L(), h = R.A.length ? hueA(R.A[0]) : 140;
+  if (!X.plays) return `<div class="pst" style="--h:${h};--bg:${deepCol(h)}"><div class="psth"><p>${KIND_ME[R.g]}</p><h2${withId ? ' id="rcT"' : ''}>${esc(posterTitle(R))}</h2></div><p>Rien d'écouté sur cette période.</p><div class="pstfoot">Sillon</div></div>`;
+  const albs = topIdx(X.lM, 4, 1);
+  const art = albs.length >= 4 ? `<div class="slv">${albs.map(covL).join('')}</div>` : `<div class="slv one">${albs.length ? covL(albs[0]) : covA(R.A[0])}</div>`;
+  return `<div class="pst" style="--h:${h};--bg:${deepCol(h)}">
+    <div class="psth"><div class="pstart"><span class="vinyl" aria-hidden="true"></span>${art}</div><p>${KIND_ME[R.g]}</p><h2${withId ? ' id="rcT"' : ''}>${esc(posterTitle(R))}</h2></div>
+    <div class="pstcols"><div><h3>Top ${esc(l.a.toLowerCase())}</h3><ol>${R.A.map((a, j) => `<li><i>${j + 1}</i><span>${esc(D.artists[a])}</span></li>`).join('')}</ol></div><div><h3>Top ${esc(l.t.toLowerCase())}</h3><ol>${R.T.map((t, j) => `<li><i>${j + 1}</i><span>${esc(D.tn[t])}</span></li>`).join('')}</ol></div></div>
+    <div class="pstnums">${posterNums(R).map(([k, v]) => `<div><small>${esc(k)}</small><b>${esc(v)}</b></div>`).join('')}</div>
+    <div class="pstfoot">${DEMO ? 'Sillon, exemple fictif' : 'Sillon'}</div>
+  </div>`;
+}
+function drawDisc(g, cx, cy, r, lab) {
+  g.save(); g.beginPath(); g.arc(cx, cy, r, 0, Math.PI * 2); g.fillStyle = '#151515'; g.fill(); g.clip();
+  g.strokeStyle = '#242424'; g.lineWidth = Math.max(1, r * 0.012);
+  for (let q = r * 0.26; q < r; q += r * 0.028) { g.beginPath(); g.arc(cx, cy, q, 0, Math.PI * 2); g.stroke(); }
+  g.beginPath(); g.arc(cx, cy, r * 0.24, 0, Math.PI * 2); g.fillStyle = '#0d0d0d'; g.fill();
+  g.beginPath(); g.arc(cx, cy, r * 0.21, 0, Math.PI * 2); g.fillStyle = lab; g.fill();
+  g.beginPath(); g.arc(cx, cy, r * 0.03, 0, Math.PI * 2); g.fillStyle = '#0d0d0d'; g.fill();
+  g.restore();
+}
+async function posterPng(R) {
+  const X = R.X, l = L(), h = R.A.length ? hueA(R.A[0]) : 140, Wd = 1080, Ht = 1350;
+  const K = await pngKit(Wd, Ht, h), g = K.g, fu = K.fu, W = '#ffffff', W8 = 'rgba(255,255,255,0.8)';
+  g.fillStyle = deepCol(h); g.fillRect(0, 0, Wd, Ht);
+  const M = 84;
+  let y = M;
+  if (X.plays) {
+    const S0 = 360, albs = topIdx(X.lM, 4, 1);
+    drawDisc(g, M + S0 * 0.44 + S0 * 0.45, y + S0 * 0.05 + S0 * 0.45, S0 * 0.45, `hsl(${(h + 160) % 360} 85% 62%)`);
+    g.save(); g.shadowColor = 'rgba(0,0,0,0.42)'; g.shadowBlur = 40; g.shadowOffsetY = 16; g.fillStyle = '#000'; g.fillRect(M, y, S0, S0); g.restore();
+    if (albs.length >= 4) { for (let j = 0; j < 4; j++) await K.cover(M + (j % 2) * S0 / 2, y + Math.floor(j / 2) * S0 / 2, S0 / 2, albs[j], false); }
+    else if (albs.length) await K.cover(M, y, S0, albs[0], false);
+    else await K.cover(M, y, S0, R.A[0], false, 'a');
+    y += S0 + 70;
+  }
+  K.T(KIND_ME[R.g], M, y, `700 36px ${fu}`, W8); y += 92;
+  const tl = K.wrap(posterTitle(R), `900 96px ${fu}`, Wd - 2 * M, 2);
+  tl.forEach(x => { K.T(x, M, y, `900 96px ${fu}`, W); y += 92; });
+  if (!X.plays) { K.T('Rien d\'écouté sur cette période.', M, y + 40, `600 36px ${fu}`, W8); K.T('Sillon', M, Ht - M + 10, `800 28px ${fu}`, W8); return K.blob(); }
+  y += 34;
+  const cw = (Wd - 2 * M - 48) / 2, col = (title, list, x) => { K.T(title, x, y, `800 30px ${fu}`, W8); list.forEach((s, j) => { const yy = y + 58 + j * 52; K.T(String(j + 1), x, yy, `700 36px ${fu}`, W8); K.T(s, x + 50, yy, `700 36px ${fu}`, W, cw - 50); }); };
+  col('Top ' + l.a.toLowerCase(), R.A.map(a => D.artists[a]), M);
+  col('Top ' + l.t.toLowerCase(), R.T.map(t => D.tn[t]), M + cw + 48);
+  y += 58 + 5 * 52 + 40;
+  const nums = posterNums(R);
+  nums.forEach(([k, v], j) => { const x = M + j * (cw + 48); K.T(k, x, y, `800 30px ${fu}`, W8); K.T(v, x, y + 74, `900 66px ${fu}`, W, cw); });
+  K.T(DEMO ? 'Sillon, exemple fictif' : 'Sillon', M, Ht - M + 10, `800 28px ${fu}`, W8);
+  return K.blob();
+}
+
+/* ================= récaps : stories (mois, année, tout) ================= */
+let STO = null;
+const STO_OFF = [0, 42, 200, 158, 300, 252, 108, 66, 332, 20];
+function storySlides(R) {
+  const X = R.X, l = L(), out = [];
+  const kind = { month: 'Ton mois', year: 'Ton année', all: 'Toute ton histoire', week: 'Ta semaine', day: 'Ta journée' }[R.g];
+  const per = R.g === 'all' ? 'Depuis ' + ymd(D.firstDay)[0] : periodText(R.g, R.r0, R.r1);
+  if (!X.plays) { out.push({ html: `<p class="k rv">${kind}</p><h2 class="t rv" style="--d:1">${esc(per)}</h2><p class="d rv" style="--d:2">Rien d'écouté sur cette période.</p>` }); return out; }
+  const albs = topIdx(X.lM, 4, 1);
+  out.push({ dur: 4.5, vy: 'p0 spin', html: `<p class="k rv">${kind}</p><h2 class="t rv" style="--d:1">${esc(per)}</h2>${albs.length >= 4 ? `<div class="mos4 rv" style="--d:2">${albs.map(covL).join('')}</div>` : ''}<p class="d rv" style="--d:3">Le récap de ce que tu as écouté, en ${R.g === 'all' ? 'quelques écrans' : 'quelques écrans'}.</p><p class="hint">Touche à droite pour avancer, à gauche pour revenir</p>` });
+  const mins = Math.round(X.ms / 60000), dl = recapDelta(R), bars = Array.from(X.bM), mx = Math.max(1, ...bars), pk = bars.indexOf(Math.max(...bars));
+  out.push({ html: `<p class="k rv">Tu as écouté</p><p class="n rv" style="--d:1" data-count="${mins}">${fmtN(mins)}</p><p class="t rv" style="--d:2">minutes de musique</p><p class="d rv" style="--d:3">Soit ${esc(fmtDur(X.ms))}${dl ? `, <b>${esc(dl)}</b>` : ''}.</p><div class="bars rv" style="--d:4" aria-hidden="true">${bars.map((v, i) => `<i style="height:${Math.max(2, v / mx * 100).toFixed(1)}%"${i === pk ? ' class="pk"' : ''}></i>`).join('')}</div><p class="d rv" style="--d:5">${R.g === 'year' || R.g === 'all' ? 'Ton plus gros mois' : 'Ton plus gros jour'} : <b>${esc(shortPeak(R))}</b></p>` });
+  const a1 = R.A[0];
+  if (a1 != null) {
+    const sh = X.ms ? X.aM[a1] / X.ms : 0;
+    out.push({ vy: 'p2', html: `<p class="k rv">Ton ${esc(l.a1)} n° 1</p><div class="rv" style="--d:1">${covA(a1).replace('class="cv', 'class="cv big1')}</div><h2 class="t rv" style="--d:2">${esc(D.artists[a1])}</h2><p class="d rv" style="--d:3"><b>${esc(fmtDur(X.aM[a1]))}</b> ensemble, ${esc(fmtPlays(X.aP[a1]))}. C'est ${esc(fmtPct(sh))} de tout ce que tu as écouté.</p>` });
+  }
+  if (R.A.length >= 3) out.push({ dur: 7, html: `<p class="k rv">Ton top ${R.A.length}</p><h2 class="t rv" style="--d:1">${esc(l.a)}</h2><ol class="big">${R.A.map((a, j) => `<li class="rv" style="--d:${j + 2}"><i>${j + 1}</i>${covA(a)}<span><b>${esc(D.artists[a])}</b><small>${esc(fmtDur(X.aM[a]))}</small></span></li>`).join('')}</ol>` });
+  const t1 = R.T[0];
+  if (t1 != null) out.push({ vy: 'p3', html: `<p class="k rv">Ton ${esc(l.t1)} n° 1</p><div class="rv" style="--d:1">${covT(t1).replace('class="cv', 'class="cv big1')}</div><h2 class="t rv" style="--d:2">${esc(D.tn[t1])}</h2><p class="d rv" style="--d:3">${esc(D.artists[D.ta[t1]])}, écouté <b>${fmtN(X.tP[t1])} fois</b>.</p>` });
+  if (R.T.length >= 3) out.push({ dur: 7, html: `<p class="k rv">Ton top ${R.T.length}</p><h2 class="t rv" style="--d:1">${esc(l.t)}</h2><ol class="big">${R.T.map((t, j) => `<li class="rv" style="--d:${j + 2}"><i>${j + 1}</i>${covT(t)}<span><b>${esc(D.tn[t])}</b><small>${esc(D.artists[D.ta[t]])}, ${esc(fmtPlays(X.tP[t]))}</small></span></li>`).join('')}</ol>` });
+  const gs = genreShare(X.aM);
+  if (gs.known && gs.mac.length) {
+    const top = gs.mac.slice(0, 4), mxg = top[0].p || 1;
+    out.push({ vy: 'p1', html: `<p class="k rv">Ce qui a tourné</p><h2 class="t rv" style="--d:1">${esc(top[0].g)}</h2><p class="d rv" style="--d:2">Ton genre n° 1, avec ${esc(fmtPct(top[0].p))} de ton écoute.</p><div class="gl">${top.map((x, j) => `<div class="rv" style="--d:${j + 3}"><span>${esc(x.g)}</span><span>${esc(fmtPct(x.p))}</span><em><s style="width:${(x.p / mxg * 100).toFixed(1)}%"></s></em></div>`).join('')}</div>` });
+  }
+  if (X.nA > 0) {
+    let best = -1, bv = 0;
+    for (let a = 0; a < D.na; a++) { const v = X.aM[a]; if (v > bv && G.firstA[a] >= X.i0 && G.firstA[a] < X.i1) { bv = v; best = a; } }
+    out.push({ vy: 'p0', html: `<p class="k rv">Tu as découvert</p><p class="n rv" style="--d:1" data-count="${X.nA}">${fmtN(X.nA)}</p><p class="t rv" style="--d:2">${esc(X.nA > 1 ? l.nan : l.na1)}</p>${best >= 0 ? `<div class="nd rv" style="--d:3">${covA(best)}<p class="d">Ta plus belle découverte : <b>${esc(D.artists[best])}</b>, ${esc(fmtDur(bv))}.</p></div>` : ''}<p class="d rv" style="--d:4">Et ${fmtN(X.nT)} ${esc(X.nT > 1 ? l.nt : l.nt1)} au total.</p>` });
+  }
+  const st = styleOf(R.r0, R.r1).sort((x, y) => lean(y) - lean(x)).slice(0, 4);
+  if (st.length >= 2) out.push({ dur: 7, html: `<p class="k rv">Ton style sur la période</p><h2 class="t rv" style="--d:1">${esc(styleTitle(st))}</h2><div class="sls2 rv" style="--d:2">${styleRows(st, true)}</div>` });
+  out.push({ fin: true, html: '' });
+  return out;
+}
+function openStories(g, a) {
+  if (!D) return;
+  RC = { g, a: clamp(a, D.firstDay, D.lastDay) };
+  const R = recapData(RC.g, RC.a); RC.R = R;
+  const h0 = R.A.length ? hueA(R.A[0]) : 140, slides = storySlides(R);
+  lastFocus = document.activeElement; hideTip();
+  $('#stoKind').textContent = { month: 'Ton mois', year: 'Ton année', all: 'Toute ton histoire', week: 'Ta semaine', day: 'Ta journée' }[g] + ' en récap';
+  $('#stoSlides').innerHTML = slides.map((s, i) => s.fin ? `<section class="ss fin" data-i="${i}" aria-label="Résumé"></section>` : `<section class="ss" data-i="${i}" style="--h:${(h0 + STO_OFF[i % STO_OFF.length]) % 360};--bg:${deepCol(h0 + STO_OFF[i % STO_OFF.length])}">${s.vy ? `<span class="vinyl vy ${s.vy}" aria-hidden="true"></span>` : ''}${s.html}</section>`).join('');
+  $('#stoBars').innerHTML = slides.map(() => '<span><i></i></span>').join('');
+  STO = { slides, i: -1, paused: false, hold: 0, R };
+  $('#sto').hidden = false; $('#sto').classList.remove('paused');
+  stoGo(0);
+  $('[data-close]', $('#sto')).focus();
+}
+function stoFin(sec) {
+  const R = STO.R, g = R.g;
+  const prev = g !== 'all' && range(g, shift(g, RC.a, -1))[1] > D.firstDay, next = g !== 'all' && range(g, shift(g, RC.a, 1))[0] <= D.lastDay;
+  const lab = k => { if (g === 'year') return String(ymd(range(g, shift(g, RC.a, k))[0])[0]); const [y, m] = ymd(range(g, shift(g, RC.a, k))[0]); return cap(MOL[m]); };
+  let can = false; try { can = !!navigator.canShare && navigator.canShare({ files: [new File(['x'], 'x.png', { type: 'image/png' })] }); } catch (e) {}
+  sec.innerHTML = posterHTML(R, false) + `<div class="acts"><button class="btn pri" data-sa="png"><svg class="ic" viewBox="0 0 24 24"><path d="M12 4v11M7 10l5 5 5-5M5 20h14"/></svg>Image</button>${can ? '<button class="btn" data-sa="share">Partager</button>' : ''}<button class="btn" data-sa="open">Voir dans l'accueil</button><button class="btn" data-sa="again">Revoir</button></div><div class="acts">${prev ? `<button class="btn" data-sa="prev">← ${esc(lab(-1))}</button>` : ''}<span class="sp"></span>${next ? `<button class="btn" data-sa="next">${esc(lab(1))} →</button>` : ''}</div>`;
+}
+const REDUCED = () => matchMedia('(prefers-reduced-motion: reduce)').matches;
+function stoGo(i) {
+  if (!STO) return;
+  const n = STO.slides.length; if (i < 0) i = 0;
+  if (i >= n) return;
+  STO.i = i;
+  const secs = $$('#stoSlides .ss'), bars = $$('#stoBars span'), s = STO.slides[i];
+  secs.forEach((x, j) => x.classList.toggle('on', j === i));
+  $('#sto').classList.toggle('fin', !!s.fin);
+  const sec = secs[i];
+  if (s.fin && !sec.firstChild) stoFin(sec);
+  bars.forEach((b, j) => { b.className = j < i ? 'done' : j === i ? (s.fin ? 'done' : 'on') : ''; });
+  const bar = bars[i]; bar.style.setProperty('--dur', (s.dur || 6) + 's');
+  const inner = bar.firstChild; inner.style.animation = 'none'; void inner.offsetWidth; inner.style.animation = '';
+  $('#stoPrev').disabled = i === 0; $('#stoNext').disabled = i === n - 1;
+  $('#stoFrame').setAttribute('aria-label', `Écran ${i + 1} sur ${n}`);
+  if (!REDUCED()) $$('[data-count]', sec).forEach(el => { const to = +el.dataset.count, t0 = performance.now(); const step = now => { if (!STO || STO.i !== i) { el.textContent = fmtN(to); return; } const p = Math.min(1, (now - t0) / 900), e = 1 - Math.pow(1 - p, 3); el.textContent = fmtN(to * e); if (p < 1) requestAnimationFrame(step); }; requestAnimationFrame(step); });
+  if (SA) queueCovers();
+}
+function stoPause(on) { if (!STO) return; STO.paused = on; $('#sto').classList.toggle('paused', on); $('#stoPause').setAttribute('aria-pressed', String(on)); $('#stoPause').setAttribute('aria-label', on ? 'Reprendre' : 'Mettre en pause'); }
+function closeStories() { if (!STO) return; STO = null; $('#sto').hidden = true; $('#stoSlides').innerHTML = ''; if (lastFocus && document.contains(lastFocus)) lastFocus.focus(); }
+function wireStories() {
+  const fr = $('#stoFrame');
+  $('#stoBars').addEventListener('animationend', e => { if (STO && !STO.paused && e.target.parentElement && e.target.parentElement.classList.contains('on')) stoGo(STO.i + 1); });
+  $('#stoPrev').addEventListener('click', e => { e.stopPropagation(); if (STO && STO.hold) return; stoGo(STO.i - 1); });
+  $('#stoNext').addEventListener('click', e => { e.stopPropagation(); if (STO && STO.hold) return; stoGo(STO.i + 1); });
+  $('#stoPause').addEventListener('click', () => stoPause(!STO.paused));
+  let tm = 0;
+  fr.addEventListener('pointerdown', e => { if (!STO || e.target.closest('.acts, .stotop')) return; STO.hold = 0; clearTimeout(tm); tm = setTimeout(() => { if (STO && !STO.paused) { STO.hold = 1; stoPause(true); } }, 220); });
+  const up = () => { clearTimeout(tm); if (STO && STO.hold) { stoPause(false); setTimeout(() => { if (STO) STO.hold = 0; }, 0); } };
+  fr.addEventListener('pointerup', up); fr.addEventListener('pointercancel', up); fr.addEventListener('pointerleave', up);
+  $('#stoSlides').addEventListener('click', async e => {
+    const b = e.target.closest('[data-sa]'); if (!b || !STO) return;
+    const k = b.dataset.sa, R = STO.R, name = `sillon-recap-${tagOf(R.g, RC.a)}.png`;
+    if (k === 'png') { const bl = await posterPng(R); if (bl) saveFile(name, bl); }
+    else if (k === 'share') { const bl = await posterPng(R); if (!bl) return; try { await navigator.share({ files: [new File([bl], name, { type: 'image/png' })], title: 'Mon récap Sillon' }); } catch (er) { if (er && er.name !== 'AbortError') saveFile(name, bl); } }
+    else if (k === 'open') { const g = R.g, a = RC.a; closeAll(); S.gran = g; S.anchor = a; S.calYear = null; savePrefs(); if (S.view !== 'stats') location.hash = 'stats'; else { render(); window.scrollTo(0, 0); } }
+    else if (k === 'again') stoGo(0);
+    else if (k === 'prev' || k === 'next') { const g = R.g, a = shift(g, RC.a, k === 'prev' ? -1 : 1); openStories(g, a); }
+  });
+  document.addEventListener('keydown', e => {
+    if (!STO || $('#sto').hidden) return;
+    if (e.key === 'ArrowRight') { e.preventDefault(); e.stopImmediatePropagation(); stoGo(STO.i + 1); }
+    else if (e.key === 'ArrowLeft') { e.preventDefault(); e.stopImmediatePropagation(); stoGo(STO.i - 1); }
+    else if (e.key === ' ' && !e.target.closest('button')) { e.preventDefault(); stoPause(!STO.paused); }
+  }, true);
+  document.addEventListener('visibilitychange', () => { if (STO && document.hidden) stoPause(true); });
+}
+
 /* ================= wiring ================= */
 function go(k) {
   if (S.gran === 'all') return;
@@ -3656,6 +4353,8 @@ function wire() {
   $$('.sk').forEach(b => b.addEventListener('click', () => setSkin(b.dataset.s)));
   $('#skCycle').addEventListener('click', () => { setSkin(SKINS[(SKINS.indexOf(S.skin) + 1) % SKINS.length]); toast('Thème : ' + SKIN_NAMES[S.skin]); });
   $$('[data-act=data]').forEach(b => b.addEventListener('click', openData));
+  $$('[data-act=how]').forEach(b => b.addEventListener('click', () => { openData(); $('#how').open = true; $('#how').scrollIntoView({ block: 'start' }); }));
+  $('#howTabs').addEventListener('click', e => { const b = e.target.closest('[data-svc]'); if (b) { howSvc = b.dataset.svc; renderHow(); } });
   $$('[data-act=merge]').forEach(b => b.addEventListener('click', openMerge));
   $('#pick').addEventListener('click', () => { mergeMode = false; $('#file').click(); });
   $('#pickMerge').addEventListener('click', () => { mergeMode = true; $('#file').click(); });
@@ -3674,8 +4373,9 @@ function wire() {
   $('#rcGo').addEventListener('click', () => openRecap(S.gran, S.anchor));
   $('#rcPrev').addEventListener('click', () => rcGo(-1));
   $('#rcNext').addEventListener('click', () => rcGo(1));
-  $('#rcPng').addEventListener('click', async () => { if (!RC || !RC.R) return; const b = await recapPng(RC.R); if (b) saveFile(`sillon-recap-${tagOf(RC.g, RC.a)}.png`, b); });
-  $('#rcShare').addEventListener('click', async () => { if (!RC || !RC.R) return; const b = await recapPng(RC.R); if (!b) return; try { await navigator.share({ files: [new File([b], `sillon-recap-${tagOf(RC.g, RC.a)}.png`, { type: 'image/png' })], title: 'Mon récap Sillon' }); } catch (e) { if (e && e.name !== 'AbortError') saveFile(`sillon-recap-${tagOf(RC.g, RC.a)}.png`, b); } });
+  wireStories();
+  $('#rcPng').addEventListener('click', async () => { if (!RC || !RC.R) return; const b = await posterPng(RC.R); if (b) saveFile(`sillon-recap-${tagOf(RC.g, RC.a)}.png`, b); });
+  $('#rcShare').addEventListener('click', async () => { if (!RC || !RC.R) return; const b = await posterPng(RC.R); if (!b) return; try { await navigator.share({ files: [new File([b], `sillon-recap-${tagOf(RC.g, RC.a)}.png`, { type: 'image/png' })], title: 'Mon récap Sillon' }); } catch (e) { if (e && e.name !== 'AbortError') saveFile(`sillon-recap-${tagOf(RC.g, RC.a)}.png`, b); } });
   $('#rcOpen').addEventListener('click', () => { const g = RC.g, a = RC.a; closeAll(); S.gran = g; S.anchor = a; S.calYear = null; savePrefs(); if (S.view !== 'stats') location.hash = 'stats'; else { render(); window.scrollTo(0, 0); } });
   $('#bell').addEventListener('click', () => { const st = syncState(); if (!st) return; notifClosed = false; showNotif(st.replace('-q', '')); });
   $('#ntX').addEventListener('click', () => { notifClosed = true; $('#notif').hidden = true; });
@@ -3736,14 +4436,14 @@ function wire() {
     if (e.key === 'Enter') { e.preventDefault(); bs[Math.max(0, suggSel)].click(); }
   });
   $('#exCsv').addEventListener('click', () => saveFile(`sillon-tops-${fileTag()}.csv`, topsCsv()));
-  $('#exCard').addEventListener('click', async () => { const b = await recapPng(recapData(S.gran, S.anchor)); if (b) saveFile(`sillon-recap-${fileTag()}.png`, b); });
+  $('#exCard').addEventListener('click', async () => { const b = await posterPng(recapData(S.gran, S.anchor)); if (b) saveFile(`sillon-recap-${fileTag()}.png`, b); });
   $('#exBak').addEventListener('click', async () => { if (DEMO) { toast('Rien à sauvegarder : ce sont des données d\'exemple.'); return; } const bytes = await gz(pack(D)); saveFile(`sillon-sauvegarde-${fileTag()}.json`, JSON.stringify({ format: 'sillon-backup', v: 1, savedAt: new Date().toISOString(), data: b64(bytes) })); });
   $('#exCopy').addEventListener('click', async () => { const t = summary(); try { await navigator.clipboard.writeText(t); toast('Résumé copié'); } catch (e) { const box = $('#copyBox'); box.value = t; box.hidden = false; box.select(); toast('Copie bloquée ici : sélectionne le texte et copie-le.'); } });
   $('#wipe').addEventListener('click', () => { $('#wipeConfirm').hidden = false; $('#wipeYes').focus(); });
   $('#wipeNo').addEventListener('click', () => { $('#wipeConfirm').hidden = true; });
   $('#wipeYes').addEventListener('click', async () => { await Store.wipe(); $('#wipeConfirm').hidden = true; Prefs.data.sync = {}; Prefs.save(); setData(makeDemo(), true); updateDataStatus(); $('#impMsg').textContent = 'Tes données ont été effacées.'; $('#wipe').hidden = true; });
   addEventListener('keydown', e => {
-    if (e.key === 'Escape') { if (!$('#drawer').hidden || !$('#dataModal').hidden || !$('#recap').hidden) closeAll(); fl.classList.remove('open'); $('#sugg').hidden = true; return; }
+    if (e.key === 'Escape') { if (!$('#drawer').hidden || !$('#dataModal').hidden || !$('#recap').hidden || !$('#sto').hidden) closeAll(); fl.classList.remove('open'); $('#sugg').hidden = true; return; }
     if (e.target.closest('input,textarea,select') || e.altKey || e.ctrlKey || e.metaKey) return;
     if (!$('#recap').hidden) { if (e.key === 'ArrowLeft') { rcGo(-1); e.preventDefault(); } else if (e.key === 'ArrowRight') { rcGo(1); e.preventDefault(); } return; }
     if (!$('#drawer').hidden || !$('#dataModal').hidden || S.view !== 'stats') return;
