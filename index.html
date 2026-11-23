@@ -660,7 +660,8 @@ code.cp{display:inline-block;max-width:100%;padding:4px 8px;border-radius:6px;ba
   </div>
   <div class="demo" id="demoBar" hidden>
     <div><p><b>Bienvenue sur Sillon.</b> Ce que tu vois, c'est un exemple inventé. Pour tes vraies stats :</p>
-      <ol><li>Sur la page Confidentialité de Spotify, demande <b>Intégralité de votre historique de streaming</b>.</li><li>Quand le mail de Spotify arrive (en général quelques jours), dépose le ZIP ici.</li><li id="obSp" hidden>Pour les vraies pochettes, connecte Spotify dans Données.</li></ol>
+      <ol><li>Sur la page Confidentialité de Spotify, demande <b>Intégralité de votre historique de streaming</b>.</li><li>Quand le mail de Spotify arrive (en général quelques jours), dépose le ZIP ici.</li></ol>
+      <p class="note" id="obSp" hidden>C'est tout : pas de compte à créer. En option, les vraies pochettes s'activent en connectant Spotify dans Données, seulement si la personne qui t'a partagé le site t'a ajouté à son app Spotify.</p>
       <p class="note">Tes données restent à toi : personne d'autre ne les voit, même pas la personne qui t'a partagé le site.</p></div>
     <div class="row2"><a class="btn" href="https://www.spotify.com/account/privacy/" target="_blank" rel="noopener">Demander mon historique</a><button class="btn pri" data-act="data">Importer mon ZIP</button></div>
   </div>
@@ -846,7 +847,7 @@ code.cp{display:inline-block;max-width:100%;padding:4px 8px;border-radius:6px;ba
     <button class="btn lite" id="pickMerge"><svg class="ic" viewBox="0 0 24 24"><path d="M6 4v5a6 6 0 0 0 6 6h0a6 6 0 0 1 6 6"/><path d="M18 4v5a6 6 0 0 1-3 5.2"/></svg>Fusionner un compte</button>
     <ul class="srcs" id="srcList"></ul>
   </div>
-  <div class="mergeb" id="spBox" hidden><h3>Connexion à Spotify</h3><div id="spBody"></div></div>
+  <div class="mergeb" id="spBox" hidden><h3>Connexion à Spotify, optionnelle</h3><div id="spBody"></div></div>
   <details class="how" id="how">
     <summary>Récupérer ton historique complet</summary>
     <ol>
@@ -3133,7 +3134,7 @@ function renderSpBox() {
   if (!SPA.cid || SPA.editing) {
     b.innerHTML = `<p class="note">Pour utiliser ta propre app Spotify : crée-la sur le <a href="https://developer.spotify.com/dashboard" target="_blank" rel="noopener">tableau de bord développeur Spotify</a> (Spotify demande un compte Premium pour ça), coche « Web API » et mets cette adresse de redirection :</p><p><code class="cp">${red}</code></p><div class="sprow"><input class="field" id="spCid" placeholder="Client ID de ton app" autocomplete="off" spellcheck="false" aria-label="Client ID de ton app Spotify"><button class="btn pri" id="spSave">Enregistrer</button>${cfg || SPA.cid ? '<button class="more" id="spCancel">Annuler</button>' : ''}</div>`;
   } else if (!SPA.ok()) {
-    b.innerHTML = (SPA.fromCfg ? `<p class="note">Connecte ton compte Spotify pour avoir les vraies pochettes et tes 50 derniers morceaux à chaque ouverture. La personne qui a mis le site en ligne doit d'abord avoir ajouté ton compte à son app (Spotify limite à 5 comptes). Sans ça, tout le reste marche quand même.</p>` : `<p class="note">Client ID enregistré. L'adresse de redirection déclarée dans ton app doit être exactement : <code class="cp">${red}</code></p>`) +
+    b.innerHTML = (SPA.fromCfg ? `<p class="note">Pas obligatoire : tes stats marchent sans. Ça ajoute seulement les vraies pochettes et tes 50 derniers morceaux à chaque ouverture. Il faut que la personne qui a mis le site en ligne ait ajouté ton compte à son app Spotify (5 comptes maximum). Sinon, Spotify refusera la connexion.</p>` : `<p class="note">Client ID enregistré. L'adresse de redirection déclarée dans ton app doit être exactement : <code class="cp">${red}</code></p>`) +
       `<div class="sprow"><button class="btn pri" id="spLogin">Connecter Spotify</button><button class="more" id="spReset">${SPA.fromCfg ? 'Utiliser ma propre app Spotify' : 'Changer de Client ID'}</button></div>`;
   } else if (SPA.denied) {
     b.innerHTML = `<p class="note"><b>Spotify refuse ton compte sur cette app.</b> Demande à la personne qui a mis le site en ligne de t'ajouter dans son app Spotify (onglet User Management, avec le nom et l'adresse mail de ton compte Spotify). Spotify limite à 5 comptes par app. En attendant, tout marche sauf les pochettes et les derniers morceaux.</p><div class="sprow"><button class="btn" id="spSync">Réessayer</button><button class="btn" id="spOut">Déconnecter</button></div>`;
