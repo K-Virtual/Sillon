@@ -431,6 +431,65 @@ button.opt:hover:not(:disabled){border-color:var(--chip2)}
 .hist li{display:flex;justify-content:space-between;gap:12px;padding:10px 0;border-bottom:1px solid var(--line)}
 .hist small{display:block;color:var(--muted);font-size:13px}
 
+
+/* mosaics, recap collage, identity card, evolution */
+.mos{position:relative;display:grid;grid-template-columns:1fr 1fr;grid-template-rows:1fr 1fr;aspect-ratio:1;width:100%;border-radius:6px;overflow:hidden;margin-bottom:8px;box-shadow:var(--shadow);container-type:inline-size}
+.mos .cv{border-radius:0}
+.mos .cv b{display:none}
+.mos::after{content:"";position:absolute;inset:0;background:linear-gradient(transparent 38%,rgba(0,0,0,.78));pointer-events:none}
+.mos em{position:absolute;left:7%;top:7%;z-index:3;padding:3px 8px;border-radius:999px;background:rgba(0,0,0,.45);font:800 8.5cqi/1.1 var(--f-head);font-style:normal;color:#fff}
+.mos strong{position:absolute;left:7%;right:7%;bottom:7%;z-index:3;font:900 17cqi/.95 var(--f-head);letter-spacing:-.04em;color:#fff;overflow-wrap:anywhere}
+.mos.sm strong{font-size:13.5cqi}
+.rcmos{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:8px}
+.rcmos .cv{border-radius:6px;box-shadow:0 8px 20px rgba(0,0,0,.35)}
+.rcmos .cv b{display:none}
+.rcbars{display:block;width:100%;height:46px;margin-top:-6px}
+.rcbars rect{fill:rgba(255,255,255,.42)}
+.rcbars rect.pk{fill:#fff}
+.rccols li{grid-template-columns:16px 34px minmax(0,1fr)!important;align-items:center}
+.rccols li .cv{width:34px;box-shadow:0 4px 12px rgba(0,0,0,.3)}
+.rccols li .cv b{font-size:30cqi}
+.rcgen{display:flex;flex-wrap:wrap;gap:8px}
+.rcgen span{padding:5px 12px;border-radius:999px;background:rgba(0,0,0,.25);font-size:13px;font-weight:600}
+.rcgen b{font-weight:800}
+.rcper{display:flex;flex-direction:column;gap:2px;padding:12px 14px;border-radius:8px;background:rgba(255,255,255,.12)}
+.rcper small{font-size:12px;font-weight:700;opacity:.8}
+.rcper b{font:900 22px/1.15 var(--f-head);letter-spacing:-.02em}
+.rcper span{font-size:14px;opacity:.9}
+.idc{--c1:hsl(var(--hh) 70% 42%);--c2:hsl(calc(var(--hh) + 50) 75% 20%);display:grid;grid-template-columns:minmax(0,280px) minmax(0,1fr);gap:28px;padding:28px;border-radius:14px;color:#fff;background:radial-gradient(120% 80% at 100% 0%,hsl(calc(var(--hh) - 30) 85% 60% / .5),transparent 60%),linear-gradient(150deg,var(--c1),var(--c2));box-shadow:0 20px 50px rgba(0,0,0,.45)}
+.idc .mos{margin:0}
+.idc .mos::after{display:none}
+.idav .cv{width:100%;box-shadow:0 12px 30px rgba(0,0,0,.4)}
+.idt{display:flex;flex-direction:column;gap:12px}
+.idt .rk{font-weight:800;font-size:14px;opacity:.85}
+.idt h2{font:900 clamp(30px,5vw,48px)/1 var(--f-head);letter-spacing:-.04em}
+.badges{display:flex;flex-wrap:wrap;gap:6px}
+.badges span{padding:4px 12px;border-radius:999px;background:rgba(255,255,255,.16);font-weight:700;font-size:13px}
+.idf{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin:0}
+.idf div{padding:10px 12px;border-radius:8px;background:rgba(0,0,0,.22)}
+.idf dt{font-size:12px;font-weight:700;opacity:.8}
+.idf dd{margin:0;font:800 16px/1.25 var(--f-head);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.idtop{display:flex;flex-wrap:wrap;gap:10px}
+.idtop button{display:flex;align-items:center;gap:8px;padding:4px 10px 4px 4px;border:0;border-radius:999px;background:rgba(0,0,0,.22);color:#fff;font-size:13px;font-weight:600;max-width:100%}
+.idtop .cv{width:30px;flex:none}
+.idtop .cv b{font-size:30cqi}
+.idtop small{font-size:13px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.habs{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+.kpi .v.sm{font-size:clamp(17px,1.7vw,21px)}
+.evo{display:grid;grid-template-columns:52px minmax(0,240px) minmax(0,1fr);align-items:center;gap:14px;padding:8px 0;border-bottom:1px solid var(--line)}
+.evo .y{font-weight:800;color:var(--muted)}
+.evo .ea{display:grid;grid-template-columns:40px minmax(0,1fr);gap:10px;align-items:center;border:0;background:none;padding:0;text-align:left}
+.evo .ea .cv{width:40px}
+.evo .ea b{display:block;font-weight:700;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.evo .ea small{color:var(--muted);font-size:13px}
+.evo .eb{display:flex;height:14px;border-radius:7px;overflow:hidden;background:var(--chip)}
+.evo .eb i{display:block;height:100%}
+.evo .eb.none{height:auto;background:none;color:var(--dim);font-size:13px}
+.lg2{display:flex;flex-wrap:wrap;gap:6px 14px;margin-top:12px;font-size:13px;color:var(--muted)}
+.lg2 span{display:inline-flex;align-items:center;gap:6px}
+.lg2 i{width:12px;height:12px;border-radius:3px}
+.tags small{color:var(--muted)}
+
 /* drawer, modal, overlay */
 .ov{position:fixed;inset:0;z-index:60;background:rgba(0,0,0,.55)}
 .drawer{position:fixed;top:8px;right:8px;bottom:8px;z-index:70;width:min(520px,calc(100vw - 16px));overflow-y:auto;border-radius:8px;background:var(--panel);box-shadow:0 20px 60px rgba(0,0,0,.6)}
@@ -540,6 +599,11 @@ code.cp{display:inline-block;max-width:100%;padding:4px 8px;border-radius:6px;ba
   .dgrid,.endyr{grid-template-columns:repeat(2,minmax(0,1fr))}
   .rcard{padding:20px;gap:14px}
   .rcfacts{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .rcmos{grid-template-columns:repeat(3,minmax(0,1fr))}
+  .idc{grid-template-columns:1fr;padding:20px;gap:18px}
+  .idc .idm{max-width:220px}
+  .evo{grid-template-columns:44px minmax(0,1fr);row-gap:6px}
+  .evo .eb{grid-column:1/-1}
   .notif{right:12px;bottom:84px}
   .foot{padding:20px 16px 24px}
   table.stack thead{display:none}
@@ -548,8 +612,8 @@ code.cp{display:inline-block;max-width:100%;padding:4px 8px;border-radius:6px;ba
   table.stack td::before{content:attr(data-l);display:block;font-size:11px;color:var(--muted)}
   table.rk td.nm{grid-column:1/-1}
   table.rk td.nm::before{display:none}
-  .bnav{position:fixed;left:0;right:0;bottom:0;z-index:50;display:grid;grid-template-columns:repeat(5,minmax(0,1fr));padding:14px 2px calc(6px + env(safe-area-inset-bottom));background:linear-gradient(transparent,var(--bg) 38%)}
-  .bnav a{display:flex;flex-direction:column;align-items:center;gap:4px;padding:4px 0;text-decoration:none;font-size:11px;font-weight:600;color:var(--muted)}
+  .bnav{position:fixed;left:0;right:0;bottom:0;z-index:50;display:grid;grid-template-columns:repeat(6,minmax(0,1fr));padding:14px 2px calc(6px + env(safe-area-inset-bottom));background:linear-gradient(transparent,var(--bg) 38%)}
+  .bnav a{display:flex;flex-direction:column;align-items:center;gap:4px;padding:4px 0;text-decoration:none;font-size:10px;letter-spacing:-.01em;white-space:nowrap;font-weight:600;color:var(--muted)}
   .bnav a[aria-current=page]{color:var(--ink)}
   .bnav .ic{width:24px;height:24px}
 }
@@ -564,6 +628,7 @@ code.cp{display:inline-block;max-width:100%;padding:4px 8px;border-radius:6px;ba
     <a class="logo" href="#stats" aria-label="Sillon, accueil"><svg class="disc" viewBox="0 0 64 64" aria-hidden="true"><circle class="d1" cx="32" cy="32" r="30"/><circle class="d2" cx="32" cy="32" r="24"/><circle class="d2" cx="32" cy="32" r="18"/><circle class="d3" cx="32" cy="32" r="10"/><circle class="d4" cx="32" cy="32" r="2.4"/></svg><span>Sillon</span></a>
     <nav class="snav" aria-label="Sections">
       <a href="#stats" data-v="stats"><svg class="ic" viewBox="0 0 24 24"><path d="M4 10.5 12 4l8 6.5V20h-5v-6h-6v6H4z"/></svg><span>Accueil</span></a>
+      <a href="#profil" data-v="profil"><svg class="ic" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2.5"/><circle cx="9" cy="11" r="2.2"/><path d="M5.8 16.2a3.6 3.6 0 0 1 6.4 0M14 10h4M14 13.5h3"/></svg><span>Profil</span></a>
       <a href="#recaps" data-v="recaps"><svg class="ic" viewBox="0 0 24 24"><rect x="3" y="6" width="13" height="15" rx="2"/><path d="M8 3h11a2 2 0 0 1 2 2v12"/></svg><span>Récaps</span></a>
       <a href="#classements" data-v="classements"><svg class="ic" viewBox="0 0 24 24"><path d="M8 21h8M12 17v4M7 4h10v5a5 5 0 0 1-10 0z"/><path d="M17 6h3v2a3 3 0 0 1-3 3M7 6H4v2a3 3 0 0 0 3 3"/></svg><span>Classements</span></a>
       <a href="#predictions" data-v="predictions"><svg class="ic" viewBox="0 0 24 24"><path d="M3 17l5-5 4 3 8-8"/><path d="M15 7h5v5"/><path d="M3 21h18" stroke-dasharray="2 3"/></svg><span>Prédictions</span></a>
@@ -680,6 +745,7 @@ code.cp{display:inline-block;max-width:100%;padding:4px 8px;border-radius:6px;ba
     <section class="blk"><div class="bh"><div><h2 id="artTitle"></h2><p class="sub" id="artSub"></p></div><button class="more" data-more="art"></button></div><div class="row" id="artList"></div></section>
     <section class="blk"><div class="bh"><div><h2 id="trkTitle"></h2><p class="sub" id="trkSub"></p></div><button class="more" data-more="trk"></button></div><ol class="tl" id="trkList"></ol></section>
     <section class="blk"><div class="bh"><div><h2 id="albTitle"></h2><p class="sub" id="albSub"></p></div><button class="more" data-more="alb"></button></div><div class="row" id="albList"></div></section>
+    <section class="blk"><div class="bh"><div><h2 id="gnTitle">Tes genres</h2><p class="sub" id="gnSub"></p></div></div><div id="gnBody"></div></section>
     <section class="blk card">
       <div class="bh"><div><h2 id="calTitle"></h2><p class="sub" id="calSub"></p></div>
         <div class="yr"><button class="ib" id="calPrev" aria-label="Année précédente"><svg class="ic" viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7"/></svg></button><span id="calYear"></span><button class="ib" id="calNext" aria-label="Année suivante"><svg class="ic" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg></button></div></div>
@@ -704,6 +770,28 @@ code.cp{display:inline-block;max-width:100%;padding:4px 8px;border-radius:6px;ba
         <div class="scroll" style="margin-top:12px"><table class="stack" id="logTable"></table></div>
         <button class="more" id="logMore" hidden>Afficher plus</button>
       </details>
+    </section>
+  </div>
+</section>
+
+<!-- ===== PROFIL ===== -->
+<section class="view" data-view="profil" aria-label="Profil" hidden>
+  <div class="hero" id="prHero"><div class="htx"><p class="kick">Ta carte d'identité musicale</p><h1 class="ht" id="prTitle">Ton profil</h1><p class="hl" id="prLead"></p></div></div>
+  <div class="actions">
+    <button class="play" id="prPng" aria-label="Télécharger ta carte d'identité musicale en image" title="Télécharger ta carte"><svg class="ic" viewBox="0 0 24 24"><path d="M12 4v11M7 10l5 5 5-5M5 20h14"/></svg></button>
+    <span class="small">Télécharger ta carte pour la partager</span>
+  </div>
+  <div class="pad">
+    <section class="blk"><div class="idc" id="idCard"></div></section>
+    <section class="blk cols">
+      <div><h2>Tes genres</h2><p class="sub">Sur tout ton historique</p><div id="prGen" style="margin-top:14px"></div></div>
+      <div><h2>Tes habitudes</h2><p class="sub">Comment et quand tu écoutes</p><div class="habs" id="prHab" style="margin-top:14px"></div></div>
+    </section>
+    <section class="blk"><div class="bh"><div><h2>Ton évolution</h2><p class="sub">Ton artiste n°1 et tes genres, année par année</p></div></div><div id="prEvo"></div></section>
+    <section class="blk"><div class="bh"><div><h2>Découvertes devenues favorites</h2><p class="sub">Découvertes ces deux dernières années, et déjà dans ton top 40</p></div></div><div class="row" id="prFav"></div></section>
+    <section class="blk cols">
+      <div><h2>Tes derniers morceaux découverts</h2><p class="sub">Écoutés pour la toute première fois</p><ol class="tl nob" id="prNew" style="margin-top:10px"></ol></div>
+      <div><h2>Écoutés une seule fois</h2><p class="sub" id="prOnceS"></p><ol class="tl nob" id="prOnce" style="margin-top:10px"></ol></div>
     </section>
   </div>
 </section>
@@ -806,6 +894,7 @@ code.cp{display:inline-block;max-width:100%;padding:4px 8px;border-radius:6px;ba
 
 <nav class="bnav" aria-label="Sections">
   <a href="#stats" data-v="stats"><svg class="ic" viewBox="0 0 24 24"><path d="M4 10.5 12 4l8 6.5V20h-5v-6h-6v6H4z"/></svg>Accueil</a>
+  <a href="#profil" data-v="profil"><svg class="ic" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2.5"/><circle cx="9" cy="11" r="2.2"/><path d="M5.8 16.2a3.6 3.6 0 0 1 6.4 0M14 10h4M14 13.5h3"/></svg>Profil</a>
   <a href="#recaps" data-v="recaps"><svg class="ic" viewBox="0 0 24 24"><rect x="3" y="6" width="13" height="15" rx="2"/><path d="M8 3h11a2 2 0 0 1 2 2v12"/></svg>Récaps</a>
   <a href="#classements" data-v="classements"><svg class="ic" viewBox="0 0 24 24"><path d="M8 21h8M12 17v4M7 4h10v5a5 5 0 0 1-10 0z"/><path d="M17 6h3v2a3 3 0 0 1-3 3M7 6H4v2a3 3 0 0 0 3 3"/></svg>Classements</a>
   <a href="#predictions" data-v="predictions"><svg class="ic" viewBox="0 0 24 24"><path d="M3 17l5-5 4 3 8-8"/><path d="M15 7h5v5"/></svg>Prédictions</a>
@@ -941,7 +1030,7 @@ const SA = /*@SA*/true; // true = version autonome (GitHub Pages)
 const SKINS = ['nuit', 'clair', 'wrapped', 'console'];
 const SKIN_NAMES = { nuit: 'Nuit', clair: 'Clair', wrapped: 'Wrapped', console: 'Console' };
 const GRANS = ['day', 'week', 'month', 'year', 'all'];
-const VIEWS = ['stats', 'recaps', 'classements', 'predictions', 'jeux'];
+const VIEWS = ['stats', 'profil', 'recaps', 'classements', 'predictions', 'jeux'];
 const S = { view: 'stats', gran: 'week', anchor: 0, metric: 'ms', content: 'music', thr: 30, noSkip: false, cmp: true, focus: null, skin: 'nuit', rcMore: { m: false, w: false }, top: { art: 10, trk: 10, alb: 10 }, logN: 30, calYear: null, rk: { scope: 'all', sort: 'plays', n: 50 }, live: false, recMode: 'new' };
 let D = null, G = null, T = null, DEMO = true, P = null, Q = null, booted = false, dataVer = 0;
 let seenT = null, seenT2 = null, seenA = null, seenL = null, stampC = 1;
@@ -1710,6 +1799,7 @@ function renderView() {
   renderHead();
   if (S.view === 'stats') render();
   else if (S.view === 'recaps') renderRecaps();
+  else if (S.view === 'profil') renderProfile();
   else if (S.view === 'classements') renderRank();
   else if (S.view === 'predictions') renderPredict();
   else renderGames();
@@ -1719,7 +1809,7 @@ function updateMini() {
   $('#mini').hidden = !(S.view === 'stats' && !heroVisible);
   $('#topTitle').textContent = S.view === 'stats' ? '' : VIEW_T[S.view];
 }
-const VIEW_T = { stats: 'Accueil', recaps: 'Récaps', classements: 'Classements', predictions: 'Prédictions', jeux: 'Jeux' };
+const VIEW_T = { stats: 'Accueil', profil: 'Profil', recaps: 'Récaps', classements: 'Classements', predictions: 'Prédictions', jeux: 'Jeux' };
 let heroVisible = true;
 function checkHero() {
   const v = $(`.view[data-view="${S.view}"]`); if (!v) return;
@@ -1730,7 +1820,7 @@ function checkHero() {
 function setData(X, demo) {
   D = X; DEMO = demo; derive(D);
   S.anchor = D.lastDay; S.focus = null; S.calYear = null;
-  computeGlobal(); computeTaste(); TM = AM = null; dataVer++; searchIdx = null; RCX = null; PD = null; ALB_TID = null; ART_ALB = null;
+  computeGlobal(); computeTaste(); TM = AM = null; dataVer++; searchIdx = null; RCX = null; PD = null; PRX = null; ALB_TID = null; ART_ALB = null; ART_TID = null;
   renderView();
 }
 function render() {
@@ -1746,7 +1836,7 @@ function render() {
     }
   }
   const ta = topList(P, 'a', 1)[0]; setHue(ta ? hueA(ta.i) : 140);
-  renderPanel(r0, r1); renderNums(Qd); renderMain(); renderRanks(); renderCal(); renderRhythm(); renderHabits(); renderDisc(); renderRecs(); renderYears(); renderOtd(); renderLog(); renderLive();
+  renderPanel(r0, r1); renderNums(Qd); renderMain(); renderRanks(); renderGenres(); renderCal(); renderRhythm(); renderHabits(); renderDisc(); renderRecs(); renderYears(); renderOtd(); renderLog(); renderLive();
 }
 function renderHead() {
   $('#demoBar').hidden = !DEMO || !booted;
@@ -1965,10 +2055,11 @@ function renderDisc() {
 function renderRecs() {
   const r = G.rec, items = [];
   if (r.bestDay.ms) items.push(['Plus gros jour', fmtDur(r.bestDay.ms), cap(fmtDayL(r.bestDay.d)), () => setView('day', r.bestDay.d, true)]);
+  if (G.ordT.length) { const t = G.ordT[0]; items.push(['Le plus réécouté', `${fmtN(G.tP[t])} écoutes`, `« ${D.tn[t]} », ${D.artists[D.ta[t]]}, depuis le début`, () => openDetail('t', t)]); }
+  if (r.rep.c > 1) items.push(['En boucle', `${fmtN(r.rep.c)} fois en un jour`, `« ${D.tn[r.rep.t]} », ${D.artists[D.ta[r.rep.t]]}, le ${fmtDay(r.rep.day)}`, () => setView('day', r.rep.day, true)]);
+  if (r.ses.dur) items.push(['Plus long marathon', fmtDur(r.ses.dur * 1000), `${fmtN(r.ses.n)} morceaux enchaînés sans pause, le ${fmtDay(r.ses.day)}`, () => setView('day', r.ses.day, true)]);
   if (r.streak.n) items.push(['Plus longue série', `${fmtN(r.streak.n)} ${pl(r.streak.n, 'jour')} d'affilée`, `du ${fmtDay(r.streak.end - r.streak.n + 1)} au ${fmtDay(r.streak.end)}`, () => setView('day', r.streak.end, true)]);
   items.push(['Série en cours', `${fmtN(r.cur.n)} ${pl(r.cur.n, 'jour')}`, r.cur.n ? `jusqu'au ${fmtDay(D.lastDay)}` : 'rien le dernier jour de tes données', null]);
-  if (r.ses.dur) items.push(['Plus long marathon', fmtDur(r.ses.dur * 1000), `${fmtN(r.ses.n)} morceaux sans pause, le ${fmtDay(r.ses.day)}`, () => setView('day', r.ses.day, true)]);
-  if (r.rep.c > 1) items.push(['En boucle', `${fmtN(r.rep.c)} fois en un jour`, `« ${D.tn[r.rep.t]} », ${D.artists[D.ta[r.rep.t]]}, le ${fmtDay(r.rep.day)}`, () => setView('day', r.rep.day, true)]);
   if (r.bestMon.s >= 0) items.push(['Plus gros mois', fmtDur(r.bestMon.ms), cap(fmtMon(r.bestMon.s)), () => setView('month', monStart(r.bestMon.s), true)]);
   if (G.first >= 0) { const t = D.k[G.first]; items.push(['Première écoute', fmtDay(D.day[G.first]), `« ${D.tn[t]} », ${D.artists[D.ta[t]]}`, () => setView('day', D.day[G.first], true)]); }
   const box = $('#recs');
@@ -2059,7 +2150,7 @@ function rankData() {
   const disco = Prefs.data.disco, rows = [];
   for (let a = 0; a < D.na; a++) if (R.p[a] > 0) {
     const dk = disco[norm(D.artists[a])], rel = dk && dk.titres > 0 ? dk.titres : null;
-    rows.push({ a, p: R.p[a], ms: R.ms[a], tr: R.tr[a], al: R.al[a], mo: R.mo[a], first: T.aFirst[a] >= 0 ? T.aFirst[a] : R.first[a], sk: R.n[a] ? R.sk[a] / R.n[a] : 0, n: R.n[a], rel, cov: rel ? Math.min(1, R.tr[a] / rel) : null, obs: R.tr[a] ? R.p[a] / R.tr[a] : 0, genre: dk && dk.genre ? String(dk.genre) : '' });
+    rows.push({ a, p: R.p[a], ms: R.ms[a], tr: R.tr[a], al: R.al[a], mo: R.mo[a], first: T.aFirst[a] >= 0 ? T.aFirst[a] : R.first[a], sk: R.n[a] ? R.sk[a] / R.n[a] : 0, n: R.n[a], rel, cov: rel ? Math.min(1, R.tr[a] / rel) : null, obs: R.tr[a] ? R.p[a] / R.tr[a] : 0, genre: artistGenres(a).slice(0, 2).join(', ') });
   }
   const key = { plays: r => r.p, ms: r => r.ms, tracks: r => r.tr, albums: r => r.al, months: r => r.mo, first: r => -r.first, obs: r => r.p >= 15 ? r.obs : -1, skip: r => r.n >= 20 ? r.sk : -1, rel: r => r.rel ?? -1, cov: r => r.cov ?? -1 }[S.rk.sort] || (r => r.p);
   return rows.map(r => ({ r, k: key(r) })).filter(x => x.k >= 0 || S.rk.sort === 'first').sort((x, y) => y.k - x.k || y.r.p - x.r.p).map(x => x.r);
@@ -2101,7 +2192,7 @@ function renderRank() {
 async function estimateDisco() {
   const msg = $('#rkDiscoMsg'), btn = $('#rkDisco');
   const disco = Prefs.data.disco;
-  const names = (rkLast.length ? rkLast : rankData()).map(r => D.artists[r.a]).filter(n => !disco[norm(n)]).slice(0, 40);
+  const names = (rkLast.length ? rkLast : rankData()).map(r => D.artists[r.a]).filter(n => { const d = disco[norm(n)]; return !(d && d.at); }).slice(0, 40);
   if (!names.length) { msg.textContent = 'Déjà estimé pour les artistes affichés.'; return; }
   btn.disabled = true; msg.textContent = `Claude estime ${names.length} discographies… (jusqu'à une minute)`;
   const prompt = `Pour chacun de ces artistes musicaux, donne une estimation de son nombre de titres officiellement sortis (albums, EP et singles, sans compter remixes, versions live, instrumentales ni doublons), de son nombre d'albums studio, de son genre principal (en français, 1 à 3 mots) et de sa première année de sortie. Si tu ne connais pas un artiste ou que tu n'es pas sûr, mets null aux nombres plutôt que d'inventer.\nArtistes :\n${names.map((x, i) => `${i + 1}. ${x}`).join('\n')}\nRéponds uniquement avec un tableau JSON, dans le même ordre, un objet par artiste : [{"artiste":"…","titres":120,"albums":5,"genre":"…","debut":2012}]`;
@@ -2113,7 +2204,7 @@ async function estimateDisco() {
       const it = arr.find(x => x && normT(x.artiste || '') === normT(nm)) || arr[i];
       if (!it) return;
       const num = v => (typeof v === 'number' && isFinite(v) && v > 0 ? Math.round(v) : null);
-      disco[norm(nm)] = { titres: num(it.titres), albums: num(it.albums), genre: it.genre ? String(it.genre).slice(0, 40) : '', debut: num(it.debut), at: Date.now() };
+      disco[norm(nm)] = Object.assign({}, disco[norm(nm)] || {}, { titres: num(it.titres), albums: num(it.albums), genre: it.genre ? String(it.genre).slice(0, 40) : '', debut: num(it.debut), at: Date.now() });
       if (num(it.titres)) ok++;
     });
     Prefs.save();
@@ -2435,7 +2526,7 @@ function openDetail(type, id) {
   else { const arr = [...yrs].sort((a, b) => b[0] - a[0]), mx = Math.max(1, ...arr.map(x => x[1])); list = '<h3 class="h3">Par année</h3><div class="meters">' + arr.map(([y, c]) => `<div class="mt"><span>${y}</span><span class="tr"><i style="width:${(c / mx * 100).toFixed(1)}%"></i></span><b>${fmtN(c)}</b></div>`).join('') + '</div>'; }
   const key = type === 'a' ? 'a|' + D.artists[id] : type === 'l' ? 'l|' + D.albums[id] + '|' + D.artists[D.la[id]] : D.tl[id] ? 'l|' + D.albums[D.tl[id]] + '|' + D.artists[D.ta[id]] : 't|' + D.tn[id] + '|' + D.artists[D.ta[id]];
   const dr = $('#drawer');
-  dr.innerHTML = `<div class="dh" style="--dh:${hsh(norm(key)) % 360}"><button class="x" data-close aria-label="Fermer">×</button>${type === 'a' ? covA(id) : type === 'l' ? covL(id) : covT(id)}<span class="kind">${esc(kindLabel)}${dk && dk.genre ? ', ' + esc(dk.genre) : ''}</span><h2 id="dTitle">${esc(name)}</h2><p class="meta">${by ? esc(by) + ', ' : ''}${esc(fmtPlays(plays))}${rank ? `, n°${NS}${fmtN(rank)} de tes ${type === 'a' ? l.a.toLowerCase() : l.t.toLowerCase()}` : ''}</p></div>
+  dr.innerHTML = `<div class="dh" style="--dh:${hsh(norm(key)) % 360}"><button class="x" data-close aria-label="Fermer">×</button>${type === 'a' ? covA(id) : type === 'l' ? covL(id) : covT(id)}<span class="kind">${esc(kindLabel)}${type === 'a' && artistGenres(id).length ? ', ' + esc(artistGenres(id).slice(0, 3).join(', ')) : ''}</span><h2 id="dTitle">${esc(name)}</h2><p class="meta">${by ? esc(by) + ', ' : ''}${esc(fmtPlays(plays))}${rank ? `, n°${NS}${fmtN(rank)} de tes ${type === 'a' ? l.a.toLowerCase() : l.t.toLowerCase()}` : ''}</p></div>
     <div class="dact"><a class="play" href="${esc(link)}" target="_blank" rel="noopener" aria-label="Ouvrir dans Spotify" title="Ouvrir dans Spotify">${PLAY}</a><button class="btn" id="dFocus">${S.focus && S.focus.type === type && S.focus.id === id ? 'Retirer le focus' : 'Focus sur l\'accueil'}</button></div>
     <div class="dbody"><div class="dgrid">${cells.map(([k, v]) => `<div class="num"><span class="k">${k}</span><span class="v">${esc(v)}</span></div>`).join('')}</div>
     <h3 class="h3">Écoutes par mois</h3><div class="fig md"><svg id="svgDet" role="img" aria-label="Écoutes par mois"></svg></div>${list}</div>`;
@@ -2605,14 +2696,14 @@ function recapIndex() {
   const pass = makePass(false), thr = S.thr * 1000;
   const W = new Map(), M = new Map(), Y = new Map();
   const w0 = D.lastDay - dow(D.lastDay) - 7 * 51;
-  const add = (map, k, i, a) => { let o = map.get(k); if (!o) { o = { ms: 0, p: 0, a: new Map() }; map.set(k, o); } o.ms += D.m[i]; if (D.m[i] >= thr) { o.p++; o.a.set(a, (o.a.get(a) || 0) + D.m[i]); } };
+  const add = (map, k, i, a, l) => { let o = map.get(k); if (!o) { o = { ms: 0, p: 0, a: new Map(), l: new Map() }; map.set(k, o); } o.ms += D.m[i]; if (D.m[i] >= thr) { o.p++; o.a.set(a, (o.a.get(a) || 0) + D.m[i]); if (l) o.l.set(l, (o.l.get(l) || 0) + D.m[i]); } };
   for (let i = 0; i < D.n; i++) {
     if (!pass(i)) continue;
-    const a = D.ta[D.k[i]], d = D.day[i], mo = D.mon[i];
-    add(M, mo, i, a); add(Y, Math.floor(mo / 12) + 1970, i, a);
-    const ws = d - dow(d); if (ws >= w0) add(W, ws, i, a);
+    const t = D.k[i], a = D.ta[t], l = D.tl[t], d = D.day[i], mo = D.mon[i];
+    add(M, mo, i, a, l); add(Y, Math.floor(mo / 12) + 1970, i, a, l);
+    const ws = d - dow(d); if (ws >= w0) add(W, ws, i, a, l);
   }
-  const fin = map => [...map].map(([k, o]) => { let b = -1, v = 0; for (const [a, x] of o.a) if (x > v) { v = x; b = a; } return { k, ms: o.ms, p: o.p, top: b }; }).filter(x => x.p > 0).sort((x, y) => y.k - x.k);
+  const fin = map => [...map].map(([k, o]) => { let b = -1, v = 0; for (const [a, x] of o.a) if (x > v) { v = x; b = a; } return { k, ms: o.ms, p: o.p, top: b, albs: [...o.l].sort((x, y) => y[1] - x[1]).slice(0, 4).map(x => x[0]) }; }).filter(x => x.p > 0).sort((x, y) => y.k - x.k);
   return (RCX = { key, W: fin(W), M: fin(M), Y: fin(Y) });
 }
 function rcTile(g, e) {
@@ -2622,7 +2713,8 @@ function rcTile(g, e) {
   else { a = e.k; const [, m, d] = ymd(e.k); top = 'Semaine ' + isoWeek(e.k); big = d + NS + MO[m]; title = periodText('week', e.k, e.k + 7); }
   a = clamp(a, D.firstDay, D.lastDay);
   const hue = e.top >= 0 ? hueA(e.top) : 140;
-  return `<button class="tile" data-rc="${g}:${a}">${rcov(top, big, hue)}<b>${esc(title)}</b><small>${esc(fmtDur(e.ms))}${e.top >= 0 ? ', ' + esc(D.artists[e.top]) + ' en tête' : ''}</small></button>`;
+  const art = e.albs.length >= 4 ? `<span class="mos${big.length > 7 ? ' sm' : ''}">${e.albs.map(covL).join('')}<em>${esc(top)}</em><strong>${esc(big)}</strong></span>` : rcov(top, big, hue);
+  return `<button class="tile" data-rc="${g}:${a}">${art}<b>${esc(title)}</b><small>${esc(fmtDur(e.ms))}${e.top >= 0 ? ', ' + esc(D.artists[e.top]) + ' en tête' : ''}</small></button>`;
 }
 function renderRecaps() {
   const X = recapIndex();
@@ -2665,12 +2757,20 @@ function drawRecap() {
   card.style.setProperty('--hh', R.A.length ? hueA(R.A[0]) : 140);
   if (!X.plays) card.innerHTML = `<div><p class="rk">${RC_KIND[R.g]}</p><h2 id="rcT">${esc(title)}</h2></div><p>Rien d'écouté sur cette période.</p>`;
   else {
-    const a1 = R.A[0], dl = recapDelta(R);
-    card.innerHTML = `<div><p class="rk">${RC_KIND[R.g]}</p><h2 id="rcT">${esc(title)}</h2></div>
+    const a1 = R.A[0], dl = recapDelta(R), gs = genreShare(X.aM), tr = traitsOf(X)[0];
+    const per = tr && tr.s >= 1 ? tr : { k: 'équilibré', d: 'un peu de tout, sans excès' };
+    const albs = topIdx(X.lM, 6, 1);
+    const bars = Array.from(X.bM), mx = Math.max(1, ...bars), bw = 100 / Math.max(1, bars.length);
+    const pk = bars.indexOf(Math.max(...bars));
+    card.innerHTML = `${albs.length >= 3 ? `<div class="rcmos">${albs.map(covL).join('')}</div>` : ''}
+      <div><p class="rk">${RC_KIND[R.g]}</p><h2 id="rcT">${esc(title)}</h2></div>
       <div class="big"><b>${esc(fmtDur(X.ms))}</b><span>d'écoute${dl ? ', ' + esc(dl) : ''}</span></div>
+      <svg class="rcbars" viewBox="0 0 100 40" preserveAspectRatio="none" aria-hidden="true">${bars.map((v, i) => v > 0 ? `<rect x="${(i * bw + bw * 0.14).toFixed(2)}" y="${(40 - v / mx * 38).toFixed(2)}" width="${(bw * 0.72).toFixed(2)}" height="${(v / mx * 38).toFixed(2)}" rx="0.6"${i === pk ? ' class="pk"' : ''}/>` : '').join('')}</svg>
       <div class="rc1">${covA(a1)}<div><small>Ton ${esc(l.a1)} n°${NS}1</small><b>${esc(D.artists[a1])}</b><span>${esc(fmtDur(X.aM[a1]))}, ${esc(fmtPlays(X.aP[a1]))}</span></div></div>
-      <div class="rccols"><div><h3>Top ${esc(l.a.toLowerCase())}</h3><ol>${R.A.map((a, j) => `<li><i>${j + 1}</i><span><b>${esc(D.artists[a])}</b><small>${esc(fmtDur(X.aM[a]))}</small></span></li>`).join('')}</ol></div>
-      <div><h3>Top ${esc(l.t.toLowerCase())}</h3><ol>${R.T.map((t, j) => `<li><i>${j + 1}</i><span><b>${esc(D.tn[t])}</b><small>${esc(D.artists[D.ta[t]])}, ${esc(fmtPlays(X.tP[t]))}</small></span></li>`).join('')}</ol></div></div>
+      <div class="rccols"><div><h3>Top ${esc(l.a.toLowerCase())}</h3><ol>${R.A.map((a, j) => `<li><i>${j + 1}</i>${covA(a)}<span><b>${esc(D.artists[a])}</b><small>${esc(fmtDur(X.aM[a]))}</small></span></li>`).join('')}</ol></div>
+      <div><h3>Top ${esc(l.t.toLowerCase())}</h3><ol>${R.T.map((t, j) => `<li><i>${j + 1}</i>${covT(t)}<span><b>${esc(D.tn[t])}</b><small>${esc(D.artists[D.ta[t]])}, ${esc(fmtPlays(X.tP[t]))}</small></span></li>`).join('')}</ol></div></div>
+      ${gs.known ? `<div class="rcgen">${gs.mac.slice(0, 4).map(x => `<span>${esc(x.g)} <b>${fmtPct(x.p)}</b></span>`).join('')}</div>` : ''}
+      <div class="rcper"><small>Ton profil sur la période</small><b>Profil ${esc(per.k)}</b><span>${esc(cap(per.d))}</span></div>
       <dl class="rcfacts"><div><dt>Écoutes</dt><dd>${fmtN(X.plays)}</dd></div><div><dt>${esc(l.t)} différents</dt><dd>${fmtN(X.uT)}</dd></div><div><dt>${esc(cap(l.nan))}</dt><dd>${fmtN(X.nA)}</dd></div><div><dt>${esc(cap(l.nt))}</dt><dd>${fmtN(X.nT)}</dd></div><div><dt>${R.g === 'year' || R.g === 'all' ? 'Mois record' : R.g === 'day' ? 'Heure record' : 'Jour record'}</dt><dd>${esc(shortPeak(R))}</dd></div><div><dt>Jours d'écoute</dt><dd>${fmtN(X.active)}</dd></div></dl>
       <div class="rcfoot"><span>Sillon</span><span>${DEMO ? 'Exemple fictif' : 'Mes stats Spotify'}</span></div>`;
   }
@@ -2681,41 +2781,31 @@ function drawRecap() {
 }
 function tagOf(g, a) { const [r0] = range(g, a), [y, m, d] = ymd(r0); return g === 'all' ? 'tout' : g === 'year' ? String(y) : g === 'month' ? `${y}-${String(m + 1).padStart(2, '0')}` : g === 'week' ? `${y}-S${isoWeek(r0)}` : `${y}-${String(m + 1).padStart(2, '0')}-${String(d).padStart(2, '0')}`; }
 async function recapPng(R) {
-  const Wd = 1080, Ht = 1350, cv = document.createElement('canvas'); cv.width = Wd; cv.height = Ht;
-  const g = cv.getContext('2d'), X = R.X, l = L();
-  const fu = getComputedStyle(document.body).getPropertyValue('--f-ui').trim() || 'sans-serif';
-  try { await Promise.all([document.fonts.load(`900 80px ${fu}`), document.fonts.load(`700 30px ${fu}`), document.fonts.load(`500 26px ${fu}`)]); } catch (e) {}
-  const hue = R.A.length ? hueA(R.A[0]) : 140;
-  const lg = g.createLinearGradient(0, 0, Wd * 0.55, Ht); lg.addColorStop(0, `hsl(${hue} 70% 46%)`); lg.addColorStop(1, `hsl(${(hue + 50) % 360} 75% 22%)`);
-  g.fillStyle = lg; g.fillRect(0, 0, Wd, Ht);
-  const rg = g.createRadialGradient(Wd, 0, 0, Wd, 0, Wd); rg.addColorStop(0, `hsla(${(hue + 330) % 360},85%,60%,0.5)`); rg.addColorStop(1, 'hsla(0,0%,0%,0)'); g.fillStyle = rg; g.fillRect(0, 0, Wd, Ht);
-  const fit = (t, w) => { t = sp(t); if (g.measureText(t).width <= w) return t; while (t.length > 1 && g.measureText(t + '…').width > w) t = t.slice(0, -1); return t + '…'; };
-  const T = (txt, x, y, font, color, w) => { g.font = font; g.fillStyle = color; g.fillText(w ? fit(txt, w) : sp(txt), x, y); };
-  const box = (x, y, w, h, r) => { g.fillStyle = 'rgba(0,0,0,0.22)'; g.beginPath(); if (g.roundRect) g.roundRect(x, y, w, h, r); else g.rect(x, y, w, h); g.fill(); };
-  const disc = (x, y, s, key, label, round) => {
-    const h = hsh(norm(key)), hu = h % 360, h2 = (hu + 35 + (h >>> 9) % 150) % 360;
-    g.save(); g.beginPath(); if (round) g.arc(x + s / 2, y + s / 2, s / 2, 0, Math.PI * 2); else g.rect(x, y, s, s); g.clip();
-    const gr = g.createLinearGradient(x, y, x + s, y + s); gr.addColorStop(0, `hsl(${hu} 68% 52%)`); gr.addColorStop(1, `hsl(${h2} 72% 26%)`); g.fillStyle = gr; g.fillRect(x, y, s, s);
-    g.fillStyle = 'rgba(255,255,255,0.93)'; g.font = `900 ${Math.round(s * 0.36)}px ${fu}`; g.textAlign = 'center'; g.textBaseline = 'middle'; g.fillText(initials(label), x + s / 2, y + s / 2 + 2);
-    g.textAlign = 'start'; g.textBaseline = 'alphabetic'; g.restore();
-  };
+  const K = await pngKit(1080, 1350, R.A.length ? hueA(R.A[0]) : 140), g = K.g, X = R.X, l = L(), fu = K.fu;
   const W = '#ffffff', W8 = 'rgba(255,255,255,0.84)', W6 = 'rgba(255,255,255,0.66)';
-  T(RC_KIND[R.g], 80, 128, `800 34px ${fu}`, W8);
-  T(periodText(R.g, R.r0, R.r1), 80, 212, `900 76px ${fu}`, W, Wd - 160);
-  if (!X.plays) { T('Rien d\'écouté sur cette période.', 80, 320, `600 36px ${fu}`, W8); return new Promise(r => cv.toBlob(r, 'image/png')); }
-  T(fmtDur(X.ms), 80, 340, `900 118px ${fu}`, W, Wd - 160);
-  const dl = recapDelta(R); T('d\'écoute' + (dl ? ', ' + dl : ''), 80, 392, `600 32px ${fu}`, W8, Wd - 160);
+  if (!X.plays) { K.T(RC_KIND[R.g], 80, 128, `800 34px ${fu}`, W8); K.T(periodText(R.g, R.r0, R.r1), 80, 212, `900 76px ${fu}`, W, 920); K.T('Rien d\'écouté sur cette période.', 80, 320, `600 36px ${fu}`, W8); return K.blob(); }
+  const albs = topIdx(X.lM, 6, 1);
+  let y = 80;
+  if (albs.length >= 3) { for (let j = 0; j < albs.length; j++) await K.cover(80 + j * 158, y, 130, albs[j], false); y += 190; } else y += 40;
+  K.T(RC_KIND[R.g], 80, y + 20, `800 32px ${fu}`, W8);
+  K.T(periodText(R.g, R.r0, R.r1), 80, y + 92, `900 72px ${fu}`, W, 920);
+  K.T(fmtDur(X.ms), 80, y + 200, `900 110px ${fu}`, W, 920);
+  const dl = recapDelta(R); K.T('d\'écoute' + (dl ? ', ' + dl : ''), 80, y + 246, `600 30px ${fu}`, W8, 920);
+  const bars = Array.from(X.bM), mx = Math.max(1, ...bars), pk = bars.indexOf(Math.max(...bars)), bw = 920 / Math.max(1, bars.length);
+  bars.forEach((v, i) => { if (v <= 0) return; const h = v / mx * 60; g.fillStyle = i === pk ? W : 'rgba(255,255,255,0.42)'; g.fillRect(80 + i * bw + bw * 0.14, y + 330 - h, Math.max(2, bw * 0.72), h); });
+  y += 360;
   const a1 = R.A[0];
-  box(80, 436, Wd - 160, 176, 18); disc(108, 460, 128, 'a|' + D.artists[a1], D.artists[a1], true);
-  T(`Ton ${l.a1} n° 1`, 264, 506, `700 28px ${fu}`, W8);
-  T(D.artists[a1], 264, 560, `900 50px ${fu}`, W, Wd - 380);
-  T(fmtDur(X.aM[a1]) + ', ' + fmtPlays(X.aP[a1]), 264, 598, `500 27px ${fu}`, W8, Wd - 380);
-  const col = (title, list, x) => { T(title, x, 680, `800 30px ${fu}`, W8); list.forEach(([a, b], j) => { const y = 738 + j * 78; T(String(j + 1), x, y, `800 30px ${fu}`, W6); T(a, x + 40, y, `700 31px ${fu}`, W, 400); T(b, x + 40, y + 32, `500 24px ${fu}`, W6, 400); }); };
-  col('Top ' + l.a.toLowerCase(), R.A.map(a => [D.artists[a], fmtDur(X.aM[a])]), 80);
-  col('Top ' + l.t.toLowerCase(), R.T.map(t => [D.tn[t], D.artists[D.ta[t]]]), 560);
-  [['Écoutes', fmtN(X.plays)], [l.t + ' différents', fmtN(X.uT)], [cap(l.nan), fmtN(X.nA)]].forEach(([k, v], j) => { const x = 80 + j * 312; box(x, 1132, 296, 116, 16); T(k, x + 24, 1176, `700 24px ${fu}`, W8, 256); T(v, x + 24, 1226, `900 42px ${fu}`, W, 256); });
-  T('Sillon', 80, 1302, `800 26px ${fu}`, W6); T(DEMO ? 'Exemple fictif' : 'Mes stats Spotify', Wd - 80 - 260, 1302, `600 24px ${fu}`, W6);
-  return new Promise(r => cv.toBlob(r, 'image/png'));
+  K.box(80, y, 920, 150, 18); await K.cover(104, y + 18, 114, a1, true, 'a');
+  K.T(`Ton ${l.a1} n° 1`, 246, y + 56, `700 26px ${fu}`, W8); K.T(D.artists[a1], 246, y + 104, `900 46px ${fu}`, W, 720); K.T(fmtDur(X.aM[a1]) + ', ' + fmtPlays(X.aP[a1]), 246, y + 136, `500 25px ${fu}`, W8, 720);
+  y += 200;
+  const col = async (title, list, x) => { K.T(title, x, y, `800 28px ${fu}`, W8); for (let j = 0; j < list.length; j++) { const yy = y + 30 + j * 66; await K.cover(x, yy, 50, list[j][2], list[j][3], list[j][4]); K.T(list[j][0], x + 66, yy + 24, `700 27px ${fu}`, W, 360); K.T(list[j][1], x + 66, yy + 50, `500 21px ${fu}`, W6, 360); } };
+  await col('Top ' + l.a.toLowerCase(), R.A.map(a => [D.artists[a], fmtDur(X.aM[a]), a, true, 'a']), 80);
+  await col('Top ' + l.t.toLowerCase(), R.T.map(t => [D.tn[t], D.artists[D.ta[t]], t, false, 't']), 560);
+  const gs = genreShare(X.aM), tr = traitsOf(X)[0], per = tr && tr.s >= 1 ? tr.k : 'équilibré';
+  const line = (gs.known ? gs.mac.slice(0, 3).map(x => `${x.g} ${fmtPct(x.p)}`).join('   ') + '   ' : '') + 'Profil ' + per;
+  K.T(line, 80, 1270, `700 26px ${fu}`, W8, 920);
+  K.T('Sillon', 80, 1312, `800 24px ${fu}`, W6);
+  return K.blob();
 }
 
 /* ================= prédictions ================= */
@@ -3080,7 +3170,7 @@ function withImg(html, k, tid, blur) {
   return html.replace('<span class="cv', `<span data-ck="${esc(k)}" data-tid="${esc(tid)}" class="cv`);
 }
 const imgPick = ims => { if (!ims || !ims.length) return 0; const s = ims.slice().sort((a, b) => (a.width || 0) - (b.width || 0)); return (s.find(i => (i.width || 0) >= 250) || s[s.length - 1]).url || 0; };
-function seedCovers(tracks) { for (const tr of tracks || []) { if (!tr || !tr.album) continue; const k = normT(tr.album.name || '') + '|' + normT(((tr.artists || [])[0] || {}).name || ''); if (!CC.get(k)) { const u = imgPick(tr.album.images); if (u) CC.set(k, u); } } }
+function seedCovers(tracks) { noteArtists(tracks); for (const tr of tracks || []) { if (!tr || !tr.album) continue; const k = normT(tr.album.name || '') + '|' + normT(((tr.artists || [])[0] || {}).name || ''); if (!CC.get(k)) { const u = imgPick(tr.album.images); if (u) CC.set(k, u); } } }
 function applyCover(k) { const u = CC.get(k); if (!u) return; $$('.cv[data-ck]').forEach(el => { if (el.dataset.ck !== k) return; el.removeAttribute('data-ck'); el.insertAdjacentHTML('beforeend', `<img${el.classList.contains('r') ? ' class="bl"' : ''} src="${esc(u)}" alt="" loading="lazy" decoding="async">`); }); }
 let covTimer = 0, covBusy = false;
 function queueCovers() { if (!SA || !SPA.ok()) return; clearTimeout(covTimer); covTimer = setTimeout(fillCovers, 300); }
@@ -3094,7 +3184,7 @@ async function fillCovers() {
     let n = 0;
     for (const [k, tid] of want) {
       if (n++ >= 40) break;
-      try { const tr = await SPA.get('/tracks/' + encodeURIComponent(tid)); CC.set(k, imgPick(tr && tr.album && tr.album.images)); applyCover(k); }
+      try { const tr = await SPA.get('/tracks/' + encodeURIComponent(tid)); noteArtists([tr]); CC.set(k, imgPick(tr && tr.album && tr.album.images)); applyCover(k); }
       catch (e) { if (!SPA.ok()) break; CC.set(k, 0); }
       await sleep(150);
     }
@@ -3127,6 +3217,7 @@ async function syncSpotify(manual) {
     const added = DEMO ? 0 : await addRecent(items);
     try { localStorage.setItem('sillon-sp-sync', String(Date.now())); } catch (e) {}
     if (!added) renderView();
+    fillGenres();
     if (manual) toast(added ? `${fmtN(added)} ${pl(added, 'écoute récente ajoutée', 'écoutes récentes ajoutées')}` : 'Rien de nouveau côté Spotify');
     if (!$('#dataModal').hidden) { renderSpBox(); updateDataStatus(); }
   } catch (e) { if (manual || SPA.denied) toast('Spotify : ' + (e.message || 'erreur')); if (!$('#dataModal').hidden) renderSpBox(); }
@@ -3156,6 +3247,244 @@ async function saBoot() {
   if (SPA.ok()) syncSpotify(false);
   new MutationObserver(() => queueCovers()).observe(document.body, { childList: true, subtree: true });
   if (S.live) setLive(true);
+}
+
+/* ================= genres ================= */
+const GEN_RULES = [
+  [/k-?pop|j-?pop|j-?rock|anime|vocaloid|city pop/, 'K-pop / J-pop'],
+  [/soundtrack|\bscore\b|video ?game|jeux? video|bande originale|\bost\b|musique de film|movie/, 'BO / Jeux vidéo'],
+  [/hip ?hop|\brap\b|trap|drill|grime|boom ?bap|phonk|plugg/, 'Rap / Hip-hop'],
+  [/r&b|\brnb\b|r'n'b|soul|funk(?! carioca)|motown|gospel/, 'R&B / Soul'],
+  [/metal|deathcore|djent/, 'Metal'],
+  [/punk|\bemo\b|rock|grunge|shoegaze/, 'Rock'],
+  [/lo-?fi|ambient|chill|downtempo|new age|sleep|study/, 'Chill / Lo-fi'],
+  [/house|techno|edm|electro|electronic|electronique|dubstep|drum ?(and|&|n) ?bass|\bdnb\b|trance|dance|disco|synthwave|hyperpop|garage|hardstyle|club/, 'Électro'],
+  [/reggae|dancehall|\bska\b|\bdub\b/, 'Reggae / Dancehall'],
+  [/afro|amapiano|zouk|kompa|kizomba|bouyon|ndombolo|rumba|coupe-?decale|shatta|gqom|highlife|bongo/, 'Afro / Caribéen'],
+  [/latin|latino|reggaeton|bachata|salsa|cumbia|corrido|urbano|funk carioca|sertanejo|baile|flamenco|\bmpb\b/, 'Latino'],
+  [/jazz|blues|swing|bossa/, 'Jazz / Blues'],
+  [/classical|classique|orchestr|opera|baroque|piano|chamber|choral/, 'Classique'],
+  [/chanson|variete|pop francaise|french pop|ye-ye/, 'Chanson / Variété'],
+  [/country|folk|americana|bluegrass|singer-songwriter/, 'Folk / Country'],
+  [/indie|alternative|alternatif|bedroom|dream ?pop|art pop/, 'Indé / Alternatif'],
+  [/pop/, 'Pop']
+];
+const macroOf = g => { const s = norm(g); for (const [re, m] of GEN_RULES) if (re.test(s)) return m; return 'Autres'; };
+const GEN_PAL = ['#56b4e9', '#e69f00', '#009e73', '#cc79a7', '#f0e442', '#0072b2', '#d55e00'];
+let GENVER = 0;
+const lsMap = key => ({ m: null, dirty: false, load() { if (!this.m) { try { this.m = JSON.parse(localStorage.getItem(key) || '{}') || {}; } catch (e) { this.m = {}; } } return this.m; }, save() { if (!this.dirty) return; try { localStorage.setItem(key, JSON.stringify(this.m)); } catch (e) {} this.dirty = false; } });
+const GENRES = lsMap('sillon-genres'), AIDS = lsMap('sillon-aids');
+function noteArtists(tracks) { const m = AIDS.load(); for (const tr of tracks || []) for (const ar of (tr && tr.artists) || []) if (ar && ar.id && ar.name) { const k = norm(ar.name); if (m[k] !== ar.id) { m[k] = ar.id; AIDS.dirty = true; } } }
+function artistGenres(a) {
+  const k = norm(D.artists[a]);
+  if (SA) { const v = GENRES.load()[k]; if (Array.isArray(v) && v.length) return v; }
+  const d = Prefs.data.disco[k];
+  if (d) { if (Array.isArray(d.genres) && d.genres.length) return d.genres; if (d.genre) return [d.genre]; }
+  return [];
+}
+function genreShare(aM) {
+  const mac = new Map(), det = new Map(); let known = 0, total = 0;
+  for (let a = 0; a < aM.length; a++) {
+    const v = aM[a]; if (!v) continue; total += v;
+    const gs = artistGenres(a); if (!gs.length) continue; known += v;
+    const ms = [...new Set(gs.map(macroOf))];
+    for (const m of ms) mac.set(m, (mac.get(m) || 0) + v / ms.length);
+    for (const g of gs) det.set(g, (det.get(g) || 0) + v / gs.length);
+  }
+  const srt = m => [...m].sort((x, y) => y[1] - x[1]).map(([g, v]) => ({ g, v, p: known ? v / known : 0 }));
+  return { mac: srt(mac), det: srt(det), known, total, cover: total ? known / total : 0 };
+}
+function topIdx(arr, n, from = 0) { const idx = []; for (let i = from; i < arr.length; i++) if (arr[i] > 0) idx.push(i); return idx.sort((x, y) => arr[y] - arr[x]).slice(0, n); }
+let ART_TID = null;
+function artTid(a) { if (!ART_TID) { ART_TID = new Map(); const best = new Map(); for (let t = 0; t < D.nt; t++) { if (D.tk[t] !== 0 || !D.tu[t]) continue; const x = D.ta[t], v = T.tP[t]; if (!best.has(x) || v > best.get(x)) { best.set(x, v); ART_TID.set(x, D.tu[t]); } } } return ART_TID.get(a) || ''; }
+let genBusy = false, genProg = null;
+async function fillGenres() {
+  if (!SA || !SPA.ok() || genBusy || DEMO || SPA.denied) return;
+  const G0 = GENRES.load(), A0 = AIDS.load();
+  const todo = [...new Set([...G.ordA.slice(0, 120), ...recentList(40)])].filter(a => G0[norm(D.artists[a])] === undefined);
+  if (!todo.length) return;
+  genBusy = true; genProg = { n: 0, of: todo.length };
+  refreshGenreViews();
+  try {
+    for (const a of todo) {
+      const k = norm(D.artists[a]);
+      let id = A0[k];
+      if (!id) {
+        const tid = artTid(a);
+        if (tid) { const tr = await SPA.get('/tracks/' + encodeURIComponent(tid)); noteArtists([tr]); seedCovers([tr]); id = A0[k] || (tr && tr.artists && tr.artists[0] && tr.artists[0].id) || ''; await sleep(120); }
+      }
+      if (id) { const ar = await SPA.get('/artists/' + encodeURIComponent(id)); G0[k] = ar && Array.isArray(ar.genres) ? ar.genres.slice(0, 6).map(String) : []; }
+      else G0[k] = [];
+      GENRES.dirty = true; genProg.n++;
+      if (genProg.n % 15 === 0) { GENRES.save(); GENVER++; refreshGenreViews(); }
+      await sleep(150);
+    }
+  } catch (e) {} finally { genBusy = false; genProg = null; GENRES.save(); AIDS.save(); CC.save(); }
+  GENVER++; refreshGenreViews();
+}
+function refreshGenreViews() { if (!D) return; if (S.view === 'stats' && P) renderGenres(); else if (S.view === 'profil') renderProfile(); }
+async function estimateGenres() {
+  const msgs = $$('.gnMsg'), say = t => msgs.forEach(m => m.textContent = t);
+  if (DEMO) { say('Importe ton historique d\'abord : là, ce sont des artistes inventés.'); return; }
+  await AI.init();
+  if (!AI.fn || AI.off) { say(AI.err({ code: AI.off ? 'not_granted' : 'unavailable' })); return; }
+  const disco = Prefs.data.disco;
+  const names = G.ordA.slice(0, 150).map(a => D.artists[a]).filter(n => { const d = disco[norm(n)]; return !(d && Array.isArray(d.genres)); }).slice(0, 80);
+  if (!names.length) { say('Tes genres sont déjà à jour.'); return; }
+  $$('[data-gn]').forEach(b => b.disabled = true); say(`Claude classe ${names.length} artistes… (jusqu'à une minute)`);
+  const prompt = `Pour chacun de ces artistes musicaux, donne 1 à 3 genres musicaux précis, en français et en minuscules (exemples : « rap français », « pop urbaine », « drill », « house », « indie pop », « r&b », « afrobeats », « variété française », « bande originale »). Si tu ne connais pas l'artiste, mets un tableau vide plutôt que d'inventer.\nArtistes :\n${names.map((x, i) => `${i + 1}. ${x}`).join('\n')}\nRéponds uniquement avec un tableau JSON, dans le même ordre : [{"artiste":"…","genres":["…"]}]`;
+  try {
+    const res = await AI.json(prompt);
+    const arr = Array.isArray(res) ? res : res && Array.isArray(res.artistes) ? res.artistes : [];
+    let ok = 0;
+    names.forEach((nm, i) => {
+      const it = arr.find(x => x && normT(x.artiste || '') === normT(nm)) || arr[i]; if (!it) return;
+      const gs = Array.isArray(it.genres) ? it.genres.map(x => String(x).toLowerCase().slice(0, 40)).filter(Boolean).slice(0, 3) : [];
+      const k = norm(nm); disco[k] = Object.assign({}, disco[k] || {}, { genres: gs, genre: (disco[k] && disco[k].genre) || gs[0] || '' });
+      if (gs.length) ok++;
+    });
+    Prefs.save(); GENVER++;
+    say(`${ok} ${pl(ok, 'artiste classé', 'artistes classés')} par Claude. C'est une estimation, surtout pour les petits artistes.`);
+    refreshGenreViews();
+  } catch (e) { say(AI.err(e)); }
+  $$('[data-gn]').forEach(b => b.disabled = false);
+}
+function genreEmpty() {
+  if (isPod()) return '<p class="small">Pas de genres pour les podcasts.</p>';
+  if (SA) return `<p class="small">${genBusy && genProg ? `Récupération de tes genres auprès de Spotify : ${genProg.n} sur ${genProg.of}…` : SPA.ok() ? (SPA.denied ? 'Spotify refuse ton compte : les genres arrivent une fois que t\'es ajouté à l\'app.' : 'Les genres arrivent depuis Spotify. La première fois, ça prend une minute.') : 'Connecte Spotify dans Données pour récupérer les genres de tes artistes.'}</p>`;
+  return `<div class="sprow"><button class="btn pri" data-gn>Trouver mes genres avec Claude</button><span class="small gnMsg"></span></div>`;
+}
+function genreBlock(gs, compact) {
+  if (!gs.known) return genreEmpty();
+  return `<div class="${compact ? '' : 'cols'}"><div class="meters">${gs.mac.slice(0, 7).map((x, j) => `<div class="mt"><span>${esc(x.g)}</span><span class="tr"><i style="width:${(x.p / gs.mac[0].p * 100).toFixed(1)}%"></i></span><b>${fmtPct(x.p)}</b></div>`).join('')}</div><div><h3 class="h3"${compact ? '' : ' style="margin-top:0"'}>Dans le détail</h3><div class="tags">${gs.det.slice(0, 14).map(x => `<span>${esc(x.g)} <small>${fmtPct(x.p)}</small></span>`).join('')}</div>${!SA ? `<div class="sprow"><button class="btn" data-gn>Compléter avec Claude</button><span class="small gnMsg"></span></div>` : genBusy && genProg ? `<p class="small">Récupération en cours : ${genProg.n} sur ${genProg.of}…</p>` : ''}</div></div>`;
+}
+function renderGenres() {
+  const gs = isPod() ? { known: 0 } : genreShare(P.aM);
+  $('#gnTitle').textContent = gs.known ? `${gs.mac[0].g}, ton genre n°${NS}1` : 'Tes genres';
+  $('#gnSub').textContent = gs.known ? `Part de ton temps d'écoute par genre${gs.cover < 0.95 ? `, sur les ${fmtPct(gs.cover)} d'écoute dont on connaît le genre` : ''}.` : 'Les grandes familles de ce que t\'écoutes, et le détail.';
+  $('#gnBody').innerHTML = genreBlock(gs);
+  if (SA && !gs.known && SPA.ok() && !genBusy) fillGenres();
+}
+
+/* ================= profil ================= */
+function traitsOf(X, explore) {
+  const tot = X.ms || 1;
+  let night = 0, morn = 0; for (let k = 0; k < 168; k++) { const h = k % 24; if (h >= 22 || h < 4) night += X.rh[k]; if (h >= 5 && h < 10) morn += X.rh[k]; }
+  const am = Array.from(X.aM).sort((a, b) => b - a), top5 = am.slice(0, 5).reduce((a, b) => a + b, 0);
+  let topT = 0; for (let i = 0; i < X.tP.length; i++) if (X.tP[i] > topT) topT = X.tP[i];
+  return [
+    { k: 'noctambule', s: night / tot / 0.25, d: `${fmtPct(night / tot)} de ton écoute entre 22 h et 4 h` },
+    { k: 'lève-tôt', s: morn / tot / 0.3, d: `${fmtPct(morn / tot)} de ton écoute entre 5 h et 10 h` },
+    { k: 'fidèle', s: top5 / tot / 0.5, d: `tes 5 ${L().a.toLowerCase()} préférés font ${fmtPct(top5 / tot)} de ton temps d'écoute` },
+    { k: 'en boucle', s: X.plays ? topT / X.plays / 0.08 : 0, d: `ton titre n°1 représente ${fmtPct(topT / Math.max(1, X.plays))} de tes écoutes` },
+    explore != null ? { k: 'explorateur', s: explore / 0.2, d: `${fmtPct(explore)} de tes écoutes de l'année viennent d'artistes découverts dans l'année` } : { k: 'explorateur', s: X.uT ? X.nT / X.uT / 0.3 : 0, d: `${fmtPct(X.nT / Math.max(1, X.uT))} des titres écoutés étaient nouveaux pour toi` },
+    { k: 'zappeur', s: X.ext ? X.sk / X.ext / 0.3 : 0, d: `tu zappes ${fmtPct(X.sk / Math.max(1, X.ext))} des morceaux` },
+    { k: 'éclectique', s: X.plays ? X.uA / Math.sqrt(X.plays) / 1.6 : 0, d: `${fmtN(X.uA)} ${L().ad}` }
+  ].sort((a, b) => b.s - a.s);
+}
+let PRX = null;
+function profileData() {
+  const key = dataVer + '|' + S.content + '|' + S.thr + '|' + S.noSkip + '|' + GENVER;
+  if (PRX && PRX.key === key) return PRX;
+  const X = aggAll(D.firstDay, D.lastDay + 1, 'all', true), gs = genreShare(X.aM), pass = makePass(false), thr = S.thr * 1000, c0 = D.lastDay - 364;
+  let rp = 0, rn = 0; for (let i = lb(D.day, c0); i < D.n; i++) { if (!pass(i) || D.m[i] < thr) continue; rp++; const fa = G.firstA[D.ta[D.k[i]]]; if (fa >= 0 && D.day[fa] >= c0) rn++; }
+  const tr = traitsOf(X, rp ? rn / rp : 0);
+  const hr = new Float64Array(24), wd = new Float64Array(7); for (let k = 0; k < 168; k++) { hr[k % 24] += X.rh[k]; wd[Math.floor(k / 24)] += X.rh[k]; }
+  const years = [];
+  for (let y = ymd(D.lastDay)[0]; y >= ymd(D.firstDay)[0]; y--) {
+    const a = Math.max(dn(y, 0, 1), D.firstDay), b = Math.min(dn(y + 1, 0, 1), D.lastDay + 1); if (b <= a) continue;
+    const Y = aggAll(a, b, 'year', true), ta = topIdx(Y.aM, 1)[0];
+    years.push({ y, ms: Y.ms, ta: ta ?? -1, gs: genreShare(Y.aM) });
+  }
+  return (PRX = { key, X, tr, gs, hr, wd, years });
+}
+function renderProfile() {
+  const R = profileData(), X = R.X, l = L(), c = createdDay();
+  const lead = R.tr.filter(t => t.s >= 1).slice(0, 3), traits = lead.length ? lead : [{ k: 'équilibré', d: 'rien d\'extrême, un peu de tout à toutes les heures' }];
+  const topA = topIdx(X.aM, 5), topT = topIdx(X.tP, 1), albs = topIdx(X.lM, 4, 1);
+  setHue(topA.length ? hueA(topA[0]) : 140);
+  $('#prTitle').textContent = 'Profil ' + traits[0].k;
+  $('#prLead').textContent = cap(traits.map(t => t.d).join(', ')) + '.';
+  const hBest = R.hr.indexOf(Math.max(...R.hr)), dBest = R.wd.indexOf(Math.max(...R.wd));
+  const g1 = R.gs.known ? `${R.gs.mac[0].g} (${fmtPct(R.gs.mac[0].p)})` : '–';
+  const mos = albs.length >= 4 ? `<span class="mos">${albs.map(covL).join('')}</span>` : topA.length ? `<span class="idav">${covA(topA[0])}</span>` : '';
+  const f = [['Genre n°1', g1], [cap(l.a1) + ' n°1', topA.length ? D.artists[topA[0]] : '–'], [cap(l.t1) + ' n°1', topT.length ? D.tn[topT[0]] : '–'], ['Heure préférée', hBest + NS + 'h'], ['Jour préféré', cap(WDL[dBest])], ['Sur Spotify depuis', fmtDay(c || D.firstDay)], ['Écoute totale', fmtDur(X.ms)], [cap(l.ad), fmtN(X.uA)]];
+  $('#idCard').style.setProperty('--hh', topA.length ? hueA(topA[0]) : 140);
+  $('#idCard').innerHTML = `<div class="idm">${mos}</div><div class="idt"><p class="rk">Carte d'identité musicale${DEMO ? ', exemple fictif' : ''}</p><h2>Profil ${esc(traits[0].k)}</h2><div class="badges">${traits.map(t => `<span title="${esc(cap(t.d))}">${esc(t.k)}</span>`).join('')}</div><dl class="idf">${f.map(([k, v]) => `<div><dt>${esc(k)}</dt><dd>${esc(v)}</dd></div>`).join('')}</dl><div class="idtop">${topA.map((a, j) => `<button data-open="a:${a}" title="${esc(D.artists[a])}">${covA(a)}<small>${j + 1}. ${esc(D.artists[a])}</small></button>`).join('')}</div></div>`;
+  $('#prGen').innerHTML = genreBlock(R.gs, true);
+  if (SA && !R.gs.known && SPA.ok() && !genBusy) fillGenres();
+  const plats = []; X.plt.forEach((v, i) => { if (v > 0 && D.plats[i]) plats.push([D.plats[i], v]); }); plats.sort((a, b) => b[1] - a[1]);
+  const pc = (a, b) => b ? fmtPct(a / b) : '–';
+  const hab = [['Heure préférée', `${hBest}${NS}h – ${hBest + 1}${NS}h`], ['Jour préféré', cap(WDL[dBest])], ['Par jour en moyenne', fmtDur(G.avgDay)], ['En aléatoire', pc(X.sh, X.ext)], ['Zappés', pc(X.sk, X.ext)], ['Jusqu\'au bout', pc(X.dn, X.ext)], ['Hors ligne', pc(X.of, X.ext)], ['Appareil n°1', plats.length ? `${plats[0][0]} (${fmtPct(plats[0][1] / X.ms)})` : '–']];
+  $('#prHab').innerHTML = hab.map(([k, v]) => `<div class="kpi"><span class="k">${esc(k)}</span><span class="v sm">${esc(v)}</span></div>`).join('');
+  const glob = R.gs.mac.filter(x => x.g !== 'Autres').slice(0, GEN_PAL.length).map(x => x.g), col = g => { const j = glob.indexOf(g); return j < 0 ? 'var(--chip2)' : GEN_PAL[j]; };
+  $('#prEvo').innerHTML = R.years.map(r => {
+    const segs = r.gs.known ? (() => { let rest = 0; const s = []; for (const x of r.gs.mac) { if (glob.includes(x.g)) s.push(`<i style="width:${(x.p * 100).toFixed(2)}%;background:${col(x.g)}" title="${esc(x.g)} ${fmtPct(x.p)}"></i>`); else rest += x.p; } if (rest > 0) s.push(`<i style="width:${(rest * 100).toFixed(2)}%;background:var(--chip2)" title="Autres ${fmtPct(rest)}"></i>`); return s.join(''); })() : '';
+    return `<div class="evo"><b class="y">${r.y}</b>${r.ta >= 0 ? `<button class="ea" data-open="a:${r.ta}">${covA(r.ta)}<span><b>${esc(D.artists[r.ta])}</b><small>${esc(fmtDur(r.ms))} en tout</small></span></button>` : '<span></span>'}<span class="eb${r.gs.known ? '' : ' none'}">${segs || 'genres inconnus'}</span></div>`;
+  }).join('') + (glob.length ? `<div class="lg2">${glob.map(g => `<span><i style="background:${col(g)}"></i>${esc(g)}</span>`).join('')}<span><i style="background:var(--chip2)"></i>Autres</span></div>` : '');
+  const fav = [];
+  for (const a of G.ordA) { if (G.rankA[a] > 40) break; const fi = G.firstA[a]; if (fi >= 0 && D.day[fi] >= D.lastDay - 730) fav.push(a); if (fav.length >= 10) break; }
+  $('#prFav').innerHTML = fav.length ? fav.map(a => tileA(a, `découvert le ${fmtDay(D.day[G.firstA[a]])}`, `<span class="rk">n°${NS}${G.rankA[a]} de tes ${l.a.toLowerCase()}</span>`)).join('') : `<p class="empty">Aucune découverte de ces deux dernières années dans ton top 40 pour l'instant.</p>`;
+  const nw = []; for (let i = D.n - 1; i >= 0 && nw.length < 10; i--) { const t = D.k[i]; if (G.firstT[t] === i) nw.push(i); }
+  $('#prNew').innerHTML = nw.length ? nw.map((i, j) => { const t = D.k[i]; return `<li><button class="tlr" data-open="t:${t}"><span class="n">${j + 1}</span>${covT(t)}<span class="nm"><b>${esc(D.tn[t])}</b><small>${esc(D.artists[D.ta[t]])}</small></span><span class="al"></span><span class="v">${fmtDay(D.day[i])}</span><span class="c"></span></button></li>`; }).join('') : '<li class="empty">Rien pour l\'instant.</li>';
+  const once = []; for (let a = 0; a < D.na; a++) if (G.aP[a] === 1 && G.firstA[a] >= 0) once.push(a);
+  once.sort((x, y) => G.firstA[y] - G.firstA[x]);
+  $('#prOnceS').textContent = once.length ? `${fmtN(once.length)} ${pl(once.length, l.a1)} écouté${once.length >= 2 ? 's' : ''} une seule fois, souvent croisé${once.length >= 2 ? 's' : ''} dans une playlist ou une radio. Les plus récents :` : 'Aucun : t\'as réécouté tous ceux que t\'as croisés.';
+  $('#prOnce').innerHTML = once.slice(0, 10).map((a, j) => arRow(a, j + 1, fmtDay(D.day[G.firstA[a]]), `« ${D.tn[D.k[G.firstA[a]]]} »`)).join('');
+}
+async function idPng() {
+  const R = profileData(), X = R.X, l = L(), topA = topIdx(X.aM, 5), albs = topIdx(X.lM, 4, 1);
+  const K = await pngKit(1080, 1350, topA.length ? hueA(topA[0]) : 140), g = K.g, fu = K.fu, W = '#ffffff', W8 = 'rgba(255,255,255,0.84)', W6 = 'rgba(255,255,255,0.66)';
+  const lead = R.tr.filter(t => t.s >= 1).slice(0, 3), traits = lead.length ? lead : [{ k: 'équilibré', d: '' }];
+  if (albs.length >= 4) { for (let j = 0; j < 4; j++) await K.cover(80 + (j % 2) * 160, 80 + Math.floor(j / 2) * 160, 156, albs[j], false); }
+  else if (topA.length) await K.cover(80, 80, 316, topA[0], true, 'a');
+  K.T('Carte d\'identité musicale', 440, 130, `800 30px ${fu}`, W8, 560);
+  K.T('Profil ' + traits[0].k, 440, 205, `900 52px ${fu}`, W, 560);
+  K.T(traits.map(t => t.k).join(', '), 440, 262, `700 28px ${fu}`, W8, 560);
+  const c = createdDay(), hBest = R.hr.indexOf(Math.max(...R.hr)), dBest = R.wd.indexOf(Math.max(...R.wd));
+  const f = [['Genre n°1', R.gs.known ? `${R.gs.mac[0].g} (${fmtPct(R.gs.mac[0].p)})` : '–'], ['Écoute totale', fmtDur(X.ms)], ['Heure préférée', hBest + ' h'], ['Jour préféré', cap(WDL[dBest])], ['Sur Spotify depuis', fmtDay(c || D.firstDay)], [cap(l.ad), fmtN(X.uA)]];
+  f.forEach(([k, v], j) => { const x = 80 + (j % 2) * 470, y = 470 + Math.floor(j / 2) * 112; K.box(x, y, 450, 96, 16); K.T(k, x + 24, y + 38, `700 24px ${fu}`, W8, 400); K.T(v, x + 24, y + 78, `900 34px ${fu}`, W, 400); });
+  K.T('Top ' + l.a.toLowerCase(), 80, 850, `800 28px ${fu}`, W8);
+  for (let j = 0; j < topA.length; j++) { const y = 880 + j * 72; await K.cover(80, y, 56, topA[j], true, 'a'); K.T(`${j + 1}. ${D.artists[topA[j]]}`, 156, y + 38, `700 30px ${fu}`, W, 820); }
+  if (R.gs.known) K.T(R.gs.mac.slice(0, 4).map(x => `${x.g} ${fmtPct(x.p)}`).join('   '), 80, 1268, `700 26px ${fu}`, W8, 920);
+  K.T('Sillon', 80, 1312, `800 24px ${fu}`, W6);
+  return K.blob();
+}
+async function pngKit(Wd, Ht, hue) {
+  const cv = document.createElement('canvas'); cv.width = Wd; cv.height = Ht;
+  const g = cv.getContext('2d'), fu = getComputedStyle(document.body).getPropertyValue('--f-ui').trim() || 'sans-serif';
+  try { await Promise.all([document.fonts.load(`900 80px ${fu}`), document.fonts.load(`700 30px ${fu}`), document.fonts.load(`500 26px ${fu}`)]); } catch (e) {}
+  const lg = g.createLinearGradient(0, 0, Wd * 0.55, Ht); lg.addColorStop(0, `hsl(${hue} 70% 46%)`); lg.addColorStop(1, `hsl(${(hue + 50) % 360} 75% 22%)`);
+  g.fillStyle = lg; g.fillRect(0, 0, Wd, Ht);
+  const rg = g.createRadialGradient(Wd, 0, 0, Wd, 0, Wd); rg.addColorStop(0, `hsla(${(hue + 330) % 360},85%,60%,0.5)`); rg.addColorStop(1, 'hsla(0,0%,0%,0)'); g.fillStyle = rg; g.fillRect(0, 0, Wd, Ht);
+  const fit = (t, w) => { t = sp(t); if (g.measureText(t).width <= w) return t; while (t.length > 1 && g.measureText(t + '…').width > w) t = t.slice(0, -1); return t + '…'; };
+  const imgs = new Map();
+  const loadImg = u => { if (!imgs.has(u)) imgs.set(u, new Promise(res => { const im = new Image(); im.crossOrigin = 'anonymous'; const tm = setTimeout(() => res(null), 4000); im.onload = () => { clearTimeout(tm); res(im); }; im.onerror = () => { clearTimeout(tm); res(null); }; im.src = u; })); return imgs.get(u); };
+  const K = {
+    g, fu,
+    T(txt, x, y, font, color, w) { g.font = font; g.fillStyle = color; g.fillText(w ? fit(txt, w) : sp(txt), x, y); },
+    box(x, y, w, h, r) { g.fillStyle = 'rgba(0,0,0,0.22)'; g.beginPath(); if (g.roundRect) g.roundRect(x, y, w, h, r); else g.rect(x, y, w, h); g.fill(); },
+    async cover(x, y, s, id, round, kind = 'l') {
+      let key, label, url = null;
+      if (kind === 'a') { key = 'a|' + D.artists[id]; label = D.artists[id]; }
+      else if (kind === 't') { if (D.tl[id]) { kind = 'l'; id = D.tl[id]; } else { key = 't|' + D.tn[id] + '|' + D.artists[D.ta[id]]; label = D.tn[id]; } }
+      if (kind === 'l') { key = 'l|' + D.albums[id] + '|' + D.artists[D.la[id]]; label = D.albums[id]; if (SA) { const u = CC.get(akey(id)); if (u) url = u; } }
+      if (kind === 'a' && SA) { const al = artAlb(id); if (al) { const u = CC.get(akey(al)); if (u) url = u; } }
+      const im = url ? await loadImg(url) : null;
+      g.save(); g.beginPath(); if (round) g.arc(x + s / 2, y + s / 2, s / 2, 0, Math.PI * 2); else if (g.roundRect) g.roundRect(x, y, s, s, Math.max(4, s * 0.06)); else g.rect(x, y, s, s); g.clip();
+      if (im) {
+        if (kind === 'a') { g.filter = `blur(${Math.round(s * 0.09)}px) saturate(1.3)`; g.drawImage(im, x - s * 0.3, y - s * 0.3, s * 1.6, s * 1.6); g.filter = 'none'; }
+        else g.drawImage(im, x, y, s, s);
+      } else {
+        const h = hsh(norm(key)), hu = h % 360, h2 = (hu + 35 + (h >>> 9) % 150) % 360;
+        const gr = g.createLinearGradient(x, y, x + s, y + s); gr.addColorStop(0, `hsl(${hu} 68% 52%)`); gr.addColorStop(1, `hsl(${h2} 72% 26%)`); g.fillStyle = gr; g.fillRect(x, y, s, s);
+      }
+      if (!im || kind === 'a') { g.fillStyle = 'rgba(255,255,255,0.93)'; g.font = `900 ${Math.round(s * 0.36)}px ${fu}`; g.textAlign = 'center'; g.textBaseline = 'middle'; g.fillText(initials(label), x + s / 2, y + s / 2 + 2); g.textAlign = 'start'; g.textBaseline = 'alphabetic'; }
+      g.restore();
+    },
+    blob() { return new Promise(r => { try { cv.toBlob(r, 'image/png'); } catch (e) { r(null); } }); }
+  };
+  return K;
 }
 
 /* ================= wiring ================= */
@@ -3242,6 +3571,8 @@ function wire() {
     if (t.closest('#spLogin')) { SPA.login(); return; }
     if (t.closest('#spReset')) { SPA.editing = true; renderSpBox(); return; }
     if (t.closest('#spSync')) { syncSpotify(true); return; }
+    if (t.closest('[data-gn]')) { estimateGenres(); return; }
+    if (t.closest('#prPng')) { idPng().then(b => b && saveFile(`sillon-profil-${fileTag()}.png`, b)); return; }
     if (t.closest('#spOut')) { SPA.logout(); renderSpBox(); renderView(); toast('Spotify déconnecté'); return; }
   });
   document.addEventListener('submit', e => { if (e.target.id === 'tmForm') runPct(e); });
