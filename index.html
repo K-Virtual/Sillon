@@ -489,6 +489,29 @@ button.opt:hover:not(:disabled){border-color:var(--chip2)}
 .lg2 span{display:inline-flex;align-items:center;gap:6px}
 .lg2 i{width:12px;height:12px;border-radius:3px}
 .tags small{color:var(--muted)}
+.sty{--c1:hsl(var(--hh) 55% 30%);--c2:hsl(calc(var(--hh) + 40) 60% 14%);position:relative;padding:28px;border-radius:14px;color:#fff;overflow:hidden;background:repeating-linear-gradient(-55deg,rgba(255,255,255,.035) 0 14px,transparent 14px 28px),linear-gradient(160deg,var(--c1),var(--c2));box-shadow:0 20px 50px rgba(0,0,0,.45)}
+.sth{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:12px;margin-bottom:18px}
+.sth .rk{font-weight:800;font-size:14px;opacity:.85}
+.sth h2{font:900 clamp(28px,4.6vw,44px)/1.02 var(--f-head);letter-spacing:-.04em}
+.sth .btn{color:#fff;border-color:rgba(255,255,255,.4)}
+.sls{display:grid;grid-template-columns:1fr 1fr;gap:18px 40px}
+.sl{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.8fr) minmax(0,1fr);align-items:center;gap:6px 14px}
+.sl .w{font-weight:800;font-size:15px;opacity:.6}
+.sl .w.r{text-align:right}
+.sl .w.on{opacity:1}
+.sl .trk{position:relative;height:8px;border-radius:4px;background:rgba(255,255,255,.2)}
+.sl .trk::before{content:"";position:absolute;left:50%;top:-6px;bottom:-6px;width:2px;margin-left:-1px;background:rgba(255,255,255,.45)}
+.sl .trk b{position:absolute;top:0;bottom:0;border-radius:4px;background:rgba(255,255,255,.85)}
+.sl .trk i{position:absolute;top:50%;width:20px;height:20px;margin:-10px 0 0 -10px;border-radius:50%;background:#fff;box-shadow:0 0 0 4px rgba(255,255,255,.25),0 4px 12px rgba(0,0,0,.35)}
+.sl small{grid-column:1/-1;font-size:12.5px;opacity:.78}
+.sls .sl{grid-template-columns:minmax(0,1fr) minmax(0,1fr);grid-template-areas:"l r" "t t" "d d";gap:9px 12px}
+.sls .sl .w{grid-area:l}
+.sls .sl .w.r{grid-area:r}
+.sls .sl .trk{grid-area:t}
+.sls .sl small{grid-area:d}
+.rcsty{display:flex;flex-direction:column;gap:10px;padding:12px 14px;border-radius:8px;background:rgba(0,0,0,.2)}
+.rcsty>small{font-size:12px;font-weight:700;opacity:.8}
+.rcsty .sl .w{font-size:13px}
 
 /* drawer, modal, overlay */
 .ov{position:fixed;inset:0;z-index:60;background:rgba(0,0,0,.55)}
@@ -601,6 +624,12 @@ code.cp{display:inline-block;max-width:100%;padding:4px 8px;border-radius:6px;ba
   .rcfacts{grid-template-columns:repeat(2,minmax(0,1fr))}
   .rcmos{grid-template-columns:repeat(3,minmax(0,1fr))}
   .idc{grid-template-columns:1fr;padding:20px;gap:18px}
+  .sty{padding:20px}
+  .sls{grid-template-columns:1fr}
+  .rcsty .sl{grid-template-columns:minmax(0,1fr) minmax(0,1fr);grid-template-areas:"l r" "t t";gap:7px 10px}
+  .rcsty .sl .w{grid-area:l}
+  .rcsty .sl .w.r{grid-area:r}
+  .rcsty .sl .trk{grid-area:t}
   .idc .idm{max-width:220px}
   .evo{grid-template-columns:44px minmax(0,1fr);row-gap:6px}
   .evo .eb{grid-column:1/-1}
@@ -783,6 +812,7 @@ code.cp{display:inline-block;max-width:100%;padding:4px 8px;border-radius:6px;ba
   </div>
   <div class="pad">
     <section class="blk"><div class="idc" id="idCard"></div></section>
+    <section class="blk"><div class="sty" id="styCard"></div></section>
     <section class="blk cols">
       <div><h2>Tes genres</h2><p class="sub">Sur tout ton historique</p><div id="prGen" style="margin-top:14px"></div></div>
       <div><h2>Tes habitudes</h2><p class="sub">Comment et quand tu écoutes</p><div class="habs" id="prHab" style="margin-top:14px"></div></div>
@@ -2771,6 +2801,7 @@ function drawRecap() {
       <div><h3>Top ${esc(l.t.toLowerCase())}</h3><ol>${R.T.map((t, j) => `<li><i>${j + 1}</i>${covT(t)}<span><b>${esc(D.tn[t])}</b><small>${esc(D.artists[D.ta[t]])}, ${esc(fmtPlays(X.tP[t]))}</small></span></li>`).join('')}</ol></div></div>
       ${gs.known ? `<div class="rcgen">${gs.mac.slice(0, 4).map(x => `<span>${esc(x.g)} <b>${fmtPct(x.p)}</b></span>`).join('')}</div>` : ''}
       <div class="rcper"><small>Ton profil sur la période</small><b>Profil ${esc(per.k)}</b><span>${esc(cap(per.d))}</span></div>
+      ${(() => { const st = styleOf(R.r0, R.r1).sort((x, y) => lean(y) - lean(x)).slice(0, 4); return st.length ? `<div class="rcsty"><small>Ton style sur la période</small>${styleRows(st, true)}</div>` : ''; })()}
       <dl class="rcfacts"><div><dt>Écoutes</dt><dd>${fmtN(X.plays)}</dd></div><div><dt>${esc(l.t)} différents</dt><dd>${fmtN(X.uT)}</dd></div><div><dt>${esc(cap(l.nan))}</dt><dd>${fmtN(X.nA)}</dd></div><div><dt>${esc(cap(l.nt))}</dt><dd>${fmtN(X.nT)}</dd></div><div><dt>${R.g === 'year' || R.g === 'all' ? 'Mois record' : R.g === 'day' ? 'Heure record' : 'Jour record'}</dt><dd>${esc(shortPeak(R))}</dd></div><div><dt>Jours d'écoute</dt><dd>${fmtN(X.active)}</dd></div></dl>
       <div class="rcfoot"><span>Sillon</span><span>${DEMO ? 'Exemple fictif' : 'Mes stats Spotify'}</span></div>`;
   }
@@ -3251,7 +3282,7 @@ async function saBoot() {
 
 /* ================= genres ================= */
 const GEN_RULES = [
-  [/k-?pop|j-?pop|j-?rock|anime|vocaloid|city pop/, 'K-pop / J-pop'],
+  [/k-?pop|j-?pop|j-?rock|anime|vocaloid|city pop|asiat|asian/, 'K-pop / J-pop'],
   [/soundtrack|\bscore\b|video ?game|jeux? video|bande originale|\bost\b|musique de film|movie/, 'BO / Jeux vidéo'],
   [/hip ?hop|\brap\b|trap|drill|grime|boom ?bap|phonk|plugg/, 'Rap / Hip-hop'],
   [/r&b|\brnb\b|r'n'b|soul|funk(?! carioca)|motown|gospel/, 'R&B / Soul'],
@@ -3260,8 +3291,8 @@ const GEN_RULES = [
   [/lo-?fi|ambient|chill|downtempo|new age|sleep|study/, 'Chill / Lo-fi'],
   [/house|techno|edm|electro|electronic|electronique|dubstep|drum ?(and|&|n) ?bass|\bdnb\b|trance|dance|disco|synthwave|hyperpop|garage|hardstyle|club/, 'Électro'],
   [/reggae|dancehall|\bska\b|\bdub\b/, 'Reggae / Dancehall'],
-  [/afro|amapiano|zouk|kompa|kizomba|bouyon|ndombolo|rumba|coupe-?decale|shatta|gqom|highlife|bongo/, 'Afro / Caribéen'],
-  [/latin|latino|reggaeton|bachata|salsa|cumbia|corrido|urbano|funk carioca|sertanejo|baile|flamenco|\bmpb\b/, 'Latino'],
+  [/afro|africa|amapiano|zouk|kompa|kizomba|bouyon|ndombolo|rumba|coupe-?decale|shatta|gqom|highlife|bongo|antill/, 'Afro / Caribéen'],
+  [/latin|latino|reggaeton|bachata|salsa|cumbia|corrido|urbano|funk carioca|sertanejo|baile|flamenco|\bmpb\b|bresil|brazil/, 'Latino'],
   [/jazz|blues|swing|bossa/, 'Jazz / Blues'],
   [/classical|classique|orchestr|opera|baroque|piano|chamber|choral/, 'Classique'],
   [/chanson|variete|pop francaise|french pop|ye-ye/, 'Chanson / Variété'],
@@ -3273,7 +3304,7 @@ const macroOf = g => { const s = norm(g); for (const [re, m] of GEN_RULES) if (r
 const GEN_PAL = ['#56b4e9', '#e69f00', '#009e73', '#cc79a7', '#f0e442', '#0072b2', '#d55e00'];
 let GENVER = 0;
 const lsMap = key => ({ m: null, dirty: false, load() { if (!this.m) { try { this.m = JSON.parse(localStorage.getItem(key) || '{}') || {}; } catch (e) { this.m = {}; } } return this.m; }, save() { if (!this.dirty) return; try { localStorage.setItem(key, JSON.stringify(this.m)); } catch (e) {} this.dirty = false; } });
-const GENRES = lsMap('sillon-genres'), AIDS = lsMap('sillon-aids');
+const GENRES = lsMap('sillon-genres2'), AIDS = lsMap('sillon-aids');
 function noteArtists(tracks) { const m = AIDS.load(); for (const tr of tracks || []) for (const ar of (tr && tr.artists) || []) if (ar && ar.id && ar.name) { const k = norm(ar.name); if (m[k] !== ar.id) { m[k] = ar.id; AIDS.dirty = true; } } }
 function artistGenres(a) {
   const k = norm(D.artists[a]);
@@ -3298,26 +3329,61 @@ function topIdx(arr, n, from = 0) { const idx = []; for (let i = from; i < arr.l
 let ART_TID = null;
 function artTid(a) { if (!ART_TID) { ART_TID = new Map(); const best = new Map(); for (let t = 0; t < D.nt; t++) { if (D.tk[t] !== 0 || !D.tu[t]) continue; const x = D.ta[t], v = T.tP[t]; if (!best.has(x) || v > best.get(x)) { best.set(x, v); ART_TID.set(x, D.tu[t]); } } } return ART_TID.get(a) || ''; }
 let genBusy = false, genProg = null;
+let dzN = 0, DZG = null;
+function dz(path) {
+  return new Promise(res => {
+    const cb = '__sillonDz' + (++dzN), sc = document.createElement('script');
+    const done = d => { clearTimeout(tm); try { delete window[cb]; } catch (e) { window[cb] = undefined; } sc.remove(); res(d); };
+    const tm = setTimeout(() => done(null), 8000);
+    window[cb] = d => done(d);
+    sc.onerror = () => done(null);
+    sc.src = 'https://api.deezer.com' + path + (path.includes('?') ? '&' : '?') + 'output=jsonp&callback=' + cb;
+    document.head.appendChild(sc);
+  });
+}
+async function dzGenreNames() {
+  if (DZG) return DZG;
+  try { DZG = JSON.parse(localStorage.getItem('sillon-dzg') || 'null'); } catch (e) { DZG = null; }
+  if (DZG && Object.keys(DZG).length) return DZG;
+  const r = await dz('/genre'); DZG = {};
+  for (const g of (r && r.data) || []) if (g && g.id > 0) DZG[g.id] = String(g.name || '');
+  if (Object.keys(DZG).length) try { localStorage.setItem('sillon-dzg', JSON.stringify(DZG)); } catch (e) {}
+  return DZG;
+}
+async function dzGenres(name) {
+  const names = await dzGenreNames(), nn = normT(name), cnt = new Map();
+  const r = await dz(`/search/album?q=${encodeURIComponent('artist:"' + name + '"')}&limit=25`);
+  for (const al of (r && r.data) || []) { if (!al || !al.artist || normT(al.artist.name || '') !== nn) continue; if (al.genre_id > 0) cnt.set(al.genre_id, (cnt.get(al.genre_id) || 0) + 1); }
+  if (!cnt.size) {
+    await sleep(120);
+    const sa = await dz(`/search/artist?q=${encodeURIComponent(name)}&limit=5`);
+    const ar = ((sa && sa.data) || []).find(x => x && normT(x.name || '') === nn);
+    if (ar) { await sleep(120); const al = await dz(`/artist/${ar.id}/albums?limit=25`); for (const x of (al && al.data) || []) if (x && x.genre_id > 0) cnt.set(x.genre_id, (cnt.get(x.genre_id) || 0) + 1); }
+  }
+  return [...cnt].sort((x, y) => y[1] - x[1]).slice(0, 2).map(([g]) => names[g]).filter(Boolean).map(x => x.toLowerCase());
+}
 async function fillGenres() {
-  if (!SA || !SPA.ok() || genBusy || DEMO || SPA.denied) return;
+  if (!SA || genBusy || DEMO || !D) return;
   const G0 = GENRES.load(), A0 = AIDS.load();
-  const todo = [...new Set([...G.ordA.slice(0, 120), ...recentList(40)])].filter(a => G0[norm(D.artists[a])] === undefined);
+  const todo = [...new Set([...G.ordA.slice(0, 150), ...recentList(40)])].filter(a => G0[norm(D.artists[a])] === undefined);
   if (!todo.length) return;
   genBusy = true; genProg = { n: 0, of: todo.length };
   refreshGenreViews();
   try {
     for (const a of todo) {
-      const k = norm(D.artists[a]);
-      let id = A0[k];
-      if (!id) {
-        const tid = artTid(a);
-        if (tid) { const tr = await SPA.get('/tracks/' + encodeURIComponent(tid)); noteArtists([tr]); seedCovers([tr]); id = A0[k] || (tr && tr.artists && tr.artists[0] && tr.artists[0].id) || ''; await sleep(120); }
+      const name = D.artists[a], k = norm(name);
+      let gs = [];
+      if (SPA.ok() && !SPA.denied) {
+        try {
+          let id = A0[k];
+          if (!id) { const tid = artTid(a); if (tid) { const tr = await SPA.get('/tracks/' + encodeURIComponent(tid)); noteArtists([tr]); seedCovers([tr]); id = A0[k] || (tr && tr.artists && tr.artists[0] && tr.artists[0].id) || ''; await sleep(120); } }
+          if (id) { const ar = await SPA.get('/artists/' + encodeURIComponent(id)); gs = ar && Array.isArray(ar.genres) ? ar.genres.slice(0, 6).map(String) : []; }
+        } catch (e) {}
       }
-      if (id) { const ar = await SPA.get('/artists/' + encodeURIComponent(id)); G0[k] = ar && Array.isArray(ar.genres) ? ar.genres.slice(0, 6).map(String) : []; }
-      else G0[k] = [];
-      GENRES.dirty = true; genProg.n++;
-      if (genProg.n % 15 === 0) { GENRES.save(); GENVER++; refreshGenreViews(); }
-      await sleep(150);
+      if (!gs.length) { try { gs = await dzGenres(name); } catch (e) { gs = []; } }
+      G0[k] = gs; GENRES.dirty = true; genProg.n++;
+      if (genProg.n % 10 === 0) { GENRES.save(); GENVER++; refreshGenreViews(); }
+      await sleep(130);
     }
   } catch (e) {} finally { genBusy = false; genProg = null; GENRES.save(); AIDS.save(); CC.save(); }
   GENVER++; refreshGenreViews();
@@ -3351,7 +3417,7 @@ async function estimateGenres() {
 }
 function genreEmpty() {
   if (isPod()) return '<p class="small">Pas de genres pour les podcasts.</p>';
-  if (SA) return `<p class="small">${genBusy && genProg ? `Récupération de tes genres auprès de Spotify : ${genProg.n} sur ${genProg.of}…` : SPA.ok() ? (SPA.denied ? 'Spotify refuse ton compte : les genres arrivent une fois que t\'es ajouté à l\'app.' : 'Les genres arrivent depuis Spotify. La première fois, ça prend une minute.') : 'Connecte Spotify dans Données pour récupérer les genres de tes artistes.'}</p>`;
+  if (SA) return `<p class="small">${DEMO ? 'Importe ton historique : les genres de tes artistes arrivent tout seuls juste après.' : genBusy && genProg ? `Recherche des genres de tes artistes : ${genProg.n} sur ${genProg.of}… La première fois, ça prend une à deux minutes.` : 'Aucun genre trouvé pour tes artistes pour l\'instant.'}</p>`;
   return `<div class="sprow"><button class="btn pri" data-gn>Trouver mes genres avec Claude</button><span class="small gnMsg"></span></div>`;
 }
 function genreBlock(gs, compact) {
@@ -3363,7 +3429,7 @@ function renderGenres() {
   $('#gnTitle').textContent = gs.known ? `${gs.mac[0].g}, ton genre n°${NS}1` : 'Tes genres';
   $('#gnSub').textContent = gs.known ? `Part de ton temps d'écoute par genre${gs.cover < 0.95 ? `, sur les ${fmtPct(gs.cover)} d'écoute dont on connaît le genre` : ''}.` : 'Les grandes familles de ce que t\'écoutes, et le détail.';
   $('#gnBody').innerHTML = genreBlock(gs);
-  if (SA && !gs.known && SPA.ok() && !genBusy) fillGenres();
+  if (SA && !genBusy) fillGenres();
 }
 
 /* ================= profil ================= */
@@ -3411,8 +3477,9 @@ function renderProfile() {
   const f = [['Genre n°1', g1], [cap(l.a1) + ' n°1', topA.length ? D.artists[topA[0]] : '–'], [cap(l.t1) + ' n°1', topT.length ? D.tn[topT[0]] : '–'], ['Heure préférée', hBest + NS + 'h'], ['Jour préféré', cap(WDL[dBest])], ['Sur Spotify depuis', fmtDay(c || D.firstDay)], ['Écoute totale', fmtDur(X.ms)], [cap(l.ad), fmtN(X.uA)]];
   $('#idCard').style.setProperty('--hh', topA.length ? hueA(topA[0]) : 140);
   $('#idCard').innerHTML = `<div class="idm">${mos}</div><div class="idt"><p class="rk">Carte d'identité musicale${DEMO ? ', exemple fictif' : ''}</p><h2>Profil ${esc(traits[0].k)}</h2><div class="badges">${traits.map(t => `<span title="${esc(cap(t.d))}">${esc(t.k)}</span>`).join('')}</div><dl class="idf">${f.map(([k, v]) => `<div><dt>${esc(k)}</dt><dd>${esc(v)}</dd></div>`).join('')}</dl><div class="idtop">${topA.map((a, j) => `<button data-open="a:${a}" title="${esc(D.artists[a])}">${covA(a)}<small>${j + 1}. ${esc(D.artists[a])}</small></button>`).join('')}</div></div>`;
+  renderStyle();
   $('#prGen').innerHTML = genreBlock(R.gs, true);
-  if (SA && !R.gs.known && SPA.ok() && !genBusy) fillGenres();
+  if (SA && !genBusy) fillGenres();
   const plats = []; X.plt.forEach((v, i) => { if (v > 0 && D.plats[i]) plats.push([D.plats[i], v]); }); plats.sort((a, b) => b[1] - a[1]);
   const pc = (a, b) => b ? fmtPct(a / b) : '–';
   const hab = [['Heure préférée', `${hBest}${NS}h – ${hBest + 1}${NS}h`], ['Jour préféré', cap(WDL[dBest])], ['Par jour en moyenne', fmtDur(G.avgDay)], ['En aléatoire', pc(X.sh, X.ext)], ['Zappés', pc(X.sk, X.ext)], ['Jusqu\'au bout', pc(X.dn, X.ext)], ['Hors ligne', pc(X.of, X.ext)], ['Appareil n°1', plats.length ? `${plats[0][0]} (${fmtPct(plats[0][1] / X.ms)})` : '–']];
@@ -3463,6 +3530,14 @@ async function pngKit(Wd, Ht, hue) {
   const K = {
     g, fu,
     T(txt, x, y, font, color, w) { g.font = font; g.fillStyle = color; g.fillText(w ? fit(txt, w) : sp(txt), x, y); },
+    wrap(txt, font, w, max = 2) {
+      g.font = font; const ws = String(txt).split(' '), out = []; let cur = '';
+      for (const x of ws) { const t = cur ? cur + ' ' + x : x; if (!cur || g.measureText(sp(t)).width <= w) cur = t; else { out.push(cur); cur = x; } }
+      if (cur) out.push(cur);
+      for (let j = 0; j < out.length - 1; j++) { const a = out[j].split(' '), z = a[a.length - 1]; if (a.length > 1 && z.length <= 2) { const nx = z + ' ' + out[j + 1]; if (g.measureText(sp(nx)).width <= w) { a.pop(); out[j] = a.join(' '); out[j + 1] = nx; } } }
+      if (out.length > max) { const rest = out.slice(max - 1).join(' '); out.length = max - 1; out.push(rest); }
+      return out.map(x => fit(x, w));
+    },
     box(x, y, w, h, r) { g.fillStyle = 'rgba(0,0,0,0.22)'; g.beginPath(); if (g.roundRect) g.roundRect(x, y, w, h, r); else g.rect(x, y, w, h); g.fill(); },
     async cover(x, y, s, id, round, kind = 'l') {
       let key, label, url = null;
@@ -3485,6 +3560,74 @@ async function pngKit(Wd, Ht, hue) {
     blob() { return new Promise(r => { try { cv.toBlob(r, 'image/png'); } catch (e) { r(null); } }); }
   };
   return K;
+}
+
+/* ================= ton style d'écoute (curseurs entre deux mots opposés) ================= */
+function styleOf(r0, r1) {
+  const pass = makePass(false), thr = S.thr * 1000, l = L();
+  let night = 0, day = 0, wkMs = 0, wdMs = 0, ext = 0, sk = 0, sh = 0, fresh = 0, plays = 0, same = 0, prevL = -1, prevT = -1, mob = 0, desk = 0, sesN = 0, sesMs = 0, cS = -1, cE = 0, cM = 0;
+  const aMs = new Map();
+  for (let i = lb(D.day, r0), e = lb(D.day, r1); i < e; i++) {
+    if (!pass(i)) continue;
+    const t = D.k[i], m = D.m[i], h = D.hr[i], d = D.day[i], f = D.f[i];
+    if (h >= 20 || h < 4) night += m; else if (h >= 6 && h < 18) day += m;
+    if (dow(d) >= 5) wkMs += m; else wdMs += m;
+    if (!(f & 64) && !(f & 128)) { ext++; if (f & 1) sk++; if (f & 2) sh++; }
+    const pn = D.plats[D.p[i]] || ''; if (/android|ios/i.test(pn)) mob += m; else if (/windows|macos|linux|web/i.test(pn)) desk += m;
+    const st = D.s[i], en = st + m / 1000;
+    if (cS < 0 || st - cE > 900) { if (cS >= 0) { sesN++; sesMs += cM; } cS = st; cE = en; cM = m; } else { if (en > cE) cE = en; cM += m; }
+    if (m >= thr) {
+      plays++; aMs.set(D.ta[t], (aMs.get(D.ta[t]) || 0) + m);
+      const ft = G.firstT[t]; if (ft >= 0 && d - D.day[ft] < 60) fresh++;
+      const al = D.tl[t]; if (al && al === prevL && t !== prevT) same++; prevL = al; prevT = t;
+    }
+  }
+  if (cS >= 0) { sesN++; sesMs += cM; }
+  const a0 = Math.max(r0, D.firstDay), a1 = Math.min(r1, D.lastDay + 1); let nWk = 0, nWd = 0; for (let d = a0; d < a1; d++) { if (dow(d) >= 5) nWk++; else nWd++; }
+  const am = [...aMs.values()].sort((x, y) => y - x), tA = am.reduce((x, y) => x + y, 0), t10 = am.slice(0, 10).reduce((x, y) => x + y, 0);
+  const wk = nWk ? wkMs / nWk : 0, wd = nWd ? wdMs / nWd : 0, avg = sesN ? sesMs / sesN : 0, P_ = (a, b) => fmtPct(b ? a / b : 0);
+  const out = [];
+  if (night + day > 0) out.push({ l: 'Nuit', r: 'Jour', v: day / (night + day), d: `${P_(night, night + day)} de ton écoute le soir et la nuit (20 h – 4 h), le reste en journée` });
+  if (tA > 0 && am.length >= 3) out.push({ l: 'Fidélité', r: 'Découverte', v: 1 - t10 / tA, d: `tes 10 ${l.a.toLowerCase()} préférés font ${P_(t10, tA)} de ton écoute` });
+  if (ext >= 20) out.push({ l: 'Zapping', r: 'Jusqu\'au bout', v: clamp(1 - (sk / ext) / 0.5, 0, 1), d: `tu zappes ${P_(sk, ext)} des morceaux que tu lances` });
+  if (ext >= 20) out.push({ l: 'Aléatoire', r: 'Dans l\'ordre', v: 1 - sh / ext, d: `${P_(sh, ext)} de tes écoutes en lecture aléatoire` });
+  if (nWk && nWd && wk + wd > 0) out.push({ l: 'Semaine', r: 'Week-end', v: wk / (wk + wd), d: `${fmtDur(wk)} par jour le week-end, ${fmtDur(wd)} en semaine` });
+  if (plays >= 20) out.push({ l: 'Nostalgie', r: 'Nouveautés', v: clamp(fresh / plays / 0.6, 0, 1), d: `${P_(fresh, plays)} de tes écoutes sur des titres découverts il y a moins de 2 mois` });
+  if (plays >= 20 && !isPod()) out.push({ l: 'Playlists', r: 'Albums entiers', v: clamp(same / plays / 0.5, 0, 1), d: `${P_(same, plays)} de tes écoutes enchaînées dans le même album` });
+  if (avg > 0) out.push({ l: 'Petites sessions', r: 'Marathons', v: clamp(Math.log(avg / 6e5) / Math.log(12), 0, 1), d: `${fmtDur(avg)} par session en moyenne` });
+  if (mob + desk > 0) out.push({ l: 'Téléphone', r: 'Ordi', v: desk / (mob + desk), d: `${P_(mob, mob + desk)} de ton écoute sur téléphone` });
+  return out;
+}
+const lean = x => Math.abs(x.v - 0.5);
+function styleRows(list, small) {
+  return list.map(x => { const p = x.v * 100, a = Math.min(50, p), w = Math.abs(p - 50); return `<div class="sl" title="${esc(cap(x.d))}"><span class="w${x.v < 0.45 ? ' on' : ''}">${esc(x.l)}</span><span class="trk"><b style="left:${a.toFixed(1)}%;width:${w.toFixed(1)}%"></b><i style="left:${p.toFixed(1)}%"></i></span><span class="w r${x.v > 0.55 ? ' on' : ''}">${esc(x.r)}</span>${small ? '' : `<small>${esc(cap(x.d))}</small>`}</div>`; }).join('');
+}
+function styleTitle(list) { const s = list.slice().sort((x, y) => lean(y) - lean(x)).slice(0, 2).map(x => x.v >= 0.5 ? x.r : x.l); return s.length ? s[0] + (s[1] ? ' et ' + s[1].charAt(0).toLowerCase() + s[1].slice(1) : '') : 'Équilibré'; }
+function renderStyle() {
+  const list = styleOf(D.firstDay, D.lastDay + 1), box = $('#styCard'), a1 = G.ordA[0];
+  box.style.setProperty('--hh', a1 != null ? (hueA(a1) + 180) % 360 : 200);
+  box.innerHTML = list.length ? `<div class="sth"><div><p class="rk">Ton style d'écoute, sur tout ton historique</p><h2>${esc(styleTitle(list))}</h2></div><button class="btn" id="styPng"><svg class="ic" viewBox="0 0 24 24"><path d="M12 4v11M7 10l5 5 5-5M5 20h14"/></svg>Image</button></div><div class="sls">${styleRows(list)}</div>` : '<p class="small">Pas assez d\'écoutes pour dessiner ton style.</p>';
+}
+async function styPng() {
+  const list = styleOf(D.firstDay, D.lastDay + 1), a1 = G.ordA[0];
+  const K = await pngKit(1080, 1350, a1 != null ? (hueA(a1) + 180) % 360 : 200), g = K.g, fu = K.fu, W = '#ffffff', W8 = 'rgba(255,255,255,0.84)', W6 = 'rgba(255,255,255,0.6)';
+  K.T('Mon style d\'écoute', 80, 130, `800 34px ${fu}`, W8);
+  const tl = K.wrap(styleTitle(list), `900 66px ${fu}`, 920, 2);
+  tl.forEach((x, j) => K.T(x, 80, 215 + j * 74, `900 66px ${fu}`, W));
+  const top = 300 + (tl.length - 1) * 74, step = Math.min(118, (1220 - top) / Math.max(1, list.length));
+  list.forEach((x, j) => {
+    const y = top + j * step;
+    g.font = `800 30px ${fu}`; g.fillStyle = x.v < 0.45 ? W : W6; g.fillText(sp(x.l), 80, y + 30);
+    g.textAlign = 'right'; g.fillStyle = x.v > 0.55 ? W : W6; g.fillText(sp(x.r), 1000, y + 30); g.textAlign = 'start';
+    const tx = 80, tw = 920, ty = y + 62;
+    g.fillStyle = 'rgba(255,255,255,0.22)'; if (g.roundRect) { g.beginPath(); g.roundRect(tx, ty - 5, tw, 10, 5); g.fill(); } else g.fillRect(tx, ty - 5, tw, 10);
+    const kx = tx + tw * x.v, cx = tx + tw / 2;
+    g.fillStyle = 'rgba(255,255,255,0.85)'; g.fillRect(Math.min(cx, kx), ty - 5, Math.abs(kx - cx), 10);
+    g.fillStyle = 'rgba(255,255,255,0.5)'; g.fillRect(cx - 1.5, ty - 14, 3, 28);
+    g.beginPath(); g.arc(kx, ty, 17, 0, Math.PI * 2); g.fillStyle = W; g.fill();
+  });
+  K.T('Sillon', 80, 1302, `800 24px ${fu}`, W6);
+  return K.blob();
 }
 
 /* ================= wiring ================= */
@@ -3572,6 +3715,7 @@ function wire() {
     if (t.closest('#spReset')) { SPA.editing = true; renderSpBox(); return; }
     if (t.closest('#spSync')) { syncSpotify(true); return; }
     if (t.closest('[data-gn]')) { estimateGenres(); return; }
+    if (t.closest('#styPng')) { styPng().then(b => b && saveFile(`sillon-style-${fileTag()}.png`, b)); return; }
     if (t.closest('#prPng')) { idPng().then(b => b && saveFile(`sillon-profil-${fileTag()}.png`, b)); return; }
     if (t.closest('#spOut')) { SPA.logout(); renderSpBox(); renderView(); toast('Spotify déconnecté'); return; }
   });
