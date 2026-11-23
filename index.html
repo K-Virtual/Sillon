@@ -176,6 +176,10 @@ body[data-skin=clair] .ib{background:rgba(255,255,255,.8);color:#121212}
 .cv{position:relative;display:block;width:100%;aspect-ratio:1;border-radius:4px;overflow:hidden;container-type:inline-size;--a:hsl(var(--h) 68% 52%);--b:hsl(var(--h2) 72% 26%);background:linear-gradient(135deg,var(--a),var(--b))}
 .cv.r{border-radius:50%}
 .cv img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
+.cv img{z-index:2}
+.cv img.bl{z-index:0;filter:blur(7cqi) saturate(1.3) brightness(.92);transform:scale(1.6)}
+.cv.r b{z-index:1}
+.cv.r:has(img.bl) b{text-shadow:0 2px 14px rgba(0,0,0,.45)}
 .cv b{position:absolute;left:9%;bottom:7%;font:900 34cqi/1 var(--f-head);letter-spacing:-.06em;color:rgba(255,255,255,.93);text-shadow:0 2px 12px rgba(0,0,0,.25)}
 .cv.r b{left:50%;bottom:50%;transform:translate(-50%,50%)}
 .cv.p1{background:radial-gradient(circle at 72% 28%,var(--a) 0 17%,transparent 18%),repeating-radial-gradient(circle at 72% 28%,transparent 0 6%,rgba(255,255,255,.08) 6% 7.5%),linear-gradient(160deg,var(--b),var(--a))}
@@ -1726,7 +1730,7 @@ function checkHero() {
 function setData(X, demo) {
   D = X; DEMO = demo; derive(D);
   S.anchor = D.lastDay; S.focus = null; S.calYear = null;
-  computeGlobal(); computeTaste(); TM = AM = null; dataVer++; searchIdx = null; RCX = null; PD = null; ALB_TID = null;
+  computeGlobal(); computeTaste(); TM = AM = null; dataVer++; searchIdx = null; RCX = null; PD = null; ALB_TID = null; ART_ALB = null;
   renderView();
 }
 function render() {
@@ -2581,7 +2585,7 @@ function cov(key, label, cls) {
   const h = hsh(norm(key)), hu = h % 360, h2 = (hu + 35 + (h >>> 9) % 150) % 360, p = (h >>> 17) % 5;
   return `<span class="cv p${p}${cls ? ' ' + cls : ''}" style="--h:${hu};--h2:${h2}" aria-hidden="true"><b>${esc(initials(label ?? key))}</b></span>`;
 }
-const covA = a => cov('a|' + D.artists[a], D.artists[a], 'r');
+const covA = a => { const h = cov('a|' + D.artists[a], D.artists[a], 'r'); if (!SA) return h; const l = artAlb(a); return l ? withImg(h, akey(l), albTid(l), true) : h; };
 const covL = l => { const h = cov('l|' + D.albums[l] + '|' + D.artists[D.la[l]], D.albums[l]); return SA ? withImg(h, akey(l), albTid(l)) : h; };
 const covT = t => D.tl[t] ? covL(D.tl[t]) : cov('t|' + D.tn[t] + '|' + D.artists[D.ta[t]], D.tn[t]);
 const hueA = a => hsh(norm('a|' + D.artists[a])) % 360;
@@ -3066,17 +3070,18 @@ const CC = {
   save() { if (!this.dirty) return; try { localStorage.setItem('sillon-covers', JSON.stringify(this.m)); } catch (e) {} this.dirty = false; }
 };
 const akey = l => normT(D.albums[l]) + '|' + normT(D.artists[D.la[l]]);
-let ALB_TID = null;
+let ALB_TID = null, ART_ALB = null;
+function artAlb(a) { if (!ART_ALB) { ART_ALB = new Int32Array(D.na); const bv = new Float64Array(D.na); for (let l = 1; l < D.nl; l++) { const x = D.la[l], v = T.lP[l]; if (v > bv[x]) { bv[x] = v; ART_ALB[x] = l; } } } return ART_ALB[a]; }
 function albTid(l) { if (!ALB_TID) { ALB_TID = new Map(); for (let t = 0; t < D.nt; t++) { const x = D.tl[t]; if (x && D.tu[t] && D.tk[t] === 0 && !ALB_TID.has(x)) ALB_TID.set(x, D.tu[t]); } } return ALB_TID.get(l) || ''; }
-function withImg(html, k, tid) {
+function withImg(html, k, tid, blur) {
   const u = CC.get(k);
-  if (u) return html.replace('</span>', `<img src="${esc(u)}" alt="" loading="lazy" decoding="async"></span>`);
+  if (u) return html.replace('</span>', `<img${blur ? ' class="bl"' : ''} src="${esc(u)}" alt="" loading="lazy" decoding="async"></span>`);
   if (u === 0 || !tid || !SPA.ok()) return html;
   return html.replace('<span class="cv', `<span data-ck="${esc(k)}" data-tid="${esc(tid)}" class="cv`);
 }
 const imgPick = ims => { if (!ims || !ims.length) return 0; const s = ims.slice().sort((a, b) => (a.width || 0) - (b.width || 0)); return (s.find(i => (i.width || 0) >= 250) || s[s.length - 1]).url || 0; };
 function seedCovers(tracks) { for (const tr of tracks || []) { if (!tr || !tr.album) continue; const k = normT(tr.album.name || '') + '|' + normT(((tr.artists || [])[0] || {}).name || ''); if (!CC.get(k)) { const u = imgPick(tr.album.images); if (u) CC.set(k, u); } } }
-function applyCover(k) { const u = CC.get(k); if (!u) return; $$('.cv[data-ck]').forEach(el => { if (el.dataset.ck !== k) return; el.removeAttribute('data-ck'); el.insertAdjacentHTML('beforeend', `<img src="${esc(u)}" alt="" loading="lazy" decoding="async">`); }); }
+function applyCover(k) { const u = CC.get(k); if (!u) return; $$('.cv[data-ck]').forEach(el => { if (el.dataset.ck !== k) return; el.removeAttribute('data-ck'); el.insertAdjacentHTML('beforeend', `<img${el.classList.contains('r') ? ' class="bl"' : ''} src="${esc(u)}" alt="" loading="lazy" decoding="async">`); }); }
 let covTimer = 0, covBusy = false;
 function queueCovers() { if (!SA || !SPA.ok()) return; clearTimeout(covTimer); covTimer = setTimeout(fillCovers, 300); }
 async function fillCovers() {
