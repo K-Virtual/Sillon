@@ -1027,6 +1027,70 @@ code.cp{display:inline-block;max-width:100%;padding:4px 8px;border-radius:6px;ba
   .merow2>.btn,.merow2>a.btn{width:100%}
   .bnav .ic{width:24px;height:24px}
 }
+/* graphiques : styles réglables (page Toi) */
+svg .stem{stroke:var(--bar);stroke-width:1.6}
+svg .head{fill:var(--bar)}
+svg .stem.pk{stroke:var(--acc)}
+svg .head.pk{fill:var(--acc)}
+svg .stem.on{stroke:var(--ink)}
+svg .head.on{fill:var(--ink)}
+.ghead{fill:none;stroke:var(--ghost);stroke-width:1.3;stroke-dasharray:2 2}
+.ln{fill:none;stroke:var(--acc);stroke-width:2.5;stroke-linejoin:round;stroke-linecap:round}
+.area{fill:color-mix(in srgb,var(--acc) 26%,transparent)}
+.fc .area{fill:url(#hatch)}
+.gln{fill:none;stroke:var(--ghost);stroke-width:1.5;stroke-dasharray:4 4}
+.dot{fill:var(--panel);stroke:var(--acc);stroke-width:2;opacity:0;transition:opacity .12s}
+.crv.few .dot,.dot.pk,.dot.on{opacity:1}
+.dot.pk{fill:var(--acc)}
+.dot.on{fill:var(--ink);stroke:var(--ink)}
+.avg{stroke:var(--ink);stroke-width:1;stroke-dasharray:2 4;opacity:.65}
+svg text.avgl{fill:var(--muted);font-size:11px;font-weight:700;paint-order:stroke;stroke:var(--chbg,var(--panel));stroke-width:4px;stroke-linejoin:round}
+.card{--chbg:var(--card)}
+.sfoot .skins{gap:3px}
+.sfoot .sk{width:28px;height:28px}
+html[data-chart=line] .lg i:not(.g):not(.h),html[data-chart=area] .lg i:not(.g):not(.h){height:3px;border-radius:2px;background:var(--acc)}
+html[data-chart=line] .lg i.g,html[data-chart=area] .lg i.g{height:0;border:0;border-top:2px dashed var(--ghost);border-radius:0}
+/* réglages */
+.setb{max-width:820px}
+.setsec{margin-top:28px}
+.setsec:first-of-type{margin-top:6px}
+.setsec h3{margin:0 0 4px;font:800 18px/1.25 var(--f-head)}
+.setsec>.sub{margin:0}
+.setsec .skins.lab{margin-top:12px;max-width:none}
+.setl{display:flex;flex-direction:column;background:var(--card);border-radius:8px;margin-top:12px}
+.setr{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:10px 20px;padding:14px 16px;border-top:1px solid var(--line)}
+.setl>.setr:first-child{border-top:0}
+.setx{display:flex;flex-direction:column;gap:3px;flex:1 1 220px;min-width:0}
+.setx b{font-weight:700;font-size:15px}
+.setx small{color:var(--muted);font-size:13px;line-height:1.4}
+.setr .chips{gap:6px}
+.setr.sw{font-size:inherit}
+.setpv{padding:14px 16px 10px;margin-top:12px}
+.setpv .fig{height:200px}
+.setpv p{margin:6px 0 0;color:var(--muted)}
+.stl{display:grid;grid-template-columns:repeat(auto-fill,minmax(104px,1fr));gap:8px;margin-top:12px}
+.stl button{display:flex;flex-direction:column;align-items:flex-start;gap:8px;padding:12px;border:0;border-radius:8px;background:var(--card);color:var(--ink);text-align:left;font:inherit;cursor:pointer}
+.stl button:hover{background:var(--card2)}
+.stl button[aria-pressed=true]{box-shadow:inset 0 0 0 2px var(--acc)}
+.stl button:focus-visible{outline:2px solid var(--ink);outline-offset:2px}
+.stl svg{width:44px;height:26px;display:block}
+.stl span{display:flex;flex-direction:column;line-height:1.25}
+.stl b{font-size:14px;font-weight:700}
+.stl small{font-size:12px;color:var(--muted)}
+.stl .mb{fill:var(--bar)}
+.stl .mb.pk{fill:var(--acc)}
+.stl .mst{stroke:var(--bar);stroke-width:1.2}
+.stl .mst.pk{stroke:var(--acc)}
+.stl .ml{fill:none;stroke:var(--acc);stroke-width:2;stroke-linecap:round}
+.stl .ma{fill:color-mix(in srgb,var(--acc) 30%,transparent)}
+.stl .md{fill:var(--panel);stroke:var(--acc);stroke-width:1.2}
+.stl .md.pk{fill:var(--acc)}
+.setreset{margin:22px 0 0}
+.setlk{display:inline-block;margin-top:4px;font-size:14px;font-weight:700;color:var(--ink)}
+.sk[data-s=auto] i{background:conic-gradient(#1ed760 0 25%,#fa243c 0 50%,#ff0033 0 75%,#a238ff 0)}
+/* animations réduites, au choix dans les réglages */
+html.calm *,html.calm *::before,html.calm *::after{transition:none!important;animation:none!important}
+html.calm .stobars .on i{width:100%}
 @media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
 </style>
 </head>
@@ -1055,6 +1119,7 @@ code.cp{display:inline-block;max-width:100%;padding:4px 8px;border-radius:6px;ba
   </div>
   <div class="sbox sfoot">
     <div class="skins" role="group" aria-label="Thème">
+      <button class="sk" data-s="auto" aria-pressed="false" title="Auto : selon ta plateforme" aria-label="Thème automatique, selon ta plateforme"><i></i></button>
       <button class="sk" data-s="nuit" aria-pressed="true" title="Nuit" aria-label="Thème Nuit"><i></i></button>
       <button class="sk" data-s="clair" aria-pressed="false" title="Clair" aria-label="Thème Clair"><i></i></button>
       <button class="sk" data-s="wrapped" aria-pressed="false" title="Wrapped" aria-label="Thème Wrapped"><i></i></button>
@@ -1142,6 +1207,7 @@ code.cp{display:inline-block;max-width:100%;padding:4px 8px;border-radius:6px;ba
       <label class="sw"><input type="checkbox" id="noSkip"><i></i><span>Ignorer les morceaux zappés</span></label>
       <label class="sw"><input type="checkbox" id="cmp"><i></i><span>Période d'avant en pointillés</span></label>
       <label class="sw"><input type="checkbox" id="liveSw"><i></i><span>Noter ce que j'écoute sur Spotify (site ouvert)</span></label>
+      <a class="setlk" href="#toi/reglages">Tous les réglages : graphiques, durées, thème…</a>
     </div>
   </div>
   <div class="demo" id="demoBar" hidden>
@@ -1314,7 +1380,11 @@ code.cp{display:inline-block;max-width:100%;padding:4px 8px;border-radius:6px;ba
     <section class="card meid" id="meId"></section>
     <section class="blk sao" hidden><div class="bh"><div><h2>Ton groupe</h2></div></div><div id="meGr"></div></section>
     <section class="blk sao" hidden><div class="bh"><div><h2>Tes appareils</h2><p class="sub">Les mêmes stats sur ton PC et ton tel</p></div></div><div class="mergeb" id="lkBox"><div id="lkBody"></div></div></section>
-    <section class="blk"><div class="bh"><div><h2>Apparence</h2></div></div><div class="appear skins lab" role="group" aria-label="Thème de Sillon">
+    <section class="blk"><div class="bh"><div><h2>Tes données</h2></div></div><div id="meData"></div></section>
+    <section class="blk" id="meInstW" hidden><div class="bh"><div><h2>L'appli</h2></div></div><div id="meInst"></div></section>
+    <section class="blk setb" id="setTop" aria-labelledby="setH"><div class="bh"><div><h2 id="setH">Réglages</h2><p class="sub">Ils restent sur cet appareil.</p></div></div>
+      <div class="setsec"><h3>Thème</h3><div class="appear skins lab" role="group" aria-label="Thème de Sillon">
+    <button class="sk" data-s="auto" aria-pressed="false"><i></i><span>Auto<small class="skasub">selon ta plateforme</small></span></button>
     <button class="sk" data-s="nuit" aria-pressed="true"><i></i><span>Nuit<small>façon Spotify</small></span></button>
     <button class="sk" data-s="pomme" aria-pressed="false"><i></i><span>Pomme<small>façon Apple Music</small></span></button>
     <button class="sk" data-s="ecarlate" aria-pressed="false"><i></i><span>Écarlate<small>façon YouTube Music</small></span></button>
@@ -1322,9 +1392,13 @@ code.cp{display:inline-block;max-width:100%;padding:4px 8px;border-radius:6px;ba
     <button class="sk" data-s="clair" aria-pressed="false"><i></i><span>Clair<small>tout en clair</small></span></button>
     <button class="sk" data-s="wrapped" aria-pressed="false"><i></i><span>Wrapped<small>violet et citron</small></span></button>
     <button class="sk" data-s="console" aria-pressed="false"><i></i><span>Console<small>écran rétro</small></span></button>
-  </div></section>
-    <section class="blk"><div class="bh"><div><h2>Tes données</h2></div></div><div id="meData"></div></section>
-    <section class="blk" id="meInstW" hidden><div class="bh"><div><h2>L'appli</h2></div></div><div id="meInst"></div></section>
+      </div></div>
+      <div class="setsec" id="setG"></div>
+      <div class="setsec" id="setD"></div>
+      <div class="setsec" id="setC"></div>
+      <div class="setsec" id="setS"></div>
+      <p class="setreset"><button class="btn" data-set-reset>Tout remettre par défaut</button></p>
+    </section>
     <div id="meVer"></div>
   </div>
 </section>
@@ -1448,6 +1522,7 @@ code.cp{display:inline-block;max-width:100%;padding:4px 8px;border-radius:6px;ba
   </details>
   <h3 class="h3">Apparence</h3>
   <div class="appear skins lab" role="group" aria-label="Thème">
+    <button class="sk" data-s="auto" aria-pressed="false"><i></i><span>Auto<small class="skasub">selon ta plateforme</small></span></button>
     <button class="sk" data-s="nuit" aria-pressed="true"><i></i><span>Nuit<small>façon Spotify</small></span></button>
     <button class="sk" data-s="pomme" aria-pressed="false"><i></i><span>Pomme<small>façon Apple Music</small></span></button>
     <button class="sk" data-s="ecarlate" aria-pressed="false"><i></i><span>Écarlate<small>façon YouTube Music</small></span></button>
@@ -1494,8 +1569,10 @@ const fmtN = n => nf.format(Math.round(n));
 const pl = (n, s, p) => n >= 2 ? (p || s + 's') : s;
 const fmtPlays = n => fmtN(n) + NS + pl(n, 'écoute');
 function fmtDur(ms) {
-  const min = Math.round(ms / 60000);
+  const min = Math.round(ms / 60000), fm = S.set.dur;
+  if (fm === 'min') return fmtN(min) + NB + 'min';
   if (min < 60) return min + NB + 'min';
+  if (fm === 'dec') { const hd = min / 60; return (hd < 100 ? (Math.round(hd * 10) / 10).toString().replace('.', ',') : fmtN(hd)) + NB + 'h'; }
   const h = Math.floor(min / 60), r = min % 60;
   if (h < 100) return h + NB + 'h' + (r ? NB + String(r).padStart(2, '0') : '');
   return fmtN(h) + NB + 'h';
@@ -1514,7 +1591,7 @@ const MO = ['janv.','févr.','mars','avr.','mai','juin','juil.','août','sept.',
 const MOL = ['janvier','février','mars','avril','mai','juin','juillet','août','septembre','octobre','novembre','décembre'];
 const WD = ['lun.','mar.','mer.','jeu.','ven.','sam.','dim.'];
 const WDL = ['lundi','mardi','mercredi','jeudi','vendredi','samedi','dimanche'];
-const fmtDay = d => { const [y, m, x] = ymd(d); return x + NS + MO[m] + NS + y; };
+const fmtDay = d => { const [y, m, x] = ymd(d); return S.set.date === 'num' ? String(x).padStart(2, '0') + '/' + String(m + 1).padStart(2, '0') + '/' + y : x + NS + MO[m] + NS + y; };
 const fmtDayL = d => { const [y, m, x] = ymd(d); return WDL[dow(d)] + ' ' + x + NS + MOL[m] + ' ' + y; };
 const fmtMon = s => MOL[s % 12] + ' ' + (1970 + Math.floor(s / 12));
 function isoWeek(d) { const th = d - dow(d) + 3; const y = ymd(th)[0]; return Math.floor((th - dn(y, 0, 1)) / 7) + 1; }
@@ -1528,8 +1605,13 @@ const SA = /*@SA*/true; // true = version autonome (GitHub Pages)
 const SKINS = ['nuit', 'pomme', 'ecarlate', 'violet', 'clair', 'wrapped', 'console'];
 const SKIN_NAMES = { nuit: 'Nuit, façon Spotify', pomme: 'Pomme, façon Apple Music', ecarlate: 'Écarlate, façon YouTube Music', violet: 'Violet, façon Deezer', clair: 'Clair', wrapped: 'Wrapped', console: 'Console' };
 const GRANS = ['day', 'week', 'month', 'year', 'all'];
+/* réglages de la page Toi (restent sur l'appareil) */
+const SET0 = { chart: 'auto', avg: false, grid: true, peak: true, hue: 'artist', motion: 'normal', cov: 'real', dur: 'hm', date: 'short', home: 'stats', gran0: 'last', remind: 30 };
+const SET_OK = { chart: ['auto', 'round', 'square', 'line', 'area', 'seg', 'note'], avg: [true, false], grid: [true, false], peak: [true, false], hue: ['artist', 'theme'], motion: ['normal', 'calm'], cov: ['real', 'gen'], dur: ['hm', 'dec', 'min'], date: ['short', 'num'], home: ['stats', 'recaps', 'classements', 'profil', 'groupe'], gran0: ['last', 'day', 'week', 'month', 'year', 'all'], remind: [30, 90, 0] };
+const SKIN_OF = { spotify: 'nuit', apple: 'pomme', ytm: 'ecarlate', deezer: 'violet' };
+const SKIN_HUE = { nuit: 141, pomme: 350, ecarlate: 352, violet: 272, clair: 141, wrapped: 252, console: 172 };
 const VIEWS = ['stats', 'profil', 'recaps', 'classements', 'predictions', 'jeux', 'guide', 'groupe', 'toi', 'suggestions', 'apropos'];
-const S = { view: 'stats', gran: 'week', anchor: 0, metric: 'ms', content: 'music', thr: 30, noSkip: false, cmp: true, focus: null, skin: 'nuit', rcMore: { m: false, w: false }, top: { art: 10, trk: 10, alb: 10 }, logN: 30, calYear: null, rk: { scope: 'all', sort: 'plays', dir: 'desc', n: 50 }, live: false, recMode: 'new' };
+const S = { view: 'stats', gran: 'week', anchor: 0, metric: 'ms', content: 'music', thr: 30, noSkip: false, cmp: true, focus: null, skin: 'nuit', rcMore: { m: false, w: false }, top: { art: 10, trk: 10, alb: 10 }, logN: 30, calYear: null, rk: { scope: 'all', sort: 'plays', dir: 'desc', n: 50 }, live: false, recMode: 'new', set: Object.assign({}, SET0), skinAuto: true, plat: null };
 let D = null, G = null, T = null, DEMO = true, P = null, Q = null, booted = false, dataVer = 0;
 let seenT = null, seenT2 = null, seenA = null, seenL = null, stampC = 1;
 const nextStamp = k => { const b = stampC; stampC += k + 3; return b; };
@@ -1538,7 +1620,11 @@ function loadPrefs() {
     const p = JSON.parse(localStorage.getItem('sillon-prefs') || '{}');
     for (const k of ['gran', 'metric', 'content', 'thr', 'noSkip', 'cmp', 'skin', 'live', 'recMode']) if (p[k] !== undefined) S[k] = p[k];
     if (p.rk && typeof p.rk === 'object') { if (p.rk.scope) S.rk.scope = p.rk.scope; if (p.rk.sort) S.rk.sort = p.rk.sort; if (p.rk.dir === 'asc') S.rk.dir = 'asc'; }
+    if (p.set && typeof p.set === 'object') for (const k in SET0) if (SET_OK[k].includes(p.set[k])) S.set[k] = p.set[k];
+    S.skinAuto = typeof p.skinAuto === 'boolean' ? p.skinAuto : (p.skin === undefined || p.skin === 'nuit');
+    if (['spotify', 'apple', 'ytm', 'deezer'].includes(p.plat)) S.plat = p.plat;
   } catch (e) {}
+  if (S.set.gran0 !== 'last') S.gran = S.set.gran0;
   S.skin = { sombre: 'nuit', orbite: 'nuit', partition: 'clair' }[S.skin] || S.skin;
   if (!SKINS.includes(S.skin)) S.skin = 'nuit';
   if (!GRANS.includes(S.gran)) S.gran = 'week';
@@ -1547,7 +1633,7 @@ function loadPrefs() {
   if (!['new', 'deep', 'mood'].includes(S.recMode)) S.recMode = 'new';
   if (!['all', '12m', 'period'].includes(S.rk.scope)) S.rk.scope = 'all';
 }
-function savePrefs() { try { localStorage.setItem('sillon-prefs', JSON.stringify({ gran: S.gran, metric: S.metric, content: S.content, thr: S.thr, noSkip: S.noSkip, cmp: S.cmp, skin: S.skin, live: S.live, recMode: S.recMode, rk: { scope: S.rk.scope, sort: S.rk.sort, dir: S.rk.dir } })); } catch (e) {} }
+function savePrefs() { try { localStorage.setItem('sillon-prefs', JSON.stringify({ gran: S.gran, metric: S.metric, content: S.content, thr: S.thr, noSkip: S.noSkip, cmp: S.cmp, skin: S.skin, live: S.live, recMode: S.recMode, rk: { scope: S.rk.scope, sort: S.rk.sort, dir: S.rk.dir }, set: S.set, skinAuto: S.skinAuto, plat: S.plat })); } catch (e) {} }
 const normT = s => norm(s).replace(/\s*[\(\[][^\)\]]*[\)\]]/g, '').replace(/\s+-\s+.*$/, '').replace(/[^a-z0-9]+/g, ' ').trim();
 const shuffle = a => { for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; } return a; };
 const pick = a => a[Math.floor(Math.random() * a.length)];
@@ -1961,40 +2047,85 @@ function bindChart(svg) {
 }
 function niceStep(raw) { const mag = 10 ** Math.floor(Math.log10(raw)), n = raw / mag; return (n <= 1 ? 1 : n <= 2 ? 2 : n <= 2.5 ? 2.5 : n <= 5 ? 5 : 10) * mag; }
 function ticks(max, n, unit) {
-  if (unit === 'min') {
+  if (unit === 'min' && S.set.dur !== 'min') {
     if (max >= 120) { const st = niceStep(max / 60 / n) * 60; const top = Math.max(st, Math.ceil(max / st) * st); const t = []; for (let v = 0; v <= top + 1e-6; v += st) t.push(v); return { t, top, f: v => (Math.round(v / 6) / 10).toString().replace('.', ',') + NB + 'h' }; }
     const st = Math.max(1, niceStep(Math.max(max, 1) / n)); const top = Math.max(st, Math.ceil(max / st) * st); const t = []; for (let v = 0; v <= top + 1e-6; v += st) t.push(v); return { t, top, f: v => Math.round(v) + NB + 'min' };
   }
   const st = Math.max(1, niceStep(Math.max(max, 1) / n)); const top = Math.max(st, Math.ceil(max / st) * st); const t = []; for (let v = 0; v <= top + 1e-6; v += st) t.push(v);
-  return { t, top, f: v => v >= 10000 ? (Math.round(v / 100) / 10).toString().replace('.', ',') + NB + 'k' : fmtN(v) };
+  const u = unit === 'min' ? NB + 'min' : '';
+  return { t, top, f: v => (v >= 10000 ? (Math.round(v / 100) / 10).toString().replace('.', ',') + NB + 'k' : fmtN(v)) + u };
 }
 function barPath(x, y0, y1, w, r) { const h = y0 - y1; if (h <= 0.4) return ''; r = Math.min(r, w / 2, h); return r <= 0 ? `M${x},${y0}V${y1}H${x + w}V${y0}Z` : `M${x},${y0}V${y1 + r}Q${x},${y1} ${x + r},${y1}H${x + w - r}Q${x + w},${y1} ${x + w},${y1 + r}V${y0}Z`; }
+/* style des graphiques : réglage de la page Toi, « auto » suit le thème */
+function chartStyle() { const c = S.set.chart; return c === 'auto' ? (S.skin === 'console' ? 'seg' : 'round') : c; }
+const f1 = v => v.toFixed(1);
+/* courbe monotone (Fritsch-Carlson) : passe par chaque point sans dépasser */
+function monoPath(pts) {
+  const n = pts.length; if (!n) return '';
+  let d = `M${f1(pts[0][0])},${f1(pts[0][1])}`; if (n === 1) return d;
+  const dx = [], m = [], t = new Array(n).fill(0);
+  for (let i = 0; i < n - 1; i++) { dx[i] = pts[i + 1][0] - pts[i][0]; m[i] = dx[i] ? (pts[i + 1][1] - pts[i][1]) / dx[i] : 0; }
+  t[0] = m[0]; t[n - 1] = m[n - 2];
+  for (let i = 1; i < n - 1; i++) t[i] = m[i - 1] * m[i] <= 0 ? 0 : (m[i - 1] + m[i]) / 2;
+  for (let i = 0; i < n - 1; i++) {
+    if (m[i] === 0) { t[i] = 0; t[i + 1] = 0; continue; }
+    const a = t[i] / m[i], b = t[i + 1] / m[i], h = a * a + b * b;
+    if (h > 9) { const k = 3 / Math.sqrt(h); t[i] = k * a * m[i]; t[i + 1] = k * b * m[i]; }
+  }
+  for (let i = 0; i < n - 1; i++) { const h = dx[i] / 3; d += `C${f1(pts[i][0] + h)},${f1(pts[i][1] + t[i] * h)} ${f1(pts[i + 1][0] - h)},${f1(pts[i + 1][1] - t[i + 1] * h)} ${f1(pts[i + 1][0])},${f1(pts[i + 1][1])}`; }
+  return d;
+}
 let uid = 0;
 function drawBars(svg, c) {
   const W = svg.clientWidth, H = svg.clientHeight; if (!W || !H) return;
-  const narrow = W < 520, n = c.vals.length, skin = S.skin;
-  const vals = Array.from(c.vals, c.conv || (v => v)), gh = c.ghost ? Array.from(c.ghost, c.conv || (v => v)) : null;
+  const narrow = W < 520, n = c.vals.length, skin = S.skin, st = S.set;
+  const conv = c.conv || (v => v);
+  const vals = Array.from(c.vals, conv), gh = c.ghost ? Array.from(c.ghost, conv) : null;
   const max = Math.max(0, ...vals, ...(gh || [0]));
   const tk = ticks(max, narrow ? 3 : 4, c.unit);
-  const mL = narrow ? 40 : 52, mR = 10, mT = c.small ? 12 : 26, mB = c.noX ? 8 : 26;
+  const lw = Math.max(...tk.t.map(t => tk.f(t).length)) * 6.6 + 14;
+  const mL = Math.max(narrow ? 40 : 52, Math.round(lw)), mR = 10, mT = c.small ? 12 : 26, mB = c.noX ? 8 : 26;
   const pw = W - mL - mR, ph = H - mT - mB, y = v => mT + ph - (v / tk.top) * ph, y0 = mT + ph;
   const band = pw / Math.max(1, n), bw = Math.max(1, Math.min(skin === 'pochette' ? 30 : 24, band * (n > 60 ? 0.78 : 0.66)));
-  const style = skin === 'partition' ? 'note' : skin === 'console' ? 'seg' : 'round';
+  const style = chartStyle(), curve = style === 'line' || style === 'area', cx = i => mL + i * band + band / 2;
   let pk = -1, pv = 0; vals.forEach((v, i) => { if (v > pv) { pv = v; pk = i; } });
   const id = 'b' + (++uid);
   let s = '';
   if (style === 'seg') s += `<defs><pattern id="p${id}" width="8" height="5" patternUnits="userSpaceOnUse" y="${(y0 % 5).toFixed(2)}"><rect width="8" height="3.6" fill="#fff"/></pattern><mask id="m${id}"><rect width="${W}" height="${H}" fill="url(#p${id})"/></mask></defs>`;
-  for (const t of tk.t) { const yy = Math.round(y(t)) + 0.5; s += `<line class="${t === 0 ? 'bl' : 'gl'}" x1="${mL}" x2="${W - mR}" y1="${yy}" y2="${yy}"/>`; if (!c.small || t === tk.top) s += `<text x="${mL - 8}" y="${yy}" dy="0.32em" text-anchor="end">${esc(tk.f(t))}</text>`; }
-  if (gh) for (let i = 0; i < n; i++) { const v = gh[i] || 0; if (v <= 0) continue; const x = mL + i * band + (band - bw) / 2; if (style === 'note') { s += `<ellipse class="ghead" cx="${(x + bw / 2).toFixed(1)}" cy="${y(v).toFixed(1)}" rx="${Math.max(2.5, Math.min(7, bw * .42)).toFixed(1)}" ry="${(Math.max(2.5, Math.min(7, bw * .42)) * .72).toFixed(1)}" transform="rotate(-22 ${(x + bw / 2).toFixed(1)} ${y(v).toFixed(1)})"/>`; } else s += `<path class="ghost" d="${barPath(x - 1.5, y0, y(v), bw + 3, style === 'round' ? 4 : style === 'square' ? 0 : 3)}"/>`; }
-  s += `<g class="bars"${style === 'seg' ? ` mask="url(#m${id})"` : ''}>`;
-  for (let i = 0; i < n; i++) {
-    const v = vals[i]; if (v <= 0) continue;
-    const x = mL + i * band + (band - bw) / 2, yt = y(v), cls = i === pk ? ' pk' : '';
-    if (style === 'note') { const cx = x + bw / 2, rx = Math.max(2.5, Math.min(7, bw * .42)); s += `<line class="stem${cls}" data-b="${i}" x1="${cx.toFixed(1)}" x2="${cx.toFixed(1)}" y1="${y0}" y2="${yt.toFixed(1)}"/><ellipse class="head${cls}" data-b="${i}" cx="${cx.toFixed(1)}" cy="${yt.toFixed(1)}" rx="${rx.toFixed(1)}" ry="${(rx * .72).toFixed(1)}" transform="rotate(-22 ${cx.toFixed(1)} ${yt.toFixed(1)})"/>`; }
-    else s += `<path class="bar${cls}" data-b="${i}" d="${barPath(x, y0, yt, bw, style === 'round' ? 4 : style === 'seg' ? 2 : style === 'square' ? 0 : 4)}"/>`;
+  for (const t of tk.t) { const yy = Math.round(y(t)) + 0.5; if (t === 0 || st.grid) s += `<line class="${t === 0 ? 'bl' : 'gl'}" x1="${mL}" x2="${W - mR}" y1="${yy}" y2="${yy}"/>`; if (!c.small || t === tk.top) s += `<text x="${mL - 8}" y="${yy}" dy="0.32em" text-anchor="end">${esc(tk.f(t))}</text>`; }
+  const span = arr => { let a = 0, b = arr.length - 1; while (a < arr.length && !(arr[a] > 0)) a++; while (b > a && !(arr[b] > 0)) b--; return [a, b]; };
+  if (gh && gh.some(v => v > 0)) {
+    if (curve) { const [a, b] = span(gh), gp = []; for (let i = a; i <= b; i++) gp.push([cx(i), y(Math.max(0, gh[i] || 0))]); if (gp.length > 1) s += `<path class="gln" d="${monoPath(gp)}"/>`; }
+    else for (let i = 0; i < n; i++) { const v = gh[i] || 0; if (v <= 0) continue; const x = mL + i * band + (band - bw) / 2; if (style === 'note') { const r = Math.max(2.5, Math.min(7, bw * .42)); s += `<ellipse class="ghead" cx="${f1(x + bw / 2)}" cy="${f1(y(v))}" rx="${f1(r)}" ry="${f1(r * .72)}" transform="rotate(-22 ${f1(x + bw / 2)} ${f1(y(v))})"/>`; } else s += `<path class="ghost" d="${barPath(x - 1.5, y0, y(v), bw + 3, style === 'round' ? 4 : style === 'square' ? 0 : 3)}"/>`; }
   }
-  s += '</g>';
-  if (pk >= 0 && !c.small) { const x = mL + pk * band + band / 2, lab = c.fmtV(c.vals[pk]); const tw = lab.length * 7.4; const lx = clamp(x, mL + tw / 2, W - mR - tw / 2); s += `<text class="pkl" x="${lx.toFixed(1)}" y="${(y(pv) - (style === 'note' ? 11 : 7)).toFixed(1)}" text-anchor="middle">${esc(lab)}</text>`; }
+  if (curve) {
+    const [a, b] = span(vals), pts = []; for (let i = a; i <= b; i++) pts.push([cx(i), y(Math.max(0, vals[i]))]);
+    const d = monoPath(pts), m = pts.length;
+    s += `<g class="crv${n <= 31 ? ' few' : ''}">`;
+    if (style === 'area' && m > 1) s += `<path class="area" d="${d}L${f1(pts[m - 1][0])},${y0}L${f1(pts[0][0])},${y0}Z"/>`;
+    if (m > 1) s += `<path class="ln" d="${d}"/>`;
+    for (let i = a; i <= b; i++) s += `<circle class="dot${i === pk ? ' pk' : ''}" data-b="${i}" cx="${f1(pts[i - a][0])}" cy="${f1(pts[i - a][1])}" r="${n > 60 ? 3 : 4}"/>`;
+    s += '</g>';
+  } else {
+    s += `<g class="bars"${style === 'seg' ? ` mask="url(#m${id})"` : ''}>`;
+    for (let i = 0; i < n; i++) {
+      const v = vals[i]; if (v <= 0) continue;
+      const x = mL + i * band + (band - bw) / 2, yt = y(v), cls = i === pk ? ' pk' : '';
+      if (style === 'note') { const xc = x + bw / 2, rx = Math.max(2.5, Math.min(7, bw * .42)); s += `<line class="stem${cls}" data-b="${i}" x1="${f1(xc - rx * .86)}" x2="${f1(xc - rx * .86)}" y1="${y0}" y2="${f1(yt + rx * .25)}"/><ellipse class="head${cls}" data-b="${i}" cx="${f1(xc)}" cy="${f1(yt)}" rx="${f1(rx)}" ry="${f1(rx * .72)}" transform="rotate(-22 ${f1(xc)} ${f1(yt)})"/>`; }
+      else s += `<path class="bar${cls}" data-b="${i}" d="${barPath(x, y0, yt, bw, style === 'round' ? 4 : style === 'seg' ? 2 : 0)}"/>`;
+    }
+    s += '</g>';
+  }
+  /* ligne de moyenne : du premier au dernier point écouté, pour ne pas compter les jours à venir */
+  if (st.avg && !c.small) {
+    let a = -1, b = -1; for (let i = 0; i < n; i++) if (vals[i] > 0) { if (a < 0) a = i; b = i; }
+    if (a >= 0 && b > a) {
+      let sum = 0; for (let i = a; i <= b; i++) sum += +c.vals[i] || 0;
+      const raw = sum / (b - a + 1), ya = y(conv(raw)), lab = 'moyenne' + NS + ':' + NS + c.fmtV(raw);
+      s += `<line class="avg" x1="${mL}" x2="${W - mR}" y1="${f1(ya)}" y2="${f1(ya)}"/><text class="avgl" x="${W - mR}" y="${f1(ya - 6)}" text-anchor="end">${esc(lab)}</text>`;
+    }
+  }
+  if (pk >= 0 && !c.small && st.peak) { const x = cx(pk), lab = c.fmtV(c.vals[pk]); const tw = lab.length * 7.4; const lx = clamp(x, mL + tw / 2, W - mR - tw / 2); s += `<text class="pkl" x="${f1(lx)}" y="${f1(y(pv) - (style === 'note' ? 11 : curve ? 11 : 7))}" text-anchor="middle">${esc(lab)}</text>`; }
   if (!c.noX) {
     const labs = []; for (let i = 0; i < n; i++) labs.push(c.label(i, true, narrow));
     const cw = skin === 'terminal' ? 8.6 : 7.2;
@@ -2003,14 +2134,15 @@ function drawBars(svg, c) {
     let lastX = -1e9;
     for (let i = 0; i < n; i++) {
       const l = labs[i]; if (!l) continue;
-      const half = l.length * cw / 2, x = clamp(mL + i * band + band / 2, mL + half, W - mR - half);
+      const half = l.length * cw / 2, x = clamp(cx(i), mL + half, W - mR - half);
       if (c.everyLabel) { if (x - lastX < need) continue; } else if (i % step !== 0) continue;
       lastX = x;
-      s += `<text x="${x.toFixed(1)}" y="${H - 7}" text-anchor="middle">${esc(l)}</text>`;
+      s += `<text x="${f1(x)}" y="${H - 7}" text-anchor="middle">${esc(l)}</text>`;
     }
   }
   for (let i = 0; i < n; i++) s += `<rect class="hit" data-i="${i}" x="${(mL + i * band).toFixed(2)}" y="${mT - 10}" width="${band.toFixed(2)}" height="${ph + 10}"${n <= 31 ? ' tabindex="0" role="button"' : ''}/>`;
   svg.innerHTML = s;
+  svg.dataset.style = style;
   svg._tip = c.tip; svg._click = c.click;
   svg._hov = i => { svg.querySelectorAll('.on').forEach(e => e.classList.remove('on')); if (i >= 0) svg.querySelectorAll(`[data-b="${i}"]`).forEach(e => e.classList.add('on')); };
   bindChart(svg);
@@ -2286,7 +2418,7 @@ function findAlbum(name, artist) {
 function route() {
   const [h, sub] = location.hash.replace('#', '').split('/'), prev = S.view;
   S.view = VIEWS.includes(h) ? h : 'stats';
-  if (S.view === 'guide') S.guideSvc = sub || null;
+  if (S.view === 'guide') { S.guideSvc = sub || null; platPicked(sub); }
   if (S.view === 'groupe') S.grInvite = sub && GR_ID.test(sub) ? sub : null;
   else if (prev === 'groupe') groupStop();
   $$('.view').forEach(v => v.hidden = v.dataset.view !== S.view);
@@ -2295,6 +2427,7 @@ function route() {
   if (prev !== S.view) window.scrollTo(0, 0);
   heroVisible = true;
   renderView(); updateMini(); checkHero();
+  if (S.view === 'toi' && sub === 'reglages') { const go = () => { const e = $('#setTop'); if (e) e.scrollIntoView({ block: 'start' }); }; requestAnimationFrame(() => { go(); const y1 = scrollY; setTimeout(() => { if (Math.abs(scrollY - y1) < 2) go(); }, 450); }); }
 }
 function renderView() {
   if (['guide', 'groupe', 'toi', 'suggestions', 'apropos'].includes(S.view)) { if (D) renderHead(); if (S.view === 'guide') renderGuide(); else if (S.view === 'groupe') renderGroup(); else if (S.view === 'toi') renderMe(); else if (S.view === 'apropos') renderAbout(); else renderSugg(); return; }
@@ -2348,7 +2481,7 @@ function render() {
 function renderHead() {
   $('#demoBar').hidden = !DEMO || !booted;
   $('#obSp').hidden = !SA;
-  $$('.sk').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.s === S.skin)));
+  skSync();
   const c = createdDay(), h = G.ms / 36e5, l = L();
   $('#sinceLine').innerHTML = `${DEMO ? 'Exemple fictif. ' : ''}${c ? 'Depuis la création de ton compte, le ' + fmtDay(c) : 'Depuis le ' + fmtDay(D.firstDay)}${NS}: <b>${fmtN(G.plays)}</b> écoutes, <b>${fmtN(h)}${NB}h</b> d'écoute, <b>${fmtN(G.uT)}</b> ${l.tt} différents et <b>${fmtN(G.uA)}</b> ${l.ad}.`;
   renderLib(); renderNotif();
@@ -2406,7 +2539,7 @@ function renderMain() {
   const mw = { plays: 'Écoutes', ms: 'Temps d\'écoute', uniq: L().t + ' différents' }[S.metric];
   const ghost = S.cmp && Q && S.gran !== 'all';
   $('#mainTitle').textContent = mainFinding();
-  $('#mainSub').textContent = `${mw} par ${unitWord}` + (S.focus ? ', focus sur ' + focusName() : '') + (S.gran !== 'day' ? '. Clique une barre pour zoomer.' : '.');
+  $('#mainSub').textContent = `${mw} par ${unitWord}` + (S.focus ? ', focus sur ' + focusName() : '') + (S.gran !== 'day' ? '. Clique ' + ({ line: 'un point', area: 'un point', note: 'une note' }[chartStyle()] || 'une barre') + ' pour zoomer.' : '.');
   $('#mainLegend').innerHTML = ghost ? `<span><i></i>Cette période</span><span><i class="g"></i>${cap(prevName[S.gran])}</span>` : '';
   const conv = S.metric === 'ms' ? (v => v / 6e4) : null, svg = $('#svgMain'), X = P, G2 = ghost ? metricVals(Q) : null;
   fig(svg, () => drawBars(svg, {
@@ -3137,6 +3270,8 @@ async function importFiles(files) {
     if (svcs.length === 1) sy.svc = svcs[0];
     if (recs2.length) sy.sources = (sy.sources || []).concat({ at: Date.now(), n: recs2.length, from: Math.floor(rf / 86400), to: Math.floor(rt / 86400), merge: merging, svc: svcs.map(k => SVCS[k].n).join(' + ') }).slice(-12);
     Prefs.save(); notifClosed = false;
+    if (svcs.length === 1 && !merging) { S.plat = svcs[0]; savePrefs(); }
+    autoSkin(true);
     say('Sauvegarde…');
     const where = await Store.save(D, f => bar.style.width = (70 + 30 * f) + '%');
     bar.style.width = '100%';
@@ -3201,12 +3336,13 @@ function cov(key, label, cls) {
   const h = hsh(norm(key)), hu = h % 360, h2 = (hu + 35 + (h >>> 9) % 150) % 360, p = (h >>> 17) % 5;
   return `<span class="cv p${p}${cls ? ' ' + cls : ''}" style="--h:${hu};--h2:${h2}" aria-hidden="true"><b>${esc(initials(label ?? key))}</b></span>`;
 }
-const covA = a => { const h = cov('a|' + D.artists[a], D.artists[a], 'r'); if (!SA) return h; const l = artAlb(a); return l ? withImg(h, akey(l), albTid(l), true) : h; };
-const covL = l => { const h = cov('l|' + D.albums[l] + '|' + D.artists[D.la[l]], D.albums[l]); return SA ? withImg(h, akey(l), albTid(l)) : h; };
+const covA = a => { const h = cov('a|' + D.artists[a], D.artists[a], 'r'); if (!SA || S.set.cov === 'gen') return h; const l = artAlb(a); return l ? withImg(h, akey(l), albTid(l), true) : h; };
+const covL = l => { const h = cov('l|' + D.albums[l] + '|' + D.artists[D.la[l]], D.albums[l]); return SA && S.set.cov !== 'gen' ? withImg(h, akey(l), albTid(l)) : h; };
 const covT = t => D.tl[t] ? covL(D.tl[t]) : cov('t|' + D.tn[t] + '|' + D.artists[D.ta[t]], D.tn[t]);
 const hueA = a => hsh(norm('a|' + D.artists[a])) % 360;
 function rcov(top, big, hue) { return `<span class="cv rc p${hue % 5}${String(big).length > 7 ? ' sm' : ''}" style="--h:${hue};--h2:${(hue + 70) % 360}" aria-hidden="true"><i>${esc(top)}</i><b>${esc(big)}</b></span>`; }
-function setHue(h) { $('#main').style.setProperty('--hh', String(Math.round(h))); }
+let hueReq = 140;
+function setHue(h) { hueReq = h; $('#main').style.setProperty('--hh', String(Math.round(S.set.hue === 'theme' ? (SKIN_HUE[S.skin] ?? h) : h))); }
 function tileA(a, sub, extra) { return `<button class="tile" data-open="a:${a}">${covA(a)}<b>${esc(D.artists[a])}</b><small>${esc(sub)}</small>${extra || ''}</button>`; }
 function tileL(l, sub, extra) { return `<button class="tile" data-open="l:${l}">${covL(l)}<b>${esc(D.albums[l])}</b><small>${esc(sub)}</small>${extra || ''}</button>`; }
 function trRow(t, j, val, ch) { return `<li><button class="tlr" data-open="t:${t}"><span class="n">${j}</span>${covT(t)}<span class="nm"><b>${esc(D.tn[t])}</b><small>${esc(D.artists[D.ta[t]])}</small></span><span class="al">${esc(D.albums[D.tl[t]] || '')}</span><span class="v">${val}</span><span class="c">${ch || ''}</span></button></li>`; }
@@ -3562,7 +3698,7 @@ function syncState() {
   if (DEMO || !booted || !D) return null;
   const s = Prefs.data.sync || {}, now = Date.now(), base = syncBase(), q = now < (s.snooze || 0);
   if (s.requestedAt && s.requestedAt > base && now - s.requestedAt < 45 * DAYMS) return q ? 'wait-q' : 'wait';
-  if (now - base >= 30 * DAYMS) return q ? 'due-q' : 'due';
+  if (S.set.remind && now - base >= S.set.remind * DAYMS) return q ? 'due-q' : 'due';
   return null;
 }
 function renderNotif() {
@@ -3596,8 +3732,8 @@ function renderSyncBox() {
   const box = $('#syncBox');
   if (DEMO || !D) { box.hidden = true; return; }
   box.hidden = false;
-  const s = Prefs.data.sync || {}, base = syncBase(), days = Math.floor((Date.now() - base) / DAYMS), next = base + 30 * DAYMS, st = syncState() || '';
-  box.innerHTML = `<p><b>Dernière mise à jour il y a ${days <= 0 ? 'moins d\'un jour' : fmtN(days) + ' ' + pl(days, 'jour')}</b><small>${st.startsWith('wait') ? 'Export demandé le ' + fmtDay(Math.floor(s.requestedAt / DAYMS)) + ' : dépose-le ici dès qu\'il arrive.' : 'Prochain rappel ' + (next <= Date.now() ? 'maintenant' : 'le ' + fmtDay(Math.floor(next / DAYMS))) + '. Tes données vont jusqu\'au ' + fmtDay(D.lastDay) + '.'}</small></p><a class="btn" href="${svcOf().url}" target="_blank" rel="noopener" data-nt="req2">Demander mon export ${esc(svcOf().n)}</a>`;
+  const s = Prefs.data.sync || {}, base = syncBase(), days = Math.floor((Date.now() - base) / DAYMS), next = base + (S.set.remind || 30) * DAYMS, st = syncState() || '';
+  box.innerHTML = `<p><b>Dernière mise à jour il y a ${days <= 0 ? 'moins d\'un jour' : fmtN(days) + ' ' + pl(days, 'jour')}</b><small>${st.startsWith('wait') ? 'Export demandé le ' + fmtDay(Math.floor(s.requestedAt / DAYMS)) + ' : dépose-le ici dès qu\'il arrive.' : (S.set.remind ? 'Prochain rappel ' + (next <= Date.now() ? 'maintenant' : 'le ' + fmtDay(Math.floor(next / DAYMS))) : 'Rappels coupés dans tes réglages') + '. Tes données vont jusqu\'au ' + fmtDay(D.lastDay) + '.'}</small></p><a class="btn" href="${svcOf().url}" target="_blank" rel="noopener" data-nt="req2">Demander mon export ${esc(svcOf().n)}</a>`;
 }
 function renderSources() {
   const list = (Prefs.data.sync && Prefs.data.sync.sources) || [];
@@ -3682,7 +3818,7 @@ const imgPick = ims => { if (!ims || !ims.length) return 0; const s = ims.slice(
 function seedCovers(tracks) { noteArtists(tracks); for (const tr of tracks || []) { if (!tr || !tr.album) continue; const k = normT(tr.album.name || '') + '|' + normT(((tr.artists || [])[0] || {}).name || ''); if (!CC.get(k)) { const u = imgPick(tr.album.images); if (u) CC.set(k, u); } } }
 function applyCover(k) { const u = CC.get(k); if (!u) return; $$('.cv[data-ck]').forEach(el => { if (el.dataset.ck !== k) return; el.removeAttribute('data-ck'); el.insertAdjacentHTML('beforeend', `<img${el.classList.contains('r') ? ' class="bl"' : ''} src="${esc(u)}" alt="" loading="lazy" decoding="async">`); }); }
 let covTimer = 0, covBusy = false;
-function queueCovers() { if (!SA || !SPA.ok()) return; clearTimeout(covTimer); covTimer = setTimeout(fillCovers, 300); }
+function queueCovers() { if (!SA || !SPA.ok() || S.set.cov === 'gen') return; clearTimeout(covTimer); covTimer = setTimeout(fillCovers, 300); }
 async function fillCovers() {
   if (covBusy || !SPA.ok()) return;
   const want = new Map();
@@ -4659,7 +4795,7 @@ function stoFin(sec) {
   let can = false; try { can = !!navigator.canShare && navigator.canShare({ files: [new File(['x'], 'x.png', { type: 'image/png' })] }); } catch (e) {}
   sec.innerHTML = posterHTML(R, false) + `<div class="acts"><button class="btn pri" data-sa="png"><svg class="ic" viewBox="0 0 24 24"><path d="M12 4v11M7 10l5 5 5-5M5 20h14"/></svg>Image</button>${can ? '<button class="btn" data-sa="share">Partager</button>' : ''}<button class="btn" data-sa="open">Voir dans l'accueil</button><button class="btn" data-sa="again">Revoir</button></div><div class="acts">${prev ? `<button class="btn" data-sa="prev">← ${esc(lab(-1))}</button>` : ''}<span class="sp"></span>${next ? `<button class="btn" data-sa="next">${esc(lab(1))} →</button>` : ''}</div>`;
 }
-const REDUCED = () => matchMedia('(prefers-reduced-motion: reduce)').matches;
+const REDUCED = () => S.set.motion === 'calm' || matchMedia('(prefers-reduced-motion: reduce)').matches;
 function stoGo(i) {
   if (!STO) return;
   const n = STO.slides.length; if (i < 0) i = 0;
@@ -5798,6 +5934,7 @@ function renderMe() {
   iw.hidden = !mob;
   if (mob) $('#meInst').innerHTML = isStandalone() ? '<div class="card"><p>Sillon est installé sur cet appareil.</p></div>'
     : '<div class="card merow2"><div><b>Installe Sillon sur ton tel</b><small>Une icône sur ton écran d\'accueil, et Sillon s\'ouvre en plein écran.</small></div><button class="btn lite" data-me="install">Installer l\'appli</button></div>';
+  renderSettings();
 }
 function meSay(t) { const m = $('#meMsg'); if (m) m.textContent = t; else toast(t); }
 async function meAct(a, el) {
@@ -5828,9 +5965,10 @@ async function meSetPp(file) {
 }
 
 /* ---------- version : X refonte, Y grosse mise à jour, Z correctifs ---------- */
-const SILLON_V = '2.5.1';
+const SILLON_V = '2.6.0';
 const SV_TYPE = { X: 'Refonte', Y: 'Grosse mise à jour', Z: 'Correctifs', I: 'Première version' };
 const SILLON_LOG = [
+  ['2.6.0', 'Y', ['Réglages dans la page Toi : style des graphiques (barres arrondies ou droites, courbe, aire, rétro, notes de musique), ligne de moyenne, lignes de repère, valeur du record.', 'Durées en heures et minutes, en heures ou en minutes, et dates en lettres ou en chiffres.', 'Couleur des pages, pochettes, animations réduites, page et période d\'ouverture, rappel de mise à jour.', 'Thème automatique : Sillon prend les couleurs de ta plateforme (Spotify, Apple Music, YouTube Music ou Deezer).']],
   ['2.5.1', 'Z', ['Classements : touche une colonne deux fois pour passer de l\'ordre décroissant à l\'ordre croissant.', 'Nouvelle page À propos : versions, services utilisés, comment marche le site.']],
   ['2.5.0', 'Y', ['Page Toi : ta photo, ton pseudo, ton groupe, tes appareils, le thème et tes données au même endroit.', 'Sur téléphone, la barre du bas avec l\'onglet Plus.', 'Groupe : trophées, duel 1 contre 1 et équivalences.', 'Page Suggestions : micro-genres, artistes et albums à découvrir, extraits de 30 secondes.', 'Numéro de version.']],
   ['2.4.0', 'Y', ['Écran pour installer l\'appli sur téléphone.', 'Liaison entre ton PC et ton tel, avec des écoutes chiffrées.', 'Photos de profil dans le groupe.']],
@@ -6083,6 +6221,175 @@ function wireSugg() {
   });
 }
 
+/* ================= réglages (page Toi) et thème selon la plateforme ================= */
+const SKIN_SHORT = { nuit: 'Nuit', pomme: 'Pomme', ecarlate: 'Écarlate', violet: 'Violet', clair: 'Clair', wrapped: 'Wrapped', console: 'Console' };
+function applySet() {
+  const r = document.documentElement;
+  r.classList.toggle('calm', S.set.motion === 'calm');
+  r.dataset.chart = chartStyle();
+  setHue(hueReq);
+}
+/* plateforme principale : celle qui a le plus d'écoutes importées, sinon celle choisie au début */
+function mainSvc() {
+  const by = {}, cnt = {}; for (const k in SVCS) by[SVCS[k].n] = k;
+  for (const x of (Prefs.data.sync && Prefs.data.sync.sources) || []) {
+    const ks = String(x.svc || '').split(' + ').map(n => by[n]).filter(Boolean);
+    for (const k of ks) cnt[k] = (cnt[k] || 0) + (x.n || 0) / ks.length;
+  }
+  return Object.keys(cnt).sort((a, b) => cnt[b] - cnt[a])[0] || null;
+}
+const platNow = () => (!DEMO && mainSvc()) || S.plat || (!DEMO && Prefs.data.sync && SVCS[Prefs.data.sync.svc] ? Prefs.data.sync.svc : null);
+function skSync() {
+  $$('.sk').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.s === 'auto' ? S.skinAuto : !S.skinAuto && b.dataset.s === S.skin)));
+  const k = platNow(), t = S.skinAuto && k ? `${SKIN_SHORT[S.skin]}, pour ${SVCS[k].n}` : 'selon ta plateforme';
+  $$('.skasub').forEach(e => { e.textContent = t; });
+  const sn = $('#skName'); if (sn && !$('#dataModal').hidden) sn.textContent = 'Thème : ' + SKIN_NAMES[S.skin];
+}
+function autoSkin(say, noRender) {
+  if (!S.skinAuto) { skSync(); return false; }
+  const k = platNow(), sk = k && SKIN_OF[k];
+  if (!sk || sk === S.skin) { skSync(); return false; }
+  S.skin = sk; savePrefs(); applySkin(); skSync();
+  if (booted && !noRender) renderView();
+  if (say) toast(`Sillon se met aux couleurs de ${SVCS[k].n} : thème ${SKIN_SHORT[sk]}. Tu peux le changer dans Toi.`);
+  return true;
+}
+/* plateforme choisie au début (accueil, guide, Données) : tant qu'il n'y a pas encore de vraies données */
+function platPicked(k) {
+  if (!SVCS[k] || !DEMO) return;
+  if (S.plat !== k) { S.plat = k; savePrefs(); }
+  autoSkin(true, true);
+}
+function skinAutoOn() {
+  S.skinAuto = true; savePrefs();
+  if (!autoSkin(true)) toast(platNow() ? `Auto : tu es déjà aux couleurs de ${SVCS[platNow()].n}.` : 'Auto : Sillon prendra les couleurs de ta plateforme dès que tu l\'auras choisie.');
+  skSync();
+}
+function startView() {
+  const h = S.set.home;
+  if (location.hash || h === 'stats' || (h === 'groupe' && !SA)) return;
+  try { history.replaceState(null, '', '#' + h); } catch (e) {}
+}
+
+/* ---------- la page ---------- */
+const CH_STYLES = [['auto', 'Auto', 'selon le thème'], ['round', 'Arrondies', 'barres'], ['square', 'Droites', 'barres'], ['line', 'Courbe', ''], ['area', 'Aire', 'courbe remplie'], ['seg', 'Rétro', 'en segments'], ['note', 'Notes', 'de musique']];
+const SET_UI = [
+  { g: 'g', k: 'avg', t: 'Ligne de moyenne', d: 'Une ligne en pointillés à la hauteur de ta moyenne.' },
+  { g: 'g', k: 'grid', t: 'Lignes de repère', d: 'Les traits horizontaux derrière le graphique.' },
+  { g: 'g', k: 'peak', t: 'Valeur du record', d: 'Le chiffre au-dessus du point le plus haut.' },
+  { g: 'g', k: 'cmp', s: 1, t: 'Période d\'avant en pointillés', d: 'Sur l\'accueil, pour comparer avec la semaine, le mois ou l\'année d\'avant.' },
+  { g: 'd', k: 'hue', t: 'Couleur des pages', d: 'Le haut des pages prend la couleur de ton artiste n°1, ou garde celle du thème.', o: [['artist', 'Selon ton artiste'], ['theme', 'Celle du thème']] },
+  { g: 'd', k: 'dur', t: 'Durées', d: 'Comment Sillon écrit ton temps d\'écoute.', o: [['hm', '1 h 45'], ['dec', '1,8 h'], ['min', '105 min']] },
+  { g: 'd', k: 'date', t: 'Dates', o: [['short', ''], ['num', '']] },
+  { g: 'd', k: 'cov', sa: 1, t: 'Pochettes', d: 'Les vraies pochettes de Spotify, ou des ronds de couleur dessinés par Sillon.', o: [['real', 'Vraies pochettes'], ['gen', 'Dessinées']] },
+  { g: 'd', k: 'motion', t: 'Animations', d: 'Réduites : plus de transitions, et les stories des récaps n\'avancent plus toutes seules.', o: [['normal', 'Normales'], ['calm', 'Réduites']] },
+  { g: 'c', k: 'content', s: 1, t: 'Ce que Sillon compte', o: [['music', 'Musique'], ['pod', 'Podcasts'], ['all', 'Tout']] },
+  { g: 'c', k: 'thr', s: 1, t: 'Une écoute compte à partir de', d: 'En dessous, c\'est un morceau zappé.', o: [[0, '0 s'], [30, '30 s'], [60, '60 s']] },
+  { g: 'c', k: 'noSkip', s: 1, t: 'Ignorer les morceaux zappés', d: 'Ils sortent de toutes les stats, temps d\'écoute compris.' },
+  { g: 's', k: 'home', t: 'Page d\'ouverture', d: 'La page qui s\'affiche quand tu ouvres Sillon.', o: [['stats', 'Accueil'], ['recaps', 'Récaps'], ['classements', 'Classements'], ['profil', 'Ta carte'], ['groupe', 'Groupe', 1]] },
+  { g: 's', k: 'gran0', t: 'Période de l\'accueil', d: 'Celle qui s\'affiche à l\'ouverture.', o: [['last', 'La dernière utilisée'], ['day', 'Jour'], ['week', 'Semaine'], ['month', 'Mois'], ['year', 'Année'], ['all', 'Tout']] },
+  { g: 's', k: 'remind', t: 'Rappel pour mettre à jour tes stats', d: 'Sillon te prévient quand ton dernier import commence à dater.', o: [[30, 'Tous les mois'], [90, 'Tous les 3 mois'], [0, 'Jamais']] }
+];
+const SET_G = { g: ['Graphiques', 'Pour les graphiques de l\'accueil, des fiches, des prédictions et du groupe.'], d: ['Affichage', ''], c: ['Ce qui compte comme une écoute', 'Les mêmes réglages que le bouton de réglages de l\'accueil.'], s: ['Au démarrage', ''] };
+const setGet = d => d.s ? S[d.k] : S.set[d.k];
+/* petit dessin de chaque style, pour les boutons */
+function chIcon(st) {
+  const v = [9, 16, 12, 21], x0 = 4, w = 7, gap = 3, b = 23, y = h => b - h;
+  if (st === 'auto') st = S.skin === 'console' ? 'seg' : 'round';
+  if (st === 'line' || st === 'area') {
+    const pts = v.map((h, i) => [x0 + i * (w + gap) + w / 2, y(h)]), d = monoPath(pts);
+    return `<svg viewBox="0 0 44 26" aria-hidden="true">${st === 'area' ? `<path class="ma" d="${d}L${pts[3][0]},${b}L${pts[0][0]},${b}Z"/>` : ''}<path class="ml" d="${d}"/>${pts.map((p, i) => `<circle class="md${i === 3 ? ' pk' : ''}" cx="${p[0]}" cy="${p[1]}" r="2"/>`).join('')}</svg>`;
+  }
+  if (st === 'note') return `<svg viewBox="0 0 44 26" aria-hidden="true">${v.map((h, i) => { const cx = x0 + i * (w + gap) + w / 2, cy = y(h) + 2; return `<line class="mst${i === 3 ? ' pk' : ''}" x1="${cx - 2.6}" x2="${cx - 2.6}" y1="${b}" y2="${cy + .6}"/><ellipse class="mb${i === 3 ? ' pk' : ''}" cx="${cx}" cy="${cy}" rx="3" ry="2.2" transform="rotate(-22 ${cx} ${cy})"/>`; }).join('')}</svg>`;
+  let s = '';
+  v.forEach((h, i) => {
+    const x = x0 + i * (w + gap), cls = 'mb' + (i === 3 ? ' pk' : '');
+    if (st === 'seg') { for (let yy = b - 2; yy > y(h); yy -= 3) s += `<rect class="${cls}" x="${x}" y="${yy}" width="${w}" height="2"/>`; }
+    else s += `<path class="${cls}" d="${barPath(x, b, y(h), w, st === 'round' ? 2.5 : 0)}"/>`;
+  });
+  return `<svg viewBox="0 0 44 26" aria-hidden="true">${s}</svg>`;
+}
+let SPV = null;
+function setPvData() {
+  if (!D) return null;
+  const key = dataVer + '|' + S.content + '|' + S.thr + '|' + S.noSkip;
+  if (SPV && SPV.key === key) return SPV;
+  const a = D.lastDay, [r0, r1] = range('year', a), X = aggAll(r0, r1, 'year', true);
+  const [q0, q1] = range('year', shift('year', a, -1)), Y = q1 > D.firstDay ? aggAll(q0, q1, 'year', true) : null;
+  SPV = { key, X, Y, y: ymd(a)[0] };
+  return SPV;
+}
+function drawSetPv() {
+  const svg = $('#setPv'), P0 = setPvData(); if (!svg || !P0) return;
+  const { X, Y } = P0, gh = S.cmp && Y ? Y.bM : null;
+  fig(svg, () => drawBars(svg, {
+    vals: X.bM, ghost: gh, conv: v => v / 6e4, unit: 'min', fmtV: fmtDur,
+    label: (i, sh, nar) => bucketLabel(X, i, sh, nar),
+    tip: i => `<b>${esc(fmtDur(X.bM[i]))}</b><span>${esc(bucketLabel(X, i, false))}</span>` + (gh ? `<span>${P0.y - 1}${NS}: ${esc(fmtDur(gh[i] || 0))}</span>` : '')
+  }));
+}
+function setRow(d) {
+  const v = setGet(d), id = 'st-' + d.k;
+  const txt = `<span class="setx"><b id="${id}">${esc(d.t)}</b>${d.d ? `<small>${esc(d.d)}</small>` : ''}</span>`;
+  if (!d.o) return `<label class="setr sw">${txt}<input type="checkbox" data-set="${d.k}"${v ? ' checked' : ''}><i></i></label>`;
+  const today = Math.floor(Date.now() / DAYMS);
+  const opts = d.o.filter(o => !o[2] || SA).map(([val, lab]) => {
+    if (d.k === 'date') { const keep = S.set.date; S.set.date = val; lab = fmtDay(today); S.set.date = keep; }
+    return `<button type="button" data-set="${d.k}" data-v="${val}" aria-pressed="${String(val) === String(v)}">${esc(lab)}</button>`;
+  }).join('');
+  return `<div class="setr">${txt}<div class="chips" role="group" aria-labelledby="${id}">${opts}</div></div>`;
+}
+function renderSettings(fk, fv) {
+  const box = $('#setTop'); if (!box) return;
+  skSync();
+  for (const g of Object.keys(SET_G)) {
+    const el = $('#set' + g.toUpperCase()); if (!el) continue;
+    const rows = SET_UI.filter(d => d.g === g && (!d.sa || SA)).map(setRow).join('');
+    const [t, sub] = SET_G[g];
+    let html = `<h3>${esc(t)}</h3>${sub ? `<p class="sub">${esc(sub)}</p>` : ''}`;
+    if (g === 'g') {
+      const P0 = setPvData();
+      html += P0 ? `<div class="card setpv"><div class="fig md"><svg id="setPv" role="img" aria-label="Aperçu : ton temps d'écoute en ${P0.y}, mois par mois"></svg></div><p class="small">Aperçu avec ${DEMO ? 'les données d\'exemple' : 'tes écoutes'} de ${P0.y}, mois par mois${S.cmp && P0.Y ? ', et ' + (P0.y - 1) + ' en pointillés' : ''}.</p></div>` : '';
+      html += `<div class="stl" role="group" aria-label="Style des graphiques">${CH_STYLES.map(([k, n, sm]) => `<button type="button" data-set="chart" data-v="${k}" aria-pressed="${S.set.chart === k}">${chIcon(k)}<span><b>${esc(n)}</b>${sm ? `<small>${esc(sm)}</small>` : ''}</span></button>`).join('')}</div>`;
+    }
+    el.innerHTML = html + `<div class="setl">${rows}</div>`;
+  }
+  drawSetPv();
+  if (fk) { const f = fv !== undefined ? $(`[data-set="${fk}"][data-v="${fv}"]`) : $(`input[data-set="${fk}"]`); if (f) f.focus({ preventScroll: true }); }
+}
+function setVal(k, raw) {
+  const d = SET_UI.find(x => x.k === k);
+  let v = raw;
+  if (k === 'thr' || k === 'remind') v = +raw;
+  if (d && d.s) S[k] = v; else S.set[k] = v;
+  savePrefs();
+  if (k === 'chart' || k === 'motion' || k === 'hue') applySet();
+  if (k === 'content') { S.focus = null; S.top = { art: 10, trk: 10, alb: 10 }; }
+  if (k === 'content' || k === 'thr' || k === 'noSkip') computeGlobal();
+  if (k === 'cov') queueCovers();
+  if (k === 'remind' && D) renderNotif();
+  if (D) renderHead();
+  if (k === 'dur' || k === 'date' || k === 'cov') renderMe();
+  renderSettings(k, d && !d.o ? undefined : raw);
+}
+function setReset() {
+  S.set = Object.assign({}, SET0); S.cmp = true; S.content = 'music'; S.thr = 30; S.noSkip = false; S.skinAuto = true;
+  if (!platNow()) S.skin = 'nuit';
+  savePrefs(); computeGlobal(); applySkin(); autoSkin(false);
+  if (D) { renderHead(); renderNotif(); }
+  renderMe(); toast('Réglages remis par défaut.');
+}
+function wireSettings() {
+  const box = $('#setTop'); if (!box) return;
+  box.addEventListener('click', e => {
+    const b = e.target.closest('button[data-set]'); if (b) { setVal(b.dataset.set, b.dataset.v); return; }
+    if (e.target.closest('[data-set-reset]')) setReset();
+  });
+  box.addEventListener('change', e => { const i = e.target.closest('input[data-set]'); if (i) setVal(i.dataset.set, i.checked); });
+  const lk = $('#filters a[href="#toi/reglages"]');
+  if (lk) lk.addEventListener('click', () => { $('#filters').classList.remove('open'); $('#setBtn').setAttribute('aria-expanded', 'false'); });
+}
+
 /* ================= wiring ================= */
 function go(k) {
   if (S.gran === 'all') return;
@@ -6090,7 +6397,7 @@ function go(k) {
   if (r1 <= D.firstDay || r0 > D.lastDay) return;
   S.anchor = clamp(a, D.firstDay, D.lastDay); S.calYear = null; render();
 }
-function applySkin() { document.body.dataset.skin = S.skin; const tc = document.querySelector('meta[name=theme-color]'); if (tc) tc.content = getComputedStyle(document.body).getPropertyValue('--panel').trim() || '#121212'; }
+function applySkin() { document.body.dataset.skin = S.skin; applySet(); const tc = document.querySelector('meta[name=theme-color]'); if (tc) tc.content = getComputedStyle(document.body).getPropertyValue('--panel').trim() || '#121212'; }
 function wire() {
   const onRadio = (name, fn) => $$(`input[name=${name}]`).forEach(r => r.addEventListener('change', () => { if (r.checked) { fn(r.value); savePrefs(); } }));
   onRadio('gran', v => { S.gran = v; S.calYear = null; render(); });
@@ -6105,12 +6412,12 @@ function wire() {
   const fl = $('#filters'), sb = $('#setBtn');
   sb.addEventListener('click', e => { e.stopPropagation(); const o = !fl.classList.contains('open'); fl.classList.toggle('open', o); sb.setAttribute('aria-expanded', String(o)); });
   document.addEventListener('click', e => { if (fl.classList.contains('open') && !fl.contains(e.target) && !sb.contains(e.target)) { fl.classList.remove('open'); sb.setAttribute('aria-expanded', 'false'); } if (!e.target.closest('.srch')) $('#sugg').hidden = true; });
-  const setSkin = s => { S.skin = s; savePrefs(); applySkin(); renderView(); if (!$('#dataModal').hidden) $('#skName').textContent = 'Thème : ' + SKIN_NAMES[S.skin]; };
+  const setSkin = s => { if (s === 'auto') { skinAutoOn(); return; } S.skin = s; S.skinAuto = false; savePrefs(); applySkin(); renderView(); skSync(); if (!$('#dataModal').hidden) $('#skName').textContent = 'Thème : ' + SKIN_NAMES[S.skin]; };
   $$('.sk').forEach(b => b.addEventListener('click', () => setSkin(b.dataset.s)));
   $('#skCycle').addEventListener('click', () => { setSkin(SKINS[(SKINS.indexOf(S.skin) + 1) % SKINS.length]); toast('Thème : ' + SKIN_NAMES[S.skin]); });
   $$('[data-act=data]').forEach(b => b.addEventListener('click', openData));
   $$('[data-act=how]').forEach(b => b.addEventListener('click', () => { openData(); $('#how').open = true; $('#how').scrollIntoView({ block: 'start' }); }));
-  $('#howTabs').addEventListener('click', e => { const b = e.target.closest('[data-svc]'); if (b) { howSvc = b.dataset.svc; renderHow(); } });
+  $('#howTabs').addEventListener('click', e => { const b = e.target.closest('[data-svc]'); if (b) { howSvc = b.dataset.svc; renderHow(); platPicked(howSvc); } });
   $$('[data-act=merge]').forEach(b => b.addEventListener('click', openMerge));
   $('#pick').addEventListener('click', () => { mergeMode = false; $('#file').click(); });
   $('#pickMerge').addEventListener('click', () => { mergeMode = true; $('#file').click(); });
@@ -6129,7 +6436,7 @@ function wire() {
   $('#rcGo').addEventListener('click', () => openRecap(S.gran, S.anchor));
   $('#rcPrev').addEventListener('click', () => rcGo(-1));
   $('#rcNext').addEventListener('click', () => rcGo(1));
-  wireStories(); wireGuide(); wireGroup(); wireInstall(); wireLink(); wireMe(); wireSugg();
+  wireStories(); wireGuide(); wireGroup(); wireInstall(); wireLink(); wireMe(); wireSugg(); wireSettings();
   if (SA) $$('.sao').forEach(e => { e.hidden = false; });
   document.addEventListener('click', e => { if (e.target.closest('#howBody a[href^="#guide"]')) closeAll(); });
   $('#rcPng').addEventListener('click', async () => { if (!RC || !RC.R) return; const b = await posterPng(RC.R); if (b) saveFile(`sillon-recap-${tagOf(RC.g, RC.a)}.png`, b); });
@@ -6219,8 +6526,9 @@ function renderGameCards() { $$('#gameList .gcard').forEach(b => { const g = b.d
 if (SA) SPA.load();
 loadPrefs(); applySkin(); wire();
 setData(makeDemo(), true);
+startView();
 route();
-Promise.all([Store.load(), Prefs.load()]).then(([X]) => { booted = true; if (X && X.n) setData(X, false); else renderView(); updateDataStatus(); if (SA) saBoot(); else if (S.live) setLive(true); }).catch(e => { booted = true; renderView(); console.warn(e); if (SA) saBoot(); });
+Promise.all([Store.load(), Prefs.load()]).then(([X]) => { booted = true; if (X && X.n) setData(X, false); else renderView(); updateDataStatus(); autoSkin(true); if (SA) saBoot(); else if (S.live) setLive(true); }).catch(e => { booted = true; renderView(); console.warn(e); if (SA) saBoot(); });
 }
 
 </script>
