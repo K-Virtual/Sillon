@@ -1088,6 +1088,33 @@ html[data-chart=line] .lg i.g,html[data-chart=area] .lg i.g{height:0;border:0;bo
 .setreset{margin:22px 0 0}
 .setlk{display:inline-block;margin-top:4px;font-size:14px;font-weight:700;color:var(--ink)}
 .sk[data-s=auto] i{background:conic-gradient(#1ed760 0 25%,#fa243c 0 50%,#ff0033 0 75%,#a238ff 0)}
+/* première visite */
+.wel{position:fixed;inset:0;z-index:104;display:grid;place-items:center;padding:calc(16px + env(safe-area-inset-top)) 16px calc(16px + env(safe-area-inset-bottom));background:rgba(0,0,0,.66);overflow-y:auto;overscroll-behavior:contain}
+.welbox{position:relative;width:100%;max-width:470px;display:flex;flex-direction:column;gap:14px;padding:26px 24px 18px;border-radius:14px;background:var(--panel);color:var(--ink);box-shadow:0 24px 70px rgba(0,0,0,.55)}
+.welbox .disc{width:52px;height:52px}
+.welbox h2{margin:0;font:900 clamp(30px,8vw,40px)/1.02 var(--f-head);letter-spacing:-.035em;outline:none}
+.welbox .lead{margin:-4px 0 0;color:var(--muted);font-size:15px;line-height:1.45}
+.welx{position:absolute;top:12px;right:12px}
+.welf{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:9px}
+.welf li{display:flex;align-items:center;gap:12px;font-size:14px;font-weight:600;line-height:1.35}
+.welf .ic{width:20px;height:20px;flex:none;color:var(--acc-t,var(--acc))}
+.welq{margin:4px 0 0;font:800 18px/1.25 var(--f-head)}
+.welp{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+.welp button{display:flex;align-items:center;gap:10px;min-height:58px;padding:10px 12px;border:0;border-radius:10px;background:var(--card);color:var(--ink);text-align:left;font:inherit;cursor:pointer;transition:background .15s}
+.welp button:hover{background:var(--card2)}
+.welp button:focus-visible{outline:2px solid var(--ink);outline-offset:2px}
+.welp i{flex:none;width:22px;height:22px;border-radius:50%;box-shadow:0 0 0 1px rgba(127,127,127,.5)}
+.welp span{min-width:0}
+.welp b{display:block;font-size:15px;font-weight:800}
+.welp small{display:block;color:var(--muted);font-size:12px;line-height:1.3}
+.sw-nuit{background:linear-gradient(135deg,#121212 50%,#1ed760 50%)}
+.sw-pomme{background:linear-gradient(135deg,#fff 50%,#fa243c 50%)}
+.sw-ecarlate{background:linear-gradient(135deg,#0f0f0f 50%,#ff0033 50%)}
+.sw-violet{background:linear-gradient(135deg,#1b191f 50%,#a238ff 50%)}
+.welnote{margin:0;color:var(--muted);font-size:13px;line-height:1.45}
+.welskip{align-self:center;padding:8px 12px;border:0;background:none;color:var(--muted);font:inherit;font-weight:600;font-size:14px;text-decoration:underline;text-underline-offset:3px;cursor:pointer}
+html.wellock{overflow:hidden}
+@media (max-width:380px){.welp{grid-template-columns:1fr}.welp button{min-height:50px}}
 /* animations réduites, au choix dans les réglages */
 html.calm *,html.calm *::before,html.calm *::after{transition:none!important;animation:none!important}
 html.calm .stobars .on i{width:100%}
@@ -1213,7 +1240,7 @@ html.calm .stobars .on i{width:100%}
   <div class="demo" id="demoBar" hidden>
     <div><p><b>Bienvenue sur Sillon.</b> Ce que tu vois, c'est un exemple inventé. Pour tes vraies stats, ouvre la fiche de ta plateforme : elle t'explique tout, étape par étape.</p>
       <div class="gquick"><a class="btn" href="#guide/spotify">Spotify</a><a class="btn" href="#guide/apple">Apple Music</a><a class="btn" href="#guide/ytm">YouTube Music</a><a class="btn" href="#guide/deezer">Deezer</a></div>
-      <p class="note" id="obSp" hidden>C'est tout : pas de compte à créer. En option, les vraies pochettes s'activent en connectant Spotify dans Données, seulement si la personne qui t'a partagé le site t'a ajouté à son app Spotify.</p>
+      <p class="note" id="obSp" hidden>C'est tout : pas de compte à créer. Les pochettes arrivent toutes seules. En option, connecter Spotify dans Données ajoute tes derniers morceaux à chaque ouverture, seulement si la personne qui t'a partagé le site t'a ajouté à son app Spotify.</p>
       <p class="note">Tes données restent à toi : personne d'autre ne les voit, même pas la personne qui t'a partagé le site.<span class="sao" hidden> Si tu rejoins un groupe, ses membres voient seulement un résumé.</span></p></div>
     <div class="row2"><button class="btn pri" data-act="data">Importer mon fichier</button></div>
   </div>
@@ -1454,6 +1481,7 @@ html.calm .stobars .on i{width:100%}
 </div>
 
 <div class="inst" id="inst" role="dialog" aria-modal="true" aria-labelledby="instT" hidden><div class="instbox" id="instBox"></div></div>
+<div class="wel" id="wel" role="dialog" aria-modal="true" aria-labelledby="welT" hidden><div class="welbox" id="welBox"></div></div>
 <div class="ov" id="ov" hidden></div>
 <aside class="drawer" id="drawer" role="dialog" aria-modal="true" aria-labelledby="dTitle" hidden></aside>
 
@@ -2459,7 +2487,7 @@ function setData(X, demo) {
   computeGlobal(); computeTaste(); TM = AM = null; dataVer++; searchIdx = null; RCX = null; PD = null; PRX = null; ALB_TID = null; ART_ALB = null; ART_TID = null;
   renderView();
   groupAutoPush();
-  if (!demo) lkAutoPush();
+  if (!demo) { lkAutoPush(); closeWelcome(); }
   renderMeTop();
   if (instOpen()) renderInstall();
 }
@@ -3799,7 +3827,14 @@ function rndStr(n) { const a = new Uint8Array(n), cs = 'ABCDEFGHIJKLMNOPQRSTUVWX
 async function sha256b64url(s) { const h = new Uint8Array(await crypto.subtle.digest('SHA-256', new TextEncoder().encode(s))); let b = ''; h.forEach(x => b += String.fromCharCode(x)); return btoa(b).replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, ''); }
 const CC = {
   m: null, dirty: false,
-  load() { if (!this.m) { try { this.m = JSON.parse(localStorage.getItem('sillon-covers') || '{}') || {}; } catch (e) { this.m = {}; } } return this.m; },
+  load() {
+    if (!this.m) {
+      try { this.m = JSON.parse(localStorage.getItem('sillon-covers') || '{}') || {}; } catch (e) { this.m = {}; }
+      /* une fois : les pochettes que Spotify n'avait pas trouvées ont une deuxième chance avec Deezer */
+      try { if (!localStorage.getItem('sillon-cov2')) { for (const k in this.m) if (this.m[k] === 0) delete this.m[k]; this.dirty = true; localStorage.setItem('sillon-cov2', '1'); } } catch (e) {}
+    }
+    return this.m;
+  },
   get(k) { return this.load()[k]; },
   set(k, v) { this.load()[k] = v; this.dirty = true; },
   save() { if (!this.dirty) return; try { localStorage.setItem('sillon-covers', JSON.stringify(this.m)); } catch (e) {} this.dirty = false; }
@@ -3808,34 +3843,81 @@ const akey = l => normT(D.albums[l]) + '|' + normT(D.artists[D.la[l]]);
 let ALB_TID = null, ART_ALB = null;
 function artAlb(a) { if (!ART_ALB) { ART_ALB = new Int32Array(D.na); const bv = new Float64Array(D.na); for (let l = 1; l < D.nl; l++) { const x = D.la[l], v = T.lP[l]; if (v > bv[x]) { bv[x] = v; ART_ALB[x] = l; } } } return ART_ALB[a]; }
 function albTid(l) { if (!ALB_TID) { ALB_TID = new Map(); for (let t = 0; t < D.nt; t++) { const x = D.tl[t]; if (x && D.tu[t] && D.tk[t] === 0 && !ALB_TID.has(x)) ALB_TID.set(x, D.tu[t]); } } return ALB_TID.get(l) || ''; }
+/* pochettes : Spotify pour les comptes connectés (exactes), Deezer pour tout le monde (sans compte) */
+const covOn = () => SA && !DEMO && S.set.cov !== 'gen';
 function withImg(html, k, tid, blur) {
   const u = CC.get(k);
   if (u) return html.replace('</span>', `<img${blur ? ' class="bl"' : ''} src="${esc(u)}" alt="" loading="lazy" decoding="async"></span>`);
-  if (u === 0 || !tid || !SPA.ok()) return html;
-  return html.replace('<span class="cv', `<span data-ck="${esc(k)}" data-tid="${esc(tid)}" class="cv`);
+  if (u === 0 || !covOn() || !k || k.startsWith('|') || k.endsWith('|')) return html;
+  return html.replace('<span class="cv', `<span data-ck="${esc(k)}"${tid ? ` data-tid="${esc(tid)}"` : ''} class="cv`);
+}
+const covN = s => normT(s).replace(/\b(deluxe|edition|remaster(ed)?|version|expanded|anniversary|bonus|tracks?|edit)\b/g, ' ').replace(/\s+/g, ' ').trim();
+/* bon album : même artiste, et un titre égal ou très proche ; sinon rien (rond de couleur plutôt qu'une fausse pochette) */
+function dzPick(d, al, ar) {
+  const L = d && Array.isArray(d.data) ? d.data : [], A = covN(al) || al;
+  let best = null, sc0 = 0;
+  for (const x of L) {
+    const xa = normT((x && x.artist && x.artist.name) || ''), xt = covN((x && x.title) || '');
+    if (!xa || !xt || !(xa === ar || (xa.length > 2 && ar.length > 2 && (xa.includes(ar) || ar.includes(xa))))) continue;
+    const sc = xt === A ? 3 : (xt.startsWith(A) || A.startsWith(xt)) ? 2 : 0;
+    if (sc > sc0) { sc0 = sc; best = x; }
+  }
+  return best ? (best.cover_medium || best.cover_big || best.cover || 0) : 0;
+}
+function dzSeed(d, nn) {
+  if (!SA) return;
+  for (const x of (d && Array.isArray(d.data) ? d.data : [])) {
+    if (!x || !x.artist || !x.title) continue;
+    const ar = normT(x.artist.name || ''); if (nn && ar !== nn) continue;
+    const k = normT(x.title) + '|' + ar, u = x.cover_medium || x.cover_big;
+    if (u && !CC.get(k)) CC.set(k, u);
+  }
+}
+async function dzCover(k) {
+  const i = k.lastIndexOf('|'), al = k.slice(0, i), ar = k.slice(i + 1);
+  if (!al || !ar) return 0;
+  let d = await dz('/search/album?q=' + encodeURIComponent(`artist:"${ar}" album:"${al}"`) + '&limit=10', 1);
+  if (!d || d.error) return null;
+  const u = dzPick(d, al, ar); if (u) return u;
+  d = await dz('/search/album?q=' + encodeURIComponent(ar + ' ' + al) + '&limit=10', 1);
+  if (!d || d.error) return null;
+  return dzPick(d, al, ar) || 0;
 }
 const imgPick = ims => { if (!ims || !ims.length) return 0; const s = ims.slice().sort((a, b) => (a.width || 0) - (b.width || 0)); return (s.find(i => (i.width || 0) >= 250) || s[s.length - 1]).url || 0; };
 function seedCovers(tracks) { noteArtists(tracks); for (const tr of tracks || []) { if (!tr || !tr.album) continue; const k = normT(tr.album.name || '') + '|' + normT(((tr.artists || [])[0] || {}).name || ''); if (!CC.get(k)) { const u = imgPick(tr.album.images); if (u) CC.set(k, u); } } }
 function applyCover(k) { const u = CC.get(k); if (!u) return; $$('.cv[data-ck]').forEach(el => { if (el.dataset.ck !== k) return; el.removeAttribute('data-ck'); el.insertAdjacentHTML('beforeend', `<img${el.classList.contains('r') ? ' class="bl"' : ''} src="${esc(u)}" alt="" loading="lazy" decoding="async">`); }); }
 let covTimer = 0, covBusy = false;
-function queueCovers() { if (!SA || !SPA.ok() || S.set.cov === 'gen') return; clearTimeout(covTimer); covTimer = setTimeout(fillCovers, 300); }
+let covPause = 0;
+function queueCovers() { if (!covOn() || Date.now() < covPause) return; clearTimeout(covTimer); covTimer = setTimeout(fillCovers, 300); }
 async function fillCovers() {
-  if (covBusy || !SPA.ok()) return;
-  const want = new Map();
-  for (const el of $$('.cv[data-ck]')) { const k = el.dataset.ck, u = CC.get(k); if (u) { applyCover(k); continue; } if (u === 0) { el.removeAttribute('data-ck'); continue; } if (!want.has(k) && el.dataset.tid) want.set(k, el.dataset.tid); }
+  if (covBusy || !covOn()) return;
+  const want = new Map(), vis = [];
+  for (const el of $$('.cv[data-ck]')) {
+    const k = el.dataset.ck, u = CC.get(k);
+    if (u) { applyCover(k); continue; }
+    if (u === 0) { el.removeAttribute('data-ck'); continue; }
+    if (want.has(k)) { if (el.dataset.tid && !want.get(k)) want.set(k, el.dataset.tid); continue; }
+    want.set(k, el.dataset.tid || '');
+    const r = el.getBoundingClientRect(); if (r.width && r.bottom > 0 && r.top < innerHeight) vis.push(k);
+  }
   if (!want.size) return;
   covBusy = true;
+  let n = 0, fails = 0;
   try {
-    let n = 0;
-    for (const [k, tid] of want) {
-      if (n++ >= 40) break;
-      try { const tr = await SPA.get('/tracks/' + encodeURIComponent(tid)); noteArtists([tr]); CC.set(k, imgPick(tr && tr.album && tr.album.images)); applyCover(k); }
-      catch (e) { if (!SPA.ok()) break; CC.set(k, 0); }
-      await sleep(150);
+    /* d'abord ce qui est à l'écran */
+    for (const k of new Set([...vis, ...want.keys()])) {
+      if (n++ >= 40 || !covOn()) break;
+      const tid = want.get(k);
+      if (tid && SPA.ok() && !SPA.denied) {
+        try { const tr = await SPA.get('/tracks/' + encodeURIComponent(tid)); noteArtists([tr]); const u = imgPick(tr && tr.album && tr.album.images); await sleep(150); if (u) { CC.set(k, u); applyCover(k); continue; } } catch (e) {}
+      }
+      const u = await dzCover(k);
+      if (u === null) { if (++fails >= 3) { covPause = Date.now() + 60000; break; } await sleep(1500); continue; }
+      fails = 0; CC.set(k, u); if (u) applyCover(k); else $$(`.cv[data-ck="${CSS.escape(k)}"]`).forEach(el => el.removeAttribute('data-ck'));
+      if (n % 10 === 0) CC.save();
     }
   } finally { covBusy = false; CC.save(); }
-  if (n0Left()) queueCovers();
-  function n0Left() { return $$('.cv[data-ck]').some(el => CC.get(el.dataset.ck) === undefined); }
+  if (Date.now() >= covPause && $$('.cv[data-ck]').some(el => CC.get(el.dataset.ck) === undefined)) queueCovers();
 }
 async function addRecent(items) {
   const lastTs = D.n ? D.s[D.n - 1] + Math.round(D.m[D.n - 1] / 1000) : 0, recs = [];
@@ -3875,7 +3957,7 @@ function renderSpBox() {
   if (!SPA.cid || SPA.editing) {
     b.innerHTML = `<p class="note">Pour utiliser ta propre app Spotify : crée-la sur le <a href="https://developer.spotify.com/dashboard" target="_blank" rel="noopener">tableau de bord développeur Spotify</a> (Spotify demande un compte Premium pour ça), coche « Web API » et mets cette adresse de redirection :</p><p><code class="cp">${red}</code></p><div class="sprow"><input class="field" id="spCid" placeholder="Client ID de ton app" autocomplete="off" spellcheck="false" aria-label="Client ID de ton app Spotify"><button class="btn pri" id="spSave">Enregistrer</button>${cfg || SPA.cid ? '<button class="more" id="spCancel">Annuler</button>' : ''}</div>`;
   } else if (!SPA.ok()) {
-    b.innerHTML = (SPA.fromCfg ? `<p class="note">Pas obligatoire : tes stats marchent sans. Ça ajoute seulement les vraies pochettes et tes 50 derniers morceaux à chaque ouverture. Il faut que la personne qui a mis le site en ligne ait ajouté ton compte à son app Spotify (5 comptes maximum). Sinon, Spotify refusera la connexion.</p>` : `<p class="note">Client ID enregistré. L'adresse de redirection déclarée dans ton app doit être exactement : <code class="cp">${red}</code></p>`) +
+    b.innerHTML = (SPA.fromCfg ? `<p class="note">Pas obligatoire : tes stats et les pochettes marchent sans. Ça ajoute tes 50 derniers morceaux à chaque ouverture, et des pochettes encore plus exactes. Il faut que la personne qui a mis le site en ligne ait ajouté ton compte à son app Spotify (5 comptes maximum). Sinon, Spotify refusera la connexion.</p>` : `<p class="note">Client ID enregistré. L'adresse de redirection déclarée dans ton app doit être exactement : <code class="cp">${red}</code></p>`) +
       `<div class="sprow"><button class="btn pri" id="spLogin">Connecter Spotify</button><button class="more" id="spReset">${SPA.fromCfg ? 'Utiliser ma propre app Spotify' : 'Changer de Client ID'}</button></div>`;
   } else if (SPA.denied) {
     b.innerHTML = `<p class="note"><b>Spotify refuse ton compte sur cette app.</b> Demande à la personne qui a mis le site en ligne de t'ajouter dans son app Spotify (onglet User Management, avec le nom et l'adresse mail de ton compte Spotify). Spotify limite à 5 comptes par app. En attendant, tout marche sauf les pochettes et les derniers morceaux.</p><div class="sprow"><button class="btn" id="spSync">Réessayer</button><button class="btn" id="spOut">Déconnecter</button></div>`;
@@ -3945,8 +4027,21 @@ let ART_TID = null;
 function artTid(a) { if (!ART_TID) { ART_TID = new Map(); const best = new Map(); for (let t = 0; t < D.nt; t++) { if (D.tk[t] !== 0 || !D.tu[t]) continue; const x = D.ta[t], v = T.tP[t]; if (!best.has(x) || v > best.get(x)) { best.set(x, v); ART_TID.set(x, D.tu[t]); } } } return ART_TID.get(a) || ''; }
 let genBusy = false, genProg = null;
 let dzN = 0, DZG = null;
-function dz(path) {
-  return new Promise(res => {
+/* Deezer accepte 50 demandes par 5 s : Sillon en garde 40 au plus. Les tâches de fond (bg 1 : pochettes,
+   bg 2 : genres) laissent passer la page Suggestions quand elle cherche, et ne prennent jamais plus de 25 places : il en reste toujours pour elle. */
+const DZQ = [];
+let dzFg = 0;
+async function dzSlot(bg) {
+  for (;;) {
+    const now = Date.now();
+    while (DZQ.length && now - DZQ[0] >= 5000) DZQ.shift();
+    if (bg && dzFg) { await sleep(300); continue; }
+    if (DZQ.length < (bg === 2 ? 15 : bg ? 25 : 40)) { DZQ.push(now); return; }
+    await sleep(Math.max(30, 5000 - (now - DZQ[0]) + 30));
+  }
+}
+function dz(path, bg) {
+  return dzSlot(bg).then(() => new Promise(res => {
     const cb = '__sillonDz' + (++dzN), sc = document.createElement('script');
     const done = d => { clearTimeout(tm); try { delete window[cb]; } catch (e) { window[cb] = undefined; } sc.remove(); res(d); };
     const tm = setTimeout(() => done(null), 8000);
@@ -3954,26 +4049,27 @@ function dz(path) {
     sc.onerror = () => done(null);
     sc.src = 'https://api.deezer.com' + path + (path.includes('?') ? '&' : '?') + 'output=jsonp&callback=' + cb;
     document.head.appendChild(sc);
-  });
+  }));
 }
 async function dzGenreNames() {
   if (DZG) return DZG;
   try { DZG = JSON.parse(localStorage.getItem('sillon-dzg') || 'null'); } catch (e) { DZG = null; }
   if (DZG && Object.keys(DZG).length) return DZG;
-  const r = await dz('/genre'); DZG = {};
+  const r = await dz('/genre', 2); DZG = {};
   for (const g of (r && r.data) || []) if (g && g.id > 0) DZG[g.id] = String(g.name || '');
   if (Object.keys(DZG).length) try { localStorage.setItem('sillon-dzg', JSON.stringify(DZG)); } catch (e) {}
   return DZG;
 }
 async function dzGenres(name) {
   const names = await dzGenreNames(), nn = normT(name), cnt = new Map();
-  const r = await dz(`/search/album?q=${encodeURIComponent('artist:"' + name + '"')}&limit=25`);
+  const r = await dz(`/search/album?q=${encodeURIComponent('artist:"' + name + '"')}&limit=25`, 2);
+  dzSeed(r, nn);
   for (const al of (r && r.data) || []) { if (!al || !al.artist || normT(al.artist.name || '') !== nn) continue; if (al.genre_id > 0) cnt.set(al.genre_id, (cnt.get(al.genre_id) || 0) + 1); }
   if (!cnt.size) {
     await sleep(120);
-    const sa = await dz(`/search/artist?q=${encodeURIComponent(name)}&limit=5`);
+    const sa = await dz(`/search/artist?q=${encodeURIComponent(name)}&limit=5`, 2);
     const ar = ((sa && sa.data) || []).find(x => x && normT(x.name || '') === nn);
-    if (ar) { await sleep(120); const al = await dz(`/artist/${ar.id}/albums?limit=25`); for (const x of (al && al.data) || []) if (x && x.genre_id > 0) cnt.set(x.genre_id, (cnt.get(x.genre_id) || 0) + 1); }
+    if (ar) { await sleep(120); const al = await dz(`/artist/${ar.id}/albums?limit=25`, 2); for (const x of (al && al.data) || []) if (x && x.genre_id > 0) cnt.set(x.genre_id, (cnt.get(x.genre_id) || 0) + 1); }
   }
   return [...cnt].sort((x, y) => y[1] - x[1]).slice(0, 2).map(([g]) => names[g]).filter(Boolean).map(x => x.toLowerCase());
 }
@@ -4141,7 +4237,7 @@ async function pngKit(Wd, Ht, hue) {
   const rg = g.createRadialGradient(Wd, 0, 0, Wd, 0, Wd); rg.addColorStop(0, `hsla(${(hue + 330) % 360},85%,60%,0.5)`); rg.addColorStop(1, 'hsla(0,0%,0%,0)'); g.fillStyle = rg; g.fillRect(0, 0, Wd, Ht);
   const fit = (t, w) => { t = sp(t); if (g.measureText(t).width <= w) return t; while (t.length > 1 && g.measureText(t + '…').width > w) t = t.slice(0, -1); return t + '…'; };
   const imgs = new Map();
-  const loadImg = u => { if (!imgs.has(u)) imgs.set(u, new Promise(res => { const im = new Image(); im.crossOrigin = 'anonymous'; const tm = setTimeout(() => res(null), 4000); im.onload = () => { clearTimeout(tm); res(im); }; im.onerror = () => { clearTimeout(tm); res(null); }; im.src = u; })); return imgs.get(u); };
+  const loadImg = u => { if (!imgs.has(u)) imgs.set(u, /dzcdn\.net/.test(u) ? Promise.resolve(null) : new Promise(res => { const im = new Image(); im.crossOrigin = 'anonymous'; const tm = setTimeout(() => res(null), 4000); im.onload = () => { clearTimeout(tm); res(im); }; im.onerror = () => { clearTimeout(tm); res(null); }; im.src = u; })); return imgs.get(u); };
   const K = {
     g, fu,
     T(txt, x, y, font, color, w) { g.font = font; g.fillStyle = color; g.fillText(w ? fit(txt, w) : sp(txt), x, y); },
@@ -5613,6 +5709,7 @@ function openInstall() {
 function closeInstall() {
   $('#inst').hidden = true; document.documentElement.classList.remove('instlock');
   try { sessionStorage.setItem('sillon-noinst', '1'); } catch (e) {}
+  welcomeMaybe();
 }
 function renderInstall() {
   const box = $('#instBox'); if (!box) return;
@@ -5965,9 +6062,10 @@ async function meSetPp(file) {
 }
 
 /* ---------- version : X refonte, Y grosse mise à jour, Z correctifs ---------- */
-const SILLON_V = '2.6.0';
+const SILLON_V = '2.7.0';
 const SV_TYPE = { X: 'Refonte', Y: 'Grosse mise à jour', Z: 'Correctifs', I: 'Première version' };
 const SILLON_LOG = [
+  ['2.7.0', 'Y', ['Fenêtre de bienvenue à la première visite : tu choisis ta plateforme, Sillon se met à ses couleurs et t\'ouvre la fiche pour récupérer tes données.', 'Pochettes pour tout le monde, sans connexion ni compte Spotify : elles viennent de Deezer. Un artiste prend la pochette de son album le plus écouté.']],
   ['2.6.0', 'Y', ['Réglages dans la page Toi : style des graphiques (barres arrondies ou droites, courbe, aire, rétro, notes de musique), ligne de moyenne, lignes de repère, valeur du record.', 'Durées en heures et minutes, en heures ou en minutes, et dates en lettres ou en chiffres.', 'Couleur des pages, pochettes, animations réduites, page et période d\'ouverture, rappel de mise à jour.', 'Thème automatique : Sillon prend les couleurs de ta plateforme (Spotify, Apple Music, YouTube Music ou Deezer).']],
   ['2.5.1', 'Z', ['Classements : touche une colonne deux fois pour passer de l\'ordre décroissant à l\'ordre croissant.', 'Nouvelle page À propos : versions, services utilisés, comment marche le site.']],
   ['2.5.0', 'Y', ['Page Toi : ta photo, ton pseudo, ton groupe, tes appareils, le thème et tes données au même endroit.', 'Sur téléphone, la barre du bas avec l\'onglet Plus.', 'Groupe : trophées, duel 1 contre 1 et équivalences.', 'Page Suggestions : micro-genres, artistes et albums à découvrir, extraits de 30 secondes.', 'Numéro de version.']],
@@ -5979,8 +6077,8 @@ const SILLON_LOG = [
   ['1.0.0', 'I', ['Graphiques par jour, semaine, mois et année.']]
 ];
 const AB_SVC = [
-  ['Spotify Web API', 'Connexion à ton compte, tes derniers morceaux et les vraies pochettes.', 'Version GitHub'],
-  ['Deezer API', 'Genres des artistes, artistes proches, extraits de 30 secondes.', 'Version GitHub'],
+  ['Spotify Web API', 'Connexion à ton compte, tes derniers morceaux, et les pochettes exactes quand tu es connecté.', 'Version GitHub'],
+  ['Deezer API', 'Pochettes pour tout le monde, genres des artistes, artistes proches, extraits de 30 secondes.', 'Version GitHub'],
   ['Last.fm API', 'Micro-genres, artistes similaires, albums à découvrir.', 'Version GitHub, avec une clé'],
   ['Firebase', 'Authentication (connexion anonyme) et Cloud Firestore : groupes et liaison entre appareils.', 'Version GitHub'],
   ['GitHub Pages', 'Hébergement du site.', 'Version GitHub'],
@@ -6007,7 +6105,7 @@ function renderAbout() {
     'Sillon garde les titres, artistes, albums, dates, durées et appareils. Les adresses IP de l\'export sont ignorées.',
     'Une écoute compte à partir de 30 secondes. En dessous, c\'est un morceau zappé.',
     SA ? 'Tes données restent dans ce navigateur. Si tu relies tes appareils, une copie chiffrée passe par Firebase : personne d\'autre ne peut la lire, même pas la personne qui a mis le site en ligne.' : 'Tes données sont gardées dans ton espace privé Claude, lié à ton compte.',
-    ...(SA ? ['Si tu rejoins un groupe, ses membres voient un résumé de tes stats : pseudo, photo, chiffres clés, temps d\'écoute par mois, par heure et par jour, tes 50 artistes et 20 titres les plus écoutés. Jamais ton historique complet.', 'Pour les genres et les suggestions, les noms de tes artistes préférés sont envoyés à Deezer et à Last.fm, le temps de la recherche.'] : [])
+    ...(SA ? ['Si tu rejoins un groupe, ses membres voient un résumé de tes stats : pseudo, photo, chiffres clés, temps d\'écoute par mois, par heure et par jour, tes 50 artistes et 20 titres les plus écoutés. Jamais ton historique complet.', 'Pour les pochettes, les genres et les suggestions, des noms d\'albums et d\'artistes sont envoyés à Deezer (et à Last.fm pour les suggestions), le temps de la recherche. Jamais ton historique.'] : [])
   ])}</section>
   <section class="blk"><div class="bh"><div><h2>Services et API</h2><p class="sub">Ce que Sillon utilise en dehors de ton navigateur</p></div></div>
     <table class="abtab"><thead><tr><th>Service</th><th>À quoi il sert</th><th>Version</th></tr></thead><tbody>${AB_SVC.map(([n, d, v]) => `<tr><td>${esc(n)}</td><td>${esc(d)}</td><td>${esc(v)}</td></tr>`).join('')}</tbody></table></section>
@@ -6141,7 +6239,8 @@ async function sgBuild() {
 async function sgTag(tag) {
   const K = (SG.data && SG.data.K) || sgKnown();
   const r = await lfTagTop(tag); SGC.save();
-  const arts = r.a.filter(n => !K.A.has(normT(n))).slice(0, 8), tops = await sgPool(arts, 3, n => dzTop(n));
+  const arts = r.a.filter(n => !K.A.has(normT(n))).slice(0, 8);
+  dzFg++; let tops; try { tops = await sgPool(arts, 3, n => dzTop(n)); } finally { dzFg--; }
   return { arts: arts.map((n, i) => ({ name: n, tr: tops[i] })), albs: r.l.filter(x => x.img && x.ar && !K.A.has(normT(x.ar))).slice(0, 6) };
 }
 /* ---------- écouter ---------- */
@@ -6197,10 +6296,10 @@ function renderSugg() {
 }
 async function sgRun() {
   if (SG.busy) return;
-  SG.busy = true; SG.err = ''; SG.prog = '';
+  SG.busy = true; SG.err = ''; SG.prog = ''; dzFg++;
   try { SG.data = await sgBuild(); }
   catch (e) { console.warn('suggestions', e); SG.err = e && e.lf === 10 ? 'La clé Last.fm de config.js n\'est pas bonne : vérifie que tu as copié « API key », pas « Shared secret ».' : e && e.lf === 29 ? 'Last.fm demande de ralentir. Réessaie dans une minute.' : 'Les suggestions ne répondent pas : vérifie ta connexion internet, puis réessaie.'; }
-  finally { SG.busy = false; if (S.view === 'suggestions') renderSugg(); }
+  finally { SG.busy = false; dzFg--; if (S.view === 'suggestions') renderSugg(); }
 }
 async function sgAct(a, el) {
   if (a === 'import') return openData();
@@ -6281,7 +6380,7 @@ const SET_UI = [
   { g: 'd', k: 'hue', t: 'Couleur des pages', d: 'Le haut des pages prend la couleur de ton artiste n°1, ou garde celle du thème.', o: [['artist', 'Selon ton artiste'], ['theme', 'Celle du thème']] },
   { g: 'd', k: 'dur', t: 'Durées', d: 'Comment Sillon écrit ton temps d\'écoute.', o: [['hm', '1 h 45'], ['dec', '1,8 h'], ['min', '105 min']] },
   { g: 'd', k: 'date', t: 'Dates', o: [['short', ''], ['num', '']] },
-  { g: 'd', k: 'cov', sa: 1, t: 'Pochettes', d: 'Les vraies pochettes de Spotify, ou des ronds de couleur dessinés par Sillon.', o: [['real', 'Vraies pochettes'], ['gen', 'Dessinées']] },
+  { g: 'd', k: 'cov', sa: 1, t: 'Pochettes', d: 'Les vraies pochettes (Spotify si tu es connecté, sinon Deezer), ou des ronds de couleur dessinés par Sillon. Un artiste prend la pochette de son album que tu écoutes le plus.', o: [['real', 'Vraies pochettes'], ['gen', 'Dessinées']] },
   { g: 'd', k: 'motion', t: 'Animations', d: 'Réduites : plus de transitions, et les stories des récaps n\'avancent plus toutes seules.', o: [['normal', 'Normales'], ['calm', 'Réduites']] },
   { g: 'c', k: 'content', s: 1, t: 'Ce que Sillon compte', o: [['music', 'Musique'], ['pod', 'Podcasts'], ['all', 'Tout']] },
   { g: 'c', k: 'thr', s: 1, t: 'Une écoute compte à partir de', d: 'En dessous, c\'est un morceau zappé.', o: [[0, '0 s'], [30, '30 s'], [60, '60 s']] },
@@ -6390,6 +6489,72 @@ function wireSettings() {
   if (lk) lk.addEventListener('click', () => { $('#filters').classList.remove('open'); $('#setBtn').setAttribute('aria-expanded', 'false'); });
 }
 
+/* ---------- première visite : présentation et choix de la plateforme ---------- */
+const WEL_ICON = {
+  rc: '<svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="6" width="13" height="15" rx="2"/><path d="M8 3h11a2 2 0 0 1 2 2v12"/></svg>',
+  rk: '<svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 21h8M12 17v4M7 4h10v5a5 5 0 0 1-10 0z"/><path d="M17 6h3v2a3 3 0 0 1-3 3M7 6H4v2a3 3 0 0 0 3 3"/></svg>',
+  gr: '<svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="8" r="3.2"/><path d="M3.2 19.5a5.8 5.8 0 0 1 11.6 0"/><path d="M15.6 4.9a3.2 3.2 0 0 1 0 6.2"/><path d="M17.6 14.1a5.8 5.8 0 0 1 3.2 5.4"/></svg>',
+  lk: '<svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg>'
+};
+const WEL_WAIT = { spotify: 'fichier en quelques jours', apple: 'fichier en 7 jours max', ytm: 'fichier souvent le jour même', deezer: 'fichier en 7 jours max' };
+let welPrev = null;
+const welSeen = () => { try { return !!localStorage.getItem('sillon-welcome'); } catch (e) { return true; } };
+const welMark = () => { try { localStorage.setItem('sillon-welcome', String(Date.now())); } catch (e) {} };
+const welOpen = () => { const w = $('#wel'); return !!w && !w.hidden; };
+function welcomeMaybe() {
+  if (!booted || !DEMO || welOpen() || welSeen() || instOpen()) return;
+  if (S.plat) { welMark(); return; }
+  openWelcome();
+}
+function openWelcome() {
+  const box = $('#welBox'); if (!box) return;
+  const inv = S.view === 'groupe' && S.grInvite;
+  box.innerHTML = `<button class="x welx" data-wel="close" aria-label="Fermer">×</button>
+    <svg class="disc" viewBox="0 0 64 64" aria-hidden="true"><circle class="d1" cx="32" cy="32" r="30"/><circle class="d2" cx="32" cy="32" r="24"/><circle class="d2" cx="32" cy="32" r="18"/><circle class="d3" cx="32" cy="32" r="10"/><circle class="d4" cx="32" cy="32" r="2.4"/></svg>
+    <h2 id="welT" tabindex="-1">Bienvenue sur Sillon</h2>
+    <p class="lead">${inv ? 'Tes potes t\'attendent dans leur groupe. ' : ''}Toutes tes écoutes depuis la création de ton compte, en graphiques.</p>
+    <ul class="welf">
+      <li>${WEL_ICON.rc}Tes récaps de la semaine, du mois et de l'année, façon Wrapped</li>
+      <li>${WEL_ICON.rk}Classements, prédictions et jeux sur ce que tu écoutes</li>
+      ${SA ? `<li>${WEL_ICON.gr}Tes stats à côté de celles de tes potes</li>` : ''}
+      <li>${WEL_ICON.lk}Tout reste dans ton navigateur : personne d'autre ne voit tes écoutes</li>
+    </ul>
+    <h3 class="welq">Tu écoutes ta musique sur…</h3>
+    <div class="welp" role="group" aria-label="Ta plateforme">${Object.keys(SVCS).map(k => `<button type="button" data-wel="${k}"><i class="sw-${SKIN_OF[k]}" aria-hidden="true"></i><span><b>${esc(SVCS[k].n)}</b><small>${esc(WEL_WAIT[k])}</small></span></button>`).join('')}</div>
+    <p class="welnote">${inv ? 'Choisis ta plateforme : tu restes sur l\'invitation, et le guide t\'explique ensuite comment récupérer tes données.' : 'Sillon se met à ses couleurs, et t\'explique comment récupérer tes données, étape par étape.'}</p>
+    <button class="welskip" data-wel="later">Regarder l'exemple d'abord</button>`;
+  welPrev = document.activeElement;
+  $('#wel').hidden = false; document.documentElement.classList.add('wellock');
+  setTimeout(() => { const h = $('#welT'); if (h) h.focus({ preventScroll: true }); }, 40);
+}
+function closeWelcome() {
+  const w = $('#wel'); if (!w || w.hidden) return;
+  welMark(); w.hidden = true; document.documentElement.classList.remove('wellock');
+  if (welPrev && welPrev.isConnected && welPrev !== document.body) try { welPrev.focus({ preventScroll: true }); } catch (e) {}
+  welPrev = null;
+}
+function welAct(a) {
+  if (a === 'close' || a === 'later') { closeWelcome(); return; }
+  if (!SVCS[a]) return;
+  const inv = S.view === 'groupe' && S.grInvite;
+  closeWelcome();
+  platPicked(a);
+  if (inv) toast(`Noté : ${SVCS[a].n}. Pour récupérer tes données, ouvre le Guide quand tu veux.`);
+  else location.hash = 'guide/' + a;
+}
+function wireWelcome() {
+  const w = $('#wel'); if (!w) return;
+  w.addEventListener('click', e => { if (e.target === w) { closeWelcome(); return; } const b = e.target.closest('[data-wel]'); if (b) welAct(b.dataset.wel); });
+  w.addEventListener('keydown', e => {
+    if (e.key === 'Escape') { e.stopPropagation(); closeWelcome(); return; }
+    if (e.key !== 'Tab') return;
+    const f = $$('button, [href], [tabindex]:not([tabindex="-1"])', w).filter(x => !x.disabled && x.offsetParent);
+    if (!f.length) return;
+    if (e.shiftKey && (document.activeElement === f[0] || document.activeElement === $('#welT'))) { e.preventDefault(); f[f.length - 1].focus(); }
+    else if (!e.shiftKey && document.activeElement === f[f.length - 1]) { e.preventDefault(); f[0].focus(); }
+  });
+}
+
 /* ================= wiring ================= */
 function go(k) {
   if (S.gran === 'all') return;
@@ -6436,7 +6601,7 @@ function wire() {
   $('#rcGo').addEventListener('click', () => openRecap(S.gran, S.anchor));
   $('#rcPrev').addEventListener('click', () => rcGo(-1));
   $('#rcNext').addEventListener('click', () => rcGo(1));
-  wireStories(); wireGuide(); wireGroup(); wireInstall(); wireLink(); wireMe(); wireSugg(); wireSettings();
+  wireStories(); wireGuide(); wireGroup(); wireInstall(); wireLink(); wireMe(); wireSugg(); wireSettings(); wireWelcome();
   if (SA) $$('.sao').forEach(e => { e.hidden = false; });
   document.addEventListener('click', e => { if (e.target.closest('#howBody a[href^="#guide"]')) closeAll(); });
   $('#rcPng').addEventListener('click', async () => { if (!RC || !RC.R) return; const b = await posterPng(RC.R); if (b) saveFile(`sillon-recap-${tagOf(RC.g, RC.a)}.png`, b); });
@@ -6528,7 +6693,7 @@ loadPrefs(); applySkin(); wire();
 setData(makeDemo(), true);
 startView();
 route();
-Promise.all([Store.load(), Prefs.load()]).then(([X]) => { booted = true; if (X && X.n) setData(X, false); else renderView(); updateDataStatus(); autoSkin(true); if (SA) saBoot(); else if (S.live) setLive(true); }).catch(e => { booted = true; renderView(); console.warn(e); if (SA) saBoot(); });
+Promise.all([Store.load(), Prefs.load()]).then(([X]) => { booted = true; if (X && X.n) setData(X, false); else renderView(); updateDataStatus(); autoSkin(true); welcomeMaybe(); if (SA) saBoot(); else if (S.live) setLive(true); }).catch(e => { booted = true; renderView(); console.warn(e); if (SA) saBoot(); });
 }
 
 </script>
