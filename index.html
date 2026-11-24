@@ -332,6 +332,40 @@ table.rk td.nm small{display:block;color:var(--muted);font-size:12px}
 table.rk tbody tr:hover td{background:var(--hover)}
 .actrow{display:flex;flex-wrap:wrap;align-items:center;gap:12px 16px}
 
+/* guide */
+.gquick{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0 6px}
+.gpick{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px}
+.gpick a{display:flex;flex-direction:column;gap:4px;padding:16px 18px;border-radius:10px;background:var(--card);color:var(--ink);text-decoration:none;box-shadow:inset 0 0 0 2px transparent;transition:background .15s}
+.gpick a:hover{background:var(--card2)}
+.gpick a[aria-current=true]{box-shadow:inset 0 0 0 2px var(--acc)}
+.gpick b{font:800 18px/1.2 var(--f-head);letter-spacing:-.01em}
+.gpick small{color:var(--muted);font-size:13px}
+.gfiche{display:flex;flex-direction:column;gap:36px;max-width:880px}
+.gintro{color:var(--muted)}
+.gfh{display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:12px}
+.gfh h2{font:900 clamp(28px,3.6vw,42px)/1.05 var(--f-head);letter-spacing:-.035em}
+.gstat{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:10px 16px;padding:14px 16px;border-radius:10px;background:color-mix(in srgb,var(--acc) 14%,var(--card))}
+.gstat p{margin:0;font-weight:600}
+.gfacts{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px}
+.gfacts .kpi .v{font:700 16px/1.35 var(--f-ui);letter-spacing:0}
+.gsec h3{font:800 22px/1.2 var(--f-head);letter-spacing:-.02em;margin-bottom:14px}
+.gsec>p{margin:0;max-width:70ch}
+.gcheck{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:10px;max-width:72ch}
+.gcheck li{position:relative;padding-left:26px}
+.gcheck li::before{content:"";position:absolute;left:2px;top:.45em;width:12px;height:7px;border-left:2.5px solid var(--acc);border-bottom:2.5px solid var(--acc);transform:rotate(-45deg)}
+.gsteps{list-style:none;margin:0;padding:0;counter-reset:gs;display:flex;flex-direction:column;gap:10px}
+.gsteps>li{counter-increment:gs;display:grid;grid-template-columns:36px minmax(0,1fr);gap:14px;padding:16px 18px;border-radius:10px;background:var(--card)}
+.gsteps>li::before{content:counter(gs);display:grid;place-items:center;width:32px;height:32px;border-radius:50%;background:var(--ink);color:var(--panel);font:800 16px/1 var(--f-num)}
+.gsteps b{display:block;font-weight:800;font-size:16px;line-height:1.35;padding-top:5px}
+.gsteps p{margin:4px 0 0;color:var(--muted);max-width:68ch}
+.gsteps p.gtip{margin-top:10px;padding:8px 12px;border-left:3px solid var(--acc);border-radius:0 6px 6px 0;background:color-mix(in srgb,var(--acc) 9%,transparent);color:var(--ink);font-size:14px}
+.gsteps a,.gcheck a{color:var(--ink);text-decoration:underline;text-underline-offset:2px}
+.gact{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
+.gfaq details{border-top:1px solid var(--line);padding:12px 0}
+.gfaq details:last-child{border-bottom:1px solid var(--line)}
+.gfaq summary{cursor:pointer;font-weight:700}
+.gfaq p{margin:8px 0 0;color:var(--muted);max-width:70ch}
+
 /* récaps : affiche */
 .pst{--ink:#fff;--sub:rgba(255,255,255,.8);--lab:hsl(calc(var(--h) + 160) 85% 62%);position:relative;display:flex;flex-direction:column;gap:clamp(14px,3.6cqi,24px);padding:clamp(20px,7cqi,40px);border-radius:14px;background:var(--bg);color:var(--ink);overflow:hidden;container-type:inline-size}
 .pstart{position:relative;width:40cqi;max-width:220px;margin-bottom:16px}
@@ -736,6 +770,11 @@ code.cp{display:inline-block;max-width:100%;padding:4px 8px;border-radius:6px;ba
   .sty{padding:20px}
   .sls{grid-template-columns:1fr}
   #rkMore,#logMore{width:100%}
+  .gpick{grid-template-columns:1fr 1fr}
+  .gfacts{grid-template-columns:1fr 1fr}
+  .gsteps>li{grid-template-columns:30px minmax(0,1fr);gap:12px;padding:14px}
+  .gsteps>li::before{width:28px;height:28px;font-size:14px}
+  .gsteps b{padding-top:3px}
   .rcsty .sl{grid-template-columns:minmax(0,1fr) minmax(0,1fr);grid-template-areas:"l r" "t t";gap:7px 10px}
   .rcsty .sl .w{grid-area:l}
   .rcsty .sl .w.r{grid-area:r}
@@ -772,6 +811,7 @@ code.cp{display:inline-block;max-width:100%;padding:4px 8px;border-radius:6px;ba
       <a href="#classements" data-v="classements"><svg class="ic" viewBox="0 0 24 24"><path d="M8 21h8M12 17v4M7 4h10v5a5 5 0 0 1-10 0z"/><path d="M17 6h3v2a3 3 0 0 1-3 3M7 6H4v2a3 3 0 0 0 3 3"/></svg><span>Classements</span></a>
       <a href="#predictions" data-v="predictions"><svg class="ic" viewBox="0 0 24 24"><path d="M3 17l5-5 4 3 8-8"/><path d="M15 7h5v5"/><path d="M3 21h18" stroke-dasharray="2 3"/></svg><span>Prédictions</span></a>
       <a href="#jeux" data-v="jeux"><svg class="ic" viewBox="0 0 24 24"><rect x="2.5" y="7" width="19" height="11" rx="5"/><path d="M7 11v3M5.5 12.5h3"/><circle cx="16" cy="11.5" r=".8"/><circle cx="18" cy="13.5" r=".8"/></svg><span>Jeux</span></a>
+      <a href="#guide" data-v="guide"><svg class="ic" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M9.6 9.4a2.5 2.5 0 1 1 3.4 2.4c-.6.3-1 .8-1 1.5v.5"/><path d="M12 17h.01"/></svg><span>Guide</span></a>
     </nav>
   </div>
   <div class="sbox lib">
@@ -867,11 +907,11 @@ code.cp{display:inline-block;max-width:100%;padding:4px 8px;border-radius:6px;ba
     </div>
   </div>
   <div class="demo" id="demoBar" hidden>
-    <div><p><b>Bienvenue sur Sillon.</b> Ce que tu vois, c'est un exemple inventé. Pour tes vraies stats :</p>
-      <ol><li>Demande ton historique d'écoute à ta plateforme : Spotify, Apple Music, YouTube Music ou Deezer. Les étapes sont dans « Comment faire ».</li><li>Quand le fichier arrive (de quelques minutes à quelques jours selon la plateforme), dépose-le ici.</li></ol>
+    <div><p><b>Bienvenue sur Sillon.</b> Ce que tu vois, c'est un exemple inventé. Pour tes vraies stats, ouvre la fiche de ta plateforme : elle t'explique tout, étape par étape.</p>
+      <div class="gquick"><a class="btn" href="#guide/spotify">Spotify</a><a class="btn" href="#guide/apple">Apple Music</a><a class="btn" href="#guide/ytm">YouTube Music</a><a class="btn" href="#guide/deezer">Deezer</a></div>
       <p class="note" id="obSp" hidden>C'est tout : pas de compte à créer. En option, les vraies pochettes s'activent en connectant Spotify dans Données, seulement si la personne qui t'a partagé le site t'a ajouté à son app Spotify.</p>
       <p class="note">Tes données restent à toi : personne d'autre ne les voit, même pas la personne qui t'a partagé le site.</p></div>
-    <div class="row2"><button class="btn" data-act="how">Comment faire</button><button class="btn pri" data-act="data">Importer mon fichier</button></div>
+    <div class="row2"><button class="btn pri" data-act="data">Importer mon fichier</button></div>
   </div>
   <div class="pad">
     <div class="kpis" id="nums"></div>
@@ -1017,6 +1057,14 @@ code.cp{display:inline-block;max-width:100%;padding:4px 8px;border-radius:6px;ba
 </section>
 
 <!-- ===== JEUX ===== -->
+<section class="view" data-view="guide" aria-label="Guide" hidden>
+  <div class="hero sm" id="gdHero"><div class="htx"><p class="kick">Pour les nouveaux</p><h1 class="ht">Mettre tes stats dans Sillon</h1><p class="hl">Choisis ta plateforme : la fiche t'explique tout, de la demande au fichier à déposer. Quelques minutes de clics, puis on attend le fichier.</p></div></div>
+  <div class="pad">
+    <div class="gpick" id="gdPick" role="group" aria-label="Ta plateforme"></div>
+    <article class="gfiche" id="gdBody" aria-live="polite"></article>
+  </div>
+</section>
+
 <section class="view" data-view="jeux" aria-label="Jeux" hidden>
   <div class="hero sm" id="jHero"><div class="htx"><p class="kick">Tirés de ton propre historique</p><h1 class="ht">Jeux</h1><p class="hl">Tes meilleurs scores sont gardés.</p></div></div>
   <div class="pad">
@@ -1027,6 +1075,7 @@ code.cp{display:inline-block;max-width:100%;padding:4px 8px;border-radius:6px;ba
 
   <footer class="foot">
     <p id="footStore">Ton fichier est lu dans ton navigateur. On garde seulement titres, artistes, dates, durées et appareils : les adresses IP de l'export sont ignorées.</p>
+    <p>Besoin d'aide pour importer tes stats ? <a href="#guide">Le guide, étape par étape</a>.</p>
     <p>Sillon n'est affilié ni à Spotify, ni à Apple, ni à Google, ni à Deezer. Raccourcis : ← → pour naviguer, 1 à 5 pour la période.</p>
   </footer>
 </main>
@@ -1185,7 +1234,7 @@ const SA = /*@SA*/true; // true = version autonome (GitHub Pages)
 const SKINS = ['nuit', 'clair', 'wrapped', 'console'];
 const SKIN_NAMES = { nuit: 'Nuit', clair: 'Clair', wrapped: 'Wrapped', console: 'Console' };
 const GRANS = ['day', 'week', 'month', 'year', 'all'];
-const VIEWS = ['stats', 'profil', 'recaps', 'classements', 'predictions', 'jeux'];
+const VIEWS = ['stats', 'profil', 'recaps', 'classements', 'predictions', 'jeux', 'guide'];
 const S = { view: 'stats', gran: 'week', anchor: 0, metric: 'ms', content: 'music', thr: 30, noSkip: false, cmp: true, focus: null, skin: 'nuit', rcMore: { m: false, w: false }, top: { art: 10, trk: 10, alb: 10 }, logN: 30, calYear: null, rk: { scope: 'all', sort: 'plays', n: 50 }, live: false, recMode: 'new' };
 let D = null, G = null, T = null, DEMO = true, P = null, Q = null, booted = false, dataVer = 0;
 let seenT = null, seenT2 = null, seenA = null, seenL = null, stampC = 1;
@@ -1941,8 +1990,9 @@ function findAlbum(name, artist) {
 
 /* ================= views ================= */
 function route() {
-  const h = location.hash.replace('#', ''), prev = S.view;
+  const [h, sub] = location.hash.replace('#', '').split('/'), prev = S.view;
   S.view = VIEWS.includes(h) ? h : 'stats';
+  if (S.view === 'guide') S.guideSvc = sub || null;
   $$('.view').forEach(v => v.hidden = v.dataset.view !== S.view);
   $$('.snav a, .bnav a').forEach(a => a.setAttribute('aria-current', a.dataset.v === S.view ? 'page' : 'false'));
   if (prev !== S.view) window.scrollTo(0, 0);
@@ -1950,6 +2000,7 @@ function route() {
   renderView(); updateMini(); checkHero();
 }
 function renderView() {
+  if (S.view === 'guide') { renderGuide(); return; }
   if (!D) return;
   renderHead();
   if (S.view === 'stats') render();
@@ -1964,7 +2015,7 @@ function updateMini() {
   $('#mini').hidden = !(S.view === 'stats' && !heroVisible);
   $('#topTitle').textContent = S.view === 'stats' ? '' : VIEW_T[S.view];
 }
-const VIEW_T = { stats: 'Accueil', profil: 'Profil', recaps: 'Récaps', classements: 'Classements', predictions: 'Prédictions', jeux: 'Jeux' };
+const VIEW_T = { stats: 'Accueil', profil: 'Profil', recaps: 'Récaps', classements: 'Classements', predictions: 'Prédictions', jeux: 'Jeux', guide: 'Guide' };
 let heroVisible = true;
 function checkHero() {
   const v = $(`.view[data-view="${S.view}"]`); if (!v) return;
@@ -4073,7 +4124,12 @@ async function ingestJson(base, text, ctx) {
   if (/^userdata\.json$/i.test(base)) { try { const u = JSON.parse(text); if (u && u.creationTime) ctx.created = String(u.creationTime).slice(0, 10); } catch (e) {} return; }
   let arr; try { arr = JSON.parse(text); } catch (e) { ctx.say(base + ' : illisible, ignoré'); return; }
   if (arr && arr.format === 'sillon-backup' && arr.data) { ctx.backup = arr; ctx.say(base + ' : sauvegarde Sillon'); return; }
-  if (!Array.isArray(arr) || !arr.length) return;
+  if (arr && typeof arr === 'object' && !Array.isArray(arr)) {
+    const found = [], look = (o, d) => { for (const v of Object.values(o)) { if (Array.isArray(v) && v.length && v.some(x => x && typeof x === 'object' && !Array.isArray(x))) found.push(v); else if (v && typeof v === 'object' && !Array.isArray(v) && d < 2) look(v, d + 1); } };
+    look(arr, 0); found.sort((a, b) => b.length - a.length);
+    arr = found.find(a => { const x = a.find(y => y && typeof y === 'object') || {}; return ('ts' in x && 'ms_played' in x) || ('endTime' in x && 'msPlayed' in x) || 'header' in x || dzCols(Object.keys(x)); }) || null;
+  }
+  if (!Array.isArray(arr) || !arr.length) { ctx.say(base + ' : format non reconnu, ignoré'); return; }
   const x0 = arr.find(x => x && typeof x === 'object') || {};
   if (('ts' in x0 && 'ms_played' in x0) || ('endTime' in x0 && 'msPlayed' in x0)) {
     let c = 0; for (const r of arr) { const x = normRecord(r); if (x) { ctx.recs.push(x); c++; } }
@@ -4124,11 +4180,17 @@ async function ingest(name, src, ctx, depth = 0) {
     const ents = zipList(src instanceof Uint8Array ? src : new Uint8Array(await src.arrayBuffer()));
     const rank = e => /\.json$/i.test(e.name) ? 0 : /\.csv$/i.test(e.name) ? 1 : /\.xlsx$/i.test(e.name) ? 2 : /\.zip$/i.test(e.name) ? 3 : 4;
     const pick = ents.filter(e => wantEntry(e.name)).sort((a, b) => rank(a) - rank(b));
-    if (!pick.length) ctx.say(base + ' : rien d\'utile dedans');
+    const got = () => ctx.recs.length + ctx.ytm.length + ctx.dz.length + ctx.ap.ev.length + ctx.ap.dt.length + (ctx.backup ? 1 : 0), g0 = got();
     for (const e of pick) {
       if (/\.html?$/i.test(e.name) && ctx.ytmJson) continue;
       if (rank(e) > 0) ctx.say('Lecture de ' + e.name.split('/').pop() + '…');
       await ingest(e.name, await e.bytes(), ctx, depth + 1);
+    }
+    if (got() === g0) {
+      const rest = ents.filter(e => !pick.includes(e) && /\.(csv|json|xlsx)$/i.test(e.name) && !/(^|\/)\._|__macosx/i.test(e.name) && e.size < 3e8);
+      if (rest.length) ctx.say('Recherche d\'un historique dans les autres fichiers…');
+      for (const e of rest) { const n0 = got(); await ingest(e.name, await e.bytes(), ctx, depth + 1); if (got() > n0) break; }
+      if (got() === g0) ctx.say(base + ' : aucun historique d\'écoute trouvé dedans');
     }
     return;
   }
@@ -4152,7 +4214,7 @@ let howSvc = null;
 function renderHow() {
   const k = howSvc || svcKey();
   $$('#howTabs [data-svc]').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.svc === k)));
-  $('#howBody').innerHTML = HOW[k] || HOW.spotify;
+  $('#howBody').innerHTML = (HOW[k] || HOW.spotify) + `<p><a href="#guide/${k}">Voir la fiche détaillée, étape par étape</a></p>`;
 }
 
 /* ================= récaps : affiche (semaine, fin des stories, image) ================= */
@@ -4327,6 +4389,138 @@ function wireStories() {
   document.addEventListener('visibilitychange', () => { if (STO && document.hidden) stoPause(true); });
 }
 
+/* ================= guide : une fiche détaillée par plateforme ================= */
+const GL = (u, t) => `<a href="${u}" target="_blank" rel="noopener">${t}</a>`;
+const GUIDE = {
+  spotify: {
+    pick: 'Quelques jours, parfois jusqu\'à 30', eta: 5, page: 'la page Confidentialité',
+    facts: [['Attente', 'Quelques jours, parfois jusqu\'à 30'], ['Où', 'Sur spotify.com, ordi ou téléphone (pas dans l\'appli)'], ['Tu récupères', 'Tout depuis la création du compte'], ['Il manque', 'Rien d\'important']],
+    before: ['Tes identifiants Spotify (adresse mail et mot de passe, ou la connexion Google, Apple ou Facebook que tu utilises).', 'L\'accès à la boîte mail de ton compte : Spotify t\'y envoie deux mails.', 'Deux minutes. Ça marche aussi avec un compte gratuit.'],
+    ask: [
+      ['Ouvre la page Confidentialité du compte', `Va sur ${GL(SVCS.spotify.url, 'spotify.com/account/privacy')} et connecte-toi. Sur téléphone, passe par le navigateur (Safari, Chrome) : l'appli Spotify ne propose pas cette option.`],
+      ['Descends jusqu\'à « Télécharger vos données »', 'C\'est en bas de la page, avec une case par type de données.'],
+      ['Coche « Intégralité de votre historique de streaming »', 'C\'est la seule qui remonte à la création du compte, avec les appareils et les morceaux zappés. Les autres cases ne servent pas à Sillon.', 'Si tu prends seulement « Données de compte », tu n\'auras que la dernière année.'],
+      ['Valide la demande', 'Clique sur le bouton de demande, en bas de la section.'],
+      ['Confirme dans le mail de Spotify', 'Spotify t\'envoie tout de suite un mail avec un bouton de confirmation. Clique dessus : sans ça, rien ne démarre.', 'Pas de mail ? Regarde dans les spams et l\'onglet Promotions.'],
+      ['Attends', 'En général quelques jours, parfois jusqu\'à 30 jours. Tu peux tout fermer, ça se passe chez Spotify.']
+    ],
+    ready: [
+      ['Ouvre le mail de Spotify', 'Celui qui dit que tes données sont prêtes. Il contient un bouton de téléchargement.'],
+      ['Télécharge le fichier', 'Il s\'appelle my_spotify_data.zip. Ne l\'ouvre pas, ne le dézippe pas : Sillon le lit tel quel.']
+    ],
+    imp: 'Le fichier, c\'est my_spotify_data.zip, tel quel.',
+    faq: [
+      ['Le lien de confirmation ne marche pas', 'Essaie avec un autre réseau (la 4G par exemple), et coupe ton VPN ou ton bloqueur de pubs si tu en as un. Tu peux aussi redemander le mail depuis la page Confidentialité.'],
+      ['Le lien de téléchargement me renvoie sur la page de demande', 'Regarde d\'abord dans tes téléchargements : le fichier y est peut-être déjà. Sinon, ouvre le lien sur un autre appareil.'],
+      ['Sillon parle d\'« export simple (1 an) »', 'Tu as reçu les données de compte au lieu de l\'historique complet. Refais une demande en cochant « Intégralité de votre historique de streaming » et dépose-le quand il arrive : tout s\'additionne, sans doublons.'],
+      ['J\'ai plusieurs comptes Spotify', 'Fais la demande sur chaque compte, puis dépose le deuxième fichier avec le bouton Fusionner. Sillon additionne tout et garde la date de création la plus ancienne.']
+    ],
+    update: 'Sillon te rappelle tous les mois de redemander ton historique. Refais exactement la même demande et dépose le nouveau fichier : les écoutes déjà là ne comptent pas deux fois.'
+  },
+  apple: {
+    pick: 'Jusqu\'à 7 jours', eta: 7, page: 'privacy.apple.com',
+    facts: [['Attente', 'Jusqu\'à 7 jours'], ['Où', 'Sur privacy.apple.com, plutôt sur ordi'], ['Tu récupères', 'Chaque écoute, avec zappés, aléatoire et appareils'], ['Il manque', 'L\'artiste n\'est pas dans le fichier principal : Sillon le retrouve']],
+    before: ['Ton identifiant Apple, et un iPhone, iPad ou Mac à portée de main pour le code de validation.', 'Un ordi si possible : Apple conseille un Mac ou un PC pour télécharger les fichiers.', 'Cinq minutes.'],
+    ask: [
+      ['Ouvre privacy.apple.com', `Va sur ${GL(SVCS.apple.url, 'privacy.apple.com')} et connecte-toi avec ton compte Apple. Valide le code qui s'affiche sur ton iPhone ou ton Mac.`],
+      ['Clique sur « Obtenir une copie de vos données »', 'Si tu ne vois pas cette option, c\'est qu\'elle n\'est pas disponible dans ton pays ou pour ton type de compte (un compte géré par une école, par exemple).'],
+      ['Coche seulement les services multimédias Apple', 'Si la page est en anglais, la case s\'appelle « Apple Media Services information ». C\'est là qu\'est Apple Music. Laisse le reste décoché : ça grossirait l\'archive pour rien.'],
+      ['Valide', 'Clique sur « Continuer », garde la taille de fichier proposée, puis termine la demande.'],
+      ['Attends le mail d\'Apple', 'Ça peut prendre jusqu\'à 7 jours.']
+    ],
+    ready: [
+      ['Retourne sur privacy.apple.com', 'Ta copie t\'attend sur la page Données et confidentialité. Tu as 14 jours pour la télécharger, après Apple la supprime.'],
+      ['Télécharge le .zip', 'Si Apple l\'a coupé en plusieurs parties (« Part 1 of 2 »…), télécharge-les toutes.']
+    ],
+    imp: 'Dépose le .zip tel quel : Sillon va chercher tout seul le dossier « Apple Music Activity ». Si tu l\'as déjà ouvert, dépose ensemble « Apple Music Play Activity.csv » et « Apple Music - Play History Daily Tracks.csv ».',
+    faq: [
+      ['Plein d\'écoutes sont en « Artiste inconnu »', 'Il manque « Apple Music - Play History Daily Tracks.csv » : c\'est lui qui donne le nom des artistes. Redépose le .zip complet, ou les deux fichiers ensemble.'],
+      ['Sillon parle d\'« heures approximatives »', 'Il manque « Apple Music Play Activity.csv », le fichier qui note chaque écoute à la seconde près. Redépose le .zip complet.'],
+      ['Le fichier est énorme', 'C\'est normal, il peut peser plusieurs centaines de Mo. Sillon ne garde que ce qui sert. Fais-le sur ordi si ton téléphone rame.'],
+      ['Je ne trouve pas « Obtenir une copie de vos données »', 'L\'option n\'existe pas partout. Vérifie aussi que tu es connecté avec ton compte Apple perso.']
+    ],
+    update: 'Chaque nouvelle demande contient tout ton historique Apple Music. Dépose-la quand tu veux : rien n\'est compté deux fois.'
+  },
+  ytm: {
+    pick: 'Souvent le jour même', eta: 1, page: 'Google Takeout',
+    facts: [['Attente', 'Quelques minutes à quelques jours'], ['Où', 'Sur takeout.google.com, plutôt sur ordi'], ['Tu récupères', 'Chaque morceau lancé, avec l\'heure'], ['Il manque', 'Durée réelle, zappés, aléatoire, appareils, albums']],
+    before: ['Ton historique YouTube doit être activé. S\'il est en pause, YouTube Music n\'enregistre rien, et le réglage est commun à YouTube et YouTube Music.', 'Ton compte Google : il peut te redemander ton mot de passe.', 'Un ordi si possible : Google le conseille pour télécharger.'],
+    ask: [
+      ['Ouvre Google Takeout', `Va sur ${GL(SVCS.ytm.url, 'takeout.google.com')} et connecte-toi avec le compte Google de ton YouTube Music.`],
+      ['Clique sur « Tout désélectionner »', 'Le bouton est juste au-dessus de la liste des services. Sinon, Google exporte tout ton compte, et c\'est énorme.'],
+      ['Coche « YouTube et YouTube Music »', 'Descends dans la liste, c\'est vers la fin.'],
+      ['Ne garde que l\'historique', 'Clique sur « Toutes les données YouTube incluses », décoche tout, coche seulement « historique », puis OK.'],
+      ['Choisis le format JSON', 'Clique sur « Plusieurs formats », mets l\'historique en JSON, puis OK.', 'Le HTML marche aussi, mais le JSON est plus fiable.'],
+      ['Crée l\'export', 'Clique sur « Étape suivante ». Garde l\'envoi du lien par e-mail, un export unique et le format .zip, puis lance l\'export.']
+    ],
+    ready: [
+      ['Ouvre le mail de Google', 'La plupart du temps, il arrive le jour même.'],
+      ['Télécharge le .zip', 'Il commence par « takeout ». Tu as environ 7 jours et 5 téléchargements maximum pour le récupérer.']
+    ],
+    imp: 'Dépose le .zip tel quel. Il contient aussi tes vidéos YouTube : Sillon garde seulement ce que tu as écouté sur YouTube Music.',
+    faq: [
+      ['Sillon dit « aucune écoute YouTube Music dedans »', 'Soit ton historique était en pause, soit tu écoutais sans être connecté. Seules les écoutes faites en étant connecté, historique activé, sont enregistrées.'],
+      ['Les minutes d\'écoute sont approximatives', 'Google ne donne pas la durée écoutée. Sillon l\'estime avec l\'écart entre deux morceaux (3 min 30 par défaut). Le nombre d\'écoutes, lui, est juste.'],
+      ['Un artiste apparaît en double', 'Sillon regroupe déjà les chaînes du type « Artiste - Topic » et « ArtisteVEVO ». S\'il en reste, c\'est que YouTube les nomme vraiment différemment.'],
+      ['J\'ai pris le HTML au lieu du JSON', 'Pas grave, dépose-le quand même. Si des dates paraissent fausses, refais l\'export en JSON.']
+    ],
+    update: 'Pour ne plus y penser : quand tu crées l\'export, choisis l\'export tous les 2 mois pendant un an. Google t\'enverra un nouveau fichier tout seul, tu n\'auras plus qu\'à le déposer.'
+  },
+  deezer: {
+    pick: 'Jusqu\'à 7 jours', eta: 7, page: 'deezer.com',
+    facts: [['Attente', 'Jusqu\'à 7 jours'], ['Où', 'Sur deezer.com, sur ordi (pas dans l\'appli)'], ['Tu récupères', 'Chaque écoute, avec la durée'], ['Il manque', 'Les zappés et l\'aléatoire']],
+    before: ['Un ordi : la demande se fait sur le site, pas dans l\'appli.', 'L\'accès à ta boîte mail : Deezer t\'envoie plusieurs mails, dont un code à recopier.', 'Cinq minutes.'],
+    ask: [
+      ['Connecte-toi sur deezer.com', `Sur ordi, va sur ${GL(SVCS.deezer.url, 'deezer.com')} et connecte-toi.`],
+      ['Ouvre tes paramètres', 'Dans les paramètres du compte, va dans la partie sur tes informations personnelles.'],
+      ['Demande tes données personnelles', 'Clique sur le bouton des données personnelles. Une fenêtre liste ce que contient l\'export : valide la demande.'],
+      ['Recopie le code du premier mail', 'Deezer t\'envoie un code de session. Le mail ressemble à une alerte de connexion, pas à une demande de données : ne le zappe pas. Entre ce code sur le site, sinon rien ne démarre.'],
+      ['Attends', 'Un deuxième mail confirme que c\'est en cours. Compte jusqu\'à 7 jours.']
+    ],
+    ready: [
+      ['Ouvre le mail avec le lien', 'Le lien marche 30 jours, après l\'archive est supprimée. Télécharge-la tout de suite.'],
+      ['Télécharge le fichier', 'Selon les comptes, c\'est un .zip ou un tableur « deezer-data… ».']
+    ],
+    imp: 'Dépose le fichier tel quel, .zip ou tableur : Sillon cherche tout seul l\'historique d\'écoute dedans.',
+    faq: [
+      ['Je n\'ai jamais reçu le deuxième mail', 'Le code du premier mail n\'a sûrement pas été entré. Refais la demande et recopie bien le code.'],
+      ['Le lien a expiré', 'Après 30 jours, Deezer supprime l\'archive. Il faut refaire une demande, code compris.'],
+      ['Sillon ne trouve rien dans le fichier', 'Deezer change parfois le format de son export. Garde le message affiché par Sillon : il dit ce qu\'il a trouvé dans le fichier.']
+    ],
+    update: 'Refais une demande quand le site te le rappelle et dépose le nouveau fichier : les écoutes déjà là ne comptent pas deux fois.'
+  }
+};
+function guideSteps(list) { return `<ol class="gsteps">${list.map(([t, d, tip]) => `<li><div><b>${t}</b><p>${d}</p>${tip ? `<p class="gtip">${tip}</p>` : ''}</div></li>`).join('')}</ol>`; }
+function renderGuide() {
+  const k = SVCS[S.guideSvc] ? S.guideSvc : null;
+  $('#gdPick').innerHTML = Object.keys(SVCS).map(x => `<a href="#guide/${x}" aria-current="${x === k ? 'true' : 'false'}"><b>${esc(SVCS[x].n)}</b><small>${esc(GUIDE[x].pick)}</small></a>`).join('');
+  const general = `<section class="gsec"><h3>Bon à savoir</h3><ul class="gcheck"><li>Ton fichier est lu dans ton navigateur : personne d'autre ne voit tes stats, même pas la personne qui t'a partagé le site.</li><li>Tu as changé de plateforme ? Dépose les fichiers des deux : tout s'additionne, sans doublons.</li><li>Le site te rappelle tous les mois de mettre tes stats à jour.</li></ul></section>`;
+  if (!k) { $('#gdBody').innerHTML = `<p class="gintro">Choisis ta plateforme au-dessus : la fiche s'affiche ici.</p>${general}`; return; }
+  const G = GUIDE[k], v = SVCS[k], s = Prefs.data.sync || {};
+  const asked = s.requestedAt && s.svc === k && !(s.importedAt > s.requestedAt);
+  const eta = asked ? fmtDay(Math.floor((s.requestedAt + G.eta * DAYMS) / DAYMS)) : '';
+  const phone = 'Sur iPhone, le fichier téléchargé est dans l\'app Fichiers, dossier Téléchargements : touche « Parcourir » quand Sillon te demande le fichier. Sur Android, il est dans Téléchargements.';
+  $('#gdBody').innerHTML = `<div class="gfh"><h2>${esc(v.n)}, la fiche</h2>${SA ? '<button class="btn" data-gd="copy">Copier le lien de cette fiche</button>' : ''}</div>
+    ${asked ? `<div class="gstat"><p>Demande faite le ${esc(fmtDay(Math.floor(s.requestedAt / DAYMS)))}. En général, ça arrive vers le ${esc(eta)}.</p><button class="btn pri" data-gd="import">Importer mon fichier</button></div>` : ''}
+    <div class="gfacts">${G.facts.map(([a, b]) => `<div class="kpi"><span class="k">${esc(a)}</span><span class="v">${esc(b)}</span></div>`).join('')}</div>
+    <section class="gsec"><h3>Avant de commencer</h3><ul class="gcheck">${G.before.map(x => `<li>${x}</li>`).join('')}</ul></section>
+    <section class="gsec"><h3>Étape 1 : demander tes données</h3>${guideSteps(G.ask)}<div class="gact"><a class="btn pri" href="${v.url}" target="_blank" rel="noopener">Ouvrir ${esc(G.page)}</a><button class="btn" data-gd="asked">C'est fait, j'ai demandé</button></div></section>
+    <section class="gsec"><h3>Étape 2 : récupérer le fichier</h3>${guideSteps(G.ready)}</section>
+    <section class="gsec"><h3>Étape 3 : le mettre dans Sillon</h3>${guideSteps([['Ouvre Données', 'Sur ordi, le bouton est en bas à gauche. Sur téléphone, c\'est la flèche vers le bas, en haut à droite.'], ['Choisis ton fichier', `Clique sur « Choisir un fichier », ou glisse-le dans le cadre. ${G.imp}`, phone], ['C\'est prêt', 'Sillon lit le fichier et affiche tes stats en quelques secondes.']])}<div class="gact"><button class="btn pri" data-gd="import">Importer mon fichier</button></div></section>
+    <section class="gsec gfaq"><h3>Ça coince ?</h3>${G.faq.map(([q, a]) => `<details><summary>${q}</summary><p>${a}</p></details>`).join('')}</section>
+    <section class="gsec"><h3>Pour mettre à jour plus tard</h3><p>${G.update}</p></section>
+    ${general}`;
+}
+function wireGuide() {
+  $('#gdBody').addEventListener('click', async e => {
+    const b = e.target.closest('[data-gd]'); if (!b) return;
+    const k = S.guideSvc, a = b.dataset.gd;
+    if (a === 'import') openData();
+    else if (a === 'asked' && SVCS[k]) { const s = Prefs.data.sync; s.requestedAt = Date.now(); s.svc = k; s.snooze = Date.now() + 3 * DAYMS; Prefs.save(); renderGuide(); toast('Noté. Reviens ici quand le fichier arrive.'); }
+    else if (a === 'copy') { const u = location.href.split('#')[0] + '#guide/' + k; try { await navigator.clipboard.writeText(u); toast('Lien copié : envoie-le à qui tu veux.'); } catch (er) { toast(u); } }
+  });
+}
+
 /* ================= wiring ================= */
 function go(k) {
   if (S.gran === 'all') return;
@@ -4373,7 +4567,8 @@ function wire() {
   $('#rcGo').addEventListener('click', () => openRecap(S.gran, S.anchor));
   $('#rcPrev').addEventListener('click', () => rcGo(-1));
   $('#rcNext').addEventListener('click', () => rcGo(1));
-  wireStories();
+  wireStories(); wireGuide();
+  document.addEventListener('click', e => { if (e.target.closest('#howBody a[href^="#guide"]')) closeAll(); });
   $('#rcPng').addEventListener('click', async () => { if (!RC || !RC.R) return; const b = await posterPng(RC.R); if (b) saveFile(`sillon-recap-${tagOf(RC.g, RC.a)}.png`, b); });
   $('#rcShare').addEventListener('click', async () => { if (!RC || !RC.R) return; const b = await posterPng(RC.R); if (!b) return; try { await navigator.share({ files: [new File([b], `sillon-recap-${tagOf(RC.g, RC.a)}.png`, { type: 'image/png' })], title: 'Mon récap Sillon' }); } catch (e) { if (e && e.name !== 'AbortError') saveFile(`sillon-recap-${tagOf(RC.g, RC.a)}.png`, b); } });
   $('#rcOpen').addEventListener('click', () => { const g = RC.g, a = RC.a; closeAll(); S.gran = g; S.anchor = a; S.calYear = null; savePrefs(); if (S.view !== 'stats') location.hash = 'stats'; else { render(); window.scrollTo(0, 0); } });
