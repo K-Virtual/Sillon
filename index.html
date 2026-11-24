@@ -2484,7 +2484,7 @@ function checkHero() {
 function setData(X, demo) {
   D = X; DEMO = demo; derive(D);
   S.anchor = D.lastDay; S.focus = null; S.calYear = null;
-  computeGlobal(); computeTaste(); TM = AM = null; dataVer++; searchIdx = null; RCX = null; PD = null; PRX = null; ALB_TID = null; ART_ALB = null; ART_TID = null;
+  computeGlobal(); computeTaste(); TM = AM = null; dataVer++; searchIdx = null; RCX = null; PD = null; PRX = null; ALB_TID = null; ART_ALB = null; ART_TID = null; ART_TRK = null;
   renderView();
   groupAutoPush();
   if (!demo) { lkAutoPush(); closeWelcome(); }
@@ -3364,9 +3364,9 @@ function cov(key, label, cls) {
   const h = hsh(norm(key)), hu = h % 360, h2 = (hu + 35 + (h >>> 9) % 150) % 360, p = (h >>> 17) % 5;
   return `<span class="cv p${p}${cls ? ' ' + cls : ''}" style="--h:${hu};--h2:${h2}" aria-hidden="true"><b>${esc(initials(label ?? key))}</b></span>`;
 }
-const covA = a => { const h = cov('a|' + D.artists[a], D.artists[a], 'r'); if (!SA || S.set.cov === 'gen') return h; const l = artAlb(a); return l ? withImg(h, akey(l), albTid(l), true) : h; };
+const covA = a => { const h = cov('a|' + D.artists[a], D.artists[a], 'r'); if (!SA || S.set.cov === 'gen') return h; const l = artAlb(a); if (l) return withImg(h, akey(l), albTid(l), true); const t = artTrk(a); return t >= 0 ? withImg(h, tkey(t), D.tu[t] || '', true) : h; };
 const covL = l => { const h = cov('l|' + D.albums[l] + '|' + D.artists[D.la[l]], D.albums[l]); return SA && S.set.cov !== 'gen' ? withImg(h, akey(l), albTid(l)) : h; };
-const covT = t => D.tl[t] ? covL(D.tl[t]) : cov('t|' + D.tn[t] + '|' + D.artists[D.ta[t]], D.tn[t]);
+const covT = t => { if (D.tl[t]) return covL(D.tl[t]); const h = cov('t|' + D.tn[t] + '|' + D.artists[D.ta[t]], D.tn[t]); return SA && S.set.cov !== 'gen' && D.tk[t] === 0 ? withImg(h, tkey(t), D.tu[t] || '') : h; };
 const hueA = a => hsh(norm('a|' + D.artists[a])) % 360;
 function rcov(top, big, hue) { return `<span class="cv rc p${hue % 5}${String(big).length > 7 ? ' sm' : ''}" style="--h:${hue};--h2:${(hue + 70) % 360}" aria-hidden="true"><i>${esc(top)}</i><b>${esc(big)}</b></span>`; }
 let hueReq = 140;
@@ -3840,7 +3840,10 @@ const CC = {
   save() { if (!this.dirty) return; try { localStorage.setItem('sillon-covers', JSON.stringify(this.m)); } catch (e) {} this.dirty = false; }
 };
 const akey = l => normT(D.albums[l]) + '|' + normT(D.artists[D.la[l]]);
-let ALB_TID = null, ART_ALB = null;
+let ALB_TID = null, ART_ALB = null, ART_TRK = null;
+/* sans nom d'album (YouTube Music) : on part du morceau le plus écouté de l'artiste */
+function artTrk(a) { if (!ART_TRK) { ART_TRK = new Int32Array(D.na).fill(-1); const bv = new Float64Array(D.na); for (let t = 0; t < D.nt; t++) { if (D.tk[t] !== 0) continue; const x = D.ta[t], v = T.tP[t]; if (v > bv[x]) { bv[x] = v; ART_TRK[x] = t; } } } return ART_TRK[a]; }
+const tkey = t => 't:' + normT(D.tn[t]) + '|' + normT(D.artists[D.ta[t]]);
 function artAlb(a) { if (!ART_ALB) { ART_ALB = new Int32Array(D.na); const bv = new Float64Array(D.na); for (let l = 1; l < D.nl; l++) { const x = D.la[l], v = T.lP[l]; if (v > bv[x]) { bv[x] = v; ART_ALB[x] = l; } } } return ART_ALB[a]; }
 function albTid(l) { if (!ALB_TID) { ALB_TID = new Map(); for (let t = 0; t < D.nt; t++) { const x = D.tl[t]; if (x && D.tu[t] && D.tk[t] === 0 && !ALB_TID.has(x)) ALB_TID.set(x, D.tu[t]); } } return ALB_TID.get(l) || ''; }
 /* pochettes : Spotify pour les comptes connectés (exactes), Deezer pour tout le monde (sans compte) */
@@ -3848,7 +3851,8 @@ const covOn = () => SA && !DEMO && S.set.cov !== 'gen';
 function withImg(html, k, tid, blur) {
   const u = CC.get(k);
   if (u) return html.replace('</span>', `<img${blur ? ' class="bl"' : ''} src="${esc(u)}" alt="" loading="lazy" decoding="async"></span>`);
-  if (u === 0 || !covOn() || !k || k.startsWith('|') || k.endsWith('|')) return html;
+  const kb = k && k.startsWith('t:') ? k.slice(2) : k;
+  if (u === 0 || !covOn() || !kb || kb.startsWith('|') || kb.endsWith('|')) return html;
   return html.replace('<span class="cv', `<span data-ck="${esc(k)}"${tid ? ` data-tid="${esc(tid)}"` : ''} class="cv`);
 }
 const covN = s => normT(s).replace(/\b(deluxe|edition|remaster(ed)?|version|expanded|anniversary|bonus|tracks?|edit)\b/g, ' ').replace(/\s+/g, ' ').trim();
@@ -3862,7 +3866,7 @@ function dzPick(d, al, ar) {
     const sc = xt === A ? 3 : (xt.startsWith(A) || A.startsWith(xt)) ? 2 : 0;
     if (sc > sc0) { sc0 = sc; best = x; }
   }
-  return best ? (best.cover_medium || best.cover_big || best.cover || 0) : 0;
+  return best ? (best.cover_medium || best.cover_big || best.cover || (best.album && (best.album.cover_medium || best.album.cover_big)) || 0) : 0;
 }
 function dzSeed(d, nn) {
   if (!SA) return;
@@ -3874,6 +3878,16 @@ function dzSeed(d, nn) {
   }
 }
 async function dzCover(k) {
+  if (k.startsWith('t:')) {
+    const kk = k.slice(2), j = kk.lastIndexOf('|'), ti = kk.slice(0, j), ar = kk.slice(j + 1);
+    if (!ti || !ar) return 0;
+    let d = await dz('/search/track?q=' + encodeURIComponent(`artist:"${ar}" track:"${ti}"`) + '&limit=10', 1);
+    if (!d || d.error) return null;
+    const u = dzPick(d, ti, ar); if (u) return u;
+    d = await dz('/search/track?q=' + encodeURIComponent(ar + ' ' + ti) + '&limit=10', 1);
+    if (!d || d.error) return null;
+    return dzPick(d, ti, ar) || 0;
+  }
   const i = k.lastIndexOf('|'), al = k.slice(0, i), ar = k.slice(i + 1);
   if (!al || !ar) return 0;
   let d = await dz('/search/album?q=' + encodeURIComponent(`artist:"${ar}" album:"${al}"`) + '&limit=10', 1);
@@ -6062,9 +6076,10 @@ async function meSetPp(file) {
 }
 
 /* ---------- version : X refonte, Y grosse mise à jour, Z correctifs ---------- */
-const SILLON_V = '2.7.0';
+const SILLON_V = '2.7.1';
 const SV_TYPE = { X: 'Refonte', Y: 'Grosse mise à jour', Z: 'Correctifs', I: 'Première version' };
 const SILLON_LOG = [
+  ['2.7.1', 'Z', ['Pochettes aussi quand le fichier ne donne pas le nom de l\'album (souvent avec YouTube Music) : Sillon les retrouve à partir du titre du morceau.']],
   ['2.7.0', 'Y', ['Fenêtre de bienvenue à la première visite : tu choisis ta plateforme, Sillon se met à ses couleurs et t\'ouvre la fiche pour récupérer tes données.', 'Pochettes pour tout le monde, sans connexion ni compte Spotify : elles viennent de Deezer. Un artiste prend la pochette de son album le plus écouté.']],
   ['2.6.0', 'Y', ['Réglages dans la page Toi : style des graphiques (barres arrondies ou droites, courbe, aire, rétro, notes de musique), ligne de moyenne, lignes de repère, valeur du record.', 'Durées en heures et minutes, en heures ou en minutes, et dates en lettres ou en chiffres.', 'Couleur des pages, pochettes, animations réduites, page et période d\'ouverture, rappel de mise à jour.', 'Thème automatique : Sillon prend les couleurs de ta plateforme (Spotify, Apple Music, YouTube Music ou Deezer).']],
   ['2.5.1', 'Z', ['Classements : touche une colonne deux fois pour passer de l\'ordre décroissant à l\'ordre croissant.', 'Nouvelle page À propos : versions, services utilisés, comment marche le site.']],
