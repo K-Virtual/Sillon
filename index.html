@@ -393,6 +393,93 @@ html.instlock{overflow:hidden}
 .btn.big{min-height:52px;width:100%;padding:10px 24px;font-size:17px}
 .btn.big:disabled{opacity:.6}
 .instskip{align-self:center;margin-top:6px;padding:10px 12px;border:0;background:none;color:var(--muted);font-weight:600;font-size:14px;text-decoration:underline;text-underline-offset:3px}
+/* navigation téléphone : panneau Plus, avatar */
+.meb{padding:5px}
+.meb .cv{width:30px;font-size:0}
+.meb[aria-current=page] .cv{box-shadow:0 0 0 2px var(--ink)}
+.meic{display:grid!important;place-items:center;background:var(--chip)!important}
+.meic .ic{width:58%;height:58%;color:var(--muted)}
+.sheet{position:fixed;inset:0;z-index:70;display:flex;align-items:flex-end;background:rgba(0,0,0,.55)}
+.sheetbox{width:100%;max-height:85vh;overflow:auto;background:var(--panel);border-radius:18px 18px 0 0;padding:14px 16px calc(18px + env(safe-area-inset-bottom));transform:translateY(24px);opacity:.4;transition:transform .22s ease,opacity .22s ease}
+.sheet.on .sheetbox{transform:none;opacity:1}
+.sheeth{display:flex;align-items:center;justify-content:space-between;margin-bottom:6px}
+.sheeth b{font:800 18px/1 var(--f-head)}
+.sheetme{display:flex;align-items:center;gap:14px;padding:12px;margin:0 -4px 10px;border-radius:12px;background:var(--card);text-decoration:none;color:var(--ink)}
+.sheetme .sheetav{width:48px;flex:none}
+.sheetme b{display:block;font-weight:800;font-size:16px}
+.sheetme small{color:var(--muted);font-size:13px}
+.sheetme[aria-current=page]{box-shadow:inset 0 0 0 2px var(--ink)}
+.sheetnav{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+.sheetnav a{display:flex;align-items:center;gap:12px;min-height:56px;padding:10px 14px;border-radius:12px;background:var(--card);text-decoration:none;font-weight:700;font-size:15px;color:var(--ink)}
+.sheetnav a[aria-current=page]{box-shadow:inset 0 0 0 2px var(--ink)}
+.sheetnav .ic{width:22px;height:22px;flex:none;color:var(--muted)}
+@media (prefers-reduced-motion:reduce){.sheetbox{transition:none}}
+/* page Toi */
+.meid{display:flex;align-items:flex-start;gap:24px;max-width:780px}
+.meav{width:112px;flex:none}
+.meidt{flex:1;min-width:0;display:flex;flex-direction:column;gap:12px}
+.meidt .note,.meidt .grmsg{margin:0}
+.merow{display:flex;gap:8px}
+.merow .field{flex:1;min-width:0}
+.merow2{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px 20px;max-width:780px}
+.merow2 b{display:block;font-weight:800;font-size:16px}
+.merow2 small{color:var(--muted);font-size:14px}
+.merow2 p{margin:0}
+.mepad #lkBox{margin-top:0;max-width:780px}
+.medata{display:flex;flex-direction:column;gap:12px;max-width:780px}
+.medata p{margin:0}
+.mesp{color:var(--muted);font-size:14px}
+.lnk{border:0;background:none;padding:0;color:var(--ink);font:inherit;font-weight:700;text-decoration:underline;text-underline-offset:3px;cursor:pointer}
+.mepad .skins{max-width:780px}
+/* suggestions */
+.sgtags{display:flex;flex-wrap:wrap;gap:8px}
+.sgtags button{position:relative;overflow:hidden;display:inline-flex;align-items:center;padding:9px 15px 11px;border-radius:99px;border:0;background:var(--chip);color:var(--ink);font:700 14px/1.2 var(--f-ui);cursor:pointer}
+.sgtags button i{position:absolute;left:0;bottom:0;height:3px;width:calc(var(--p) * 100%);background:var(--acc)}
+.sgtags button[aria-pressed=true]{background:var(--ink);color:var(--bg)}
+.sgexp{margin-top:20px;display:flex;flex-direction:column;gap:14px}
+.sgexp h3{font:800 18px/1.2 var(--f-head);margin:4px 0 0}
+.sggrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(168px,1fr));gap:14px}
+.sgcard{display:flex;flex-direction:column;gap:3px;min-width:0;padding:12px;border-radius:8px;background:var(--card);text-decoration:none;color:var(--ink)}
+a.sgcard:hover{background:var(--hover)}
+.sgimg{position:relative;margin-bottom:8px}
+.sgcard b{font-weight:700;font-size:15px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.sgcard small{color:var(--muted);font-size:13px;overflow:hidden;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical}
+.sgpl{position:absolute;z-index:3;right:8px;bottom:8px;width:44px;height:44px;border-radius:50%;border:0;background:var(--acc);color:var(--acc-ink,#000);display:grid;place-items:center;box-shadow:0 6px 16px rgba(0,0,0,.35);cursor:pointer}
+.sgpl .ic{width:20px;height:20px;fill:currentColor;stroke:currentColor}
+.sgpl .ic path{stroke-width:2.6}
+.sgpl[aria-pressed=true]{background:var(--ink);color:var(--bg)}
+.lnk2{margin-top:6px;color:var(--muted);font-size:13px;font-weight:700;text-decoration:underline;text-underline-offset:3px}
+.lnk2:hover{color:var(--ink)}
+.sgfoot{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px}
+.sgfoot .small{margin:0}
+.sglf{max-width:80ch}
+.sglf ol{margin:8px 0 0;padding-left:20px;display:flex;flex-direction:column;gap:4px}
+.sglf code{font:13px ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;padding:1px 5px;border-radius:4px;background:var(--chip);color:var(--ink)}
+@media (max-width:720px){.sggrid{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.sgcard{padding:10px}}
+/* groupe : trophées, duel */
+.grequiv{margin:2px 0 0;color:var(--muted);font-size:14px;max-width:80ch}
+.graw{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:10px}
+.graw .card{display:flex;flex-direction:column;gap:10px;padding:16px;min-width:0}
+.graw .card.me{box-shadow:inset 0 0 0 2px color-mix(in srgb,var(--acc) 70%,transparent)}
+.graw .k{font-weight:800;font-size:13px;color:var(--muted)}
+.graw .who{display:flex;align-items:center;gap:10px;min-width:0}
+.graw .who .cv{width:40px;flex:none}
+.graw .who b{font:800 18px/1.15 var(--f-head);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.graw .who small{font:500 13px var(--f-ui);color:var(--muted)}
+.graw p{margin:0;font-size:14px}
+.grduelsel .field{min-width:160px}
+.grduel{display:flex;flex-direction:column;gap:2px;max-width:720px}
+.grduel .dhd{display:grid;grid-template-columns:40px minmax(0,1fr) auto minmax(0,1fr) 40px;align-items:center;gap:10px;margin-bottom:10px}
+.grduel .dhd .cv{width:40px}
+.grduel .dhd b{font:800 17px/1.2 var(--f-head);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.grduel .dhd b:last-of-type{text-align:right}
+.grduel .dhd span{color:var(--muted);font-size:13px}
+.grduel .drow{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.1fr) minmax(0,1fr);align-items:center;gap:10px;padding:9px 0;border-top:1px solid var(--line)}
+.grduel .drow span{text-align:center;color:var(--muted);font-size:13px}
+.grduel .drow b{font-weight:700;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-variant-numeric:tabular-nums}
+.grduel .drow b:last-child{text-align:right}
+.grduel .drow b.w{color:var(--acc-t,var(--acc))}
+.grduel .dsim{margin:10px 0 0;font-size:14px}
 /* relier ses appareils */
 .lkcode{margin:12px 0 8px;font:800 clamp(30px,8vw,40px)/1 var(--f-num);letter-spacing:.08em;font-variant-numeric:tabular-nums;user-select:all}
 .lkjoin{display:flex;flex-wrap:wrap;align-items:flex-end;gap:8px;margin-top:14px}
@@ -908,9 +995,13 @@ code.cp{display:inline-block;max-width:100%;padding:4px 8px;border-radius:6px;ba
   table.stack td::before{content:attr(data-l);display:block;font-size:11px;color:var(--muted)}
   table.rk td.nm{grid-column:1/-1}
   table.rk td.nm::before{display:none}
-  .bnav{position:fixed;left:0;right:0;bottom:0;z-index:50;display:grid;grid-template-columns:repeat(6,minmax(0,1fr));padding:14px 2px calc(6px + env(safe-area-inset-bottom));background:linear-gradient(transparent,var(--bg) 38%)}
-  .bnav a{display:flex;flex-direction:column;align-items:center;gap:4px;padding:4px 0;text-decoration:none;font-size:10px;letter-spacing:-.01em;white-space:nowrap;font-weight:600;color:var(--muted)}
-  .bnav a[aria-current=page]{color:var(--ink)}
+  .bnav{position:fixed;left:0;right:0;bottom:0;z-index:50;display:grid;grid-template-columns:repeat(5,minmax(0,1fr));padding:14px 2px calc(6px + env(safe-area-inset-bottom));background:linear-gradient(transparent,var(--bg) 38%)}
+  .bnav a,.bnav .bmore{display:flex;flex-direction:column;align-items:center;gap:4px;padding:4px 0;border:0;background:none;text-decoration:none;font:600 10px/1.2 var(--f-ui);letter-spacing:-.01em;white-space:nowrap;color:var(--muted)}
+  .bnav a[aria-current=page],.bnav .bmore.on,.bnav .bmore[aria-expanded=true]{color:var(--ink)}
+  #skCycle{display:none}
+  .meid{flex-direction:column;gap:16px}
+  .meav{width:96px}
+  .merow2>.btn,.merow2>a.btn{width:100%}
   .bnav .ic{width:24px;height:24px}
 }
 @media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
@@ -924,10 +1015,11 @@ code.cp{display:inline-block;max-width:100%;padding:4px 8px;border-radius:6px;ba
     <a class="logo" href="#stats" aria-label="Sillon, accueil"><svg class="disc" viewBox="0 0 64 64" aria-hidden="true"><circle class="d1" cx="32" cy="32" r="30"/><circle class="d2" cx="32" cy="32" r="24"/><circle class="d2" cx="32" cy="32" r="18"/><circle class="d3" cx="32" cy="32" r="10"/><circle class="d4" cx="32" cy="32" r="2.4"/></svg><span>Sillon</span></a>
     <nav class="snav" aria-label="Sections">
       <a href="#stats" data-v="stats"><svg class="ic" viewBox="0 0 24 24"><path d="M4 10.5 12 4l8 6.5V20h-5v-6h-6v6H4z"/></svg><span>Accueil</span></a>
-      <a href="#profil" data-v="profil"><svg class="ic" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2.5"/><circle cx="9" cy="11" r="2.2"/><path d="M5.8 16.2a3.6 3.6 0 0 1 6.4 0M14 10h4M14 13.5h3"/></svg><span>Profil</span></a>
+      <a href="#profil" data-v="profil"><svg class="ic" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2.5"/><circle cx="9" cy="11" r="2.2"/><path d="M5.8 16.2a3.6 3.6 0 0 1 6.4 0M14 10h4M14 13.5h3"/></svg><span>Ta carte</span></a>
       <a href="#recaps" data-v="recaps"><svg class="ic" viewBox="0 0 24 24"><rect x="3" y="6" width="13" height="15" rx="2"/><path d="M8 3h11a2 2 0 0 1 2 2v12"/></svg><span>Récaps</span></a>
       <a href="#classements" data-v="classements"><svg class="ic" viewBox="0 0 24 24"><path d="M8 21h8M12 17v4M7 4h10v5a5 5 0 0 1-10 0z"/><path d="M17 6h3v2a3 3 0 0 1-3 3M7 6H4v2a3 3 0 0 0 3 3"/></svg><span>Classements</span></a>
       <a href="#predictions" data-v="predictions"><svg class="ic" viewBox="0 0 24 24"><path d="M3 17l5-5 4 3 8-8"/><path d="M15 7h5v5"/><path d="M3 21h18" stroke-dasharray="2 3"/></svg><span>Prédictions</span></a>
+      <a href="#suggestions" data-v="suggestions" class="sao" hidden><svg class="ic" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M15.6 8.4l-2.2 5-5 2.2 2.2-5z"/></svg><span>Suggestions</span></a>
       <a href="#jeux" data-v="jeux"><svg class="ic" viewBox="0 0 24 24"><rect x="2.5" y="7" width="19" height="11" rx="5"/><path d="M7 11v3M5.5 12.5h3"/><circle cx="16" cy="11.5" r=".8"/><circle cx="18" cy="13.5" r=".8"/></svg><span>Jeux</span></a>
       <a href="#groupe" data-v="groupe" class="sao" hidden><svg class="ic" viewBox="0 0 24 24"><circle cx="9" cy="8" r="3.2"/><path d="M3.2 19.5a5.8 5.8 0 0 1 11.6 0"/><path d="M15.6 4.9a3.2 3.2 0 0 1 0 6.2"/><path d="M17.6 14.1a5.8 5.8 0 0 1 3.2 5.4"/></svg><span>Groupe</span></a>
       <a href="#guide" data-v="guide"><svg class="ic" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M9.6 9.4a2.5 2.5 0 1 1 3.4 2.4c-.6.3-1 .8-1 1.5v.5"/><path d="M12 17h.01"/></svg><span>Guide</span></a>
@@ -967,9 +1059,9 @@ code.cp{display:inline-block;max-width:100%;padding:4px 8px;border-radius:6px;ba
     <div class="tr">
       <span class="np" id="np" hidden></span>
       <button class="ib" id="bell" aria-label="Rappel de mise à jour" hidden><svg class="ic" viewBox="0 0 24 24"><path d="M6 16V11a6 6 0 0 1 12 0v5l1.5 2h-15z"/><path d="M10 20a2 2 0 0 0 4 0"/></svg></button>
-      <a class="ib sao" id="grTop" href="#groupe" aria-label="Ton groupe" title="Ton groupe" hidden><svg class="ic" viewBox="0 0 24 24"><circle cx="9" cy="8" r="3.2"/><path d="M3.2 19.5a5.8 5.8 0 0 1 11.6 0"/><path d="M15.6 4.9a3.2 3.2 0 0 1 0 6.2"/><path d="M17.6 14.1a5.8 5.8 0 0 1 3.2 5.4"/></svg></a>
-      <button class="ib" id="skCycle" aria-label="Changer de thème" title="Changer de thème"><svg class="ic" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"/><path d="M12 4a8 8 0 0 1 0 16z" fill="currentColor"/></svg></button>
+            <button class="ib" id="skCycle" aria-label="Changer de thème" title="Changer de thème"><svg class="ic" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"/><path d="M12 4a8 8 0 0 1 0 16z" fill="currentColor"/></svg></button>
       <button class="ib" data-act="data" aria-label="Tes données"><svg class="ic" viewBox="0 0 24 24"><path d="M12 4v11M7 10l5 5 5-5M5 20h14"/></svg></button>
+      <a class="ib meb" id="meTop" href="#toi" aria-label="Toi : ton profil et tes réglages" title="Toi"></a>
     </div>
   </header>
 
@@ -1193,6 +1285,31 @@ code.cp{display:inline-block;max-width:100%;padding:4px 8px;border-radius:6px;ba
   <div class="pad" id="grBody"></div>
 </section>
 
+<section class="view" data-view="toi" aria-label="Toi" hidden>
+  <div class="hero sm"><div class="htx"><p class="kick">Ton profil</p><h1 class="ht" id="meTitle">Toi</h1><p class="hl" id="meLead"></p></div></div>
+  <div class="pad mepad" id="mePage">
+    <section class="card meid" id="meId"></section>
+    <section class="blk sao" hidden><div class="bh"><div><h2>Ton groupe</h2></div></div><div id="meGr"></div></section>
+    <section class="blk sao" hidden><div class="bh"><div><h2>Tes appareils</h2><p class="sub">Les mêmes stats sur ton PC et ton tel</p></div></div><div class="mergeb" id="lkBox"><div id="lkBody"></div></div></section>
+    <section class="blk"><div class="bh"><div><h2>Apparence</h2></div></div><div class="appear skins lab" role="group" aria-label="Thème de Sillon">
+    <button class="sk" data-s="nuit" aria-pressed="true"><i></i><span>Nuit<small>façon Spotify</small></span></button>
+    <button class="sk" data-s="pomme" aria-pressed="false"><i></i><span>Pomme<small>façon Apple Music</small></span></button>
+    <button class="sk" data-s="ecarlate" aria-pressed="false"><i></i><span>Écarlate<small>façon YouTube Music</small></span></button>
+    <button class="sk" data-s="violet" aria-pressed="false"><i></i><span>Violet<small>façon Deezer</small></span></button>
+    <button class="sk" data-s="clair" aria-pressed="false"><i></i><span>Clair<small>tout en clair</small></span></button>
+    <button class="sk" data-s="wrapped" aria-pressed="false"><i></i><span>Wrapped<small>violet et citron</small></span></button>
+    <button class="sk" data-s="console" aria-pressed="false"><i></i><span>Console<small>écran rétro</small></span></button>
+  </div></section>
+    <section class="blk"><div class="bh"><div><h2>Tes données</h2></div></div><div id="meData"></div></section>
+    <section class="blk" id="meInstW" hidden><div class="bh"><div><h2>L'appli</h2></div></div><div id="meInst"></div></section>
+  </div>
+</section>
+
+<section class="view" data-view="suggestions" aria-label="Suggestions" hidden>
+  <div class="hero sm"><div class="htx"><p class="kick">À découvrir</p><h1 class="ht" id="sgTitle">Suggestions</h1><p class="hl" id="sgLead"></p></div></div>
+  <div class="pad" id="sgBody"></div>
+</section>
+
 <section class="view" data-view="jeux" aria-label="Jeux" hidden>
   <div class="hero sm" id="jHero"><div class="htx"><p class="kick">Tirés de ton propre historique</p><h1 class="ht">Jeux</h1><p class="hl">Tes meilleurs scores sont gardés.</p></div></div>
   <div class="pad">
@@ -1211,12 +1328,25 @@ code.cp{display:inline-block;max-width:100%;padding:4px 8px;border-radius:6px;ba
 
 <nav class="bnav" aria-label="Sections">
   <a href="#stats" data-v="stats"><svg class="ic" viewBox="0 0 24 24"><path d="M4 10.5 12 4l8 6.5V20h-5v-6h-6v6H4z"/></svg>Accueil</a>
-  <a href="#profil" data-v="profil"><svg class="ic" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2.5"/><circle cx="9" cy="11" r="2.2"/><path d="M5.8 16.2a3.6 3.6 0 0 1 6.4 0M14 10h4M14 13.5h3"/></svg>Profil</a>
-  <a href="#recaps" data-v="recaps"><svg class="ic" viewBox="0 0 24 24"><rect x="3" y="6" width="13" height="15" rx="2"/><path d="M8 3h11a2 2 0 0 1 2 2v12"/></svg>Récaps</a>
   <a href="#classements" data-v="classements"><svg class="ic" viewBox="0 0 24 24"><path d="M8 21h8M12 17v4M7 4h10v5a5 5 0 0 1-10 0z"/><path d="M17 6h3v2a3 3 0 0 1-3 3M7 6H4v2a3 3 0 0 0 3 3"/></svg>Classements</a>
-  <a href="#predictions" data-v="predictions"><svg class="ic" viewBox="0 0 24 24"><path d="M3 17l5-5 4 3 8-8"/><path d="M15 7h5v5"/></svg>Prédictions</a>
-  <a href="#jeux" data-v="jeux"><svg class="ic" viewBox="0 0 24 24"><rect x="2.5" y="7" width="19" height="11" rx="5"/><path d="M7 11v3M5.5 12.5h3"/><circle cx="16" cy="11.5" r=".8"/><circle cx="18" cy="13.5" r=".8"/></svg>Jeux</a>
+  <a href="#recaps" data-v="recaps"><svg class="ic" viewBox="0 0 24 24"><rect x="3" y="6" width="13" height="15" rx="2"/><path d="M8 3h11a2 2 0 0 1 2 2v12"/></svg>Récaps</a>
+  <a href="#groupe" data-v="groupe" class="sao" hidden><svg class="ic" viewBox="0 0 24 24"><circle cx="9" cy="8" r="3.2"/><path d="M3.2 19.5a5.8 5.8 0 0 1 11.6 0"/><path d="M15.6 4.9a3.2 3.2 0 0 1 0 6.2"/><path d="M17.6 14.1a5.8 5.8 0 0 1 3.2 5.4"/></svg>Groupe</a>
+  <a href="#profil" data-v="profil" class="csa"><svg class="ic" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2.5"/><circle cx="9" cy="11" r="2.2"/><path d="M5.8 16.2a3.6 3.6 0 0 1 6.4 0M14 10h4M14 13.5h3"/></svg>Ta carte</a>
+  <button type="button" class="bmore" id="bMore" aria-haspopup="dialog" aria-expanded="false" aria-controls="moreSheet"><svg class="ic" viewBox="0 0 24 24"><rect x="4" y="4" width="6.5" height="6.5" rx="1.6"/><rect x="13.5" y="4" width="6.5" height="6.5" rx="1.6"/><rect x="4" y="13.5" width="6.5" height="6.5" rx="1.6"/><rect x="13.5" y="13.5" width="6.5" height="6.5" rx="1.6"/></svg>Plus</button>
 </nav>
+<div class="sheet" id="moreSheet" hidden>
+  <div class="sheetbox" role="dialog" aria-modal="true" aria-labelledby="moreT">
+    <div class="sheeth"><b id="moreT">Plus</b><button class="x" data-more-close aria-label="Fermer">×</button></div>
+    <a class="sheetme" href="#toi" data-v="toi"><span class="sheetav" id="moreAv"></span><span><b id="moreName">Toi</b><small>Ton profil et tes réglages</small></span></a>
+    <nav class="sheetnav" aria-label="Autres pages">
+      <a href="#profil" data-v="profil" class="sao" hidden><svg class="ic" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2.5"/><circle cx="9" cy="11" r="2.2"/><path d="M5.8 16.2a3.6 3.6 0 0 1 6.4 0M14 10h4M14 13.5h3"/></svg><span>Ta carte</span></a>
+      <a href="#predictions" data-v="predictions"><svg class="ic" viewBox="0 0 24 24"><path d="M3 17l5-5 4 3 8-8"/><path d="M15 7h5v5"/></svg><span>Prédictions</span></a>
+      <a href="#suggestions" data-v="suggestions" class="sao" hidden><svg class="ic" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M15.6 8.4l-2.2 5-5 2.2 2.2-5z"/></svg><span>Suggestions</span></a>
+      <a href="#jeux" data-v="jeux"><svg class="ic" viewBox="0 0 24 24"><rect x="2.5" y="7" width="19" height="11" rx="5"/><path d="M7 11v3M5.5 12.5h3"/><circle cx="16" cy="11.5" r=".8"/><circle cx="18" cy="13.5" r=".8"/></svg><span>Jeux</span></a>
+      <a href="#guide" data-v="guide"><svg class="ic" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M9.6 9.4a2.5 2.5 0 1 1 3.4 2.4c-.6.3-1 .8-1 1.5v.5"/><path d="M12 17h.01"/></svg><span>Guide</span></a>
+    </nav>
+  </div>
+</div>
 
 <div class="inst" id="inst" role="dialog" aria-modal="true" aria-labelledby="instT" hidden><div class="instbox" id="instBox"></div></div>
 <div class="ov" id="ov" hidden></div>
@@ -1274,7 +1404,7 @@ code.cp{display:inline-block;max-width:100%;padding:4px 8px;border-radius:6px;ba
     <ul class="srcs" id="srcList"></ul>
   </div>
   <div class="mergeb" id="spBox" hidden><h3>Connexion à Spotify, optionnelle</h3><div id="spBody"></div></div>
-  <div class="mergeb sao" id="lkBox" hidden><h3>Relier tes appareils</h3><div id="lkBody"></div></div>
+  <div class="mergeb sao" hidden><h3>Relier tes appareils</h3><p class="note">Pour avoir les mêmes stats sur ton PC et ton tel, ça se passe sur ta page Toi.</p><a class="btn lite" href="#toi" data-close>Ouvrir ma page</a></div>
   <details class="how" id="how">
     <summary>Récupérer ton historique</summary>
     <div class="chips svcs" id="howTabs" role="group" aria-label="Ta plateforme">
@@ -1367,7 +1497,7 @@ const SA = /*@SA*/true; // true = version autonome (GitHub Pages)
 const SKINS = ['nuit', 'pomme', 'ecarlate', 'violet', 'clair', 'wrapped', 'console'];
 const SKIN_NAMES = { nuit: 'Nuit, façon Spotify', pomme: 'Pomme, façon Apple Music', ecarlate: 'Écarlate, façon YouTube Music', violet: 'Violet, façon Deezer', clair: 'Clair', wrapped: 'Wrapped', console: 'Console' };
 const GRANS = ['day', 'week', 'month', 'year', 'all'];
-const VIEWS = ['stats', 'profil', 'recaps', 'classements', 'predictions', 'jeux', 'guide', 'groupe'];
+const VIEWS = ['stats', 'profil', 'recaps', 'classements', 'predictions', 'jeux', 'guide', 'groupe', 'toi', 'suggestions'];
 const S = { view: 'stats', gran: 'week', anchor: 0, metric: 'ms', content: 'music', thr: 30, noSkip: false, cmp: true, focus: null, skin: 'nuit', rcMore: { m: false, w: false }, top: { art: 10, trk: 10, alb: 10 }, logN: 30, calYear: null, rk: { scope: 'all', sort: 'plays', n: 50 }, live: false, recMode: 'new' };
 let D = null, G = null, T = null, DEMO = true, P = null, Q = null, booted = false, dataVer = 0;
 let seenT = null, seenT2 = null, seenA = null, seenL = null, stampC = 1;
@@ -2129,13 +2259,14 @@ function route() {
   if (S.view === 'groupe') S.grInvite = sub && GR_ID.test(sub) ? sub : null;
   else if (prev === 'groupe') groupStop();
   $$('.view').forEach(v => v.hidden = v.dataset.view !== S.view);
-  $$('.snav a, .bnav a').forEach(a => a.setAttribute('aria-current', a.dataset.v === S.view ? 'page' : 'false'));
+  $$('.snav a, .bnav a, .sheet a[data-v]').forEach(a => a.setAttribute('aria-current', a.dataset.v === S.view ? 'page' : 'false'));
+  navExtra();
   if (prev !== S.view) window.scrollTo(0, 0);
   heroVisible = true;
   renderView(); updateMini(); checkHero();
 }
 function renderView() {
-  if (S.view === 'guide' || S.view === 'groupe') { if (D) renderHead(); if (S.view === 'guide') renderGuide(); else renderGroup(); return; }
+  if (['guide', 'groupe', 'toi', 'suggestions'].includes(S.view)) { if (D) renderHead(); if (S.view === 'guide') renderGuide(); else if (S.view === 'groupe') renderGroup(); else if (S.view === 'toi') renderMe(); else renderSugg(); return; }
   if (!D) return;
   renderHead();
   if (S.view === 'stats') render();
@@ -2150,7 +2281,7 @@ function updateMini() {
   $('#mini').hidden = !(S.view === 'stats' && !heroVisible);
   $('#topTitle').textContent = S.view === 'stats' ? '' : VIEW_T[S.view];
 }
-const VIEW_T = { stats: 'Accueil', profil: 'Profil', recaps: 'Récaps', classements: 'Classements', predictions: 'Prédictions', jeux: 'Jeux', guide: 'Guide', groupe: 'Groupe' };
+const VIEW_T = { toi: 'Toi', suggestions: 'Suggestions', stats: 'Accueil', profil: 'Ta carte', recaps: 'Récaps', classements: 'Classements', predictions: 'Prédictions', jeux: 'Jeux', guide: 'Guide', groupe: 'Groupe' };
 let heroVisible = true;
 function checkHero() {
   const v = $(`.view[data-view="${S.view}"]`); if (!v) return;
@@ -2165,6 +2296,7 @@ function setData(X, demo) {
   renderView();
   groupAutoPush();
   if (!demo) lkAutoPush();
+  renderMeTop();
   if (instOpen()) renderInstall();
 }
 function render() {
@@ -4724,10 +4856,13 @@ function groupSummary() {
   const nm = mL - mF + 1, mMs = new Float64Array(nm), mPl = new Array(nm).fill(0);
   const aA = new Float64Array(D.na), aY = new Float64Array(D.na), aMo = new Float64Array(D.na), tA = new Float64Array(D.nt), hrs = new Float64Array(24), wd = new Float64Array(7);
   const sA = new Uint8Array(D.na), sT = new Uint8Array(D.nt);
-  let tMs = 0, plays = 0, nA = 0, nT = 0;
+  let tMs = 0, plays = 0, nA = 0, nT = 0, skN = 0, skT = 0;
+  const d0 = D.firstDay, dayMs = new Float64Array(Math.max(1, D.lastDay - d0 + 1)), dayOn = new Uint8Array(dayMs.length);
   for (let i = 0; i < D.n; i++) {
     const t = K[i]; if (TK[t] !== 0) continue;
     const ms = M[i], a = TA[t], mo = MN[i];
+    dayMs[DY[i] - d0] += ms; if (ms >= 30000) dayOn[DY[i] - d0] = 1;
+    if (!(D.f[i] & 64)) { skT++; if (ms < 30000) skN++; }
     tMs += ms; mMs[mo - mF] += ms; aA[a] += ms; tA[t] += ms; hrs[HR[i]] += ms; wd[dow(DY[i])] += ms;
     if (mo >= y0) aY[a] += ms;
     if (mo === cm) aMo[a] += ms;
@@ -4735,11 +4870,14 @@ function groupSummary() {
   }
   const top = (arr, k) => { const idx = []; for (let i = 0; i < arr.length; i++) if (arr[i] >= 60000) idx.push(i); return idx.sort((x, y) => arr[y] - arr[x]).slice(0, k); };
   const mins = v => Math.round(v / 60000), an = a => String(D.artists[a]).slice(0, 80);
+  let days = 0, streak = 0, run = 0, bigD = 0, bigDd = d0;
+  for (let i = 0; i < dayMs.length; i++) { if (dayOn[i]) { days++; run++; if (run > streak) streak = run; } else run = 0; if (dayMs[i] > bigD) { bigD = dayMs[i]; bigDd = d0 + i; } }
   const A50 = top(aA, 50), AY = top(aY, 25), AM = top(aMo, 15), T20 = top(tA, 20);
   const svc = new Set(); for (const s of (Prefs.data.sync.sources || [])) for (const x of String(s.svc || '').split(' + ')) if (x) svc.add(x);
   return {
     v: 1, svc: [...svc].join(' + ').slice(0, 60),
     first: D.firstDay, last: D.lastDay, tMin: mins(tMs), plays, nA, nT,
+    sk: skT >= 200 ? Math.round(skN / skT * 1000) / 1000 : -1, days, streak, bigD: mins(bigD), bigDd,
     mF, mMin: Array.from(mMs, mins), mPl,
     aN: A50.map(an), aM: A50.map(a => mins(aA[a])),
     yr: cy, aNY: AY.map(an), aMY: AY.map(a => mins(aY[a])),
@@ -4834,7 +4972,7 @@ async function grSetPp(file) {
   try {
     const url = await ppFrom(file);
     Prefs.data.sync.pp = url; Prefs.data.sync.ppAt = Date.now(); Prefs.save();
-    renderGroup(); grSay('Envoi de ta photo…');
+    renderGroup(); renderMeTop(); grSay('Envoi de ta photo…');
     const ok = await groupPush(true);
     if (grMe()) grSay(ok ? 'Photo mise à jour.' : 'Ta photo apparaîtra quand tu auras importé ton historique.');
     lkAutoPush();
@@ -4896,11 +5034,68 @@ function grTwin(ms) {
   return best;
 }
 
+/* ---------- comparaisons marrantes ---------- */
+const grSum0 = a => (Array.isArray(a) ? a : []).reduce((s, v) => s + (v || 0), 0);
+const grShare = (arr, from, to) => { const t = grSum0(arr); if (!t) return -1; let s = 0; for (let h = from; h < to; h++) s += arr[h] || 0; return s / t; };
+function grAwards(ms) {
+  const L = ms.filter(m => m.tMin > 0), out = [];
+  if (L.length < 2) return out;
+  const top50 = new Map(); for (const m of L) for (const n of (m.aN || [])) { const k = norm(n); top50.set(k, (top50.get(k) || 0) + 1); }
+  const niche = m => { const M = m.aM || [], t = grSum0(M); if (!t) return -1; let s = 0; (m.aN || []).forEach((n, i) => { if (top50.get(norm(n)) === 1) s += M[i] || 0; }); return s / t; };
+  const best = (title, f, txt, min = 0) => {
+    let w = null, wv = -Infinity, n = 0;
+    for (const m of L) { const v = f(m); if (v == null || v < 0 || !isFinite(v)) continue; n++; if (v > wv) { wv = v; w = m; } }
+    if (w && n >= 2 && wv > min) out.push({ title, m: w, txt: txt(w, wv) });
+  };
+  best('Le couche-tard', m => grShare(m.hrs, 0, 5), (m, v) => `${fmtPct(v)} de son écoute entre minuit et 5${NB}h`, 0.01);
+  best('Le lève-tôt', m => grShare(m.hrs, 5, 9), (m, v) => `${fmtPct(v)} de son écoute avant 9${NB}h`, 0.01);
+  best('Le roi du week-end', m => grShare(m.wd, 5, 7), (m, v) => `${fmtPct(v)} de son écoute le samedi et le dimanche`, 0.2);
+  best('Le fidèle', m => m.tMin && m.aM && m.aM[0] ? m.aM[0] / m.tMin : -1, (m, v) => `${fmtPct(v)} de son écoute pour ${m.aN[0]}`);
+  best('L\'explorateur', m => m.nA || -1, (m, v) => `${fmtN(v)} artistes différents`);
+  best('Le plus pointu', niche, (m, v) => `${fmtPct(v)} de son top que personne d'autre n'écoute`, 0.05);
+  best('Le zappeur', m => typeof m.sk === 'number' ? m.sk : -1, (m, v) => `zappe ${fmtPct(v)} des morceaux avant 30${NB}s`, 0.02);
+  best('Le plus régulier', m => m.streak || -1, (m, v) => `${fmtN(v)} jours d'affilée sans en rater un`, 1);
+  best('La plus grosse journée', m => m.bigD || -1, (m, v) => `${grH(v)} le ${fmtDay(m.bigDd)}`);
+  return out;
+}
+const grFav = arr => { const a = Array.isArray(arr) ? arr : []; let b = -1, v = 0; a.forEach((x, i) => { if (x > v) { v = x; b = i; } }); return b; };
+function grDuelHTML(ms, per) {
+  const me = ms.find(m => m.me), others = ms.filter(m => !m.me && m.tMin > 0);
+  if (!me || !me.tMin || !others.length) return '';
+  let o = others.find(m => m.id === GRP.duel);
+  if (!o) { const tw = grTwin(ms); o = tw ? tw.m : others[0]; }
+  const sim = grTwin([me, o]), pname = GR_PER[per].toLowerCase();
+  const fh = m => { const h = grFav(m.hrs); return h < 0 ? '–' : `${h}${NB}h`; }, fd = m => { const d = grFav(m.wd); return d < 0 ? '–' : cap(WDL[d]); };
+  const rows = [
+    ['Temps d\'écoute, ' + pname, grMin(me, per), grMin(o, per), grH],
+    ['Écoutes, ' + pname, grPlays(me, per), grPlays(o, per), fmtN],
+    ['Artistes différents', me.nA || 0, o.nA || 0, fmtN],
+    ['Plus longue série', me.streak || 0, o.streak || 0, v => `${fmtN(v)} ${pl(v, 'jour')}`],
+    ['Plus grosse journée', me.bigD || 0, o.bigD || 0, grH],
+    ['Heure préférée', fh(me), fh(o), null],
+    ['Jour préféré', fd(me), fd(o), null],
+    ['Artiste n°1', (me.aN || [])[0] || '–', (o.aN || [])[0] || '–', null]
+  ];
+  const cell = (v, w, f) => `<b class="${w ? 'w' : ''}">${esc(f ? f(v) : String(v))}</b>`;
+  return `<section class="blk"><div class="bh"><div><h2>Ton duel</h2><p class="sub">Toi contre un membre du groupe, face à face</p></div>
+      <label class="grduelsel"><span class="vh">Ton adversaire</span><select class="field" id="grDuel">${others.map(m => `<option value="${esc(m.id)}"${m === o ? ' selected' : ''}>${esc(m.name)}</option>`).join('')}</select></label></div>
+    <div class="card grduel">
+      <div class="dhd">${grAv(me.name, me.pp)}<b>${esc(me.name)}</b><span>contre</span><b>${esc(o.name)}</b>${grAv(o.name, o.pp)}</div>
+      ${rows.map(([k, a, b, f]) => `<div class="drow">${cell(a, f && a > b, f)}<span>${esc(k)}</span>${cell(b, f && b > a, f)}</div>`).join('')}
+      ${sim ? `<p class="dsim">${fmtPct(Math.max(0, Math.min(1, sim.sim)))} de goûts en commun${sim.common.length ? `, surtout ${esc(grAnd(sim.common))}` : ''}.</p>` : ''}
+    </div></section>`;
+}
+function grEquiv(min) {
+  if (min < 120) return '';
+  const days = min / 1440, films = Math.round(min / 120), tgv = Math.round(min / 200);
+  return `De quoi tenir ${days >= 1 ? `${fmtN(Math.round(days * 10) / 10)} ${pl(days, 'jour')} sans pause` : `${grH(min)} sans pause`}, regarder ${fmtN(films)} ${pl(films, 'film')} de 2${NB}h ou faire ${fmtN(tgv)} ${pl(tgv, 'fois')} Paris–Marseille en TGV.`;
+}
+
 /* ---------- affichage ---------- */
 const GR_PER = { m: 'Ce mois-ci', y: 'Cette année', a: 'Depuis le début' };
 const grH = min => { min = Math.round(min); return min >= 60 ? `${fmtN(Math.floor(min / 60))}${NB}h${min % 60 ? NB + String(min % 60).padStart(2, '0') : ''}` : `${fmtN(min)}${NB}min`; };
 function grHero(kick, title, lead) { $('#grKick').textContent = kick; $('#grTitle').textContent = title; $('#grLead').textContent = lead; }
-const GR_KEYS = ['v', 'name', 'updatedAt', 'pp', 'svc', 'first', 'last', 'tMin', 'plays', 'nA', 'nT', 'mF', 'mMin', 'mPl', 'aN', 'aM', 'yr', 'aNY', 'aMY', 'mo', 'aNM', 'aMM', 'tN', 'tA', 'tM', 'hrs', 'wd'];
+const GR_KEYS = ['v', 'name', 'updatedAt', 'pp', 'svc', 'first', 'last', 'tMin', 'plays', 'nA', 'nT', 'sk', 'days', 'streak', 'bigD', 'bigDd', 'mF', 'mMin', 'mPl', 'aN', 'aM', 'yr', 'aNY', 'aMY', 'mo', 'aNM', 'aMM', 'tN', 'tA', 'tM', 'hrs', 'wd'];
 const GR_RULES = `rules_version = '2';
 service cloud.firestore {
   match /databases/{database}/documents {
@@ -5034,7 +5229,7 @@ function renderGroup() {
     grHero('Entre potes', 'Ton groupe', intro);
     body.innerHTML = `<div class="grstart"><section class="card"><h2>Créer un groupe</h2><p class="sub">Tu obtiens un lien à envoyer à tes potes.</p>
       <label class="grf"><span>Nom du groupe</span><input class="field" id="grName" maxlength="40" placeholder="Les potes" autocomplete="off"></label>
-      <label class="grf"><span>Ton pseudo</span><input class="field" id="grMe1" maxlength="30" placeholder="Ton prénom ou un surnom" autocomplete="nickname"></label>
+      <label class="grf"><span>Ton pseudo</span><input class="field" id="grMe1" maxlength="30" value="${esc(meName())}" placeholder="Ton prénom ou un surnom" autocomplete="nickname"></label>
       <p class="note">${GR_SHARE}</p><div class="gact"><button class="btn pri" data-gr="create">Créer le groupe</button></div><p class="grmsg" id="grMsg" role="status"></p></section>
       <section class="card"><h2>Rejoindre un groupe</h2><p class="sub">Un pote t'a envoyé un lien ? Ouvre-le, ou colle-le ici.</p>
       <label class="grf"><span>Lien d'invitation</span><input class="field" id="grPaste" placeholder="https://…#groupe/…" autocomplete="off"></label><div class="gact"><button class="btn" data-gr="paste">Ouvrir l'invitation</button></div></section></div>${grRulesBox()}`;
@@ -5050,7 +5245,7 @@ function renderGroup() {
   const tot = rows.reduce((s, r) => s + r.min, 0), totP = rows.reduce((s, r) => s + r.pl, 0), mx = Math.max(1, ...rows.map(r => r.min));
   const today = Math.floor(Date.now() / DAYMS), top1 = rows.length && rows[0].min ? rows[0] : null;
   const arts = grArtists(ms, per).sort((a, b) => b.min - a.min), common = arts.filter(a => a.who.length >= 2).sort((a, b) => b.who.length - a.who.length || b.min - a.min).slice(0, 8);
-  const trs = grTracks(ms), twin = grTwin(ms), isOwner = !!(GRP.group && GRP.uid && GRP.group.owner === GRP.uid);
+  const aw = grAwards(ms), trs = grTracks(ms), twin = grTwin(ms), isOwner = !!(GRP.group && GRP.uid && GRP.group.owner === GRP.uid);
   const cm = curMon(), months = Array.from({ length: 12 }, (_, i) => cm - 11 + i), mv = months.map(mo => ms.reduce((s, m) => s + ((m.mMin || [])[mo - (m.mF | 0)] || 0), 0));
   const hv = Array.from({ length: 24 }, (_, h) => ms.reduce((s, m) => s + ((m.hrs || [])[h] || 0), 0)), hk = hv.indexOf(Math.max(...hv));
   const wv = Array.from({ length: 7 }, (_, d) => ms.reduce((s, m) => s + ((m.wd || [])[d] || 0), 0)), wk = wv.indexOf(Math.max(...wv));
@@ -5066,10 +5261,13 @@ function renderGroup() {
     <div class="kpi"><span class="k">Écoutes</span><span class="v">${fmtN(totP)}</span><span class="d">de 30${NB}s ou plus</span></div>
     <div class="kpi"><span class="k">Membres</span><span class="v">${fmtN(ms.length)}</span><span class="d">${isOwner ? 'tu as créé le groupe' : 'dans le groupe'}</span></div>
     <div class="kpi"><span class="k">Le plus accro</span><span class="v sm">${top1 ? esc(top1.m.name) : '–'}</span><span class="d">${top1 ? grH(top1.min) + ' ' + esc(pname) : 'personne pour l\'instant'}</span></div>
-  </div></div>
+  </div>${grEquiv(tot) ? `<p class="grequiv">${esc(GR_PER[per])}, le groupe a écouté ${grH(tot)} de musique. ${esc(grEquiv(tot))}</p>` : ''}</div>
   <section class="blk"><div class="bh"><div><h2>Qui écoute le plus</h2><p class="sub">${esc(GR_PER[per])}, en temps d'écoute</p></div></div>
     <ol class="grlb">${rows.map((r, i) => `<li class="${r.m.me ? 'me' : ''}"><span class="rk">${i + 1}</span>${grAv(r.m.name, r.m.pp)}<span class="nm"><b>${esc(r.m.name)}${r.m.me ? ' <small>(toi)</small>' : ''}</b>${stale(r.m) || `<small>${esc(r.m.svc || '')}</small>`}</span><span class="br" aria-hidden="true"><i style="width:${(r.min / mx * 100).toFixed(1)}%"></i></span><span class="vl"><b>${grH(r.min)}</b><small>${tot ? fmtPct(r.min / tot) : '0' + NB + '%'}</small></span></li>`).join('')}</ol></section>
   ${alone ? '' : `
+  ${aw.length ? `<section class="blk"><div class="bh"><div><h2>Les trophées du groupe</h2><p class="sub">Depuis le début, d'après les chiffres de chacun</p></div></div>
+    <div class="graw">${aw.map(x => `<div class="card${x.m.me ? ' me' : ''}"><span class="k">${esc(x.title)}</span><div class="who">${grAv(x.m.name, x.m.pp)}<b>${esc(x.m.name)}${x.m.me ? ' <small>(toi)</small>' : ''}</b></div><p>${esc(x.txt)}</p></div>`).join('')}</div></section>` : ''}
+  ${grDuelHTML(ms, per)}
   ${twin ? `<section class="blk"><div class="card grtwin">${grAv(twin.m.name, twin.m.pp)}<div><p class="sub">Ton jumeau musical dans le groupe</p><h2>${esc(twin.m.name)}</h2><p>${fmtPct(Math.max(0, Math.min(1, twin.sim)))} de goûts en commun${twin.common.length ? `, surtout ${esc(twin.common.join(', '))}` : ''}.</p></div></div></section>` : ''}
   <section class="blk"><div class="bh"><div><h2>Le top du groupe</h2><p class="sub">${esc(GR_PER[per])}, en additionnant le temps de chacun</p></div></div>
     ${arts.length ? `<ol class="grtop">${arts.slice(0, 10).map((a, i) => `<li><span class="rk">${i + 1}</span>${cov('a|' + a.name, a.name, 'r')}<span class="nm"><b>${esc(a.name)}</b><small>${esc(a.who.length > 1 ? `${a.who.length} membres : ${grAnd(a.who)}` : a.who[0])}</small></span><span class="vl"><b>${grH(a.min)}</b></span></li>`).join('')}</ol>` : '<p class="gintro">Pas encore assez d\'écoutes sur cette période.</p>'}</section>
@@ -5112,7 +5310,7 @@ function drawJoin(cur) {
   grHero('Invitation', J.name, 'Tu es invité à comparer tes stats d\'écoute avec ce groupe.');
   body.innerHTML = `<section class="card grjoin"><h2>Rejoindre « ${esc(J.name)} »</h2>
     ${cur ? `<p class="gtip">Tu es déjà dans « ${esc(cur.name || 'un autre groupe')} ». En rejoignant celui-ci, tes chiffres sont retirés de l'autre.</p>` : ''}
-    <label class="grf"><span>Ton pseudo</span><input class="field" id="grMe1" maxlength="30" value="${esc((cur && cur.me) || '')}" placeholder="Ton prénom ou un surnom" autocomplete="nickname"></label>
+    <label class="grf"><span>Ton pseudo</span><input class="field" id="grMe1" maxlength="30" value="${esc((cur && cur.me) || meName())}" placeholder="Ton prénom ou un surnom" autocomplete="nickname"></label>
     <p class="note">${GR_SHARE}</p>${DEMO ? '<p class="note">Tu n\'as pas encore importé tes stats : tu apparaîtras dans le groupe dès que ce sera fait.</p>' : ''}
     <div class="gact"><button class="btn pri" data-gr="join">Rejoindre le groupe</button><a class="btn" href="#stats">Pas maintenant</a></div><p class="grmsg" id="grMsg" role="status"></p></section>`;
 }
@@ -5126,7 +5324,7 @@ function grConfirm(el, label) {
 }
 async function grAct(a, el) {
   if (a === 'invite') { grInvite(); return; }
-  if (a === 'ppDel') { Prefs.data.sync.pp = ''; Prefs.data.sync.ppAt = Date.now(); Prefs.save(); renderGroup(); groupPush(true).then(() => grSay('Photo retirée.'), e => grSay(fbErr(e))); lkAutoPush(); return; }
+  if (a === 'ppDel') { Prefs.data.sync.pp = ''; Prefs.data.sync.ppAt = Date.now(); Prefs.save(); renderGroup(); renderMeTop(); groupPush(true).then(() => grSay('Photo retirée.'), e => grSay(fbErr(e))); lkAutoPush(); return; }
   if (a === 'import') { openData(); return; }
   if (a === 'copyCfg') { navigator.clipboard.writeText(GR_CFG).then(() => toast('Modèle copié. Colle-le dans config.js sur GitHub.'), () => toast('Sélectionne le texte du modèle et copie-le.')); return; }
   if (a === 'copyRules') { navigator.clipboard.writeText(GR_RULES).then(() => toast('Règles copiées. Colle-les dans l\'onglet Règles de Firestore.'), () => toast('Sélectionne le texte des règles et copie-le.')); return; }
@@ -5147,7 +5345,7 @@ async function grAct(a, el) {
       grSay('Création du groupe…');
       const { F, db, uid } = await fbInit(), gid = grId();
       await F.setDoc(F.doc(db, 'groups', gid), { name, owner: uid, createdAt: F.serverTimestamp() });
-      Prefs.data.sync.group = { gid, name, me }; Prefs.save();
+      Prefs.data.sync.group = { gid, name, me }; if (!Prefs.data.sync.me) { Prefs.data.sync.me = me; Prefs.data.sync.meAt = Date.now(); } Prefs.save(); renderMeTop();
       await groupPush(true).catch(e => console.warn(e));
       toast(`Groupe « ${name} » créé. Envoie le lien à tes potes.`);
       renderGroup();
@@ -5156,7 +5354,7 @@ async function grAct(a, el) {
       if (!me) { grSay('Choisis un pseudo pour que tes potes te reconnaissent.'); $('#grMe1').focus(); return; }
       grSay('Connexion au groupe…');
       if (g && g.gid !== J.gid) { groupStop(); const { F, db, uid } = await fbInit(); await F.deleteDoc(F.doc(db, 'groups', g.gid, 'members', uid)).catch(() => {}); }
-      Prefs.data.sync.group = { gid: J.gid, name: J.name, me }; Prefs.save();
+      Prefs.data.sync.group = { gid: J.gid, name: J.name, me }; if (!Prefs.data.sync.me) { Prefs.data.sync.me = me; Prefs.data.sync.meAt = Date.now(); } Prefs.save(); renderMeTop();
       await groupPush(true).catch(e => console.warn(e));
       S.grInvite = null; GRP.join = null;
       toast(`Bienvenue dans « ${J.name} ».`);
@@ -5166,7 +5364,7 @@ async function grAct(a, el) {
       if (grMe()) grSay(ok ? 'Tes chiffres sont à jour dans le groupe.' : 'Importe ton historique d\'abord.');
     } else if (a === 'rename') {
       const me = grPseudo('grMe2'); if (!me) { grSay('Le pseudo ne peut pas être vide.'); return; }
-      g.me = me; Prefs.save();
+      g.me = me; Prefs.data.sync.me = me; Prefs.data.sync.meAt = Date.now(); Prefs.save(); renderMeTop(); lkAutoPush();
       const ok = await groupPush(true); if (grMe()) grSay(ok ? 'Pseudo changé.' : 'Pseudo changé : il apparaîtra quand tu auras importé ton historique.');
     } else if (a === 'leave') {
       groupStop();
@@ -5195,7 +5393,7 @@ function wireGroup() {
     const b = e.target.closest('[data-gr]'); if (b) grAct(b.dataset.gr, b);
   });
   B.addEventListener('focusin', e => { if (e.target.matches('[data-sel]')) e.target.select(); });
-  B.addEventListener('change', e => { if (e.target.id === 'grPpIn' && e.target.files && e.target.files[0]) grSetPp(e.target.files[0]); });
+  B.addEventListener('change', e => { if (e.target.id === 'grDuel') { GRP.duel = e.target.value; renderGroup(); return; } if (e.target.id === 'grPpIn' && e.target.files && e.target.files[0]) grSetPp(e.target.files[0]); });
   B.addEventListener('keydown', e => {
     if (e.key !== 'Enter' || !e.target.matches('input.field')) return;
     const b = e.target.closest('.card, section') && e.target.closest('.card, section').querySelector('[data-gr]');
@@ -5324,11 +5522,12 @@ async function lkKeysFor(s) {
 }
 async function lkEnc(key, u8) { const iv = crypto.getRandomValues(new Uint8Array(12)); return { iv: b64(iv), c: new Uint8Array(await crypto.subtle.encrypt({ name: 'AES-GCM', iv }, key, u8)) }; }
 async function lkDec(key, iv, c) { return new Uint8Array(await crypto.subtle.decrypt({ name: 'AES-GCM', iv: unb64(iv) }, key, c)); }
-const lkSig = (X, ppAt) => (X ? [X.n, X.n ? X.s[X.n - 1] : 0, X.created || ''].join('|') : '0') + '|' + (ppAt || 0);
-const lkLocalSig = () => lkSig(DEMO ? null : D, Prefs.data.sync.ppAt);
+const lkSig = (X, st) => (X ? [X.n, X.n ? X.s[X.n - 1] : 0, X.created || ''].join('|') : '0') + '|' + st;
+const lkStamp = h => (h && h.ppAt || 0) + '/' + (h && h.meAt || 0);
+const lkLocalSig = () => lkSig(DEMO ? null : D, lkStamp(Prefs.data.sync));
 function lkBlob() {
   const sy = Prefs.data.sync;
-  const head = te8(JSON.stringify({ v: 1, pp: sy.pp || '', ppAt: sy.ppAt || 0, src: (sy.sources || []).slice(-12) }));
+  const head = te8(JSON.stringify({ v: 1, pp: sy.pp || '', ppAt: sy.ppAt || 0, me: sy.me || '', meAt: sy.meAt || 0, src: (sy.sources || []).slice(-12) }));
   const body = DEMO ? new Uint8Array(0) : pack(D);
   const out = new Uint8Array(4 + head.length + body.length);
   new DataView(out.buffer).setUint32(0, head.length); out.set(head, 4); out.set(body, 4 + head.length);
@@ -5350,6 +5549,8 @@ function lkApplyHead(h) {
   if (!h) return;
   const sy = Prefs.data.sync;
   if ((h.ppAt || 0) > (sy.ppAt || 0)) { sy.pp = ppOk(h.pp) ? h.pp : ''; sy.ppAt = h.ppAt; groupAutoPush(800); if (S.view === 'groupe') renderGroup(); }
+  if ((h.meAt || 0) > (sy.meAt || 0) && typeof h.me === 'string') { sy.me = h.me.slice(0, 30); sy.meAt = h.meAt; const g = grMe(); if (g && sy.me) { g.me = sy.me; groupAutoPush(800); } }
+  renderMeTop(); if (S.view === 'toi') renderMe();
   if (Array.isArray(h.src)) { const by = new Map(); for (const s of (sy.sources || []).concat(h.src)) if (s && s.at) by.set(s.at + '|' + s.n, s); sy.sources = [...by.values()].sort((a, b) => a.at - b.at).slice(-12); }
 }
 async function lkPush(F, db, K, base) {
@@ -5372,7 +5573,7 @@ async function lkOnce(force) {
   LK.lastPull = Date.now();
   const local = DEMO ? null : D;
   if (!ms.exists()) {
-    if (local || Prefs.data.sync.ppAt) { L.ver = await lkPush(F, db, K, null); L.sig = lkLocalSig(); }
+    if (local || Prefs.data.sync.ppAt || Prefs.data.sync.meAt) { L.ver = await lkPush(F, db, K, null); L.sig = lkLocalSig(); }
   } else {
     const m = ms.data();
     if (m.ver !== L.ver || force) {
@@ -5382,7 +5583,7 @@ async function lkOnce(force) {
       lkApplyHead(head);
       const M = X && local ? lkMerge(local, X) : (X || local);
       if (M && M !== local) { LK.applying = true; try { setData(M, false); } finally { LK.applying = false; } await Store.save(D); updateDataStatus(); }
-      L.ver = m.ver; L.sig = lkSig(X, head && head.ppAt);
+      L.ver = m.ver; L.sig = lkSig(X, lkStamp(head));
       if (lkLocalSig() !== L.sig) { L.ver = await lkPush(F, db, K, m.ver); L.sig = lkLocalSig(); }
     } else if (lkLocalSig() !== L.sig) { L.ver = await lkPush(F, db, K, m.ver); L.sig = lkLocalSig(); }
   }
@@ -5507,6 +5708,279 @@ function wireLink() {
 }
 function lkBoot() { renderLink(); if (lkMe() && fbCfg()) setTimeout(() => lkSync(), 1200); }
 
+/* ================= toi : profil perso, réglages, et le panneau « Plus » sur téléphone ================= */
+const MORE_V = SA ? ['toi', 'profil', 'predictions', 'suggestions', 'jeux', 'guide'] : ['toi', 'predictions', 'jeux', 'guide'];
+const meName = () => { const sy = Prefs.data.sync || {}, g = grMe(); return String(sy.me || (g && g.me) || '').trim(); };
+function meAvatar(cls) {
+  const pp = Prefs.data.sync && Prefs.data.sync.pp, n = meName(), c = cls ? ' ' + cls : '';
+  if (ppOk(pp)) return `<span class="cv r grav${c}" aria-hidden="true"><img src="${esc(pp)}" alt=""></span>`;
+  if (n) return cov('u|' + norm(n), n, 'r' + c);
+  return `<span class="cv r meic${c}" aria-hidden="true"><svg class="ic" viewBox="0 0 24 24"><circle cx="12" cy="8.5" r="3.6"/><path d="M5 19.5a7 7 0 0 1 14 0"/></svg></span>`;
+}
+function renderMeTop() {
+  const a = $('#meTop'); if (a) a.innerHTML = meAvatar();
+  const m = $('#moreAv'); if (m) m.innerHTML = meAvatar();
+  const n = $('#moreName'); if (n) n.textContent = meName() || 'Toi';
+}
+/* pseudo du profil : il suit dans le groupe et sur les appareils reliés */
+async function meSetName(v) {
+  const sy = Prefs.data.sync, g = grMe();
+  sy.me = v; sy.meAt = Date.now();
+  if (g && g.me !== v) { g.me = v; }
+  Prefs.save(); renderMeTop();
+  lkAutoPush();
+  if (g) return groupPush(true).catch(e => { throw e; });
+  return false;
+}
+function meFacts() {
+  if (DEMO || !D) return 'Importe ton historique pour remplir ton profil.';
+  const svc = new Set(); for (const s of (Prefs.data.sync.sources || [])) for (const x of String(s.svc || '').split(' + ')) if (x) svc.add(x);
+  const names = [...svc];
+  return `${fmtN(D.n)} morceaux lancés depuis le ${fmtDay(D.firstDay)}${names.length ? ', sur ' + (names.length > 1 ? names.slice(0, -1).join(', ') + ' et ' + names[names.length - 1] : names[0]) : ''}.`;
+}
+function renderMe() {
+  const id = $('#meId'); if (!id) return;
+  const pp = ppOk(Prefs.data.sync.pp), n = meName();
+  $('#meTitle').textContent = n || 'Toi';
+  $('#meLead').textContent = meFacts();
+  id.innerHTML = `<div class="meav">${meAvatar()}</div>
+    <div class="meidt">
+      <div class="grf"><label for="meName">Ton pseudo</label><div class="merow"><input class="field" id="meName" maxlength="30" value="${esc(n)}" placeholder="Ton prénom ou un surnom" autocomplete="nickname"><button class="btn" data-me="name">Enregistrer</button></div></div>
+      <div class="gact"><label class="btn">${pp ? 'Changer de photo' : 'Choisir une photo'}<input type="file" accept="image/*" id="mePpIn" class="vh"></label>${pp ? '<button class="btn" data-me="ppDel">Retirer la photo</button>' : ''}</div>
+      ${SA ? '<p class="note">Ton pseudo et ta photo apparaissent dans ton groupe, et passent sur tes appareils reliés.</p>' : ''}
+      <p class="grmsg" id="meMsg" role="status"></p>
+    </div>`;
+  if (SA) {
+    const g = grMe(), box = $('#meGr');
+    box.innerHTML = !fbCfg() ? '<div class="card merow2"><p>Les groupes ne sont pas encore activés sur ce site.</p><a class="btn" href="#groupe">Voir comment</a></div>'
+      : g ? `<div class="card merow2"><div><b>${esc(g.name || 'Ton groupe')}</b><small>Tu y es sous le pseudo ${esc(g.me || n || '?')}.</small></div><div class="gact"><a class="btn lite" href="#groupe">Ouvrir le groupe</a><button class="btn" data-me="invite">Inviter des potes</button></div></div>`
+      : '<div class="card merow2"><div><b>Pas encore de groupe</b><small>Compare tes stats avec tes potes, en direct.</small></div><a class="btn lite" href="#groupe">Créer ou rejoindre un groupe</a></div>';
+    renderLink();
+  }
+  const sp = SA && window.SILLON && window.SILLON.spotifyClientId;
+  $('#meData').innerHTML = `<div class="card medata"><p>${esc(DEMO ? 'Pour l\'instant, ce sont des données d\'exemple, inventées.' : `${fmtN(D.n)} morceaux lancés, du ${fmtDay(D.firstDay)} au ${fmtDay(D.lastDay)}.`)}</p>
+    <div class="gact"><button class="btn lite" data-me="data">${DEMO ? 'Importer mon fichier' : 'Importer ou fusionner'}</button>${DEMO ? '' : '<button class="btn" data-me="bak">Sauvegarde (.json)</button>'}<button class="btn" data-me="manage">Tout gérer</button><a class="btn" href="#guide">Le guide</a></div>
+    ${sp ? `<p class="mesp">${SPA.ok() ? 'Connecté à Spotify : tes dernières écoutes arrivent toutes seules.' : 'Pas connecté à Spotify.'} <button class="lnk" data-me="spotify">${SPA.ok() ? 'Gérer' : 'Connecter'}</button></p>` : ''}</div>`;
+  const iw = $('#meInstW'), mob = SA && (OS_IOS || OS_AND);
+  iw.hidden = !mob;
+  if (mob) $('#meInst').innerHTML = isStandalone() ? '<div class="card"><p>Sillon est installé sur cet appareil.</p></div>'
+    : '<div class="card merow2"><div><b>Installe Sillon sur ton tel</b><small>Une icône sur ton écran d\'accueil, et Sillon s\'ouvre en plein écran.</small></div><button class="btn lite" data-me="install">Installer l\'appli</button></div>';
+}
+function meSay(t) { const m = $('#meMsg'); if (m) m.textContent = t; else toast(t); }
+async function meAct(a, el) {
+  if (a === 'data') return openData();
+  if (a === 'manage') return openData();
+  if (a === 'bak') { const b = $('#exBak'); if (b) b.click(); return; }
+  if (a === 'spotify') { openData(); const s = $('#spBox'); if (s) s.scrollIntoView({ block: 'start' }); return; }
+  if (a === 'invite') return grInvite();
+  if (a === 'install') { try { sessionStorage.removeItem('sillon-noinst'); } catch (e) {} openInstall(); return; }
+  if (a === 'ppDel') { Prefs.data.sync.pp = ''; Prefs.data.sync.ppAt = Date.now(); Prefs.save(); renderMe(); renderMeTop(); lkAutoPush(); if (grMe()) groupPush(true).catch(() => {}); meSay('Photo retirée.'); return; }
+  if (a === 'name') {
+    const v = ($('#meName').value || '').trim().replace(/\s+/g, ' ').slice(0, 30);
+    if (!v) { meSay('Le pseudo ne peut pas être vide.'); return; }
+    el.disabled = true;
+    try { await meSetName(v); renderMe(); meSay('Pseudo enregistré.'); }
+    catch (e) { meSay(fbErr(e)); }
+    finally { if (el.isConnected) el.disabled = false; }
+  }
+}
+async function meSetPp(file) {
+  try {
+    const url = await ppFrom(file);
+    Prefs.data.sync.pp = url; Prefs.data.sync.ppAt = Date.now(); Prefs.save();
+    renderMe(); renderMeTop(); meSay('Photo enregistrée.');
+    lkAutoPush();
+    if (grMe()) groupPush(true).catch(e => meSay(fbErr(e)));
+  } catch (e) { meSay(e && e.message === 'img' ? 'Cette image ne s\'ouvre pas. Essaie une photo en JPEG ou en PNG.' : fbErr(e)); }
+}
+/* ---------- panneau « Plus » ---------- */
+let moreFocus = null;
+function openMore() {
+  const s = $('#moreSheet'); if (!s) return;
+  moreFocus = document.activeElement;
+  renderMeTop();
+  s.hidden = false; $('#bMore').setAttribute('aria-expanded', 'true');
+  requestAnimationFrame(() => s.classList.add('on'));
+  setTimeout(() => { const a = s.querySelector('a[aria-current=page]') || s.querySelector('a'); if (a) a.focus(); }, 30);
+}
+function closeMore(back) {
+  const s = $('#moreSheet'); if (!s || s.hidden) return;
+  s.classList.remove('on'); s.hidden = true; $('#bMore').setAttribute('aria-expanded', 'false');
+  if (back && moreFocus && moreFocus.focus) moreFocus.focus();
+}
+function navExtra() {
+  const b = $('#bMore'); if (b) b.classList.toggle('on', MORE_V.includes(S.view));
+  const t = $('#meTop'); if (t) t.setAttribute('aria-current', S.view === 'toi' ? 'page' : 'false');
+  closeMore(false);
+}
+function wireMe() {
+  $('#bMore').addEventListener('click', () => ($('#moreSheet').hidden ? openMore() : closeMore(true)));
+  $('#moreSheet').addEventListener('click', e => { if (e.target === e.currentTarget || e.target.closest('[data-more-close]')) closeMore(true); else if (e.target.closest('a')) closeMore(false); });
+  document.addEventListener('keydown', e => { if (e.key === 'Escape' && !$('#moreSheet').hidden) { e.stopPropagation(); closeMore(true); } }, true);
+  const B = $('#mePage');
+  B.addEventListener('click', e => { const b = e.target.closest('[data-me]'); if (b && !b.disabled) meAct(b.dataset.me, b); });
+  B.addEventListener('change', e => { if (e.target.id === 'mePpIn' && e.target.files && e.target.files[0]) meSetPp(e.target.files[0]); });
+  B.addEventListener('keydown', e => { if (e.key === 'Enter' && e.target.id === 'meName') { e.preventDefault(); meAct('name', B.querySelector('[data-me=name]')); } });
+  if (SA) $$('.csa').forEach(e => { e.hidden = true; });
+  renderMeTop();
+}
+
+/* ================= suggestions : micro-genres (Last.fm), artistes et albums à découvrir, extraits (Deezer) ================= */
+const SG = { busy: false, data: null, err: '', prog: '', tag: null, tags: {}, audio: null, play: null, ver: -1 };
+const SGC = lsMap('sillon-sugg');
+const lfKey = () => (SA && window.SILLON && window.SILLON.lastfmKey ? String(window.SILLON.lastfmKey).trim() : '');
+const SG_STOP = new Set(['seen live', 'favorites', 'favourites', 'favorite', 'favourite', 'my favorite', 'love', 'loved', 'awesome', 'beautiful', 'amazing', 'cool', 'good', 'great', 'best', 'male vocalists', 'female vocalists', 'male vocalist', 'female vocalist', 'singer-songwriter', 'spotify', 'all', 'music', 'under 2000 listeners', 'albums i own', 'check out', 'favorite artists', 'favourite artists', 'vocalists', 'artists', 'sexy', 'fip', 'radio', 'live', 'cover', 'covers', 'instrumental', 'usa', 'american', 'british', 'uk', 'france', 'french', 'english', 'canadian', 'german', 'belgian', 'swiss', 'quebec', 'paris', 'new york', 'london', '00s', '10s', '20s', '90s', '80s', '70s', '60s', '2000s', '2010s', '2020s', '1990s', '1980s', '1970s', 'oldies', 'classic']);
+const sgAge = (k, days) => { const c = SGC.load()[k]; return c && Date.now() - c.t < days * 864e5 ? c.v : undefined; };
+const sgPut = (k, v) => { SGC.load()[k] = { t: Date.now(), v }; SGC.dirty = true; return v; };
+async function sgCached(k, days, fn) { const v = sgAge(k, days); if (v !== undefined) return v; return sgPut(k, await fn()); }
+function lfJsonp(url) {
+  return new Promise(res => {
+    const cb = '__sillonLf' + (++dzN), sc = document.createElement('script');
+    const done = d => { clearTimeout(tm); try { delete window[cb]; } catch (e) { window[cb] = undefined; } sc.remove(); res(d); };
+    const tm = setTimeout(() => done(null), 9000);
+    window[cb] = d => done(d); sc.onerror = () => done(null);
+    sc.src = url + '&callback=' + cb; document.head.appendChild(sc);
+  });
+}
+async function lf(method, params) {
+  const url = 'https://ws.audioscrobbler.com/2.0/?' + new URLSearchParams(Object.assign({ method, api_key: lfKey(), format: 'json', autocorrect: '1' }, params));
+  let j = null;
+  try { const r = await fetch(url); j = await r.json(); } catch (e) { j = await lfJsonp(url); }
+  if (j && j.error) { if (j.error === 6) return null; const e = new Error(j.message || 'lastfm'); e.lf = j.error; throw e; }
+  return j;
+}
+const arr1 = x => (Array.isArray(x) ? x : x ? [x] : []);
+/* ---------- briques ---------- */
+const lfSimilar = name => sgCached('lf:sim:' + normT(name), 14, async () => { const j = await lf('artist.getsimilar', { artist: name, limit: 40 }); return arr1(j && j.similarartists && j.similarartists.artist).map(a => [String(a.name), +a.match || 0]).filter(a => a[0]); });
+const lfTags = name => sgCached('lf:tags:' + normT(name), 14, async () => { const j = await lf('artist.gettoptags', { artist: name }); return arr1(j && j.toptags && j.toptags.tag).slice(0, 10).map(t => [String(t.name).toLowerCase().trim(), +t.count || 0]).filter(t => t[0] && t[1] >= 5); });
+const lfAlbums = name => sgCached('lf:alb:' + normT(name), 14, async () => { const j = await lf('artist.gettopalbums', { artist: name, limit: 12 }); return arr1(j && j.topalbums && j.topalbums.album).map(a => ({ t: String(a.name || ''), pc: +a.playcount || 0, img: ((arr1(a.image).find(i => i.size === 'extralarge') || arr1(a.image).pop() || {})['#text']) || '' })).filter(a => a.t && a.t !== '(null)'); });
+const lfTagTop = tag => sgCached('lf:tag:' + tag, 7, async () => { const [a, b] = await Promise.all([lf('tag.gettopartists', { tag, limit: 60 }), lf('tag.gettopalbums', { tag, limit: 40 })]); return { a: arr1(a && a.topartists && a.topartists.artist).map(x => String(x.name)), l: arr1(b && b.albums && b.albums.album).map(x => ({ t: String(x.name || ''), ar: String((x.artist && x.artist.name) || ''), img: ((arr1(x.image).find(i => i.size === 'extralarge') || arr1(x.image).pop() || {})['#text']) || '' })) }; });
+const dzId = name => sgCached('dz:id:' + normT(name), 60, async () => { const r = await dz('/search/artist?limit=3&q=' + encodeURIComponent(name)); const L = arr1(r && r.data); const x = L.find(a => normT(a.name) === normT(name)) || L[0]; return x ? x.id : 0; });
+const dzRelated = id => sgCached('dz:rel:' + id, 14, async () => { const r = await dz(`/artist/${id}/related?limit=25`); return arr1(r && r.data).map(a => String(a.name)); });
+const dzAlbums = id => sgCached('dz:alb:' + id, 14, async () => { const r = await dz(`/artist/${id}/albums?limit=60`); return arr1(r && r.data).filter(a => a.record_type === 'album').map(a => ({ t: String(a.title || ''), pc: +a.fans || 0, img: a.cover_medium || '', y: String(a.release_date || '').slice(0, 4) })); });
+async function dzTop(name) { const id = await dzId(name); if (!id) return null; const r = await dz(`/artist/${id}/top?limit=1`); const t = arr1(r && r.data)[0]; return t ? { title: String(t.title || ''), preview: t.preview || '', img: (t.album && (t.album.cover_medium || t.album.cover)) || '', link: t.link || '' } : null; }
+async function sgPool(items, n, fn) { const out = new Array(items.length); let i = 0; await Promise.all(Array.from({ length: Math.min(n, items.length) }, async () => { while (i < items.length) { const k = i++; try { out[k] = await fn(items[k], k); } catch (e) { if (e && e.lf) throw e; out[k] = null; } await sleep(150); } })); return out; }
+/* ---------- calcul ---------- */
+function sgKnown() {
+  const A = new Set(), L = new Map();
+  for (let a = 0; a < D.na; a++) A.add(normT(D.artists[a]));
+  for (let l = 1; l < D.nl; l++) { const k = normT(D.artists[D.la[l]]); if (!L.has(k)) L.set(k, new Set()); L.get(k).add(normT(D.albums[l]).replace(/\s*(deluxe|edition|remaster(ed)?|version|expanded).*$/, '')); }
+  return { A, L };
+}
+const sgAlbKnown = (K, artist, title) => { const s = K.L.get(normT(artist)); if (!s) return false; const t = normT(title).replace(/\s*(deluxe|edition|remaster(ed)?|version|expanded).*$/, ''); for (const x of s) if (x === t || (t.length > 4 && (x.startsWith(t) || t.startsWith(x)))) return true; return false; };
+async function sgBuild() {
+  const K = sgKnown(), key = lfKey(), seeds = T.ordAff.slice(0, key ? 25 : 14), wsum = seeds.reduce((s, a) => s + T.aAff[a], 0) || 1;
+  const w = a => T.aAff[a] / wsum, nm = a => D.artists[a];
+  const cand = new Map(), tagW = new Map();
+  const add = (name, v, via) => { const k = normT(name); if (!k || K.A.has(k)) return; let o = cand.get(k); if (!o) cand.set(k, o = { name, v: 0, via: new Map() }); o.v += v; o.via.set(via, (o.via.get(via) || 0) + v); };
+  SG.prog = 'Je regarde tes artistes…'; renderSugg();
+  if (key) {
+    const sims = await sgPool(seeds.slice(0, 15), 3, a => lfSimilar(nm(a)));
+    sims.forEach((L, i) => (L || []).forEach(([n, m]) => add(n, m * w(seeds[i]), nm(seeds[i]))));
+    SG.prog = 'Je cherche tes micro-genres…'; renderSugg();
+    const tags = await sgPool(seeds, 3, a => lfTags(nm(a)));
+    tags.forEach((L, i) => (L || []).forEach(([t, c]) => { if (SG_STOP.has(t) || /^\d{2,4}s?$/.test(t) || t.length > 28) return; tagW.set(t, (tagW.get(t) || 0) + c / 100 * w(seeds[i])); }));
+  } else {
+    const ids = await sgPool(seeds, 3, a => dzId(nm(a)));
+    const rel = await sgPool(ids, 3, id => (id ? dzRelated(id) : []));
+    rel.forEach((L, i) => (L || []).forEach((n, j) => add(n, (1 - j / 26) * w(seeds[i]), nm(seeds[i]))));
+  }
+  const top = [...cand.values()].sort((a, b) => b.v - a.v).slice(0, 12);
+  SG.prog = 'Je prépare les extraits…'; renderSugg();
+  const tops = await sgPool(top, 3, c => dzTop(c.name));
+  const artists = top.map((c, i) => ({ name: c.name, via: [...c.via].sort((x, y) => y[1] - x[1]).slice(0, 2).map(x => x[0]), tr: tops[i] }));
+  SG.prog = 'Je fouille les albums que tu as ratés…'; renderSugg();
+  const aSeeds = seeds.slice(0, 10);
+  const albs = await sgPool(aSeeds, 3, async a => { if (key) return lfAlbums(nm(a)); const id = await dzId(nm(a)); return id ? (await dzAlbums(id)).sort((x, y) => y.pc - x.pc) : []; });
+  const missed = [];
+  albs.forEach((L, i) => { const a = aSeeds[i]; const x = (L || []).find(al => al.img && !sgAlbKnown(K, nm(a), al.t) && !/greatest hits|best of|live at|anniversary/i.test(al.t)); if (x) missed.push({ t: x.t, ar: nm(a), rank: T.ordAff.indexOf(a) + 1, img: x.img }); });
+  const tagsArr = [...tagW].sort((a, b) => b[1] - a[1]).slice(0, 14), tmax = tagsArr.length ? tagsArr[0][1] : 1;
+  SGC.save();
+  return { at: Date.now(), lf: !!key, tags: tagsArr.map(([t, v]) => ({ t, p: v / tmax })), artists, missed: missed.slice(0, 8), K };
+}
+async function sgTag(tag) {
+  const K = (SG.data && SG.data.K) || sgKnown();
+  const r = await lfTagTop(tag); SGC.save();
+  const arts = r.a.filter(n => !K.A.has(normT(n))).slice(0, 8), tops = await sgPool(arts, 3, n => dzTop(n));
+  return { arts: arts.map((n, i) => ({ name: n, tr: tops[i] })), albs: r.l.filter(x => x.img && x.ar && !K.A.has(normT(x.ar))).slice(0, 6) };
+}
+/* ---------- écouter ---------- */
+function sgSvcLink(q) {
+  const L = (Prefs.data.sync.sources || []).map(s => String(s.svc || '')), last = L.length ? L[L.length - 1] : '';
+  const e = encodeURIComponent(q);
+  if (/Deezer/.test(last) && !/Spotify/.test(last)) return ['Deezer', 'https://www.deezer.com/search/' + e];
+  if (/Apple/.test(last) && !/Spotify/.test(last)) return ['Apple Music', 'https://music.apple.com/fr/search?term=' + e];
+  if (/YouTube/.test(last) && !/Spotify/.test(last)) return ['YouTube Music', 'https://music.youtube.com/search?q=' + e];
+  return ['Spotify', 'https://open.spotify.com/search/' + e];
+}
+function sgPlay(btn) {
+  const url = btn.dataset.pv; if (!url) return;
+  if (!SG.audio) { SG.audio = new Audio(); SG.audio.addEventListener('ended', () => sgPlayState(null)); SG.audio.addEventListener('error', () => { sgPlayState(null); toast('Cet extrait ne se lance pas.'); }); }
+  if (SG.play === url) { SG.audio.pause(); sgPlayState(null); return; }
+  SG.audio.src = url; SG.audio.play().then(() => sgPlayState(url), () => { sgPlayState(null); toast('Cet extrait ne se lance pas.'); });
+}
+function sgPlayState(url) { SG.play = url; $$('#sgBody [data-pv]').forEach(b => { const on = b.dataset.pv === url; b.setAttribute('aria-pressed', String(on)); b.setAttribute('aria-label', (on ? 'Pause : ' : 'Écouter un extrait : ') + b.dataset.lb); b.innerHTML = on ? '<svg class="ic" viewBox="0 0 24 24"><path d="M8 5v14M16 5v14"/></svg>' : '<svg class="ic" viewBox="0 0 24 24"><path d="M8 5.5v13l11-6.5z"/></svg>'; }); }
+/* ---------- affichage ---------- */
+function sgArtistCard(x) {
+  const [svc, url] = sgSvcLink(x.name), t = x.tr, lb = t ? `« ${t.title} » de ${x.name}` : x.name;
+  const img = t && t.img ? `<span class="cv"><img src="${esc(t.img)}" alt="" loading="lazy"></span>` : cov('a|' + x.name, x.name);
+  return `<div class="sgcard"><div class="sgimg">${img}${t && t.preview ? `<button class="sgpl" data-pv="${esc(t.preview)}" data-lb="${esc(lb)}" aria-pressed="false" aria-label="Écouter un extrait : ${esc(lb)}"><svg class="ic" viewBox="0 0 24 24"><path d="M8 5.5v13l11-6.5z"/></svg></button>` : ''}</div>
+    <b>${esc(x.name)}</b><small>${x.via && x.via.length ? 'Proche de ' + esc(grAnd(x.via)) : t ? esc('« ' + t.title + ' »') : ''}</small>
+    <a class="lnk2" href="${esc(url)}" target="_blank" rel="noopener">Écouter sur ${esc(svc)}</a></div>`;
+}
+function sgAlbumCard(x, why) {
+  const [svc, url] = sgSvcLink(x.ar + ' ' + x.t);
+  return `<a class="sgcard sgalb" href="${esc(url)}" target="_blank" rel="noopener" aria-label="${esc(x.t + ' de ' + x.ar + ', écouter sur ' + svc)}"><div class="sgimg"><span class="cv"><img src="${esc(x.img)}" alt="" loading="lazy"></span></div><b>${esc(x.t)}</b><small>${esc(why(x))}</small></a>`;
+}
+const SG_LF_HELP = `<details class="how2 sglf"><summary>Pour des micro-genres plus précis</summary><p>Les suggestions marchent déjà avec Deezer. Avec une clé Last.fm gratuite, Sillon ajoute tes micro-genres (comme « cloud rap » ou « shoegaze ») et des artistes similaires plus fins. C'est à faire une fois, par la personne qui a mis le site en ligne :</p><ol><li>Crée un compte sur last.fm si tu n'en as pas.</li><li>Va sur <a href="https://www.last.fm/api/account/create" target="_blank" rel="noopener">last.fm/api/account/create</a>, donne un nom (Sillon) et une description, puis valide.</li><li>Copie la valeur « API key » (pas le « Shared secret »).</li><li>Dans config.js sur GitHub, ajoute la ligne <code>lastfmKey: 'ta-cle',</code> juste sous <code>spotifyClientId</code>.</li></ol></details>`;
+function renderSugg() {
+  const b = $('#sgBody'); if (!b) return;
+  $('#sgLead').textContent = 'Des artistes et des albums que tu n\'as jamais écoutés, choisis d\'après ce que tu écoutes vraiment.';
+  if (!SA) { b.innerHTML = '<div class="card"><p>Les suggestions marchent sur la version GitHub du site : ici, dans Claude, le site n\'a pas le droit de se connecter à Deezer ou Last.fm.</p></div>'; return; }
+  if (!booted || !D) { b.innerHTML = '<p class="gintro">Chargement…</p>'; return; }
+  if (DEMO) { b.innerHTML = '<div class="gstat"><p>Importe ton historique : les suggestions partent de ce que tu écoutes vraiment.</p><div class="gact"><button class="btn pri" data-sg="import">Importer mon fichier</button><a class="btn" href="#guide">Voir le guide</a></div></div>'; return; }
+  if (SG.ver !== dataVer && !SG.busy) { SG.ver = dataVer; SG.data = null; SG.tag = null; sgRun(); }
+  if (SG.err) { b.innerHTML = `<div class="card"><p>${esc(SG.err)}</p><div class="gact"><button class="btn" data-sg="retry">Réessayer</button></div></div>`; return; }
+  if (!SG.data) { b.innerHTML = `<p class="gintro sgload">${esc(SG.prog || 'Un instant…')}</p>`; return; }
+  const d = SG.data, R = d.tags.length ? d.tags : null, tg = SG.tag, td = tg && SG.tags[tg];
+  b.innerHTML = `
+  ${R ? `<section class="blk"><div class="bh"><div><h2>Tes micro-genres</h2><p class="sub">D'après les tags Last.fm de tes artistes, pondérés par ton écoute. Touche-en un pour l'explorer.</p></div></div>
+    <div class="sgtags" role="group" aria-label="Tes micro-genres">${R.map(x => `<button data-tag="${esc(x.t)}" aria-pressed="${x.t === tg}" style="--p:${Math.max(0.12, x.p).toFixed(2)}"><span>${esc(x.t)}</span><i aria-hidden="true"></i></button>`).join('')}</div>
+    ${tg ? `<div class="sgexp" aria-live="polite">${!td ? '<p class="gintro">Je cherche…</p>' : td.err ? `<p class="gintro">${esc(td.err)}</p>` : `<h3>À découvrir en ${esc(tg)}</h3>${td.arts.length ? `<div class="sggrid">${td.arts.map(sgArtistCard).join('')}</div>` : '<p class="gintro">Tu connais déjà tous les grands noms de ce genre.</p>'}${td.albs.length ? `<h3>Des albums de ce genre</h3><div class="sggrid">${td.albs.map(x => sgAlbumCard(x, y => y.ar)).join('')}</div>` : ''}`}</div>` : ''}</section>` : ''}
+  <section class="blk"><div class="bh"><div><h2>Artistes à découvrir</h2><p class="sub">Proches de ceux que tu écoutes le plus, et absents de ton historique</p></div></div>
+    ${d.artists.length ? `<div class="sggrid">${d.artists.map(sgArtistCard).join('')}</div>` : '<p class="gintro">Pas de suggestion pour l\'instant : réessaie plus tard.</p>'}</section>
+  ${d.missed.length ? `<section class="blk"><div class="bh"><div><h2>Les albums que tu as ratés</h2><p class="sub">Des albums de tes artistes préférés que tu n'as jamais lancés</p></div></div>
+    <div class="sggrid">${d.missed.map(x => sgAlbumCard(x, y => `${y.ar}, ton n°${NS}${y.rank}`)).join('')}</div></section>` : ''}
+  <div class="sgfoot"><p class="small">Sources : ${d.lf ? 'Last.fm et ' : ''}Deezer. Les extraits durent 30 secondes.</p><button class="btn" data-sg="refresh">Actualiser</button></div>
+  ${d.lf ? '' : SG_LF_HELP}`;
+  if (SG.play) sgPlayState(SG.play);
+}
+async function sgRun() {
+  if (SG.busy) return;
+  SG.busy = true; SG.err = ''; SG.prog = '';
+  try { SG.data = await sgBuild(); }
+  catch (e) { console.warn('suggestions', e); SG.err = e && e.lf === 10 ? 'La clé Last.fm de config.js n\'est pas bonne : vérifie que tu as copié « API key », pas « Shared secret ».' : e && e.lf === 29 ? 'Last.fm demande de ralentir. Réessaie dans une minute.' : 'Les suggestions ne répondent pas : vérifie ta connexion internet, puis réessaie.'; }
+  finally { SG.busy = false; if (S.view === 'suggestions') renderSugg(); }
+}
+async function sgAct(a, el) {
+  if (a === 'import') return openData();
+  if (a === 'retry') { SG.err = ''; SG.ver = -1; return renderSugg(); }
+  if (a === 'refresh') { const m = SGC.load(); for (const k of Object.keys(m)) if (!k.startsWith('dz:id:')) delete m[k]; SGC.dirty = true; SGC.save(); SG.tags = {}; SG.ver = -1; SG.data = null; return renderSugg(); }
+}
+function wireSugg() {
+  const B = $('#sgBody'); if (!B) return;
+  B.addEventListener('click', async e => {
+    const pv = e.target.closest('[data-pv]'); if (pv) { sgPlay(pv); return; }
+    const t = e.target.closest('[data-tag]');
+    if (t) {
+      const tag = t.dataset.tag; SG.tag = SG.tag === tag ? null : tag; renderSugg();
+      if (SG.tag && !SG.tags[tag]) { try { SG.tags[tag] = await sgTag(tag); } catch (er) { SG.tags[tag] = { err: 'Ce genre ne répond pas pour l\'instant.' }; } if (S.view === 'suggestions') renderSugg(); }
+      return;
+    }
+    const b = e.target.closest('[data-sg]'); if (b) sgAct(b.dataset.sg, b);
+  });
+}
+
 /* ================= wiring ================= */
 function go(k) {
   if (S.gran === 'all') return;
@@ -5553,7 +6027,7 @@ function wire() {
   $('#rcGo').addEventListener('click', () => openRecap(S.gran, S.anchor));
   $('#rcPrev').addEventListener('click', () => rcGo(-1));
   $('#rcNext').addEventListener('click', () => rcGo(1));
-  wireStories(); wireGuide(); wireGroup(); wireInstall(); wireLink();
+  wireStories(); wireGuide(); wireGroup(); wireInstall(); wireLink(); wireMe(); wireSugg();
   if (SA) $$('.sao').forEach(e => { e.hidden = false; });
   document.addEventListener('click', e => { if (e.target.closest('#howBody a[href^="#guide"]')) closeAll(); });
   $('#rcPng').addEventListener('click', async () => { if (!RC || !RC.R) return; const b = await posterPng(RC.R); if (b) saveFile(`sillon-recap-${tagOf(RC.g, RC.a)}.png`, b); });
