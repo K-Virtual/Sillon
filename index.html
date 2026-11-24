@@ -287,6 +287,9 @@ tr.go{cursor:pointer}
 tr.go:hover td{background:var(--hover)}
 th button{border:0;background:none;padding:0;color:inherit;font-weight:inherit}
 th[aria-sort] button{color:var(--ink)}
+.sdir{display:inline-block;margin-left:4px;font-weight:800}
+#rkSort button[data-dir=desc]::after{content:'↓';margin-left:4px}
+#rkSort button[data-dir=asc]::after{content:'↑';margin-left:4px}
 .cell{fill:var(--q0)}.cell.q1{fill:var(--q1)}.cell.q2{fill:var(--q2)}.cell.q3{fill:var(--q3)}.cell.q4{fill:var(--q4)}.cell.q5{fill:var(--q5)}
 .cell.sel{stroke:var(--ink);stroke-width:1.5}
 .calwrap{overflow-x:auto}
@@ -431,6 +434,26 @@ html.instlock{overflow:hidden}
 .mesp{color:var(--muted);font-size:14px}
 .lnk{border:0;background:none;padding:0;color:var(--ink);font:inherit;font-weight:700;text-decoration:underline;text-underline-offset:3px;cursor:pointer}
 .mepad .skins{max-width:780px}
+.mever{margin:0}
+.mever a{color:var(--ink);font-weight:700}
+/* à propos */
+.abv{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:10px;max-width:820px}
+.abv>li{padding:14px 16px;border-radius:8px;background:var(--card)}
+.abvh{display:flex;flex-wrap:wrap;align-items:center;gap:10px}
+.abvh b{font:800 19px/1.2 var(--f-num);font-variant-numeric:tabular-nums}
+.abtag{padding:2px 10px;border-radius:99px;font-size:12px;font-weight:700;background:var(--chip);color:var(--muted)}
+.abtag.X{background:color-mix(in srgb,var(--acc) 30%,transparent);color:var(--ink)}
+.abtag.Y{background:color-mix(in srgb,var(--acc) 14%,transparent);color:var(--ink)}
+.abcur{font-size:12px;font-weight:700;color:var(--acc-t,var(--acc))}
+.abv ul{margin:8px 0 0;padding-left:18px;display:flex;flex-direction:column;gap:4px;font-size:14px}
+.abl{margin:0;padding-left:18px;display:flex;flex-direction:column;gap:8px;max-width:80ch}
+.abtab{width:100%;max-width:880px;border-collapse:collapse;font-size:14px}
+.abtab th,.abtab td{text-align:left;padding:10px 12px 10px 0;border-top:1px solid var(--line);vertical-align:top}
+.abtab th{color:var(--muted);font-weight:700;font-size:13px;border-top:0}
+.abtab td:first-child{font-weight:700;white-space:nowrap}
+.abtab td:last-child{color:var(--muted);white-space:nowrap}
+.abcred{margin:0;max-width:80ch}
+@media (max-width:720px){.abtab thead{display:none}.abtab tr{display:block;padding:10px 0;border-top:1px solid var(--line)}.abtab td{display:block;border:0;padding:1px 0}.abtab td:first-child,.abtab td:last-child{white-space:normal}}
 /* suggestions */
 .sgtags{display:flex;flex-wrap:wrap;gap:8px}
 .sgtags button{position:relative;overflow:hidden;display:inline-flex;align-items:center;padding:9px 15px 11px;border-radius:99px;border:0;background:var(--chip);color:var(--ink);font:700 14px/1.2 var(--f-ui);cursor:pointer}
@@ -1302,7 +1325,13 @@ code.cp{display:inline-block;max-width:100%;padding:4px 8px;border-radius:6px;ba
   </div></section>
     <section class="blk"><div class="bh"><div><h2>Tes données</h2></div></div><div id="meData"></div></section>
     <section class="blk" id="meInstW" hidden><div class="bh"><div><h2>L'appli</h2></div></div><div id="meInst"></div></section>
+    <div id="meVer"></div>
   </div>
+</section>
+
+<section class="view" data-view="apropos" aria-label="À propos" hidden>
+  <div class="hero sm"><div class="htx"><p class="kick">À propos</p><h1 class="ht">Sillon</h1><p class="hl" id="abLead"></p></div></div>
+  <div class="pad" id="abBody"></div>
 </section>
 
 <section class="view" data-view="suggestions" aria-label="Suggestions" hidden>
@@ -1321,7 +1350,8 @@ code.cp{display:inline-block;max-width:100%;padding:4px 8px;border-radius:6px;ba
   <footer class="foot">
     <p id="footStore">Ton fichier est lu dans ton navigateur. On garde seulement titres, artistes, dates, durées et appareils : les adresses IP de l'export sont ignorées.</p>
     <p>Besoin d'aide pour importer tes stats ? <a href="#guide">Le guide, étape par étape</a>.</p>
-    <p>Sillon n'est affilié ni à Spotify, ni à Apple, ni à Google, ni à Deezer. Raccourcis : ← → pour naviguer, 1 à 5 pour la période.</p>
+    <p><a href="#apropos">À propos de Sillon</a> : les versions, les services utilisés et comment marche le site.</p>
+    <p>Sillon n'est affilié ni à Spotify, ni à Apple, ni à Google, ni à Deezer, ni à Last.fm. Raccourcis : ← → pour naviguer, 1 à 5 pour la période.</p>
   </footer>
 </main>
 </div>
@@ -1344,6 +1374,7 @@ code.cp{display:inline-block;max-width:100%;padding:4px 8px;border-radius:6px;ba
       <a href="#suggestions" data-v="suggestions" class="sao" hidden><svg class="ic" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M15.6 8.4l-2.2 5-5 2.2 2.2-5z"/></svg><span>Suggestions</span></a>
       <a href="#jeux" data-v="jeux"><svg class="ic" viewBox="0 0 24 24"><rect x="2.5" y="7" width="19" height="11" rx="5"/><path d="M7 11v3M5.5 12.5h3"/><circle cx="16" cy="11.5" r=".8"/><circle cx="18" cy="13.5" r=".8"/></svg><span>Jeux</span></a>
       <a href="#guide" data-v="guide"><svg class="ic" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M9.6 9.4a2.5 2.5 0 1 1 3.4 2.4c-.6.3-1 .8-1 1.5v.5"/><path d="M12 17h.01"/></svg><span>Guide</span></a>
+      <a href="#apropos" data-v="apropos"><svg class="ic" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 11v5.5"/><path d="M12 7.6h.01"/></svg><span>À propos</span></a>
     </nav>
   </div>
 </div>
@@ -1497,8 +1528,8 @@ const SA = /*@SA*/true; // true = version autonome (GitHub Pages)
 const SKINS = ['nuit', 'pomme', 'ecarlate', 'violet', 'clair', 'wrapped', 'console'];
 const SKIN_NAMES = { nuit: 'Nuit, façon Spotify', pomme: 'Pomme, façon Apple Music', ecarlate: 'Écarlate, façon YouTube Music', violet: 'Violet, façon Deezer', clair: 'Clair', wrapped: 'Wrapped', console: 'Console' };
 const GRANS = ['day', 'week', 'month', 'year', 'all'];
-const VIEWS = ['stats', 'profil', 'recaps', 'classements', 'predictions', 'jeux', 'guide', 'groupe', 'toi', 'suggestions'];
-const S = { view: 'stats', gran: 'week', anchor: 0, metric: 'ms', content: 'music', thr: 30, noSkip: false, cmp: true, focus: null, skin: 'nuit', rcMore: { m: false, w: false }, top: { art: 10, trk: 10, alb: 10 }, logN: 30, calYear: null, rk: { scope: 'all', sort: 'plays', n: 50 }, live: false, recMode: 'new' };
+const VIEWS = ['stats', 'profil', 'recaps', 'classements', 'predictions', 'jeux', 'guide', 'groupe', 'toi', 'suggestions', 'apropos'];
+const S = { view: 'stats', gran: 'week', anchor: 0, metric: 'ms', content: 'music', thr: 30, noSkip: false, cmp: true, focus: null, skin: 'nuit', rcMore: { m: false, w: false }, top: { art: 10, trk: 10, alb: 10 }, logN: 30, calYear: null, rk: { scope: 'all', sort: 'plays', dir: 'desc', n: 50 }, live: false, recMode: 'new' };
 let D = null, G = null, T = null, DEMO = true, P = null, Q = null, booted = false, dataVer = 0;
 let seenT = null, seenT2 = null, seenA = null, seenL = null, stampC = 1;
 const nextStamp = k => { const b = stampC; stampC += k + 3; return b; };
@@ -1506,7 +1537,7 @@ function loadPrefs() {
   try {
     const p = JSON.parse(localStorage.getItem('sillon-prefs') || '{}');
     for (const k of ['gran', 'metric', 'content', 'thr', 'noSkip', 'cmp', 'skin', 'live', 'recMode']) if (p[k] !== undefined) S[k] = p[k];
-    if (p.rk && typeof p.rk === 'object') { if (p.rk.scope) S.rk.scope = p.rk.scope; if (p.rk.sort) S.rk.sort = p.rk.sort; }
+    if (p.rk && typeof p.rk === 'object') { if (p.rk.scope) S.rk.scope = p.rk.scope; if (p.rk.sort) S.rk.sort = p.rk.sort; if (p.rk.dir === 'asc') S.rk.dir = 'asc'; }
   } catch (e) {}
   S.skin = { sombre: 'nuit', orbite: 'nuit', partition: 'clair' }[S.skin] || S.skin;
   if (!SKINS.includes(S.skin)) S.skin = 'nuit';
@@ -1516,7 +1547,7 @@ function loadPrefs() {
   if (!['new', 'deep', 'mood'].includes(S.recMode)) S.recMode = 'new';
   if (!['all', '12m', 'period'].includes(S.rk.scope)) S.rk.scope = 'all';
 }
-function savePrefs() { try { localStorage.setItem('sillon-prefs', JSON.stringify({ gran: S.gran, metric: S.metric, content: S.content, thr: S.thr, noSkip: S.noSkip, cmp: S.cmp, skin: S.skin, live: S.live, recMode: S.recMode, rk: { scope: S.rk.scope, sort: S.rk.sort } })); } catch (e) {} }
+function savePrefs() { try { localStorage.setItem('sillon-prefs', JSON.stringify({ gran: S.gran, metric: S.metric, content: S.content, thr: S.thr, noSkip: S.noSkip, cmp: S.cmp, skin: S.skin, live: S.live, recMode: S.recMode, rk: { scope: S.rk.scope, sort: S.rk.sort, dir: S.rk.dir } })); } catch (e) {} }
 const normT = s => norm(s).replace(/\s*[\(\[][^\)\]]*[\)\]]/g, '').replace(/\s+-\s+.*$/, '').replace(/[^a-z0-9]+/g, ' ').trim();
 const shuffle = a => { for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; } return a; };
 const pick = a => a[Math.floor(Math.random() * a.length)];
@@ -2266,7 +2297,7 @@ function route() {
   renderView(); updateMini(); checkHero();
 }
 function renderView() {
-  if (['guide', 'groupe', 'toi', 'suggestions'].includes(S.view)) { if (D) renderHead(); if (S.view === 'guide') renderGuide(); else if (S.view === 'groupe') renderGroup(); else if (S.view === 'toi') renderMe(); else renderSugg(); return; }
+  if (['guide', 'groupe', 'toi', 'suggestions', 'apropos'].includes(S.view)) { if (D) renderHead(); if (S.view === 'guide') renderGuide(); else if (S.view === 'groupe') renderGroup(); else if (S.view === 'toi') renderMe(); else if (S.view === 'apropos') renderAbout(); else renderSugg(); return; }
   if (!D) return;
   renderHead();
   if (S.view === 'stats') render();
@@ -2281,7 +2312,7 @@ function updateMini() {
   $('#mini').hidden = !(S.view === 'stats' && !heroVisible);
   $('#topTitle').textContent = S.view === 'stats' ? '' : VIEW_T[S.view];
 }
-const VIEW_T = { toi: 'Toi', suggestions: 'Suggestions', stats: 'Accueil', profil: 'Ta carte', recaps: 'Récaps', classements: 'Classements', predictions: 'Prédictions', jeux: 'Jeux', guide: 'Guide', groupe: 'Groupe' };
+const VIEW_T = { toi: 'Toi', suggestions: 'Suggestions', apropos: 'À propos', stats: 'Accueil', profil: 'Ta carte', recaps: 'Récaps', classements: 'Classements', predictions: 'Prédictions', jeux: 'Jeux', guide: 'Guide', groupe: 'Groupe' };
 let heroVisible = true;
 function checkHero() {
   const v = $(`.view[data-view="${S.view}"]`); if (!v) return;
@@ -2661,19 +2692,20 @@ function podVal(r, so) {
 }
 function renderRank() {
   $$('#rkScope button').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.sc === S.rk.scope)));
-  $$('#rkSort button').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.so === S.rk.sort)));
-  const rows = rankData(); rkLast = rows;
-  setHue(rows.length ? hueA(rows[0].a) : 140);
+  const asc = S.rk.dir === 'asc';
+  $$('#rkSort button').forEach(b => { b.setAttribute('aria-pressed', String(b.dataset.so === S.rk.sort)); b.dataset.dir = b.dataset.so === S.rk.sort ? S.rk.dir : ''; b.title = b.dataset.so === S.rk.sort ? (asc ? 'Ordre croissant : touche pour inverser' : 'Ordre décroissant : touche pour inverser') : ''; });
+  const rowsD = rankData(), rows = asc ? rowsD.slice().reverse() : rowsD; rkLast = rows;
+  setHue(rowsD.length ? hueA(rowsD[0].a) : 140);
   const sc = S.rk.scope, [r0, r1] = range(S.gran, S.anchor);
   const scopeTxt = sc === 'all' ? 'sur tout ton historique' : sc === '12m' ? 'sur les 12 derniers mois' : 'sur ' + periodText(S.gran, r0, r1).toLowerCase();
-  $('#rkLead').textContent = `${fmtN(rows.length)} ${pl(rows.length, 'artiste')} ${scopeTxt}, classés par ${RK[S.rk.sort].toLowerCase()}. Musique seulement.`;
+  $('#rkLead').textContent = `${fmtN(rows.length)} ${pl(rows.length, 'artiste')} ${scopeTxt}, classés par ${RK[S.rk.sort].toLowerCase()}${asc ? ', du plus petit au plus grand' : ''}. Musique seulement. Touche une colonne deux fois pour inverser l'ordre.`;
   $('#rkHint').textContent = RKH[S.rk.sort] || '';
   const so = S.rk.sort;
-  $('#podium').innerHTML = rows.slice(0, 3).map((r, j) => { const [big, small] = podVal(r, so); return `<button class="pod" data-open="a:${r.a}">${covA(r.a)}<span><span class="r">n°${NS}${j + 1}</span><b>${esc(D.artists[r.a])}</b><span class="v">${esc(big)}</span><small>${esc(small)}</small></span></button>`; }).join('');
+  $('#podium').innerHTML = rowsD.slice(0, 3).map((r, j) => { const [big, small] = podVal(r, so); return `<button class="pod" data-open="a:${r.a}">${covA(r.a)}<span><span class="r">n°${NS}${j + 1}</span><b>${esc(D.artists[r.a])}</b><span class="v">${esc(big)}</span><small>${esc(small)}</small></span></button>`; }).join('');
   const shown = rows.slice(0, S.rk.n);
-  const th = (so2, label, cls) => `<th class="${cls || 'n'}"${so === so2 ? ' aria-sort="descending"' : ''}><button data-so="${so2}">${label}</button></th>`;
+  const th = (so2, label, cls) => `<th class="${cls || 'n'}"${so === so2 ? ` aria-sort="${asc ? 'ascending' : 'descending'}"` : ''}><button data-so="${so2}">${label}${so === so2 ? `<span class="sdir" aria-hidden="true">${asc ? '↑' : '↓'}</span>` : ''}</button></th>`;
   $('#rkTable').innerHTML = rows.length ? `<thead><tr><th class="n">#</th><th>Artiste</th>${th('plays', 'Écoutes')}${th('ms', 'Temps')}${th('tracks', 'Titres')}${th('albums', 'Albums')}${th('months', 'Mois actifs')}${th('first', 'Depuis', 't')}${th('skip', 'Zappés')}${th('rel', 'Sortis ≈')}${th('cov', 'Discographie')}</tr></thead><tbody>` +
-    shown.map((r, j) => `<tr><td class="n" data-l="Rang">${j + 1}</td><td class="nm" data-l="Artiste">${covA(r.a)}<span><button data-open="a:${r.a}">${esc(D.artists[r.a])}</button>${r.genre ? `<small>${esc(r.genre)}</small>` : ''}</span></td><td class="n" data-l="Écoutes">${fmtN(r.p)}</td><td class="n" data-l="Temps">${fmtDur(r.ms)}</td><td class="n" data-l="Titres">${fmtN(r.tr)}</td><td class="n" data-l="Albums">${fmtN(r.al)}</td><td class="n" data-l="Mois actifs">${fmtN(r.mo)}</td><td class="t" data-l="Depuis">${r.first >= 0 ? fmtDay(D.day[r.first]) : '–'}</td><td class="n" data-l="Zappés">${r.n ? fmtPct(r.sk) : '–'}</td><td class="n" data-l="Sortis ≈">${r.rel ? '≈' + NS + fmtN(r.rel) : '–'}</td><td class="n" data-l="Discographie">${r.cov != null ? fmtPct(r.cov) : '–'}</td></tr>`).join('') + '</tbody>'
+    shown.map((r, j) => `<tr><td class="n" data-l="Rang">${asc ? rowsD.length - j : j + 1}</td><td class="nm" data-l="Artiste">${covA(r.a)}<span><button data-open="a:${r.a}">${esc(D.artists[r.a])}</button>${r.genre ? `<small>${esc(r.genre)}</small>` : ''}</span></td><td class="n" data-l="Écoutes">${fmtN(r.p)}</td><td class="n" data-l="Temps">${fmtDur(r.ms)}</td><td class="n" data-l="Titres">${fmtN(r.tr)}</td><td class="n" data-l="Albums">${fmtN(r.al)}</td><td class="n" data-l="Mois actifs">${fmtN(r.mo)}</td><td class="t" data-l="Depuis">${r.first >= 0 ? fmtDay(D.day[r.first]) : '–'}</td><td class="n" data-l="Zappés">${r.n ? fmtPct(r.sk) : '–'}</td><td class="n" data-l="Sortis ≈">${r.rel ? '≈' + NS + fmtN(r.rel) : '–'}</td><td class="n" data-l="Discographie">${r.cov != null ? fmtPct(r.cov) : '–'}</td></tr>`).join('') + '</tbody>'
     : `<tbody><tr><td class="empty">${so === 'rel' || so === 'cov' ? 'Pas encore d\'estimation : clique « Estimer les discographies avec Claude » plus bas.' : 'Rien à classer ici.'}</td></tr></tbody>`;
   const more = $('#rkMore'); more.hidden = rows.length <= S.rk.n; more.textContent = `Voir plus (${fmtN(rows.length - S.rk.n)} autres)`;
   $('#rkDisco').hidden = DEMO || SA;
@@ -5709,7 +5741,7 @@ function wireLink() {
 function lkBoot() { renderLink(); if (lkMe() && fbCfg()) setTimeout(() => lkSync(), 1200); }
 
 /* ================= toi : profil perso, réglages, et le panneau « Plus » sur téléphone ================= */
-const MORE_V = SA ? ['toi', 'profil', 'predictions', 'suggestions', 'jeux', 'guide'] : ['toi', 'predictions', 'jeux', 'guide'];
+const MORE_V = SA ? ['toi', 'profil', 'predictions', 'suggestions', 'jeux', 'guide', 'apropos'] : ['toi', 'predictions', 'jeux', 'guide', 'apropos'];
 const meName = () => { const sy = Prefs.data.sync || {}, g = grMe(); return String(sy.me || (g && g.me) || '').trim(); };
 function meAvatar(cls) {
   const pp = Prefs.data.sync && Prefs.data.sync.pp, n = meName(), c = cls ? ' ' + cls : '';
@@ -5761,6 +5793,7 @@ function renderMe() {
   $('#meData').innerHTML = `<div class="card medata"><p>${esc(DEMO ? 'Pour l\'instant, ce sont des données d\'exemple, inventées.' : `${fmtN(D.n)} morceaux lancés, du ${fmtDay(D.firstDay)} au ${fmtDay(D.lastDay)}.`)}</p>
     <div class="gact"><button class="btn lite" data-me="data">${DEMO ? 'Importer mon fichier' : 'Importer ou fusionner'}</button>${DEMO ? '' : '<button class="btn" data-me="bak">Sauvegarde (.json)</button>'}<button class="btn" data-me="manage">Tout gérer</button><a class="btn" href="#guide">Le guide</a></div>
     ${sp ? `<p class="mesp">${SPA.ok() ? 'Connecté à Spotify : tes dernières écoutes arrivent toutes seules.' : 'Pas connecté à Spotify.'} <button class="lnk" data-me="spotify">${SPA.ok() ? 'Gérer' : 'Connecter'}</button></p>` : ''}</div>`;
+  renderVersion();
   const iw = $('#meInstW'), mob = SA && (OS_IOS || OS_AND);
   iw.hidden = !mob;
   if (mob) $('#meInst').innerHTML = isStandalone() ? '<div class="card"><p>Sillon est installé sur cet appareil.</p></div>'
@@ -5793,6 +5826,75 @@ async function meSetPp(file) {
     if (grMe()) groupPush(true).catch(e => meSay(fbErr(e)));
   } catch (e) { meSay(e && e.message === 'img' ? 'Cette image ne s\'ouvre pas. Essaie une photo en JPEG ou en PNG.' : fbErr(e)); }
 }
+
+/* ---------- version : X refonte, Y grosse mise à jour, Z correctifs ---------- */
+const SILLON_V = '2.5.1';
+const SV_TYPE = { X: 'Refonte', Y: 'Grosse mise à jour', Z: 'Correctifs', I: 'Première version' };
+const SILLON_LOG = [
+  ['2.5.1', 'Z', ['Classements : touche une colonne deux fois pour passer de l\'ordre décroissant à l\'ordre croissant.', 'Nouvelle page À propos : versions, services utilisés, comment marche le site.']],
+  ['2.5.0', 'Y', ['Page Toi : ta photo, ton pseudo, ton groupe, tes appareils, le thème et tes données au même endroit.', 'Sur téléphone, la barre du bas avec l\'onglet Plus.', 'Groupe : trophées, duel 1 contre 1 et équivalences.', 'Page Suggestions : micro-genres, artistes et albums à découvrir, extraits de 30 secondes.', 'Numéro de version.']],
+  ['2.4.0', 'Y', ['Écran pour installer l\'appli sur téléphone.', 'Liaison entre ton PC et ton tel, avec des écoutes chiffrées.', 'Photos de profil dans le groupe.']],
+  ['2.3.0', 'Y', ['Stats de groupe entre potes, en direct : classement, top commun, jumeau musical.', 'Fiche pas à pas pour activer Firebase.']],
+  ['2.2.0', 'Y', ['Imports Apple Music, YouTube Music et Deezer.', 'Guide pas à pas pour récupérer ses stats.', 'Récaps en stories et en affiche.', 'Thèmes façon Apple Music, YouTube Music et Deezer.']],
+  ['2.1.0', 'Y', ['Version GitHub : vraies pochettes, connexion Spotify et derniers morceaux à chaque ouverture.', 'Appli installable sur PC et téléphone.']],
+  ['2.0.0', 'X', ['Nouveau design épuré, façon Spotify.', 'Prédictions, récaps par semaine, mois et année, jeux et classements.', 'Fusion de plusieurs comptes.']],
+  ['1.0.0', 'I', ['Graphiques par jour, semaine, mois et année.']]
+];
+const AB_SVC = [
+  ['Spotify Web API', 'Connexion à ton compte, tes derniers morceaux et les vraies pochettes.', 'Version GitHub'],
+  ['Deezer API', 'Genres des artistes, artistes proches, extraits de 30 secondes.', 'Version GitHub'],
+  ['Last.fm API', 'Micro-genres, artistes similaires, albums à découvrir.', 'Version GitHub, avec une clé'],
+  ['Firebase', 'Authentication (connexion anonyme) et Cloud Firestore : groupes et liaison entre appareils.', 'Version GitHub'],
+  ['GitHub Pages', 'Hébergement du site.', 'Version GitHub'],
+  ['Google Fonts', 'Polices Figtree et Doto.', 'Les deux versions'],
+  ['Claude (Anthropic)', 'Hébergement et stockage de la version Claude, estimation des genres et des discographies, score de compatibilité, morceau en cours via le connecteur Spotify.', 'Version Claude']
+];
+function renderVersion() {
+  const b = $('#meVer'); if (!b) return;
+  b.innerHTML = `<p class="small mever"><a href="#apropos">Sillon ${SILLON_V}</a>${SA ? ', version GitHub' : ''} : les nouveautés et les infos du site.</p>`;
+}
+function versionNotice() {
+  let seen = null; try { seen = localStorage.getItem('sillon-ver'); localStorage.setItem('sillon-ver', SILLON_V); } catch (e) { return; }
+  if (seen && seen !== SILLON_V && seen.split('.').slice(0, 2).join('.') !== SILLON_V.split('.').slice(0, 2).join('.')) setTimeout(() => toast(`Sillon passe en ${SILLON_V} : les nouveautés sont dans À propos, en bas de page.`), 1500);
+}
+function renderAbout() {
+  const b = $('#abBody'); if (!b) return;
+  $('#abLead').textContent = `Version ${SILLON_V}, ${SA ? 'version GitHub' : 'version Claude'}. Tes stats d'écoute, lues dans ton navigateur.`;
+  const li = a => `<ul class="abl">${a.map(x => `<li>${x}</li>`).join('')}</ul>`;
+  b.innerHTML = `
+  <section class="blk"><div class="bh"><div><h2>Les versions</h2><p class="sub">Trois chiffres, X.Y.Z : X change pour une refonte complète, Y pour une grosse mise à jour, Z pour les correctifs et les petites améliorations.</p></div></div>
+    <ol class="abv">${SILLON_LOG.map(([v, t, items]) => `<li><div class="abvh"><b>${v}</b><span class="abtag ${t}">${SV_TYPE[t]}</span>${v === SILLON_V ? '<span class="abcur">ta version</span>' : ''}</div><ul>${items.map(x => `<li>${esc(x)}</li>`).join('')}</ul></li>`).join('')}</ol></section>
+  <section class="blk"><div class="bh"><div><h2>Comment ça marche</h2></div></div>${li([
+    'Ton fichier est lu directement dans ton navigateur : il n\'est envoyé sur aucun serveur.',
+    'Sillon garde les titres, artistes, albums, dates, durées et appareils. Les adresses IP de l\'export sont ignorées.',
+    'Une écoute compte à partir de 30 secondes. En dessous, c\'est un morceau zappé.',
+    SA ? 'Tes données restent dans ce navigateur. Si tu relies tes appareils, une copie chiffrée passe par Firebase : personne d\'autre ne peut la lire, même pas la personne qui a mis le site en ligne.' : 'Tes données sont gardées dans ton espace privé Claude, lié à ton compte.',
+    ...(SA ? ['Si tu rejoins un groupe, ses membres voient un résumé de tes stats : pseudo, photo, chiffres clés, temps d\'écoute par mois, par heure et par jour, tes 50 artistes et 20 titres les plus écoutés. Jamais ton historique complet.', 'Pour les genres et les suggestions, les noms de tes artistes préférés sont envoyés à Deezer et à Last.fm, le temps de la recherche.'] : [])
+  ])}</section>
+  <section class="blk"><div class="bh"><div><h2>Services et API</h2><p class="sub">Ce que Sillon utilise en dehors de ton navigateur</p></div></div>
+    <table class="abtab"><thead><tr><th>Service</th><th>À quoi il sert</th><th>Version</th></tr></thead><tbody>${AB_SVC.map(([n, d, v]) => `<tr><td>${esc(n)}</td><td>${esc(d)}</td><td>${esc(v)}</td></tr>`).join('')}</tbody></table></section>
+  <section class="blk"><div class="bh"><div><h2>Technologies</h2></div></div>${li([
+    'HTML, CSS et JavaScript, sans framework ni bibliothèque externe : les graphiques et la lecture des ZIP et des fichiers Excel sont faits maison.',
+    'SVG pour les graphiques, Canvas pour les images des récaps et de ta carte.',
+    'IndexedDB et localStorage pour garder tes données dans le navigateur.',
+    'Web Crypto (AES-GCM, PBKDF2, SHA-256) pour chiffrer la liaison entre appareils.',
+    'Compression Streams pour lire les ZIP et compresser les sauvegardes.',
+    'Service Worker et manifeste web pour l\'appli installable et l\'usage hors connexion.',
+    'Web Share et presse-papiers pour partager tes récaps et tes liens.'
+  ])}</section>
+  <section class="blk"><div class="bh"><div><h2>Formats d'import</h2></div></div>${li([
+    'Spotify : l\'historique de streaming étendu (fichiers JSON dans un ZIP).',
+    'Apple Music : l\'export Apple Media Services (CSV dans un ZIP).',
+    'YouTube Music : Google Takeout, en JSON ou en HTML.',
+    'Deezer : l\'historique d\'écoute en XLSX ou en CSV.',
+    'Sillon : ta sauvegarde .json.'
+  ])}</section>
+  <section class="blk"><div class="bh"><div><h2>Bon à savoir</h2></div></div>${li([
+    'Apple Music, YouTube Music et Deezer ne donnent pas toujours la vraie durée d\'écoute : Sillon l\'estime, donc les morceaux zappés ne sont fiables qu\'avec Spotify.',
+    ...(SA ? ['La connexion Spotify ne récupère que tes 50 derniers morceaux : pour tout ton historique, il faut l\'export.', 'Sans liaison, chaque appareil garde ses propres données.'] : [])
+  ])}</section>
+  <section class="blk"><div class="bh"><div><h2>Crédits</h2></div></div><p class="abcred">Conçu par Ethan, développé avec Claude (Anthropic). Sillon n'est affilié ni à Spotify, ni à Apple, ni à Google, ni à Deezer, ni à Last.fm.</p></section>`;
+}
 /* ---------- panneau « Plus » ---------- */
 let moreFocus = null;
 function openMore() {
@@ -5822,7 +5924,7 @@ function wireMe() {
   B.addEventListener('change', e => { if (e.target.id === 'mePpIn' && e.target.files && e.target.files[0]) meSetPp(e.target.files[0]); });
   B.addEventListener('keydown', e => { if (e.key === 'Enter' && e.target.id === 'meName') { e.preventDefault(); meAct('name', B.querySelector('[data-me=name]')); } });
   if (SA) $$('.csa').forEach(e => { e.hidden = true; });
-  renderMeTop();
+  renderMeTop(); versionNotice();
 }
 
 /* ================= suggestions : micro-genres (Last.fm), artistes et albums à découvrir, extraits (Deezer) ================= */
@@ -6048,7 +6150,7 @@ function wire() {
     const od = t.closest('.otd button[data-d]'); if (od) { setView('day', +od.dataset.d, true); return; }
     const sg = t.closest('#sugg button[data-f]'); if (sg) { const [k, i] = sg.dataset.f.split(':'); S.focus = { type: k, id: +i }; $('#q').value = ''; $('#sugg').hidden = true; fl.classList.remove('open'); sb.setAttribute('aria-expanded', 'false'); render(); toast('Focus : ' + focusName()); return; }
     const scb = t.closest('#rkScope button'); if (scb) { S.rk.scope = scb.dataset.sc; S.rk.n = 50; savePrefs(); renderRank(); return; }
-    const sob = t.closest('#rkSort button, #rkTable th button'); if (sob) { S.rk.sort = sob.dataset.so; S.rk.n = 50; savePrefs(); renderRank(); return; }
+    const sob = t.closest('#rkSort button, #rkTable th button'); if (sob) { if (S.rk.sort === sob.dataset.so) S.rk.dir = S.rk.dir === 'asc' ? 'desc' : 'asc'; else S.rk.dir = 'desc'; S.rk.sort = sob.dataset.so; S.rk.n = 50; savePrefs(); renderRank(); return; }
     const gc = t.closest('[data-game]'); if (gc) { startGame(gc.dataset.game); return; }
     const hlm = t.closest('[data-hlm]'); if (hlm && GS && GS.id === 'hl') { GS.mode = hlm.dataset.hlm; GS.streak = 0; GS.msg = ''; newHl(); gHl(); return; }
     const hl = t.closest('[data-hl]'); if (hl && GS && GS.id === 'hl') { hlPick(hl.dataset.hl); return; }
