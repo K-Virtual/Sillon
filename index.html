@@ -1115,6 +1115,12 @@ html[data-chart=line] .lg i.g,html[data-chart=area] .lg i.g{height:0;border:0;bo
 .welskip{align-self:center;padding:8px 12px;border:0;background:none;color:var(--muted);font:inherit;font-weight:600;font-size:14px;text-decoration:underline;text-underline-offset:3px;cursor:pointer}
 html.wellock{overflow:hidden}
 @media (max-width:380px){.welp{grid-template-columns:1fr}.welp button{min-height:50px}}
+/* nouvelle version */
+.upd{position:fixed;left:50%;bottom:24px;z-index:109;transform:translateX(-50%);display:flex;align-items:center;gap:12px;max-width:calc(100vw - 24px);padding:10px 10px 10px 16px;border-radius:10px;background:var(--card2,var(--card));color:var(--ink);box-shadow:0 12px 40px rgba(0,0,0,.45);font-size:14px}
+.upd[hidden]{display:none}
+.upd span{min-width:0}
+.upd .btn{flex:none}
+@media (max-width:720px){.upd{bottom:calc(78px + env(safe-area-inset-bottom));width:calc(100vw - 24px)}.upd span{flex:1}}
 /* animations réduites, au choix dans les réglages */
 html.calm *,html.calm *::before,html.calm *::after{transition:none!important;animation:none!important}
 html.calm .stobars .on i{width:100%}
@@ -1581,6 +1587,7 @@ html.calm .stobars .on i{width:100%}
 </div>
 <div id="tip" role="tooltip"></div>
 <div id="toast" role="status" aria-live="polite"></div>
+<div class="upd" id="upd" role="status" aria-live="polite" hidden></div>
 <div id="dropHint" hidden>Lâche ton fichier pour l'importer</div>
 <input type="file" id="file" accept=".zip,.json,.csv,.xlsx,.html,application/zip,application/json,text/csv" multiple hidden>
 
@@ -1639,7 +1646,7 @@ const SET_OK = { chart: ['auto', 'round', 'square', 'line', 'area', 'seg', 'note
 const SKIN_OF = { spotify: 'nuit', apple: 'pomme', ytm: 'ecarlate', deezer: 'violet' };
 const SKIN_HUE = { nuit: 141, pomme: 350, ecarlate: 352, violet: 272, clair: 141, wrapped: 252, console: 172 };
 const VIEWS = ['stats', 'profil', 'recaps', 'classements', 'predictions', 'jeux', 'guide', 'groupe', 'toi', 'suggestions', 'apropos'];
-const S = { view: 'stats', gran: 'week', anchor: 0, metric: 'ms', content: 'music', thr: 30, noSkip: false, cmp: true, focus: null, skin: 'nuit', rcMore: { m: false, w: false }, top: { art: 10, trk: 10, alb: 10 }, logN: 30, calYear: null, rk: { scope: 'all', sort: 'plays', dir: 'desc', n: 50 }, live: false, recMode: 'new', set: Object.assign({}, SET0), skinAuto: true, plat: null };
+const S = { view: 'stats', gran: 'week', anchor: 0, metric: 'ms', content: 'music', thr: 30, noSkip: false, cmp: true, focus: null, skin: 'nuit', rcMore: { m: false, w: false }, top: { art: 10, trk: 10, alb: 10 }, logN: 30, calYear: null, rk: { scope: 'all', sort: 'plays', dir: 'desc', n: 50 }, live: false, recMode: 'new', set: Object.assign({}, SET0), skinAuto: true, plat: null, setAt: 0 };
 let D = null, G = null, T = null, DEMO = true, P = null, Q = null, booted = false, dataVer = 0;
 let seenT = null, seenT2 = null, seenA = null, seenL = null, stampC = 1;
 const nextStamp = k => { const b = stampC; stampC += k + 3; return b; };
@@ -1651,6 +1658,7 @@ function loadPrefs() {
     if (p.set && typeof p.set === 'object') for (const k in SET0) if (SET_OK[k].includes(p.set[k])) S.set[k] = p.set[k];
     S.skinAuto = typeof p.skinAuto === 'boolean' ? p.skinAuto : (p.skin === undefined || p.skin === 'nuit');
     if (['spotify', 'apple', 'ytm', 'deezer'].includes(p.plat)) S.plat = p.plat;
+    if (typeof p.setAt === 'number') S.setAt = p.setAt;
   } catch (e) {}
   if (S.set.gran0 !== 'last') S.gran = S.set.gran0;
   S.skin = { sombre: 'nuit', orbite: 'nuit', partition: 'clair' }[S.skin] || S.skin;
@@ -1661,7 +1669,7 @@ function loadPrefs() {
   if (!['new', 'deep', 'mood'].includes(S.recMode)) S.recMode = 'new';
   if (!['all', '12m', 'period'].includes(S.rk.scope)) S.rk.scope = 'all';
 }
-function savePrefs() { try { localStorage.setItem('sillon-prefs', JSON.stringify({ gran: S.gran, metric: S.metric, content: S.content, thr: S.thr, noSkip: S.noSkip, cmp: S.cmp, skin: S.skin, live: S.live, recMode: S.recMode, rk: { scope: S.rk.scope, sort: S.rk.sort, dir: S.rk.dir }, set: S.set, skinAuto: S.skinAuto, plat: S.plat })); } catch (e) {} }
+function savePrefs() { try { localStorage.setItem('sillon-prefs', JSON.stringify({ gran: S.gran, metric: S.metric, content: S.content, thr: S.thr, noSkip: S.noSkip, cmp: S.cmp, skin: S.skin, live: S.live, recMode: S.recMode, rk: { scope: S.rk.scope, sort: S.rk.sort, dir: S.rk.dir }, set: S.set, skinAuto: S.skinAuto, plat: S.plat, setAt: S.setAt })); } catch (e) {} }
 const normT = s => norm(s).replace(/\s*[\(\[][^\)\]]*[\)\]]/g, '').replace(/\s+-\s+.*$/, '').replace(/[^a-z0-9]+/g, ' ').trim();
 const shuffle = a => { for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; } return a; };
 const pick = a => a[Math.floor(Math.random() * a.length)];
@@ -3282,6 +3290,7 @@ async function importFiles(files) {
       if (!recs.length) { say('Aucun historique d\'écoute trouvé. Fichiers acceptés : le ZIP de Spotify, d\'Apple, de Google Takeout (YouTube Music) ou de Deezer, ou les fichiers qu\'ils contiennent.'); bar.style.width = '0%'; return; }
       say('Fusion et suppression des doublons…'); await sleep(20);
       let rtx = -Infinity; for (const r of recs) if (r.t > rtx) rtx = r.t;
+      if (isFinite(rtx)) gapsCover(rtx);
       const old = DEMO ? [] : toRecs(D).filter(r => !(r.f & 128) || r.t > rtx);
       const merged = mergeRecs(old.concat(recs)), added = merged.length - old.length, dup = Math.max(0, old.length + recs.length - merged.length);
       X = build(merged, oldestDate(ctx.created, DEMO ? null : D.created));
@@ -3727,11 +3736,12 @@ function syncState() {
   const s = Prefs.data.sync || {}, now = Date.now(), base = syncBase(), q = now < (s.snooze || 0);
   if (s.requestedAt && s.requestedAt > base && now - s.requestedAt < 45 * DAYMS) return q ? 'wait-q' : 'wait';
   if (S.set.remind && now - base >= S.set.remind * DAYMS) return q ? 'due-q' : 'due';
+  if (gapList().length) return s.gapSeen ? 'gap-q' : 'gap';
   return null;
 }
 function renderNotif() {
   const st = syncState(), bell = $('#bell');
-  bell.hidden = !st; bell.classList.toggle('dot', st === 'due' || st === 'wait');
+  bell.hidden = !st; bell.classList.toggle('dot', st === 'due' || st === 'wait' || st === 'gap');
   if (!st || st.endsWith('-q') || notifClosed || !$('#dataModal').hidden) { $('#notif').hidden = true; return; }
   showNotif(st);
 }
@@ -3742,6 +3752,11 @@ function showNotif(st) {
     const v = svcOf();
     $('#ntP').textContent = `Ta dernière importation date d'il y a ${fmtN(days)} jours. Redemande ton historique à ${v.n} : il arrive par mail, en général en ${v.wait}.`;
     $('#ntA').innerHTML = `<a class="btn pri" href="${v.url}" target="_blank" rel="noopener" data-nt="req">Demander mon export</a><button class="btn" data-nt="later">Plus tard</button>`;
+  } else if (st.startsWith('gap')) {
+    const g = gapList(), last = g[g.length - 1], v = SVCS.spotify;
+    $('#ntT').textContent = 'Il te manque sûrement des écoutes';
+    $('#ntP').textContent = `${gapTxt(last).replace(/^./, c => c.toUpperCase())}${g.length > 1 ? ` (et ${g.length - 1} ${pl(g.length - 1, 'autre période', 'autres périodes')})` : ''}, tu as écouté plus de 50 morceaux sans ouvrir Sillon. Spotify ne garde que les 50 derniers : ceux d'avant manquent pour l'instant, et ton prochain export Spotify les récupérera. Pour éviter ça, ouvre Sillon avant d'avoir écouté 50 morceaux.`;
+    $('#ntA').innerHTML = `<a class="btn pri" href="${v.url}" target="_blank" rel="noopener" data-nt="req2">Demander mon export</a><button class="btn" data-nt="gapok">Compris</button>`;
   } else {
     const v = svcOf();
     $('#ntT').textContent = `Ton export ${v.n} est en route`;
@@ -3755,6 +3770,7 @@ function notifAct(k) {
   if (k === 'req' || k === 'req2') { s.requestedAt = Date.now(); s.snooze = Date.now() + 3 * DAYMS; Prefs.save(); notifClosed = false; renderNotif(); if (!$('#dataModal').hidden) renderSyncBox(); toast('Noté : je te relance quand ton export devrait être arrivé.'); }
   else if (k === 'later') { s.snooze = Date.now() + 3 * DAYMS; Prefs.save(); renderNotif(); toast('Ok, je te le rappelle dans 3 jours.'); }
   else if (k === 'imp') { $('#notif').hidden = true; openData(); }
+  else if (k === 'gapok') { s.gapSeen = Date.now(); Prefs.save(); renderNotif(); }
 }
 function renderSyncBox() {
   const box = $('#syncBox');
@@ -3762,6 +3778,8 @@ function renderSyncBox() {
   box.hidden = false;
   const s = Prefs.data.sync || {}, base = syncBase(), days = Math.floor((Date.now() - base) / DAYMS), next = base + (S.set.remind || 30) * DAYMS, st = syncState() || '';
   box.innerHTML = `<p><b>Dernière mise à jour il y a ${days <= 0 ? 'moins d\'un jour' : fmtN(days) + ' ' + pl(days, 'jour')}</b><small>${st.startsWith('wait') ? 'Export demandé le ' + fmtDay(Math.floor(s.requestedAt / DAYMS)) + ' : dépose-le ici dès qu\'il arrive.' : (S.set.remind ? 'Prochain rappel ' + (next <= Date.now() ? 'maintenant' : 'le ' + fmtDay(Math.floor(next / DAYMS))) : 'Rappels coupés dans tes réglages') + '. Tes données vont jusqu\'au ' + fmtDay(D.lastDay) + '.'}</small></p><a class="btn" href="${svcOf().url}" target="_blank" rel="noopener" data-nt="req2">Demander mon export ${esc(svcOf().n)}</a>`;
+  const g = gapList();
+  if (g.length) box.insertAdjacentHTML('beforeend', `<p class="gapl"><b>Écoutes sûrement manquantes</b><small>${g.slice().reverse().map(x => esc(gapTxt(x))).join(' ; ')}. Spotify ne garde que tes 50 derniers morceaux : ton prochain export les récupérera.</small></p>`);
 }
 function renderSources() {
   const list = (Prefs.data.sync && Prefs.data.sync.sources) || [];
@@ -3933,8 +3951,24 @@ async function fillCovers() {
   } finally { covBusy = false; CC.save(); }
   if (Date.now() >= covPause && $$('.cv[data-ck]').some(el => CC.get(el.dataset.ck) === undefined)) queueCovers();
 }
+/* trous : Spotify ne donne que les 50 derniers morceaux ; si le plus ancien des 50 arrive bien après
+   la dernière écoute connue, des écoutes manquent entre les deux, jusqu'au prochain export */
+const tsDay = t => { const x = new Date(t * 1000); return dn(x.getFullYear(), x.getMonth(), x.getDate()); };
+const gapList = () => (Prefs.data.sync && Prefs.data.sync.gaps) || [];
+function gapTxt(g) { const d1 = tsDay(g.a), d2 = tsDay(g.b), hh = t => new Date(t * 1000).getHours() + NB + 'h'; return d1 === d2 ? `le ${fmtDay(d1)}, entre ${hh(g.a)} et ${hh(g.b)}` : `entre le ${fmtDay(d1)} et le ${fmtDay(d2)}`; }
+function gapAdd(a, b) {
+  const s = Prefs.data.sync, L = gapList().concat([{ a, b }]).sort((x, y) => x.a - y.a), out = [];
+  for (const g of L) { const p = out[out.length - 1]; if (p && g.a <= p.b + 60) p.b = Math.max(p.b, g.b); else out.push({ a: g.a, b: g.b }); }
+  s.gaps = out.slice(-10); s.gapSeen = 0; Prefs.save(); notifClosed = false;
+}
+/* un export qui va jusqu'à t couvre tout ce qui manquait avant t */
+function gapsCover(t) { const s = Prefs.data.sync; if (!gapList().length) return; s.gaps = gapList().filter(g => g.b > t).map(g => ({ a: Math.max(g.a, t), b: g.b })).filter(g => g.b - g.a > 900); }
 async function addRecent(items) {
   const lastTs = D.n ? D.s[D.n - 1] + Math.round(D.m[D.n - 1] / 1000) : 0, recs = [];
+  if (items.length >= 50 && lastTs > 0) {
+    let oldest = Infinity; for (const x of items) { const t = Math.round(Date.parse(x && x.played_at) / 1000); if (t < oldest) oldest = t; }
+    if (isFinite(oldest) && oldest > lastTs + 900) gapAdd(lastTs, oldest);
+  }
   for (const x of items) {
     const tr = x && x.track; if (!tr || !tr.name) continue;
     const t = Math.round(Date.parse(x.played_at) / 1000); if (!(t > lastTs)) continue;
@@ -3974,7 +4008,7 @@ function renderSpBox() {
     b.innerHTML = (SPA.fromCfg ? `<p class="note">Pas obligatoire : tes stats et les pochettes marchent sans. Ça ajoute tes 50 derniers morceaux à chaque ouverture, et des pochettes encore plus exactes. Il faut que la personne qui a mis le site en ligne ait ajouté ton compte à son app Spotify (5 comptes maximum). Sinon, Spotify refusera la connexion.</p>` : `<p class="note">Client ID enregistré. L'adresse de redirection déclarée dans ton app doit être exactement : <code class="cp">${red}</code></p>`) +
       `<div class="sprow"><button class="btn pri" id="spLogin">Connecter Spotify</button><button class="more" id="spReset">${SPA.fromCfg ? 'Utiliser ma propre app Spotify' : 'Changer de Client ID'}</button></div>`;
   } else if (SPA.denied) {
-    b.innerHTML = `<p class="note"><b>Spotify refuse ton compte sur cette app.</b> Demande à la personne qui a mis le site en ligne de t'ajouter dans son app Spotify (onglet User Management, avec le nom et l'adresse mail de ton compte Spotify). Spotify limite à 5 comptes par app. En attendant, tout marche sauf les pochettes et les derniers morceaux.</p><div class="sprow"><button class="btn" id="spSync">Réessayer</button><button class="btn" id="spOut">Déconnecter</button></div>`;
+    b.innerHTML = `<p class="note"><b>Spotify refuse ton compte sur cette app.</b> Demande à la personne qui a mis le site en ligne de t'ajouter dans son app Spotify (onglet User Management, avec le nom et l'adresse mail de ton compte Spotify). Spotify limite à 5 comptes par app. En attendant, tout marche, pochettes comprises, sauf tes derniers morceaux automatiques.</p><div class="sprow"><button class="btn" id="spSync">Réessayer</button><button class="btn" id="spOut">Déconnecter</button></div>`;
   } else {
     const nC = Object.values(CC.load()).filter(Boolean).length, ls = +(localStorage.getItem('sillon-sp-sync') || 0);
     b.innerHTML = `<p class="note">Connecté. ${fmtN(nC)} ${pl(nC, 'pochette')} en mémoire${ls ? ', dernière synchro le ' + new Intl.DateTimeFormat('fr-FR', { day: 'numeric', month: 'short', hour: '2-digit', minute: '2-digit' }).format(new Date(ls)) : ''}. Tes 50 derniers morceaux s'ajoutent à chaque ouverture, et l'export les remplace quand tu l'importes.</p><div class="sprow"><button class="btn pri" id="spSync">Synchroniser maintenant</button><button class="btn" id="spOut">Déconnecter</button></div>`;
@@ -5373,6 +5407,7 @@ function grEquiv(min) {
 const GR_PER = { m: 'Ce mois-ci', y: 'Cette année', a: 'Depuis le début' };
 const grH = min => { min = Math.round(min); return min >= 60 ? `${fmtN(Math.floor(min / 60))}${NB}h${min % 60 ? NB + String(min % 60).padStart(2, '0') : ''}` : `${fmtN(min)}${NB}min`; };
 function grHero(kick, title, lead) { $('#grKick').textContent = kick; $('#grTitle').textContent = title; $('#grLead').textContent = lead; }
+/* champs envoyés au groupe (pour info : les règles limitent seulement leur nombre, à 60) */
 const GR_KEYS = ['v', 'name', 'updatedAt', 'pp', 'svc', 'first', 'last', 'tMin', 'plays', 'nA', 'nT', 'sk', 'days', 'streak', 'bigD', 'bigDd', 'mF', 'mMin', 'mPl', 'aN', 'aM', 'yr', 'aNY', 'aMY', 'mo', 'aNM', 'aMM', 'tN', 'tA', 'tM', 'hrs', 'wd'];
 const GR_RULES = `rules_version = '2';
 service cloud.firestore {
@@ -5392,7 +5427,8 @@ service cloud.firestore {
         allow create, update: if request.auth != null
           && request.auth.uid == uid
           && exists(/databases/$(database)/documents/groups/$(gid))
-          && request.resource.data.keys().hasOnly([${GR_KEYS.map(k => `'${k}'`).join(', ')}])
+          && request.resource.data.keys().hasAll(['v', 'name', 'updatedAt'])
+          && request.resource.data.size() <= 60
           && request.resource.data.name is string
           && request.resource.data.name.size() > 0
           && request.resource.data.name.size() <= 30
@@ -5802,11 +5838,11 @@ async function lkKeysFor(s) {
 async function lkEnc(key, u8) { const iv = crypto.getRandomValues(new Uint8Array(12)); return { iv: b64(iv), c: new Uint8Array(await crypto.subtle.encrypt({ name: 'AES-GCM', iv }, key, u8)) }; }
 async function lkDec(key, iv, c) { return new Uint8Array(await crypto.subtle.decrypt({ name: 'AES-GCM', iv: unb64(iv) }, key, c)); }
 const lkSig = (X, st) => (X ? [X.n, X.n ? X.s[X.n - 1] : 0, X.created || ''].join('|') : '0') + '|' + st;
-const lkStamp = h => (h && h.ppAt || 0) + '/' + (h && h.meAt || 0);
-const lkLocalSig = () => lkSig(DEMO ? null : D, lkStamp(Prefs.data.sync));
+const lkStamp = h => (h && h.ppAt || 0) + '/' + (h && h.meAt || 0) + '/' + (h && h.setAt || 0);
+const lkLocalSig = () => lkSig(DEMO ? null : D, lkStamp(Object.assign({}, Prefs.data.sync, { setAt: S.setAt })));
 function lkBlob() {
   const sy = Prefs.data.sync;
-  const head = te8(JSON.stringify({ v: 1, pp: sy.pp || '', ppAt: sy.ppAt || 0, me: sy.me || '', meAt: sy.meAt || 0, src: (sy.sources || []).slice(-12) }));
+  const head = te8(JSON.stringify({ v: 1, pp: sy.pp || '', ppAt: sy.ppAt || 0, me: sy.me || '', meAt: sy.meAt || 0, src: (sy.sources || []).slice(-12), set: setPack(), setAt: S.setAt || 0 }));
   const body = DEMO ? new Uint8Array(0) : pack(D);
   const out = new Uint8Array(4 + head.length + body.length);
   new DataView(out.buffer).setUint32(0, head.length); out.set(head, 4); out.set(body, 4 + head.length);
@@ -5829,6 +5865,7 @@ function lkApplyHead(h) {
   const sy = Prefs.data.sync;
   if ((h.ppAt || 0) > (sy.ppAt || 0)) { sy.pp = ppOk(h.pp) ? h.pp : ''; sy.ppAt = h.ppAt; groupAutoPush(800); if (S.view === 'groupe') renderGroup(); }
   if ((h.meAt || 0) > (sy.meAt || 0) && typeof h.me === 'string') { sy.me = h.me.slice(0, 30); sy.meAt = h.meAt; const g = grMe(); if (g && sy.me) { g.me = sy.me; groupAutoPush(800); } }
+  setApplyRemote(h.set, h.setAt || 0);
   renderMeTop(); if (S.view === 'toi') renderMe();
   if (Array.isArray(h.src)) { const by = new Map(); for (const s of (sy.sources || []).concat(h.src)) if (s && s.at) by.set(s.at + '|' + s.n, s); sy.sources = [...by.values()].sort((a, b) => a.at - b.at).slice(-12); }
 }
@@ -5852,7 +5889,7 @@ async function lkOnce(force) {
   LK.lastPull = Date.now();
   const local = DEMO ? null : D;
   if (!ms.exists()) {
-    if (local || Prefs.data.sync.ppAt || Prefs.data.sync.meAt) { L.ver = await lkPush(F, db, K, null); L.sig = lkLocalSig(); }
+    if (local || Prefs.data.sync.ppAt || Prefs.data.sync.meAt || S.setAt) { L.ver = await lkPush(F, db, K, null); L.sig = lkLocalSig(); }
   } else {
     const m = ms.data();
     if (m.ver !== L.ver || force) {
@@ -6076,9 +6113,10 @@ async function meSetPp(file) {
 }
 
 /* ---------- version : X refonte, Y grosse mise à jour, Z correctifs ---------- */
-const SILLON_V = '2.7.1';
+const SILLON_V = '2.8.0';
 const SV_TYPE = { X: 'Refonte', Y: 'Grosse mise à jour', Z: 'Correctifs', I: 'Première version' };
 const SILLON_LOG = [
+  ['2.8.0', 'Y', ['Mises à jour : Sillon repère quand une nouvelle version est en ligne et te propose de recharger, sans attendre.', 'Tes réglages et ton thème suivent entre tes appareils reliés.', 'Sillon te prévient quand des écoutes manquent entre ton dernier import et tes 50 derniers morceaux Spotify.', 'Règles Firebase plus souples : plus besoin de les recoller quand le groupe gagne des stats.']],
   ['2.7.1', 'Z', ['Pochettes aussi quand le fichier ne donne pas le nom de l\'album (souvent avec YouTube Music) : Sillon les retrouve à partir du titre du morceau.']],
   ['2.7.0', 'Y', ['Fenêtre de bienvenue à la première visite : tu choisis ta plateforme, Sillon se met à ses couleurs et t\'ouvre la fiche pour récupérer tes données.', 'Pochettes pour tout le monde, sans connexion ni compte Spotify : elles viennent de Deezer. Un artiste prend la pochette de son album le plus écouté.']],
   ['2.6.0', 'Y', ['Réglages dans la page Toi : style des graphiques (barres arrondies ou droites, courbe, aire, rétro, notes de musique), ligne de moyenne, lignes de repère, valeur du record.', 'Durées en heures et minutes, en heures ou en minutes, et dates en lettres ou en chiffres.', 'Couleur des pages, pochettes, animations réduites, page et période d\'ouverture, rappel de mise à jour.', 'Thème automatique : Sillon prend les couleurs de ta plateforme (Spotify, Apple Music, YouTube Music ou Deezer).']],
@@ -6375,7 +6413,7 @@ function platPicked(k) {
   autoSkin(true, true);
 }
 function skinAutoOn() {
-  S.skinAuto = true; savePrefs();
+  S.skinAuto = true; savePrefs(); setTouched();
   if (!autoSkin(true)) toast(platNow() ? `Auto : tu es déjà aux couleurs de ${SVCS[platNow()].n}.` : 'Auto : Sillon prendra les couleurs de ta plateforme dès que tu l\'auras choisie.');
   skSync();
 }
@@ -6485,13 +6523,34 @@ function setVal(k, raw) {
   if (D) renderHead();
   if (k === 'dur' || k === 'date' || k === 'cov') renderMe();
   renderSettings(k, d && !d.o ? undefined : raw);
+  setTouched();
 }
 function setReset() {
   S.set = Object.assign({}, SET0); S.cmp = true; S.content = 'music'; S.thr = 30; S.noSkip = false; S.skinAuto = true;
   if (!platNow()) S.skin = 'nuit';
   savePrefs(); computeGlobal(); applySkin(); autoSkin(false);
   if (D) { renderHead(); renderNotif(); }
-  renderMe(); toast('Réglages remis par défaut.');
+  renderMe(); toast('Réglages remis par défaut.'); setTouched();
+}
+/* ---------- réglages partagés entre appareils reliés : le plus récent gagne ---------- */
+function setTouched() { S.setAt = Date.now(); savePrefs(); if (typeof lkAutoPush === 'function') lkAutoPush(); }
+const setPack = () => ({ s: Object.assign({}, S.set), skin: S.skin, auto: S.skinAuto, cmp: S.cmp, content: S.content, thr: S.thr, noSkip: S.noSkip });
+function setApplyRemote(x, at) {
+  if (!x || typeof x !== 'object' || !(at > (S.setAt || 0))) return false;
+  const st = x.s && typeof x.s === 'object' ? x.s : {};
+  for (const k in SET0) if (SET_OK[k].includes(st[k])) S.set[k] = st[k];
+  if (typeof x.auto === 'boolean') S.skinAuto = x.auto;
+  if (!S.skinAuto && SKIN_NAMES[x.skin]) S.skin = x.skin;
+  const filt = S.content + '|' + S.thr + '|' + S.noSkip;
+  if (typeof x.cmp === 'boolean') S.cmp = x.cmp;
+  if (['music', 'pod', 'all'].includes(x.content)) S.content = x.content;
+  if ([0, 30, 60].includes(x.thr)) S.thr = x.thr;
+  if (typeof x.noSkip === 'boolean') S.noSkip = x.noSkip;
+  S.setAt = at; savePrefs();
+  if (filt !== S.content + '|' + S.thr + '|' + S.noSkip && D) computeGlobal();
+  applySkin(); autoSkin(false, true); skSync();
+  if (booted) { if (D) { renderHead(); renderNotif(); } renderView(); }
+  return true;
 }
 function wireSettings() {
   const box = $('#setTop'); if (!box) return;
@@ -6570,6 +6629,39 @@ function wireWelcome() {
   });
 }
 
+/* ---------- nouvelle version en ligne (version GitHub) ---------- */
+const UPD = { busy: false, last: 0, v: '', no: '' };
+const vNum = v => String(v).split('.').map(n => +n || 0);
+const vNewer = (a, b) => { const x = vNum(a), y = vNum(b); for (let i = 0; i < 3; i++) if ((x[i] || 0) !== (y[i] || 0)) return (x[i] || 0) > (y[i] || 0); return false; };
+async function updCheck(force) {
+  if (!SA || UPD.busy || UPD.v || !/^https?:$/.test(location.protocol) || navigator.onLine === false) return;
+  if (!force && Date.now() - UPD.last < 10 * 60e3) return;
+  UPD.busy = true; UPD.last = Date.now();
+  try {
+    /* « no-cache » : le serveur ne renvoie la page que si elle a changé */
+    const r = await fetch('./index.html', { cache: 'no-cache' });
+    if (r.ok) { const v = ((await r.text()).match(/const SILLON_V = '([0-9.]+)'/) || [])[1]; if (v && vNewer(v, SILLON_V) && v !== UPD.no) showUpd(v); }
+  } catch (e) {} finally { UPD.busy = false; }
+}
+function showUpd(v) {
+  UPD.v = v;
+  const b = $('#upd'); if (!b) return;
+  b.innerHTML = `<span>Sillon <b>${esc(v)}</b> est en ligne.</span><button class="btn pri" data-upd="go">Recharger</button><button class="x" data-upd="x" aria-label="Plus tard">×</button>`;
+  b.hidden = false;
+}
+async function updGo() {
+  const b = $('#upd'); if (b) b.innerHTML = '<span>Chargement de la nouvelle version…</span>';
+  try { const r = navigator.serviceWorker && await navigator.serviceWorker.getRegistration(); if (r) await r.update(); } catch (e) {}
+  location.reload();
+}
+function wireUpd() {
+  const b = $('#upd'); if (!b || !SA) return;
+  b.addEventListener('click', e => { const a = e.target.closest('[data-upd]'); if (!a) return; if (a.dataset.upd === 'go') updGo(); else { UPD.no = UPD.v; UPD.v = ''; b.hidden = true; } });
+  setTimeout(() => updCheck(true), 5000);
+  setInterval(() => { if (document.visibilityState === 'visible') updCheck(); }, 30 * 60e3);
+  document.addEventListener('visibilitychange', () => { if (document.visibilityState === 'visible') updCheck(); });
+}
+
 /* ================= wiring ================= */
 function go(k) {
   if (S.gran === 'all') return;
@@ -6582,17 +6674,17 @@ function wire() {
   const onRadio = (name, fn) => $$(`input[name=${name}]`).forEach(r => r.addEventListener('change', () => { if (r.checked) { fn(r.value); savePrefs(); } }));
   onRadio('gran', v => { S.gran = v; S.calYear = null; render(); });
   onRadio('metric', v => { S.metric = v; render(); });
-  onRadio('content', v => { S.content = v; S.focus = null; S.top = { art: 10, trk: 10, alb: 10 }; computeGlobal(); render(); renderHead(); });
-  onRadio('thr', v => { S.thr = +v; computeGlobal(); render(); renderHead(); });
-  $('#noSkip').addEventListener('change', e => { S.noSkip = e.target.checked; savePrefs(); computeGlobal(); render(); renderHead(); });
-  $('#cmp').addEventListener('change', e => { S.cmp = e.target.checked; savePrefs(); render(); });
+  onRadio('content', v => { S.content = v; S.focus = null; S.top = { art: 10, trk: 10, alb: 10 }; computeGlobal(); render(); renderHead(); setTouched(); });
+  onRadio('thr', v => { S.thr = +v; computeGlobal(); render(); renderHead(); setTouched(); });
+  $('#noSkip').addEventListener('change', e => { S.noSkip = e.target.checked; savePrefs(); computeGlobal(); render(); renderHead(); setTouched(); });
+  $('#cmp').addEventListener('change', e => { S.cmp = e.target.checked; savePrefs(); render(); setTouched(); });
   $('#liveSw').addEventListener('change', e => setLive(e.target.checked));
   $('#prev').onclick = $('#mPrev').onclick = () => go(-1);
   $('#next').onclick = $('#mNext').onclick = () => go(1);
   const fl = $('#filters'), sb = $('#setBtn');
   sb.addEventListener('click', e => { e.stopPropagation(); const o = !fl.classList.contains('open'); fl.classList.toggle('open', o); sb.setAttribute('aria-expanded', String(o)); });
   document.addEventListener('click', e => { if (fl.classList.contains('open') && !fl.contains(e.target) && !sb.contains(e.target)) { fl.classList.remove('open'); sb.setAttribute('aria-expanded', 'false'); } if (!e.target.closest('.srch')) $('#sugg').hidden = true; });
-  const setSkin = s => { if (s === 'auto') { skinAutoOn(); return; } S.skin = s; S.skinAuto = false; savePrefs(); applySkin(); renderView(); skSync(); if (!$('#dataModal').hidden) $('#skName').textContent = 'Thème : ' + SKIN_NAMES[S.skin]; };
+  const setSkin = s => { if (s === 'auto') { skinAutoOn(); return; } S.skin = s; S.skinAuto = false; savePrefs(); applySkin(); renderView(); skSync(); setTouched(); if (!$('#dataModal').hidden) $('#skName').textContent = 'Thème : ' + SKIN_NAMES[S.skin]; };
   $$('.sk').forEach(b => b.addEventListener('click', () => setSkin(b.dataset.s)));
   $('#skCycle').addEventListener('click', () => { setSkin(SKINS[(SKINS.indexOf(S.skin) + 1) % SKINS.length]); toast('Thème : ' + SKIN_NAMES[S.skin]); });
   $$('[data-act=data]').forEach(b => b.addEventListener('click', openData));
@@ -6616,7 +6708,7 @@ function wire() {
   $('#rcGo').addEventListener('click', () => openRecap(S.gran, S.anchor));
   $('#rcPrev').addEventListener('click', () => rcGo(-1));
   $('#rcNext').addEventListener('click', () => rcGo(1));
-  wireStories(); wireGuide(); wireGroup(); wireInstall(); wireLink(); wireMe(); wireSugg(); wireSettings(); wireWelcome();
+  wireStories(); wireGuide(); wireGroup(); wireInstall(); wireLink(); wireMe(); wireSugg(); wireSettings(); wireWelcome(); wireUpd();
   if (SA) $$('.sao').forEach(e => { e.hidden = false; });
   document.addEventListener('click', e => { if (e.target.closest('#howBody a[href^="#guide"]')) closeAll(); });
   $('#rcPng').addEventListener('click', async () => { if (!RC || !RC.R) return; const b = await posterPng(RC.R); if (b) saveFile(`sillon-recap-${tagOf(RC.g, RC.a)}.png`, b); });
