@@ -380,6 +380,73 @@ table.rk tbody tr:hover td{background:var(--hover)}
 .gfaq details{border-top:1px solid var(--line);padding:12px 0}
 .gfaq details:last-child{border-bottom:1px solid var(--line)}
 .gfaq summary{cursor:pointer;font-weight:700}
+/* groupe */
+.grstart{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;max-width:980px}
+.grstart .card,.grjoin,.grinv,.grme{display:flex;flex-direction:column;gap:12px}
+.grstart h2,.grjoin h2,.grinv h2{font:800 22px/1.2 var(--f-head);letter-spacing:-.02em}
+.grstart .sub,.grinv .sub{margin-top:-6px}
+.grstart .gact,.grjoin .gact,.grinv .gact,.grme .gact{margin-top:2px}
+.grstart .note,.grjoin .note,.grme .note{margin:0}
+.grf{display:flex;flex-direction:column;gap:6px;font-weight:600;font-size:14px}
+.grmsg{margin:0;color:var(--muted);font-size:14px}
+.grmsg:empty{display:none}
+.grjoin,.grinv,.grme{max-width:640px}
+.grjoin .gtip{margin:0;padding:8px 12px;border-left:3px solid var(--acc);border-radius:0 6px 6px 0;background:color-mix(in srgb,var(--acc) 9%,transparent);font-size:14px}
+.grhead{display:flex;flex-direction:column;gap:14px}
+.grbar{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px}
+.kpis.grk{grid-template-columns:repeat(4,minmax(0,1fr))}
+.kpi .v.sm{font:800 clamp(20px,2vw,26px)/1.2 var(--f-head);letter-spacing:-.02em;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.grlb,.grtop,.grmem{list-style:none;margin:0 -12px;padding:0}
+.grlb li{display:grid;grid-template-columns:28px 44px minmax(0,1fr) minmax(0,1.2fr) 104px;align-items:center;gap:14px;padding:8px 12px;border-radius:8px}
+.grlb li.me{background:color-mix(in srgb,var(--acc) 13%,transparent)}
+.grlb .rk,.grtop .rk{color:var(--muted);text-align:right;font-variant-numeric:tabular-nums}
+.grlb li:first-child .rk{color:var(--ink);font-weight:800}
+.grlb .cv{width:44px}
+.grtop .cv,.grmem .cv{width:40px}
+.grlb .nm,.grtop .nm,.grmem .nm{display:flex;flex-direction:column;min-width:0}
+.grlb .nm b,.grtop .nm b,.grmem .nm b{font-weight:700;font-size:15px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.grlb .nm b small,.grmem .nm b small{font-weight:500;color:var(--muted);font-size:13px}
+.grlb .nm>small,.grtop .nm>small,.grmem .nm>small{color:var(--muted);font-size:13px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.grlb .br{height:8px;border-radius:99px;background:var(--chip);overflow:hidden}
+.grlb .br i{display:block;height:100%;border-radius:99px;background:var(--bar)}
+.grlb li.me .br i{background:var(--acc)}
+.grlb .vl,.grtop .vl{display:flex;flex-direction:column;align-items:flex-end;font-variant-numeric:tabular-nums;white-space:nowrap}
+.grlb .vl small{color:var(--muted);font-size:12px}
+.grtop li{display:grid;grid-template-columns:28px 40px minmax(0,1fr) auto;align-items:center;gap:14px;padding:6px 12px;border-radius:6px}
+.grtop .vl{color:var(--muted);font-size:14px}
+.grtop .vl b{font-weight:500}
+.grtwin{display:flex;align-items:center;gap:20px}
+.grtwin .cv{width:84px;flex:none}
+.grtwin h2{font:900 clamp(26px,3vw,38px)/1.1 var(--f-head);letter-spacing:-.03em;margin:2px 0 6px;overflow-wrap:anywhere}
+.grtwin p{margin:0}
+.grcom{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:8px}
+.grcom .card{padding:14px 16px;display:flex;flex-direction:column;gap:2px;min-width:0}
+.grcom b{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.grcom small{color:var(--muted);font-size:13px}
+.grmem{margin-bottom:16px}
+.grmem li{display:grid;grid-template-columns:40px minmax(0,1fr) auto;align-items:center;gap:14px;padding:8px 12px;border-bottom:1px solid var(--line)}
+.grcode pre{margin:12px 0 0;padding:16px;border-radius:10px;background:var(--card);overflow:auto;max-height:380px;font:13px/1.55 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;white-space:pre;tab-size:2}
+.grcode pre:focus-visible{outline:2px solid var(--ink);outline-offset:2px}
+@media (min-width:721px){#grTop,.grinvm{display:none}}
+@media (max-width:720px){
+  .grstart{grid-template-columns:1fr}
+  .grbar>[data-gr=invite]{display:none}
+  .grbar .chips{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;margin:0 -16px;padding:2px 16px}
+  .grbar .chips button{flex:none;padding:4px 12px;font-size:13px}
+  .kpis.grk{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .grlb,.grtop,.grmem{margin:0 -8px}
+  .grlb li{grid-template-columns:22px 36px minmax(0,1fr) auto;grid-template-areas:"r c n v" "r c b b";gap:6px 10px;padding:8px}
+  .grlb .rk{grid-area:r}
+  .grlb .cv{grid-area:c;width:36px}
+  .grlb .nm{grid-area:n}
+  .grlb .br{grid-area:b;height:6px}
+  .grlb .vl{grid-area:v}
+  .grtop li{grid-template-columns:22px 36px minmax(0,1fr) auto;gap:10px;padding:6px 8px}
+  .grtop .cv,.grmem .cv{width:36px}
+  .grmem li{grid-template-columns:36px minmax(0,1fr) auto;gap:10px;padding:8px}
+  .grtwin{gap:14px}
+  .grtwin .cv{width:60px}
+}
 .gfaq p{margin:8px 0 0;color:var(--muted);max-width:70ch}
 
 /* récaps : affiche */
@@ -828,6 +895,7 @@ code.cp{display:inline-block;max-width:100%;padding:4px 8px;border-radius:6px;ba
       <a href="#classements" data-v="classements"><svg class="ic" viewBox="0 0 24 24"><path d="M8 21h8M12 17v4M7 4h10v5a5 5 0 0 1-10 0z"/><path d="M17 6h3v2a3 3 0 0 1-3 3M7 6H4v2a3 3 0 0 0 3 3"/></svg><span>Classements</span></a>
       <a href="#predictions" data-v="predictions"><svg class="ic" viewBox="0 0 24 24"><path d="M3 17l5-5 4 3 8-8"/><path d="M15 7h5v5"/><path d="M3 21h18" stroke-dasharray="2 3"/></svg><span>Prédictions</span></a>
       <a href="#jeux" data-v="jeux"><svg class="ic" viewBox="0 0 24 24"><rect x="2.5" y="7" width="19" height="11" rx="5"/><path d="M7 11v3M5.5 12.5h3"/><circle cx="16" cy="11.5" r=".8"/><circle cx="18" cy="13.5" r=".8"/></svg><span>Jeux</span></a>
+      <a href="#groupe" data-v="groupe" class="sao" hidden><svg class="ic" viewBox="0 0 24 24"><circle cx="9" cy="8" r="3.2"/><path d="M3.2 19.5a5.8 5.8 0 0 1 11.6 0"/><path d="M15.6 4.9a3.2 3.2 0 0 1 0 6.2"/><path d="M17.6 14.1a5.8 5.8 0 0 1 3.2 5.4"/></svg><span>Groupe</span></a>
       <a href="#guide" data-v="guide"><svg class="ic" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M9.6 9.4a2.5 2.5 0 1 1 3.4 2.4c-.6.3-1 .8-1 1.5v.5"/><path d="M12 17h.01"/></svg><span>Guide</span></a>
     </nav>
   </div>
@@ -865,6 +933,7 @@ code.cp{display:inline-block;max-width:100%;padding:4px 8px;border-radius:6px;ba
     <div class="tr">
       <span class="np" id="np" hidden></span>
       <button class="ib" id="bell" aria-label="Rappel de mise à jour" hidden><svg class="ic" viewBox="0 0 24 24"><path d="M6 16V11a6 6 0 0 1 12 0v5l1.5 2h-15z"/><path d="M10 20a2 2 0 0 0 4 0"/></svg></button>
+      <a class="ib sao" id="grTop" href="#groupe" aria-label="Ton groupe" title="Ton groupe" hidden><svg class="ic" viewBox="0 0 24 24"><circle cx="9" cy="8" r="3.2"/><path d="M3.2 19.5a5.8 5.8 0 0 1 11.6 0"/><path d="M15.6 4.9a3.2 3.2 0 0 1 0 6.2"/><path d="M17.6 14.1a5.8 5.8 0 0 1 3.2 5.4"/></svg></a>
       <button class="ib" id="skCycle" aria-label="Changer de thème" title="Changer de thème"><svg class="ic" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"/><path d="M12 4a8 8 0 0 1 0 16z" fill="currentColor"/></svg></button>
       <button class="ib" data-act="data" aria-label="Tes données"><svg class="ic" viewBox="0 0 24 24"><path d="M12 4v11M7 10l5 5 5-5M5 20h14"/></svg></button>
     </div>
@@ -930,7 +999,7 @@ code.cp{display:inline-block;max-width:100%;padding:4px 8px;border-radius:6px;ba
     <div><p><b>Bienvenue sur Sillon.</b> Ce que tu vois, c'est un exemple inventé. Pour tes vraies stats, ouvre la fiche de ta plateforme : elle t'explique tout, étape par étape.</p>
       <div class="gquick"><a class="btn" href="#guide/spotify">Spotify</a><a class="btn" href="#guide/apple">Apple Music</a><a class="btn" href="#guide/ytm">YouTube Music</a><a class="btn" href="#guide/deezer">Deezer</a></div>
       <p class="note" id="obSp" hidden>C'est tout : pas de compte à créer. En option, les vraies pochettes s'activent en connectant Spotify dans Données, seulement si la personne qui t'a partagé le site t'a ajouté à son app Spotify.</p>
-      <p class="note">Tes données restent à toi : personne d'autre ne les voit, même pas la personne qui t'a partagé le site.</p></div>
+      <p class="note">Tes données restent à toi : personne d'autre ne les voit, même pas la personne qui t'a partagé le site.<span class="sao" hidden> Si tu rejoins un groupe, ses membres voient seulement un résumé.</span></p></div>
     <div class="row2"><button class="btn pri" data-act="data">Importer mon fichier</button></div>
   </div>
   <div class="pad">
@@ -1085,6 +1154,11 @@ code.cp{display:inline-block;max-width:100%;padding:4px 8px;border-radius:6px;ba
   </div>
 </section>
 
+<section class="view" data-view="groupe" aria-label="Groupe" hidden>
+  <div class="hero sm" id="grHeroBox"><div class="htx"><p class="kick" id="grKick">Entre potes</p><h1 class="ht" id="grTitle">Ton groupe</h1><p class="hl" id="grLead"></p></div></div>
+  <div class="pad" id="grBody"></div>
+</section>
+
 <section class="view" data-view="jeux" aria-label="Jeux" hidden>
   <div class="hero sm" id="jHero"><div class="htx"><p class="kick">Tirés de ton propre historique</p><h1 class="ht">Jeux</h1><p class="hl">Tes meilleurs scores sont gardés.</p></div></div>
   <div class="pad">
@@ -1196,7 +1270,7 @@ code.cp{display:inline-block;max-width:100%;padding:4px 8px;border-radius:6px;ba
   <textarea id="copyBox" hidden aria-label="Résumé à copier"></textarea>
   <div class="danger">
     <button class="btn" id="wipe">Effacer mes données</button>
-    <span id="wipeConfirm" hidden>Tout ton historique importé sera supprimé. <button class="btn" id="wipeYes">Oui, effacer</button> <button class="btn" id="wipeNo">Annuler</button></span>
+    <span id="wipeConfirm" hidden>Tout ton historique importé sera supprimé.<span id="wipeGr" hidden> Tes chiffres seront aussi retirés de ton groupe.</span> <button class="btn" id="wipeYes">Oui, effacer</button> <button class="btn" id="wipeNo">Annuler</button></span>
   </div>
 </div>
 
@@ -1257,7 +1331,7 @@ const SA = /*@SA*/true; // true = version autonome (GitHub Pages)
 const SKINS = ['nuit', 'pomme', 'ecarlate', 'violet', 'clair', 'wrapped', 'console'];
 const SKIN_NAMES = { nuit: 'Nuit, façon Spotify', pomme: 'Pomme, façon Apple Music', ecarlate: 'Écarlate, façon YouTube Music', violet: 'Violet, façon Deezer', clair: 'Clair', wrapped: 'Wrapped', console: 'Console' };
 const GRANS = ['day', 'week', 'month', 'year', 'all'];
-const VIEWS = ['stats', 'profil', 'recaps', 'classements', 'predictions', 'jeux', 'guide'];
+const VIEWS = ['stats', 'profil', 'recaps', 'classements', 'predictions', 'jeux', 'guide', 'groupe'];
 const S = { view: 'stats', gran: 'week', anchor: 0, metric: 'ms', content: 'music', thr: 30, noSkip: false, cmp: true, focus: null, skin: 'nuit', rcMore: { m: false, w: false }, top: { art: 10, trk: 10, alb: 10 }, logN: 30, calYear: null, rk: { scope: 'all', sort: 'plays', n: 50 }, live: false, recMode: 'new' };
 let D = null, G = null, T = null, DEMO = true, P = null, Q = null, booted = false, dataVer = 0;
 let seenT = null, seenT2 = null, seenA = null, seenL = null, stampC = 1;
@@ -2016,6 +2090,8 @@ function route() {
   const [h, sub] = location.hash.replace('#', '').split('/'), prev = S.view;
   S.view = VIEWS.includes(h) ? h : 'stats';
   if (S.view === 'guide') S.guideSvc = sub || null;
+  if (S.view === 'groupe') S.grInvite = sub && GR_ID.test(sub) ? sub : null;
+  else if (prev === 'groupe') groupStop();
   $$('.view').forEach(v => v.hidden = v.dataset.view !== S.view);
   $$('.snav a, .bnav a').forEach(a => a.setAttribute('aria-current', a.dataset.v === S.view ? 'page' : 'false'));
   if (prev !== S.view) window.scrollTo(0, 0);
@@ -2023,7 +2099,7 @@ function route() {
   renderView(); updateMini(); checkHero();
 }
 function renderView() {
-  if (S.view === 'guide') { renderGuide(); return; }
+  if (S.view === 'guide' || S.view === 'groupe') { if (D) renderHead(); if (S.view === 'guide') renderGuide(); else renderGroup(); return; }
   if (!D) return;
   renderHead();
   if (S.view === 'stats') render();
@@ -2038,7 +2114,7 @@ function updateMini() {
   $('#mini').hidden = !(S.view === 'stats' && !heroVisible);
   $('#topTitle').textContent = S.view === 'stats' ? '' : VIEW_T[S.view];
 }
-const VIEW_T = { stats: 'Accueil', profil: 'Profil', recaps: 'Récaps', classements: 'Classements', predictions: 'Prédictions', jeux: 'Jeux', guide: 'Guide' };
+const VIEW_T = { stats: 'Accueil', profil: 'Profil', recaps: 'Récaps', classements: 'Classements', predictions: 'Prédictions', jeux: 'Jeux', guide: 'Guide', groupe: 'Groupe' };
 let heroVisible = true;
 function checkHero() {
   const v = $(`.view[data-view="${S.view}"]`); if (!v) return;
@@ -2051,6 +2127,7 @@ function setData(X, demo) {
   S.anchor = D.lastDay; S.focus = null; S.calYear = null;
   computeGlobal(); computeTaste(); TM = AM = null; dataVer++; searchIdx = null; RCX = null; PD = null; PRX = null; ALB_TID = null; ART_ALB = null; ART_TID = null;
   renderView();
+  groupAutoPush();
 }
 function render() {
   if (!D) return;
@@ -4532,7 +4609,7 @@ function guideSteps(list) { return `<ol class="gsteps">${list.map(([t, d, tip]) 
 function renderGuide() {
   const k = SVCS[S.guideSvc] ? S.guideSvc : null;
   $('#gdPick').innerHTML = Object.keys(SVCS).map(x => `<a href="#guide/${x}" aria-current="${x === k ? 'true' : 'false'}"><b>${esc(SVCS[x].n)}</b><small>${esc(GUIDE[x].pick)}</small></a>`).join('');
-  const general = `<section class="gsec"><h3>Bon à savoir</h3><ul class="gcheck"><li>Ton fichier est lu dans ton navigateur : personne d'autre ne voit tes stats, même pas la personne qui t'a partagé le site.</li><li>Tu as changé de plateforme ? Dépose les fichiers des deux : tout s'additionne, sans doublons.</li><li>Le site te rappelle tous les mois de mettre tes stats à jour.</li></ul></section>`;
+  const general = `<section class="gsec"><h3>Bon à savoir</h3><ul class="gcheck"><li>Ton fichier est lu dans ton navigateur : personne d'autre ne voit tes stats, même pas la personne qui t'a partagé le site.${SA ? ' Si tu rejoins un groupe, ses membres voient seulement un résumé.' : ''}</li><li>Tu as changé de plateforme ? Dépose les fichiers des deux : tout s'additionne, sans doublons.</li><li>Le site te rappelle tous les mois de mettre tes stats à jour.</li></ul></section>`;
   if (!k) { $('#gdBody').innerHTML = `<p class="gintro">Choisis ta plateforme au-dessus : la fiche s'affiche ici.</p>${general}`; return; }
   const G = GUIDE[k], v = SVCS[k], s = Prefs.data.sync || {};
   const asked = s.requestedAt && s.svc === k && !(s.importedAt > s.requestedAt);
@@ -4557,6 +4634,450 @@ function wireGuide() {
     else if (a === 'asked' && SVCS[k]) { const s = Prefs.data.sync; s.requestedAt = Date.now(); s.svc = k; s.snooze = Date.now() + 3 * DAYMS; Prefs.save(); renderGuide(); toast('Noté. Reviens ici quand le fichier arrive.'); }
     else if (a === 'copy') { const u = location.href.split('#')[0] + '#guide/' + k; try { await navigator.clipboard.writeText(u); toast('Lien copié : envoie-le à qui tu veux.'); } catch (er) { toast(u); } }
   });
+}
+
+/* ================= groupe : stats mises en commun (Firebase, version GitHub) ================= */
+const FB_V = '13.1.0';
+let FBP = null;
+const GRP = { gid: null, mGid: null, unsub: null, members: [], group: null, err: '', loading: false, join: null, per: 'm', busy: false, uid: null, dirty: false };
+const fbCfg = () => { const c = SA && window.SILLON && window.SILLON.firebase; return c && c.apiKey && c.projectId && c.appId ? c : null; };
+const grMe = () => (SA && Prefs.data.sync && Prefs.data.sync.group) || null;
+const GR_ID = /^[a-z0-9]{8,40}$/i;
+function fbInit() {
+  if (FBP) return FBP;
+  FBP = (async () => {
+    const base = `https://www.gstatic.com/firebasejs/${FB_V}/`;
+    const [A, U, F] = await Promise.all(['app', 'auth', 'firestore'].map(m => import(base + 'firebase-' + m + '.js')));
+    const app = A.getApps().find(a => a.name === 'sillon') || A.initializeApp(fbCfg(), 'sillon');
+    const auth = U.getAuth(app), db = F.getFirestore(app);
+    if (auth.authStateReady) await auth.authStateReady();
+    else await new Promise(r => { const off = U.onAuthStateChanged(auth, () => { setTimeout(() => off(), 0); r(); }); });
+    if (!auth.currentUser) await U.signInAnonymously(auth);
+    GRP.uid = auth.currentUser.uid;
+    return { F, db, uid: GRP.uid };
+  })();
+  FBP.catch(() => { FBP = null; });
+  return FBP;
+}
+function fbErr(e) {
+  const c = String((e && (e.code || e.message)) || e || '');
+  if (/operation-not-allowed|admin-restricted|configuration-not-found/.test(c)) return 'Firebase refuse la connexion : la connexion « Anonyme » n\'est pas activée dans Authentication.';
+  if (/permission-denied|insufficient permissions/i.test(c)) return 'Firebase refuse l\'accès : les règles de la base ne sont pas publiées, ou pas à jour.';
+  if (/unauthorized-domain/.test(c)) return 'Firebase ne reconnaît pas ce site : ajoute-le dans Authentication, Paramètres, Domaines autorisés.';
+  if (/api-key|invalid-api-key|API key|app-not-authorized|invalid-app-id/i.test(c)) return 'La configuration Firebase de config.js n\'est pas bonne : recopie le bloc firebaseConfig.';
+  if (/Failed to fetch|dynamically imported|import|network|unavailable|offline/i.test(c)) return 'Le groupe ne répond pas : vérifie ta connexion internet, puis réessaie.';
+  return 'Le groupe ne répond pas (' + c.slice(0, 80) + ').';
+}
+const grId = () => { const a = new Uint8Array(15); crypto.getRandomValues(a); return Array.from(a, b => 'abcdefghijkmnpqrstuvwxyz23456789'[b % 32]).join(''); };
+const grLink = gid => location.origin + location.pathname + '#groupe/' + gid;
+const curMon = () => { const n = new Date(); return (n.getFullYear() - 1970) * 12 + n.getMonth(); };
+
+/* résumé envoyé au groupe : jamais l'historique complet */
+function groupSummary() {
+  const now = new Date(), cy = now.getFullYear(), cm = curMon(), y0 = (cy - 1970) * 12;
+  const K = D.k, TK = D.tk, TA = D.ta, M = D.m, MN = D.mon, HR = D.hr, DY = D.day;
+  let mF = Infinity, mL = -1;
+  for (let i = 0; i < D.n; i++) if (TK[K[i]] === 0) { if (MN[i] < mF) mF = MN[i]; if (MN[i] > mL) mL = MN[i]; }
+  if (mL < 0) { mF = cm; mL = cm; }
+  const nm = mL - mF + 1, mMs = new Float64Array(nm), mPl = new Array(nm).fill(0);
+  const aA = new Float64Array(D.na), aY = new Float64Array(D.na), aMo = new Float64Array(D.na), tA = new Float64Array(D.nt), hrs = new Float64Array(24), wd = new Float64Array(7);
+  const sA = new Uint8Array(D.na), sT = new Uint8Array(D.nt);
+  let tMs = 0, plays = 0, nA = 0, nT = 0;
+  for (let i = 0; i < D.n; i++) {
+    const t = K[i]; if (TK[t] !== 0) continue;
+    const ms = M[i], a = TA[t], mo = MN[i];
+    tMs += ms; mMs[mo - mF] += ms; aA[a] += ms; tA[t] += ms; hrs[HR[i]] += ms; wd[dow(DY[i])] += ms;
+    if (mo >= y0) aY[a] += ms;
+    if (mo === cm) aMo[a] += ms;
+    if (ms >= 30000) { plays++; mPl[mo - mF]++; if (!sA[a]) { sA[a] = 1; nA++; } if (!sT[t]) { sT[t] = 1; nT++; } }
+  }
+  const top = (arr, k) => { const idx = []; for (let i = 0; i < arr.length; i++) if (arr[i] >= 60000) idx.push(i); return idx.sort((x, y) => arr[y] - arr[x]).slice(0, k); };
+  const mins = v => Math.round(v / 60000), an = a => String(D.artists[a]).slice(0, 80);
+  const A50 = top(aA, 50), AY = top(aY, 25), AM = top(aMo, 15), T20 = top(tA, 20);
+  const svc = new Set(); for (const s of (Prefs.data.sync.sources || [])) for (const x of String(s.svc || '').split(' + ')) if (x) svc.add(x);
+  return {
+    v: 1, svc: [...svc].join(' + ').slice(0, 60),
+    first: D.firstDay, last: D.lastDay, tMin: mins(tMs), plays, nA, nT,
+    mF, mMin: Array.from(mMs, mins), mPl,
+    aN: A50.map(an), aM: A50.map(a => mins(aA[a])),
+    yr: cy, aNY: AY.map(an), aMY: AY.map(a => mins(aY[a])),
+    mo: cm, aNM: AM.map(an), aMM: AM.map(a => mins(aMo[a])),
+    tN: T20.map(t => String(D.tn[t]).slice(0, 100)), tA: T20.map(t => an(TA[t])), tM: T20.map(t => mins(tA[t])),
+    hrs: Array.from(hrs, mins), wd: Array.from(wd, mins)
+  };
+}
+let grPushT = 0;
+function groupAutoPush(delay = 4000) {
+  clearTimeout(grPushT);
+  const g = grMe(); if (!fbCfg() || !g || !g.gid || DEMO || !D) return;
+  grPushT = setTimeout(() => groupPush(false).catch(e => console.warn('groupe', e)), delay);
+}
+/* retiré par la personne qui a créé le groupe : on oublie le groupe sur cet appareil */
+function grRemoved(g) {
+  groupStop(); GRP.members = []; GRP.group = null; GRP.mGid = null;
+  if (Prefs.data.sync.group === g) { delete Prefs.data.sync.group; Prefs.save(); }
+  toast(`Tu ne fais plus partie de « ${g.name || 'ton groupe'} ».`);
+  if (S.view === 'groupe') renderGroup();
+}
+async function groupPush(force) {
+  const g = grMe(); if (!fbCfg() || !g || !g.gid || DEMO || !D) return false;
+  const sum = groupSummary(), sig = [D.n, D.lastDay, sum.tMin, g.me, sum.mo, sum.svc].join('|');
+  if (!force && g.sig === sig) return false;
+  const { F, db, uid } = await fbInit();
+  const ref = F.doc(db, 'groups', g.gid, 'members', uid);
+  if (g.pushedAt && g.uid === uid && !(await F.getDoc(ref)).exists()) { grRemoved(g); return false; }
+  await F.setDoc(ref, Object.assign(sum, { name: g.me, updatedAt: F.serverTimestamp() }));
+  g.sig = sig; g.pushedAt = Date.now(); g.uid = uid; Prefs.save();
+  return true;
+}
+async function groupListen() {
+  const g = grMe(); if (!g || !fbCfg()) return;
+  if (GRP.gid === g.gid) return;
+  groupStop();
+  const gid = g.gid;
+  GRP.gid = gid; GRP.err = '';
+  if (GRP.mGid !== gid) { GRP.members = []; GRP.group = null; GRP.mGid = gid; }
+  GRP.loading = !GRP.members.length;
+  try {
+    const { F, db } = await fbInit();
+    const gs = await F.getDoc(F.doc(db, 'groups', gid));
+    if (GRP.gid !== gid) return;
+    if (!gs.exists()) { GRP.err = 'Ce groupe n\'existe plus.'; GRP.loading = false; grRefresh(); return; }
+    GRP.group = gs.data();
+    if (GRP.group.name && GRP.group.name !== g.name) { g.name = GRP.group.name; Prefs.save(); }
+    const un = F.onSnapshot(F.collection(db, 'groups', gid, 'members'), snap => {
+      if (GRP.gid !== gid) return;
+      GRP.members = snap.docs.map(d => Object.assign({ id: d.id }, d.data({ serverTimestamps: 'estimate' })));
+      GRP.loading = false;
+      const g2 = grMe();
+      if (g2 && g2.gid === gid && g2.pushedAt && g2.uid === GRP.uid && !snap.metadata.fromCache && !snap.metadata.hasPendingWrites && !GRP.members.some(m => m.id === GRP.uid)) { grRemoved(g2); return; }
+      grRefresh();
+    }, e => { if (GRP.gid !== gid) return; GRP.err = fbErr(e); GRP.loading = false; grRefresh(); });
+    if (GRP.gid !== gid) { un(); return; }
+    GRP.unsub = un;
+  } catch (e) { if (GRP.gid === gid) { GRP.err = fbErr(e); GRP.loading = false; GRP.gid = null; grRefresh(); } }
+}
+function groupStop() { if (GRP.unsub) GRP.unsub(); GRP.unsub = null; GRP.gid = null; }
+/* « Effacer mes données » retire aussi les chiffres du groupe */
+function groupForget() {
+  const g = grMe(); if (!g || !fbCfg()) return;
+  groupStop();
+  fbInit().then(({ F, db, uid }) => F.deleteDoc(F.doc(db, 'groups', g.gid, 'members', uid))).catch(() => {});
+}
+/* pas de nouveau rendu pendant qu'on tape dans un champ du groupe */
+function grRefresh() {
+  if (S.view !== 'groupe') return;
+  const a = document.activeElement;
+  if (a && a.matches && a.matches('#grBody input')) { GRP.dirty = true; return; }
+  GRP.dirty = false; renderGroup();
+}
+
+/* ---------- calculs sur les membres ---------- */
+function grMembers() {
+  const by = new Map();
+  for (const m of GRP.members) {
+    if (!m || typeof m.name !== 'string' || !m.name) continue;
+    m.ts = m.updatedAt && m.updatedAt.toMillis ? m.updatedAt.toMillis() : 0;
+    m.me = m.id === GRP.uid;
+    const k = norm(m.name), o = by.get(k);
+    if (!o || m.me || (!o.me && m.ts > o.ts)) by.set(k, m);
+  }
+  return [...by.values()];
+}
+function grSum(m, key, per) {
+  const arr = Array.isArray(m[key]) ? m[key] : [], cm = curMon(), mF = m.mF | 0;
+  const from = per === 'm' ? cm : cm - (cm % 12);
+  let s = 0; for (let i = Math.max(0, from - mF); i <= cm - mF && i < arr.length; i++) s += arr[i] || 0;
+  return s;
+}
+const grMin = (m, per) => per === 'a' ? (m.tMin || 0) : grSum(m, 'mMin', per);
+const grPlays = (m, per) => per === 'a' ? (m.plays || 0) : grSum(m, 'mPl', per);
+function grArtists(ms, per) {
+  const cm = curMon(), cy = new Date().getFullYear(), map = new Map();
+  for (const m of ms) {
+    const [N, V] = per === 'a' ? [m.aN, m.aM] : per === 'y' ? (m.yr === cy ? [m.aNY, m.aMY] : []) : (m.mo === cm ? [m.aNM, m.aMM] : []);
+    (N || []).forEach((n, i) => { const k = norm(n); let o = map.get(k); if (!o) map.set(k, o = { name: n, min: 0, who: [] }); o.min += (V && V[i]) || 0; if (!o.who.includes(m.name)) o.who.push(m.name); });
+  }
+  return [...map.values()];
+}
+function grTracks(ms) {
+  const map = new Map();
+  for (const m of ms) (m.tN || []).forEach((n, i) => {
+    const a = (m.tA || [])[i] || '', k = normT(n) + '|' + norm(a);
+    let o = map.get(k); if (!o) map.set(k, o = { name: n, artist: a, min: 0, who: [] });
+    o.min += (m.tM || [])[i] || 0; if (!o.who.includes(m.name)) o.who.push(m.name);
+  });
+  return [...map.values()].sort((a, b) => b.min - a.min);
+}
+const grAnd = a => a.length > 1 ? a.slice(0, -1).join(', ') + ' et ' + a[a.length - 1] : (a[0] || '');
+function grTwin(ms) {
+  const me = ms.find(m => m.me); if (!me || !me.aN || !me.aN.length) return null;
+  const vec = m => { const v = new Map(), M = m.aM || [], tot = M.reduce((a, b) => a + b, 0) || 1; (m.aN || []).forEach((n, i) => v.set(norm(n), (M[i] || 0) / tot)); return v; };
+  const len = v => Math.sqrt([...v.values()].reduce((s, x) => s + x * x, 0)) || 1;
+  const a = vec(me), na = len(a);
+  let best = null;
+  for (const o of ms) {
+    if (o.me || !o.aN || !o.aN.length) continue;
+    const b = vec(o), common = [];
+    let dot = 0;
+    for (const [k, x] of a) if (b.has(k)) { dot += x * b.get(k); common.push([k, x * b.get(k)]); }
+    const sim = dot / (na * len(b));
+    if (!best || sim > best.sim) best = { m: o, sim, common: common.sort((p, q) => q[1] - p[1]).slice(0, 3).map(([k]) => me.aN.find(n => norm(n) === k) || k) };
+  }
+  return best;
+}
+
+/* ---------- affichage ---------- */
+const GR_PER = { m: 'Ce mois-ci', y: 'Cette année', a: 'Depuis le début' };
+const grH = min => { min = Math.round(min); return min >= 60 ? `${fmtN(Math.floor(min / 60))}${NB}h${min % 60 ? NB + String(min % 60).padStart(2, '0') : ''}` : `${fmtN(min)}${NB}min`; };
+function grHero(kick, title, lead) { $('#grKick').textContent = kick; $('#grTitle').textContent = title; $('#grLead').textContent = lead; }
+const GR_KEYS = ['v', 'name', 'updatedAt', 'svc', 'first', 'last', 'tMin', 'plays', 'nA', 'nT', 'mF', 'mMin', 'mPl', 'aN', 'aM', 'yr', 'aNY', 'aMY', 'mo', 'aNM', 'aMM', 'tN', 'tA', 'tM', 'hrs', 'wd'];
+const GR_RULES = `rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    match /groups/{gid} {
+      allow get: if request.auth != null;
+      allow create: if request.auth != null
+        && request.resource.data.keys().hasOnly(['name', 'owner', 'createdAt'])
+        && request.resource.data.owner == request.auth.uid
+        && request.resource.data.name is string
+        && request.resource.data.name.size() > 0
+        && request.resource.data.name.size() <= 40
+        && request.resource.data.createdAt == request.time;
+      allow update, delete: if false;
+      match /members/{uid} {
+        allow read: if request.auth != null;
+        allow create, update: if request.auth != null
+          && request.auth.uid == uid
+          && exists(/databases/$(database)/documents/groups/$(gid))
+          && request.resource.data.keys().hasOnly([${GR_KEYS.map(k => `'${k}'`).join(', ')}])
+          && request.resource.data.name is string
+          && request.resource.data.name.size() > 0
+          && request.resource.data.name.size() <= 30
+          && request.resource.data.updatedAt == request.time
+          && request.resource.data.get('mMin', []).size() <= 720
+          && request.resource.data.get('aN', []).size() <= 50;
+        allow delete: if request.auth != null
+          && (request.auth.uid == uid
+            || get(/databases/$(database)/documents/groups/$(gid)).data.owner == request.auth.uid);
+      }
+    }
+  }
+}`;
+const GR_CFG = `window.SILLON = {
+  spotifyClientId: 'ton-client-id-spotify',
+  firebase: {
+    apiKey: 'AIza…',
+    authDomain: 'sillon-xxxxx.firebaseapp.com',
+    projectId: 'sillon-xxxxx',
+    appId: '1:1234567890:web:abcdef'
+  }
+};`;
+function grSetupHTML() {
+  return `<article class="gfiche">
+  <div class="gfh"><h2>Le groupe n'est pas encore activé</h2></div>
+  <p class="gintro">Pour mettre vos stats en commun, Sillon a besoin d'une petite base de données en ligne, gratuite : Firebase, de Google. C'est la personne qui a mis le site en ligne qui la crée, une seule fois : 5 minutes environ. Tes potes, eux, n'ont rien à faire.</p>
+  <section class="gsec"><h3>Étape 1 : créer le projet</h3>${guideSteps([
+    ['Ouvre la console Firebase', 'Va sur <a href="https://console.firebase.google.com/" target="_blank" rel="noopener">console.firebase.google.com</a> et connecte-toi avec ton compte Google.'],
+    ['Crée un projet', 'Appelle-le « sillon » par exemple. Google Analytics ne sert à rien ici : tu peux le désactiver. Le forfait gratuit (Spark) suffit largement.'],
+    ['Ajoute une application Web', 'Sur l\'accueil du projet, clique sur l\'icône Web (&lt;/&gt;), donne-lui un nom et ne coche pas Firebase Hosting. Firebase affiche un bloc « firebaseConfig » : garde-le de côté pour l\'étape 3.', 'Tu le retrouves plus tard dans les paramètres du projet (roue crantée), partie « Vos applications ».']
+  ])}</section>
+  <section class="gsec"><h3>Étape 2 : régler la connexion et la base</h3>${guideSteps([
+    ['Active la connexion anonyme', 'Ouvre Authentication (dans le menu de gauche, ou tape-le dans la recherche en haut), puis « Commencer ». Dans les méthodes de connexion, active « Anonyme ». Tes potes n\'auront ni compte ni mot de passe à créer.'],
+    ['Crée la base Firestore', 'Ouvre Firestore Database, puis « Créer une base de données ». Si on te demande une édition, prends Standard. Choisis un emplacement en Europe, puis le mode production.'],
+    ['Colle les règles de sécurité', 'Dans l\'onglet « Règles » de Firestore, remplace tout par le texte ci-dessous, puis « Publier ». Avec ces règles, il faut le lien d\'un groupe pour le voir, et chacun ne peut modifier que ses propres chiffres.']
+  ])}
+  <div class="grcode"><div class="gact"><button class="btn" data-gr="copyRules">Copier les règles</button></div><pre tabindex="0" aria-label="Règles de sécurité Firestore">${esc(GR_RULES)}</pre></div></section>
+  <section class="gsec"><h3>Étape 3 : brancher le site</h3>${guideSteps([
+    ['Ouvre config.js sur GitHub', 'Dans ton dépôt, clique sur config.js, puis sur le crayon pour le modifier.'],
+    ['Ajoute la partie firebase', 'Garde ta ligne spotifyClientId telle quelle, et ajoute le bloc firebase avec les 4 valeurs de ton firebaseConfig, comme dans l\'exemple ci-dessous. Puis « Commit changes ».', 'Ne remplace pas tout le fichier : ton Client ID Spotify doit rester dedans.'],
+    ['Recharge le site', 'Attends une minute que GitHub mette le site à jour, puis reviens sur cette page : tu pourras créer le groupe et envoyer le lien à tes potes.']
+  ])}
+  <div class="grcode"><pre tabindex="0" aria-label="Exemple de config.js">${esc(GR_CFG)}</pre></div>
+  <p class="gintro">La clé « apiKey » n'est pas un mot de passe : Firebase prévoit qu'elle soit visible dans le code du site. Ce sont les règles de l'étape 2 qui protègent les données.</p></section>
+  </article>`;
+}
+const GR_SHARE = 'Ce qui part dans le groupe : ton pseudo, ton temps d\'écoute mois par mois, tes heures d\'écoute, tes 50 artistes et tes 20 titres les plus écoutés. Jamais ton historique complet. Tu peux retirer tes chiffres quand tu veux.';
+const grInviteLabel = () => navigator.share && matchMedia('(pointer:coarse)').matches ? 'Partager le lien' : 'Copier le lien';
+function renderGroup() {
+  const body = $('#grBody'); if (!body) return;
+  const intro = 'Compare ton temps d\'écoute, tes artistes et tes heures avec tes potes, en direct.';
+  if (!SA) { grHero('Entre potes', 'Ton groupe', intro); body.innerHTML = '<div class="card"><p>Les stats de groupe marchent sur la version GitHub du site. Ici, dans Claude, le site n\'a pas le droit de se connecter à l\'extérieur.</p></div>'; return; }
+  if (!booted) { grHero('Entre potes', 'Ton groupe', intro); body.innerHTML = '<p class="gintro">Chargement…</p>'; return; }
+  if (!fbCfg()) { grHero('Entre potes', 'Ton groupe', intro); body.innerHTML = grSetupHTML(); return; }
+  const g = grMe(), inv = S.grInvite;
+  if (inv && (!g || g.gid !== inv)) { groupStop(); renderJoin(inv, g); return; }
+  if (!g) {
+    grHero('Entre potes', 'Ton groupe', intro);
+    body.innerHTML = `<div class="grstart"><section class="card"><h2>Créer un groupe</h2><p class="sub">Tu obtiens un lien à envoyer à tes potes.</p>
+      <label class="grf"><span>Nom du groupe</span><input class="field" id="grName" maxlength="40" placeholder="Les potes" autocomplete="off"></label>
+      <label class="grf"><span>Ton pseudo</span><input class="field" id="grMe1" maxlength="30" placeholder="Ton prénom ou un surnom" autocomplete="nickname"></label>
+      <p class="note">${GR_SHARE}</p><div class="gact"><button class="btn pri" data-gr="create">Créer le groupe</button></div><p class="grmsg" id="grMsg" role="status"></p></section>
+      <section class="card"><h2>Rejoindre un groupe</h2><p class="sub">Un pote t'a envoyé un lien ? Ouvre-le, ou colle-le ici.</p>
+      <label class="grf"><span>Lien d'invitation</span><input class="field" id="grPaste" placeholder="https://…#groupe/…" autocomplete="off"></label><div class="gact"><button class="btn" data-gr="paste">Ouvrir l'invitation</button></div></section></div>`;
+    return;
+  }
+  groupListen();
+  const ms = grMembers(), per = GRP.per;
+  grHero('Ton groupe', g.name || 'Groupe', ms.length ? `${fmtN(ms.length)} ${pl(ms.length, 'membre')}, mis à jour en direct.` : 'Mis à jour en direct.');
+  if (GRP.err) { body.innerHTML = `<div class="card"><p>${esc(GRP.err)}</p><div class="gact"><button class="btn pri" data-gr="retry">Réessayer</button><button class="btn" data-gr="leave">Quitter ce groupe</button></div><p class="grmsg" id="grMsg" role="status"></p></div>`; return; }
+  if (GRP.loading && !ms.length) { body.innerHTML = '<p class="gintro">Connexion au groupe…</p>'; return; }
+  const meIn = ms.some(m => m.me), alone = ms.filter(m => !m.me).length === 0;
+  const rows = ms.map(m => ({ m, min: grMin(m, per), pl: grPlays(m, per) })).sort((a, b) => b.min - a.min || b.pl - a.pl);
+  const tot = rows.reduce((s, r) => s + r.min, 0), totP = rows.reduce((s, r) => s + r.pl, 0), mx = Math.max(1, ...rows.map(r => r.min));
+  const today = Math.floor(Date.now() / DAYMS), top1 = rows.length && rows[0].min ? rows[0] : null;
+  const arts = grArtists(ms, per).sort((a, b) => b.min - a.min), common = arts.filter(a => a.who.length >= 2).sort((a, b) => b.who.length - a.who.length || b.min - a.min).slice(0, 8);
+  const trs = grTracks(ms), twin = grTwin(ms), isOwner = !!(GRP.group && GRP.uid && GRP.group.owner === GRP.uid);
+  const cm = curMon(), months = Array.from({ length: 12 }, (_, i) => cm - 11 + i), mv = months.map(mo => ms.reduce((s, m) => s + ((m.mMin || [])[mo - (m.mF | 0)] || 0), 0));
+  const hv = Array.from({ length: 24 }, (_, h) => ms.reduce((s, m) => s + ((m.hrs || [])[h] || 0), 0)), hk = hv.indexOf(Math.max(...hv));
+  const wv = Array.from({ length: 7 }, (_, d) => ms.reduce((s, m) => s + ((m.wd || [])[d] || 0), 0)), wk = wv.indexOf(Math.max(...wv));
+  const stale = m => m.last < today - 35 ? `<small class="grst">chiffres arrêtés au ${esc(fmtDay(m.last))}</small>` : '';
+  const link = grLink(g.gid), pname = GR_PER[per].toLowerCase();
+  body.innerHTML = `
+  ${meIn ? '' : `<div class="gstat"><p>${DEMO ? 'Importe ton historique pour apparaître dans le classement.' : 'Tes chiffres arrivent dans quelques secondes…'}</p>${DEMO ? '<div class="gact"><button class="btn pri" data-gr="import">Importer mon fichier</button><a class="btn" href="#guide">Voir le guide</a></div>' : ''}</div>`}
+  ${alone ? `<section class="card grinv"><h2>Invite tes potes</h2><p class="sub">Envoie-leur ce lien : ils choisissent un pseudo et apparaissent ici dès qu'ils ont importé leurs stats.</p><input class="field" readonly value="${esc(link)}" aria-label="Lien d'invitation" data-sel><div class="gact"><button class="btn pri" data-gr="invite">${grInviteLabel()}</button></div></section>` : ''}
+  <div class="grhead"><div class="grbar"><div class="chips" role="group" aria-label="Période">${Object.entries(GR_PER).map(([k, v]) => `<button aria-pressed="${k === per}" data-grp="${k}">${v}</button>`).join('')}</div>
+    ${alone ? '' : `<button class="btn" data-gr="invite">Inviter des potes</button>`}</div>
+  <div class="kpis grk">
+    <div class="kpi"><span class="k">Temps d'écoute</span><span class="v">${grH(tot)}</span><span class="d">${esc(pname)}</span></div>
+    <div class="kpi"><span class="k">Écoutes</span><span class="v">${fmtN(totP)}</span><span class="d">de 30${NB}s ou plus</span></div>
+    <div class="kpi"><span class="k">Membres</span><span class="v">${fmtN(ms.length)}</span><span class="d">${isOwner ? 'tu as créé le groupe' : 'dans le groupe'}</span></div>
+    <div class="kpi"><span class="k">Le plus accro</span><span class="v sm">${top1 ? esc(top1.m.name) : '–'}</span><span class="d">${top1 ? grH(top1.min) + ' ' + esc(pname) : 'personne pour l\'instant'}</span></div>
+  </div></div>
+  <section class="blk"><div class="bh"><div><h2>Qui écoute le plus</h2><p class="sub">${esc(GR_PER[per])}, en temps d'écoute</p></div></div>
+    <ol class="grlb">${rows.map((r, i) => `<li class="${r.m.me ? 'me' : ''}"><span class="rk">${i + 1}</span>${cov('u|' + norm(r.m.name), r.m.name, 'r')}<span class="nm"><b>${esc(r.m.name)}${r.m.me ? ' <small>(toi)</small>' : ''}</b>${stale(r.m) || `<small>${esc(r.m.svc || '')}</small>`}</span><span class="br" aria-hidden="true"><i style="width:${(r.min / mx * 100).toFixed(1)}%"></i></span><span class="vl"><b>${grH(r.min)}</b><small>${tot ? fmtPct(r.min / tot) : '0' + NB + '%'}</small></span></li>`).join('')}</ol></section>
+  ${alone ? '' : `
+  ${twin ? `<section class="blk"><div class="card grtwin">${cov('u|' + norm(twin.m.name), twin.m.name, 'r')}<div><p class="sub">Ton jumeau musical dans le groupe</p><h2>${esc(twin.m.name)}</h2><p>${fmtPct(Math.max(0, Math.min(1, twin.sim)))} de goûts en commun${twin.common.length ? `, surtout ${esc(twin.common.join(', '))}` : ''}.</p></div></div></section>` : ''}
+  <section class="blk"><div class="bh"><div><h2>Le top du groupe</h2><p class="sub">${esc(GR_PER[per])}, en additionnant le temps de chacun</p></div></div>
+    ${arts.length ? `<ol class="grtop">${arts.slice(0, 10).map((a, i) => `<li><span class="rk">${i + 1}</span>${cov('a|' + a.name, a.name, 'r')}<span class="nm"><b>${esc(a.name)}</b><small>${esc(a.who.length > 1 ? `${a.who.length} membres : ${grAnd(a.who)}` : a.who[0])}</small></span><span class="vl"><b>${grH(a.min)}</b></span></li>`).join('')}</ol>` : '<p class="gintro">Pas encore assez d\'écoutes sur cette période.</p>'}</section>
+  ${trs.length ? `<section class="blk"><div class="bh"><div><h2>Les titres du groupe</h2><p class="sub">Depuis le début, en additionnant le temps de chacun</p></div></div>
+    <ol class="grtop">${trs.slice(0, 8).map((t, i) => `<li><span class="rk">${i + 1}</span>${cov('t|' + t.name + '|' + t.artist, t.name)}<span class="nm"><b>${esc(t.name)}</b><small>${esc(t.artist)}, écouté par ${esc(grAnd(t.who))}</small></span><span class="vl"><b>${grH(t.min)}</b></span></li>`).join('')}</ol></section>` : ''}
+  ${common.length ? `<section class="blk"><div class="bh"><div><h2>Vos artistes en commun</h2><p class="sub">Dans le top de plusieurs d'entre vous, ${esc(pname)}</p></div></div><div class="grcom">${common.map(a => `<div class="card"><b>${esc(a.name)}</b><small>${esc(grAnd(a.who))}</small></div>`).join('')}</div></section>` : ''}
+  <section class="blk cols">
+    <div><h2>Le groupe, mois par mois</h2><p class="sub">Tout le monde réuni, sur les 12 derniers mois</p><div class="fig md" style="margin-top:14px"><svg id="grMon" role="img" aria-label="Temps d'écoute du groupe par mois"></svg></div></div>
+    <div><h2>Les heures du groupe</h2><p class="sub">${hv[hk] ? `Surtout vers ${hk}${NB}h, et le ${WDL[wk]}` : 'Pas encore de données'}</p><div class="fig md" style="margin-top:14px"><svg id="grHrs" role="img" aria-label="Temps d'écoute du groupe selon l'heure"></svg></div></div>
+  </section>
+`}
+  <section class="blk"><div class="bh"><div><h2>Les membres</h2><p class="sub">Chacun envoie ses chiffres tout seul après chaque import</p></div></div>
+    <ul class="grmem">${ms.map(m => `<li>${cov('u|' + norm(m.name), m.name, 'r')}<span class="nm"><b>${esc(m.name)}${m.me ? ' <small>(toi)</small>' : ''}${GRP.group && GRP.group.owner === m.id ? ' <small>a créé le groupe</small>' : ''}</b><small>${esc([m.svc, 'écoutes jusqu\'au ' + fmtDay(m.last)].filter(Boolean).join(', '))}</small></span>${isOwner && !m.me ? `<button class="btn" data-gr="kick" data-id="${esc(m.id)}">Retirer</button>` : ''}</li>`).join('')}</ul>
+    <div class="grme card"><label class="grf"><span>Ton pseudo dans le groupe</span><input class="field" id="grMe2" maxlength="30" value="${esc(g.me || '')}" autocomplete="nickname"></label>
+      <div class="gact">${alone ? '' : '<button class="btn pri grinvm" data-gr="invite">Inviter des potes</button>'}<button class="btn" data-gr="rename">Changer de pseudo</button><button class="btn" data-gr="push">Renvoyer mes chiffres</button><button class="btn" data-gr="leave">Quitter le groupe</button></div>
+      <p class="grmsg" id="grMsg" role="status"></p><p class="note">${GR_SHARE}</p></div></section>`;
+  const mlab = i => cap(fmtMon(months[i]));
+  const svM = $('#grMon'), svH = $('#grHrs');
+  if (!svM || !svH) return;
+  fig(svM, () => drawBars(svM, { vals: mv, unit: 'min', fmtV: grH, label: (i, sh) => sh ? MO[months[i] % 12] : mlab(i), tip: i => `<b>${grH(mv[i])}</b><span>${esc(mlab(i))}</span>${ms.map(m => [m.name, (m.mMin || [])[months[i] - (m.mF | 0)] || 0]).filter(x => x[1]).sort((a, b) => b[1] - a[1]).map(([n, v]) => `<span>${esc(n)} : ${grH(v)}</span>`).join('')}` }));
+  fig(svH, () => drawBars(svH, { vals: hv, unit: 'min', fmtV: grH, label: (i, sh) => (i % 3 === 0 ? i + 'h' : ''), everyLabel: true, tip: i => `<b>${grH(hv[i])}</b><span>Entre ${i}${NB}h et ${(i + 1) % 24}${NB}h, depuis le début</span>` }));
+}
+async function renderJoin(gid, cur) {
+  const body = $('#grBody');
+  if (GRP.join && GRP.join.gid === gid) return drawJoin(cur);
+  grHero('Invitation', 'Rejoindre un groupe', '');
+  body.innerHTML = '<p class="gintro">Ouverture de l\'invitation…</p>';
+  try {
+    const { F, db } = await fbInit();
+    const s = await F.getDoc(F.doc(db, 'groups', gid));
+    GRP.join = { gid, name: s.exists() ? s.data().name : null };
+  } catch (e) { if (S.view === 'groupe' && S.grInvite === gid) body.innerHTML = `<div class="card"><p>${esc(fbErr(e))}</p><div class="gact"><button class="btn" data-gr="retry">Réessayer</button></div></div>`; return; }
+  if (S.view === 'groupe' && S.grInvite === gid) drawJoin(cur);
+}
+function drawJoin(cur) {
+  const body = $('#grBody'), J = GRP.join;
+  if (!J.name) { grHero('Invitation', 'Lien introuvable', ''); body.innerHTML = '<div class="card"><p>Ce lien de groupe ne marche pas : le groupe n\'existe pas, ou le lien est incomplet. Redemande-le à la personne qui te l\'a envoyé.</p></div>'; return; }
+  grHero('Invitation', J.name, 'Tu es invité à comparer tes stats d\'écoute avec ce groupe.');
+  body.innerHTML = `<section class="card grjoin"><h2>Rejoindre « ${esc(J.name)} »</h2>
+    ${cur ? `<p class="gtip">Tu es déjà dans « ${esc(cur.name || 'un autre groupe')} ». En rejoignant celui-ci, tes chiffres sont retirés de l'autre.</p>` : ''}
+    <label class="grf"><span>Ton pseudo</span><input class="field" id="grMe1" maxlength="30" value="${esc((cur && cur.me) || '')}" placeholder="Ton prénom ou un surnom" autocomplete="nickname"></label>
+    <p class="note">${GR_SHARE}</p>${DEMO ? '<p class="note">Tu n\'as pas encore importé tes stats : tu apparaîtras dans le groupe dès que ce sera fait.</p>' : ''}
+    <div class="gact"><button class="btn pri" data-gr="join">Rejoindre le groupe</button><a class="btn" href="#stats">Pas maintenant</a></div><p class="grmsg" id="grMsg" role="status"></p></section>`;
+}
+function grSay(t) { const m = $('#grMsg'); if (m) m.textContent = t; else toast(t); }
+const grPseudo = id => { const el = $('#' + id); return el ? el.value.trim().replace(/\s+/g, ' ').slice(0, 30) : ''; };
+function grConfirm(el, label) {
+  if (el.dataset.sure === '1') return true;
+  const old = el.textContent; el.dataset.sure = '1'; el.textContent = label;
+  setTimeout(() => { if (el.isConnected) { el.dataset.sure = ''; el.textContent = old; } }, 4000);
+  return false;
+}
+async function grAct(a, el) {
+  if (a === 'invite') { grInvite(); return; }
+  if (a === 'import') { openData(); return; }
+  if (a === 'copyRules') { navigator.clipboard.writeText(GR_RULES).then(() => toast('Règles copiées. Colle-les dans l\'onglet Règles de Firestore.'), () => toast('Sélectionne le texte des règles et copie-le.')); return; }
+  if (a === 'paste') {
+    const m = ($('#grPaste').value || '').match(/#groupe\/([a-z0-9]{8,40})/i);
+    if (!m) { toast('Ce lien ne ressemble pas à une invitation Sillon.'); return; }
+    location.hash = 'groupe/' + m[1]; return;
+  }
+  if (a === 'leave' && !grConfirm(el, 'Sûr ? Tes chiffres seront retirés')) return;
+  if (a === 'kick' && !grConfirm(el, 'Sûr ?')) return;
+  if (GRP.busy) return;
+  GRP.busy = true; el.disabled = true;
+  const g = grMe();
+  try {
+    if (a === 'create') {
+      const name = ($('#grName').value || '').trim().replace(/\s+/g, ' ').slice(0, 40) || 'Les potes', me = grPseudo('grMe1');
+      if (!me) { grSay('Choisis un pseudo pour que tes potes te reconnaissent.'); $('#grMe1').focus(); return; }
+      grSay('Création du groupe…');
+      const { F, db, uid } = await fbInit(), gid = grId();
+      await F.setDoc(F.doc(db, 'groups', gid), { name, owner: uid, createdAt: F.serverTimestamp() });
+      Prefs.data.sync.group = { gid, name, me }; Prefs.save();
+      await groupPush(true).catch(e => console.warn(e));
+      toast(`Groupe « ${name} » créé. Envoie le lien à tes potes.`);
+      renderGroup();
+    } else if (a === 'join') {
+      const me = grPseudo('grMe1'), J = GRP.join;
+      if (!me) { grSay('Choisis un pseudo pour que tes potes te reconnaissent.'); $('#grMe1').focus(); return; }
+      grSay('Connexion au groupe…');
+      if (g && g.gid !== J.gid) { groupStop(); const { F, db, uid } = await fbInit(); await F.deleteDoc(F.doc(db, 'groups', g.gid, 'members', uid)).catch(() => {}); }
+      Prefs.data.sync.group = { gid: J.gid, name: J.name, me }; Prefs.save();
+      await groupPush(true).catch(e => console.warn(e));
+      S.grInvite = null; GRP.join = null;
+      toast(`Bienvenue dans « ${J.name} ».`);
+      if (location.hash !== '#groupe') location.hash = 'groupe'; else renderGroup();
+    } else if (a === 'push') {
+      grSay('Envoi…'); const ok = await groupPush(true);
+      if (grMe()) grSay(ok ? 'Tes chiffres sont à jour dans le groupe.' : 'Importe ton historique d\'abord.');
+    } else if (a === 'rename') {
+      const me = grPseudo('grMe2'); if (!me) { grSay('Le pseudo ne peut pas être vide.'); return; }
+      g.me = me; Prefs.save();
+      const ok = await groupPush(true); if (grMe()) grSay(ok ? 'Pseudo changé.' : 'Pseudo changé : il apparaîtra quand tu auras importé ton historique.');
+    } else if (a === 'leave') {
+      groupStop();
+      const { F, db, uid } = await fbInit();
+      await F.deleteDoc(F.doc(db, 'groups', g.gid, 'members', uid)).catch(() => {});
+      delete Prefs.data.sync.group; Prefs.save(); GRP.members = []; GRP.group = null; GRP.mGid = null;
+      toast('Tu as quitté le groupe. Tes chiffres ont été retirés.'); renderGroup();
+    } else if (a === 'kick') {
+      const { F, db } = await fbInit();
+      await F.deleteDoc(F.doc(db, 'groups', g.gid, 'members', el.dataset.id));
+      toast('Membre retiré du groupe.');
+    } else if (a === 'retry') { groupStop(); GRP.err = ''; GRP.join = null; renderGroup(); }
+  } catch (e) { console.warn(e); grSay(fbErr(e)); }
+  finally { GRP.busy = false; if (el.isConnected) el.disabled = false; }
+}
+function grInvite() {
+  const g = grMe(); if (!g) return;
+  const u = grLink(g.gid);
+  if (navigator.share && matchMedia('(pointer:coarse)').matches) { navigator.share({ title: 'Sillon', text: `Rejoins « ${g.name} » sur Sillon pour comparer nos stats d'écoute`, url: u }).catch(() => {}); return; }
+  navigator.clipboard.writeText(u).then(() => toast('Lien copié : envoie-le à tes potes.'), () => toast(u));
+}
+function wireGroup() {
+  const B = $('#grBody');
+  B.addEventListener('click', e => {
+    const p = e.target.closest('[data-grp]'); if (p) { GRP.per = p.dataset.grp; renderGroup(); return; }
+    const b = e.target.closest('[data-gr]'); if (b) grAct(b.dataset.gr, b);
+  });
+  B.addEventListener('focusin', e => { if (e.target.matches('[data-sel]')) e.target.select(); });
+  B.addEventListener('keydown', e => {
+    if (e.key !== 'Enter' || !e.target.matches('input.field')) return;
+    const b = e.target.closest('.card, section') && e.target.closest('.card, section').querySelector('[data-gr]');
+    if (b) { e.preventDefault(); b.click(); }
+  });
+  B.addEventListener('focusout', () => setTimeout(() => {
+    if (!GRP.dirty) return;
+    const a = document.activeElement;
+    if (!(a && a.matches && a.matches('#grBody input'))) { GRP.dirty = false; renderGroup(); }
+  }, 300));
 }
 
 /* ================= wiring ================= */
@@ -4605,7 +5126,8 @@ function wire() {
   $('#rcGo').addEventListener('click', () => openRecap(S.gran, S.anchor));
   $('#rcPrev').addEventListener('click', () => rcGo(-1));
   $('#rcNext').addEventListener('click', () => rcGo(1));
-  wireStories(); wireGuide();
+  wireStories(); wireGuide(); wireGroup();
+  if (SA) $$('.sao').forEach(e => { e.hidden = false; });
   document.addEventListener('click', e => { if (e.target.closest('#howBody a[href^="#guide"]')) closeAll(); });
   $('#rcPng').addEventListener('click', async () => { if (!RC || !RC.R) return; const b = await posterPng(RC.R); if (b) saveFile(`sillon-recap-${tagOf(RC.g, RC.a)}.png`, b); });
   $('#rcShare').addEventListener('click', async () => { if (!RC || !RC.R) return; const b = await posterPng(RC.R); if (!b) return; try { await navigator.share({ files: [new File([b], `sillon-recap-${tagOf(RC.g, RC.a)}.png`, { type: 'image/png' })], title: 'Mon récap Sillon' }); } catch (e) { if (e && e.name !== 'AbortError') saveFile(`sillon-recap-${tagOf(RC.g, RC.a)}.png`, b); } });
@@ -4672,9 +5194,9 @@ function wire() {
   $('#exCard').addEventListener('click', async () => { const b = await posterPng(recapData(S.gran, S.anchor)); if (b) saveFile(`sillon-recap-${fileTag()}.png`, b); });
   $('#exBak').addEventListener('click', async () => { if (DEMO) { toast('Rien à sauvegarder : ce sont des données d\'exemple.'); return; } const bytes = await gz(pack(D)); saveFile(`sillon-sauvegarde-${fileTag()}.json`, JSON.stringify({ format: 'sillon-backup', v: 1, savedAt: new Date().toISOString(), data: b64(bytes) })); });
   $('#exCopy').addEventListener('click', async () => { const t = summary(); try { await navigator.clipboard.writeText(t); toast('Résumé copié'); } catch (e) { const box = $('#copyBox'); box.value = t; box.hidden = false; box.select(); toast('Copie bloquée ici : sélectionne le texte et copie-le.'); } });
-  $('#wipe').addEventListener('click', () => { $('#wipeConfirm').hidden = false; $('#wipeYes').focus(); });
+  $('#wipe').addEventListener('click', () => { $('#wipeGr').hidden = !(grMe() && fbCfg()); $('#wipeConfirm').hidden = false; $('#wipeYes').focus(); });
   $('#wipeNo').addEventListener('click', () => { $('#wipeConfirm').hidden = true; });
-  $('#wipeYes').addEventListener('click', async () => { await Store.wipe(); $('#wipeConfirm').hidden = true; Prefs.data.sync = {}; Prefs.save(); setData(makeDemo(), true); updateDataStatus(); $('#impMsg').textContent = 'Tes données ont été effacées.'; $('#wipe').hidden = true; });
+  $('#wipeYes').addEventListener('click', async () => { groupForget(); await Store.wipe(); $('#wipeConfirm').hidden = true; Prefs.data.sync = {}; Prefs.save(); setData(makeDemo(), true); updateDataStatus(); $('#impMsg').textContent = 'Tes données ont été effacées.'; $('#wipe').hidden = true; });
   addEventListener('keydown', e => {
     if (e.key === 'Escape') { if (!$('#drawer').hidden || !$('#dataModal').hidden || !$('#recap').hidden || !$('#sto').hidden) closeAll(); fl.classList.remove('open'); $('#sugg').hidden = true; return; }
     if (e.target.closest('input,textarea,select') || e.altKey || e.ctrlKey || e.metaKey) return;
