@@ -315,7 +315,7 @@ th[aria-sort] button{color:var(--ink)}
 .rec{display:flex;flex-direction:column;gap:4px;padding:18px;border:0;border-radius:8px;background:var(--card);text-align:left;color:inherit;scroll-snap-align:start;margin:0 4px}
 button.rec:hover{background:var(--card2)}
 .rec span{font-size:13px;font-weight:700;color:var(--muted)}
-.rec b{font:var(--numw) 24px/1.15 var(--f-num);letter-spacing:-.02em}
+.rec b{font:var(--numw) 24px/1.15 var(--f-num);letter-spacing:-.02em;overflow-wrap:break-word}
 .rec small{font-size:13px;color:var(--muted)}
 .otd{list-style:none;margin:0;padding:0}
 .otd button{display:grid;grid-template-columns:54px minmax(0,1fr) auto;align-items:center;gap:12px;width:100%;padding:8px 10px;border:0;border-radius:6px;background:none;text-align:left}
@@ -637,7 +637,7 @@ a.sgcard:hover{background:var(--hover)}
 .sto.paused #stoPause svg{display:none}
 .sto.paused #stoPause::after{content:"";width:0;height:0;border-left:11px solid #fff;border-top:7px solid transparent;border-bottom:7px solid transparent;margin-left:3px}
 .stoslides{position:absolute;inset:0}
-.stonav{position:absolute;z-index:3;top:64px;bottom:0;border:0;background:none;color:#fff;opacity:0;display:flex;align-items:center;padding:0 10px}
+.stonav{position:absolute;z-index:3;top:64px;bottom:0;border:0;background:none;color:#fff;opacity:0;display:flex;align-items:center;padding:0 10px;-webkit-tap-highlight-color:transparent;outline:none}
 .stonav.prev{left:0;width:30%;justify-content:flex-start}
 .stonav.next{right:0;width:70%;justify-content:flex-end}
 .stonav .ic{width:30px;height:30px;padding:4px;border-radius:50%;background:rgba(0,0,0,.35)}
@@ -985,6 +985,9 @@ code.cp{display:inline-block;max-width:100%;padding:4px 8px;border-radius:6px;ba
   .pad{padding:8px 16px 32px;gap:32px}
   .kpis{grid-template-columns:repeat(2,minmax(0,1fr))}
   .row{grid-auto-columns:minmax(138px,150px);margin:0 -8px}
+  .row.recs{grid-auto-columns:minmax(168px,196px)}
+  .rec{padding:16px}
+  .rec b{font-size:22px}
   .tile{padding:8px}
   .tl>li>.tlr{grid-template-columns:22px 40px minmax(0,1fr) auto;gap:10px;padding:6px 8px}
   .tl{margin:0 -8px}
@@ -1166,6 +1169,9 @@ svg text.yr{fill:var(--ink);font-weight:700}
 .grnews b{font-weight:800}
 .grold{background:color-mix(in srgb,#f5a524 15%,var(--card))}
 .grold .gact{margin-top:0}
+.grdup{margin-top:12px}
+.grdup p{margin:0}
+.grdup .gact{margin-top:10px}
 .grwk{grid-template-columns:repeat(auto-fit,minmax(190px,1fr))}
 .grwk .who .cv{width:44px}
 @media (max-width:600px){.grwk{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}.grwk .card{padding:12px;gap:8px}.grwk .who{gap:8px}.grwk .who .cv{width:34px}.grwk .who b{font-size:15px}.grwk p{font-size:13px}}
@@ -1699,7 +1705,7 @@ html.calm .stobars .on i{width:100%}
 const SILLON_V = '2.9.1';
 const SV_TYPE = { X: 'Refonte', Y: 'Grosse mise à jour', Z: 'Correctifs', I: 'Première version' };
 const SILLON_LOG = [
-  ['2.9.1', 'Z', ['YouTube Music : les clips et les sons des chaînes d\'artistes que tu regardes sur YouTube comptent aussi. Réimporte ton fichier Google Takeout pour les avoir (réglage dans Toi si tu n\'en veux pas).', 'YouTube Music : les sons rangés sous « Release » (artiste qui n\'a pas rempli sa chaîne) retrouvent leur vrai artiste quand c\'est sûr, sinon ils vont dans « Artiste inconnu ».', 'Réimporter un fichier YouTube ne crée plus de doublons, même quand les durées estimées changent.', 'Sur téléphone, le titre de la période en haut ne passe plus sous les boutons.']],
+  ['2.9.1', 'Z', ['YouTube Music : les clips et les sons des chaînes d\'artistes que tu regardes sur YouTube comptent aussi. Réimporte ton fichier Google Takeout pour les avoir (réglage dans Toi si tu n\'en veux pas).', 'YouTube Music : les sons rangés sous « Release » (artiste qui n\'a pas rempli sa chaîne) retrouvent leur vrai artiste quand c\'est sûr, sinon ils vont dans « Artiste inconnu ».', 'Réimporter un fichier YouTube ne crée plus de doublons, même quand les durées estimées changent.', 'Sur téléphone, le titre de la période en haut ne passe plus sous les boutons.', 'Groupe : les vraies pochettes s\'affichent aussi pour les titres, et pour les artistes que tu n\'écoutes pas toi-même.', 'Groupe : une fiche en double (même pseudo, souvent un ancien appareil ou un test) est signalée, et la personne qui a créé le groupe peut la retirer. Elle n\'apparaît plus dans le Wrapped.', 'Récaps en stories : plus de carré bleu quand tu touches à gauche ou à droite.', 'Tes records : la date de première écoute ne déborde plus de sa case sur téléphone.']],
   ['2.9.0', 'Y', ['Sillon Wrapped : ton année en stories, de mi-novembre à fin janvier, avec ton mois préféré, ta journée record, ton profil d\'auditeur et ta place dans le groupe.', 'Tes goûts, mois par mois : la part de chaque genre dans ton écoute, sur la page Ta carte.', 'Groupe : la semaine du groupe (en tête, son et artiste de la semaine, gagnant de la semaine dernière), un classement « Cette semaine », et les sons de la semaine à faire écouter à tes potes, avec un défi pour les écouter.', 'Groupe : Sillon te dit à l\'ouverture quand un pote t\'a dépassé ce mois-ci ou te fait écouter un son.', 'Les pochettes apparaissent aussi dans les images que tu télécharges ou partages : récaps, affiches et ta carte.', 'Une mini-visite après ton premier import, à revoir quand tu veux depuis les réglages.']],
   ['2.8.0', 'Y', ['Mises à jour : Sillon repère quand une nouvelle version est en ligne et te propose de recharger, sans attendre.', 'Tes réglages et ton thème suivent entre tes appareils reliés.', 'Sillon te prévient quand des écoutes manquent entre ton dernier import et tes 50 derniers morceaux Spotify.', 'Règles Firebase plus souples : plus besoin de les recoller quand le groupe gagne des stats.']],
   ['2.7.1', 'Z', ['Pochettes aussi quand le fichier ne donne pas le nom de l\'album (souvent avec YouTube Music) : Sillon les retrouve à partir du titre du morceau.']],
@@ -2842,7 +2848,7 @@ function renderRecs() {
   if (r.bestMon.s >= 0) items.push(['Plus gros mois', fmtDur(r.bestMon.ms), cap(fmtMon(r.bestMon.s)), () => setView('month', monStart(r.bestMon.s), true)]);
   if (G.first >= 0) { const t = D.k[G.first]; items.push(['Première écoute', fmtDay(D.day[G.first]), `« ${D.tn[t]} », ${D.artists[D.ta[t]]}`, () => setView('day', D.day[G.first], true)]); }
   const box = $('#recs');
-  box.innerHTML = items.map(([k, v, d, fn], j) => `<${fn ? 'button' : 'div'} class="rec"${fn ? ` data-r="${j}"` : ''}><span>${esc(k)}</span><b>${esc(v)}</b><small>${esc(d)}</small></${fn ? 'button' : 'div'}>`).join('');
+  box.innerHTML = items.map(([k, v, d, fn], j) => `<${fn ? 'button' : 'div'} class="rec"${fn ? ` data-r="${j}"` : ''}><span>${esc(k)}</span><b>${esc(String(v).replace(new RegExp(NS + '(\\d{4})$'), ' $1'))}</b><small>${esc(d)}</small></${fn ? 'button' : 'div'}>`).join('');
   box._fns = items.map(x => x[3]);
 }
 function renderYears() {
@@ -3984,6 +3990,14 @@ function dzSeed(d, nn) {
   }
 }
 async function dzCover(k) {
+  if (k.startsWith('a:')) {
+    /* artiste seul (groupe) : pochette de son titre le plus écouté sur Deezer, jamais une photo */
+    const ar = k.slice(2); if (!ar) return 0;
+    const d = await dz('/search/track?q=' + encodeURIComponent(`artist:"${ar}"`) + '&limit=10', 1);
+    if (!d || d.error) return null;
+    const x = (d.data || []).find(x => x && x.artist && normT(x.artist.name || '') === ar && x.album);
+    return x ? (x.album.cover_medium || x.album.cover_big || 0) : 0;
+  }
   if (k.startsWith('t:')) {
     const kk = k.slice(2), j = kk.lastIndexOf('|'), ti = kk.slice(0, j), ar = kk.slice(j + 1);
     if (!ti || !ar) return 0;
@@ -5514,6 +5528,13 @@ function grMembers(list = GRP.members) {
   }
   return [...by.values()];
 }
+/* fiches en double : même pseudo qu'un membre (ancien appareil, test…). Cachées dans la page, le créateur du groupe peut les retirer */
+function grDups(ms) { const keep = new Set(ms.map(m => m.id)); return GRP.members.filter(m => m && m.id && typeof m.name === 'string' && m.name && !keep.has(m.id)); }
+function grDupHTML(ms, isOwner) {
+  const L = grDups(ms); if (!L.length) return '';
+  const it = L.map(m => `${esc(m.name)}${m.ts ? ` (mise à jour le ${fmtDay(tsDay(m.ts / 1000))})` : ''}`).join(', ');
+  return `<div class="gstat grdup"><p>${L.length > 1 ? `${fmtN(L.length)} fiches en double sont cachées` : 'Une fiche en double est cachée'} : ${it}. Même pseudo qu'un membre : souvent un ancien appareil ou un test. Elle${L.length > 1 ? 's' : ''} ne compte${L.length > 1 ? 'nt' : ''} pas dans les stats du groupe.</p>${isOwner ? `<div class="gact"><button class="btn" data-gr="dups">Retirer ${L.length > 1 ? 'les doubles' : 'le double'}</button></div>` : '<p class="note">Seule la personne qui a créé le groupe peut les retirer.</p>'}</div>`;
+}
 function grSum(m, key, per) {
   const arr = Array.isArray(m[key]) ? m[key] : [], cm = curMon(), mF = m.mF | 0;
   const from = per === 'm' ? cm : cm - (cm % 12);
@@ -5805,7 +5826,7 @@ function renderGroup() {
   <section class="blk"><div class="bh"><div><h2>Le top du groupe</h2><p class="sub">${esc(GR_PER[per])}, en additionnant le temps de chacun</p></div></div>
     ${arts.length ? `<ol class="grtop">${arts.slice(0, 10).map((a, i) => `<li><span class="rk">${i + 1}</span>${grCovA(a.name)}<span class="nm"><b>${esc(a.name)}</b><small>${esc(a.who.length > 1 ? `${a.who.length} membres : ${grAnd(a.who)}` : a.who[0])}</small></span><span class="vl"><b>${grH(a.min)}</b></span></li>`).join('')}</ol>` : '<p class="gintro">Pas encore assez d\'écoutes sur cette période.</p>'}</section>
   ${trs.length ? `<section class="blk"><div class="bh"><div><h2>Les titres du groupe</h2><p class="sub">Depuis le début, en additionnant le temps de chacun</p></div></div>
-    <ol class="grtop">${trs.slice(0, 8).map((t, i) => `<li><span class="rk">${i + 1}</span>${cov('t|' + t.name + '|' + t.artist, t.name)}<span class="nm"><b>${esc(t.name)}</b><small>${esc(t.artist)}, écouté par ${esc(grAnd(t.who))}</small></span><span class="vl"><b>${grH(t.min)}</b></span></li>`).join('')}</ol></section>` : ''}
+    <ol class="grtop">${trs.slice(0, 8).map((t, i) => `<li><span class="rk">${i + 1}</span>${grCovT(t.name, t.artist)}<span class="nm"><b>${esc(t.name)}</b><small>${esc(t.artist)}, écouté par ${esc(grAnd(t.who))}</small></span><span class="vl"><b>${grH(t.min)}</b></span></li>`).join('')}</ol></section>` : ''}
   ${common.length ? `<section class="blk"><div class="bh"><div><h2>Vos artistes en commun</h2><p class="sub">Dans le top de plusieurs d'entre vous, ${esc(pname)}</p></div></div><div class="grcom">${common.map(a => `<div class="card"><b>${esc(a.name)}</b><small>${esc(grAnd(a.who))}</small></div>`).join('')}</div></section>` : ''}
   <section class="blk cols">
     <div><h2>Le groupe, mois par mois</h2><p class="sub">Tout le monde réuni, sur les 12 derniers mois</p><div class="fig md" style="margin-top:14px"><svg id="grMon" role="img" aria-label="Temps d'écoute du groupe par mois"></svg></div></div>
@@ -5813,7 +5834,7 @@ function renderGroup() {
   </section>
 `}
   <section class="blk"><div class="bh"><div><h2>Les membres</h2><p class="sub">Chacun envoie ses chiffres tout seul après chaque import</p></div></div>
-    <ul class="grmem">${ms.map(m => `<li>${grAv(m.name, m.pp)}<span class="nm"><b>${esc(m.name)}${m.me ? ' <small>(toi)</small>' : ''}${GRP.group && GRP.group.owner === m.id ? ' <small>a créé le groupe</small>' : ''}</b><small>${esc([m.svc, 'écoutes jusqu\'au ' + fmtDay(m.last)].filter(Boolean).join(', '))}</small></span>${isOwner && !m.me ? `<button class="btn" data-gr="kick" data-id="${esc(m.id)}">Retirer</button>` : ''}</li>`).join('')}</ul>
+    <ul class="grmem">${ms.map(m => `<li>${grAv(m.name, m.pp)}<span class="nm"><b>${esc(m.name)}${m.me ? ' <small>(toi)</small>' : ''}${GRP.group && GRP.group.owner === m.id ? ' <small>a créé le groupe</small>' : ''}</b><small>${esc([m.svc, 'écoutes jusqu\'au ' + fmtDay(m.last)].filter(Boolean).join(', '))}</small></span>${isOwner && !m.me ? `<button class="btn" data-gr="kick" data-id="${esc(m.id)}">Retirer</button>` : ''}</li>`).join('')}</ul>${grDupHTML(ms, isOwner)}
     <div class="grme card"><div class="grpp">${grAv(g.me || '?', Prefs.data.sync.pp)}<div class="grppt"><b>Ta photo</b><small>${ppOk(Prefs.data.sync.pp) ? 'Visible par les membres du groupe.' : 'Sans photo, ce sont tes initiales.'}</small>
       <div class="gact"><label class="btn">${ppOk(Prefs.data.sync.pp) ? 'Changer de photo' : 'Choisir une photo'}<input type="file" accept="image/*" id="grPpIn" class="vh"></label>${ppOk(Prefs.data.sync.pp) ? '<button class="btn" data-gr="ppDel">Retirer</button>' : ''}</div></div></div>
       <label class="grf"><span>Ton pseudo dans le groupe</span><input class="field" id="grMe2" maxlength="30" value="${esc(g.me || '')}" autocomplete="nickname"></label>
@@ -5869,6 +5890,7 @@ async function grAct(a, el) {
   }
   if (a === 'leave' && !grConfirm(el, 'Sûr ? Tes chiffres seront retirés')) return;
   if (a === 'kick' && !grConfirm(el, 'Sûr ?')) return;
+  if (a === 'dups' && !grConfirm(el, 'Sûr ? Elles seront supprimées')) return;
   if (GRP.busy) return;
   GRP.busy = true; el.disabled = true;
   const g = grMe();
@@ -5906,6 +5928,10 @@ async function grAct(a, el) {
       await F.deleteDoc(F.doc(db, 'groups', g.gid, 'members', uid)).catch(() => {});
       delete Prefs.data.sync.group; Prefs.save(); GRP.members = []; GRP.group = null; GRP.mGid = null;
       toast('Tu as quitté le groupe. Tes chiffres ont été retirés.'); renderGroup();
+    } else if (a === 'dups') {
+      const { F, db } = await fbInit(), L = grDups(grMembers());
+      for (const m of L) await F.deleteDoc(F.doc(db, 'groups', g.gid, 'members', m.id));
+      toast(L.length > 1 ? 'Doubles retirés du groupe.' : 'Double retiré du groupe.');
     } else if (a === 'kick') {
       const { F, db } = await fbInit();
       await F.deleteDoc(F.doc(db, 'groups', g.gid, 'members', el.dataset.id));
@@ -6977,6 +7003,7 @@ function grFetchOnce(ms = 4000) {
 function grYearMin(m, y) { if (!m || !Array.isArray(m.mMin) || typeof m.mF !== 'number') return 0; const a = (y - 1970) * 12; let s = 0; for (let k = 0; k < 12; k++) { const j = a + k - m.mF; if (j >= 0 && j < m.mMin.length) s += +m.mMin[j] || 0; } return s; }
 function wrapGroup(R, members) {
   const y = ymd(R.r0)[0], g = grMe(); if (!members || !g || y !== new Date().getFullYear()) return null;
+  members = grMembers(members);
   const me = GRP.uid, list = members.filter(m => m && typeof m.name === 'string' && m.name).map(m => ({ id: m.id, name: m.name, pp: m.pp, me: m.id === me, min: m.id === me ? Math.round(R.X.ms / 60000) : grYearMin(m, y), aNY: m.yr === y && Array.isArray(m.aNY) ? m.aNY : [], aMY: m.yr === y && Array.isArray(m.aMY) ? m.aMY : [] }));
   if (list.length < 2 || !list.some(x => x.me)) return null;
   list.sort((a, b) => b.min - a.min);
@@ -7069,7 +7096,9 @@ function grCovA(name) {
   if (!D) return cov('a|' + name, name, 'r');
   if (!GRA || GRA.v !== dataVer) { GRA = { v: dataVer, m: new Map() }; for (let a = 0; a < D.na; a++) GRA.m.set(normT(D.artists[a]), a); }
   const a = GRA.m.get(normT(name));
-  return a !== undefined ? covA(a) : cov('a|' + name, name, 'r');
+  if (a !== undefined) return covA(a);
+  const h = cov('a|' + name, name, 'r');
+  return SA && S.set.cov !== 'gen' ? withImg(h, 'a:' + normT(name)) : h;
 }
 const grCovT = (n, a, u) => { const h = cov('t|' + n + '|' + a, n); return SA && S.set.cov !== 'gen' ? withImg(h, 't:' + normT(n) + '|' + normT(a), u || '') : h; };
 
