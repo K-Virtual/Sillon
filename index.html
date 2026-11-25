@@ -1170,7 +1170,8 @@ svg text.yr{fill:var(--ink);font-weight:700}
 .grold{background:color-mix(in srgb,#f5a524 15%,var(--card))}
 .grold .gact{margin-top:0}
 .grdup{margin-top:12px}
-.grdup p{margin:0}
+.grdup p{margin:0;font-weight:400;line-height:1.45}
+.grdup p b{font-weight:700}
 .grdup .gact{margin-top:10px}
 .grwk{grid-template-columns:repeat(auto-fit,minmax(190px,1fr))}
 .grwk .who .cv{width:44px}
@@ -1702,9 +1703,10 @@ html.calm .stobars .on i{width:100%}
 /* ================= version, nouveautés et services (page À propos) ================= */
 /* à chaque mise à jour : changer SILLON_V et ajouter une ligne en haut de SILLON_LOG.
    X refonte, Y grosse mise à jour, Z correctifs, I première version */
-const SILLON_V = '2.9.1';
+const SILLON_V = '2.9.2';
 const SV_TYPE = { X: 'Refonte', Y: 'Grosse mise à jour', Z: 'Correctifs', I: 'Première version' };
 const SILLON_LOG = [
+  ['2.9.2', 'Z', ['Groupe : une seule fiche par personne. Si tes appareils sont reliés, un seul envoie tes chiffres (celui qui a créé le groupe), l\'autre affiche ta fiche sans en créer une deuxième. Pas reliés ? Le bouton « C\'est moi sur un autre appareil » fait pareil.', 'Groupe : quand une fiche en double est celle qui a créé le groupe, la page explique comment la retirer.']],
   ['2.9.1', 'Z', ['YouTube Music : les clips et les sons des chaînes d\'artistes que tu regardes sur YouTube comptent aussi. Réimporte ton fichier Google Takeout pour les avoir (réglage dans Toi si tu n\'en veux pas).', 'YouTube Music : les sons rangés sous « Release » (artiste qui n\'a pas rempli sa chaîne) retrouvent leur vrai artiste quand c\'est sûr, sinon ils vont dans « Artiste inconnu ».', 'Réimporter un fichier YouTube ne crée plus de doublons, même quand les durées estimées changent.', 'Sur téléphone, le titre de la période en haut ne passe plus sous les boutons.', 'Groupe : les vraies pochettes s\'affichent aussi pour les titres, et pour les artistes que tu n\'écoutes pas toi-même.', 'Groupe : une fiche en double (même pseudo, souvent un ancien appareil ou un test) est signalée, et la personne qui a créé le groupe peut la retirer. Elle n\'apparaît plus dans le Wrapped.', 'Récaps en stories : plus de carré bleu quand tu touches à gauche ou à droite.', 'Tes records : la date de première écoute ne déborde plus de sa case sur téléphone.']],
   ['2.9.0', 'Y', ['Sillon Wrapped : ton année en stories, de mi-novembre à fin janvier, avec ton mois préféré, ta journée record, ton profil d\'auditeur et ta place dans le groupe.', 'Tes goûts, mois par mois : la part de chaque genre dans ton écoute, sur la page Ta carte.', 'Groupe : la semaine du groupe (en tête, son et artiste de la semaine, gagnant de la semaine dernière), un classement « Cette semaine », et les sons de la semaine à faire écouter à tes potes, avec un défi pour les écouter.', 'Groupe : Sillon te dit à l\'ouverture quand un pote t\'a dépassé ce mois-ci ou te fait écouter un son.', 'Les pochettes apparaissent aussi dans les images que tu télécharges ou partages : récaps, affiches et ta carte.', 'Une mini-visite après ton premier import, à revoir quand tu veux depuis les réglages.']],
   ['2.8.0', 'Y', ['Mises à jour : Sillon repère quand une nouvelle version est en ligne et te propose de recharger, sans attendre.', 'Tes réglages et ton thème suivent entre tes appareils reliés.', 'Sillon te prévient quand des écoutes manquent entre ton dernier import et tes 50 derniers morceaux Spotify.', 'Règles Firebase plus souples : plus besoin de les recoller quand le groupe gagne des stats.']],
@@ -5428,6 +5430,7 @@ function grRemoved(g) {
 }
 async function groupPush(force) {
   const g = grMe(); if (!fbCfg() || !g || !g.gid || DEMO || !D) return false;
+  if (g.mid) return false;
   if (GRP.mGid === g.gid && GRP.members.length && GRP.uid) g.recOk = grRecOkCalc(grMembers());
   const sum = Object.assign(groupSummary(), grRecPack(g)), pp = Prefs.data.sync.pp;
   const sig = [D.n, D.lastDay, sum.tMin, g.me, sum.mo, sum.svc, Prefs.data.sync.ppAt || 0, sum.wk, sum.rec ? sum.rec.at : 0, (sum.recOk || []).join(',')].join('|');
@@ -5484,6 +5487,7 @@ function groupForget() {
 }
 /* pas de nouveau rendu pendant qu'on tape dans un champ du groupe */
 function grRefresh() {
+  grTwinSync();
   if (S.view !== 'groupe') { grWatch(); return; }
   const a = document.activeElement;
   if (a && a.matches && a.matches('#grBody input')) { GRP.dirty = true; return; }
@@ -5518,22 +5522,61 @@ async function grSetPp(file) {
 
 /* ---------- calculs sur les membres ---------- */
 function grMembers(list = GRP.members) {
-  const by = new Map();
+  const g = grMe(), mid = g && g.mid, by = new Map(), pri = m => m.id === (mid || GRP.uid) ? 2 : m.me ? 1 : 0;
   for (const m of list) {
     if (!m || typeof m.name !== 'string' || !m.name) continue;
     m.ts = m.updatedAt && m.updatedAt.toMillis ? m.updatedAt.toMillis() : 0;
-    m.me = m.id === GRP.uid;
+    m.me = m.id === GRP.uid || (!!mid && m.id === mid);
     const k = norm(m.name), o = by.get(k);
-    if (!o || m.me || (!o.me && m.ts > o.ts)) by.set(k, m);
+    if (!o || pri(m) > pri(o) || (pri(m) === pri(o) && m.ts > o.ts)) by.set(k, m);
   }
   return [...by.values()];
 }
 /* fiches en double : même pseudo qu'un membre (ancien appareil, test…). Cachées dans la page, le créateur du groupe peut les retirer */
-function grDups(ms) { const keep = new Set(ms.map(m => m.id)); return GRP.members.filter(m => m && m.id && typeof m.name === 'string' && m.name && !keep.has(m.id)); }
+function grDups(ms) {
+  const keep = new Set(ms.map(m => m.id)), g = grMe(), mid = g && g.mid;
+  return GRP.members.filter(m => m && m.id && typeof m.name === 'string' && m.name && !keep.has(m.id) && !(mid && m.id === GRP.uid));
+}
+const grDupMine = (L, g) => L.filter(m => g && norm(m.name) === norm(g.me || '') && m.id !== GRP.uid);
 function grDupHTML(ms, isOwner) {
-  const L = grDups(ms); if (!L.length) return '';
-  const it = L.map(m => `${esc(m.name)}${m.ts ? ` (mise à jour le ${fmtDay(tsDay(m.ts / 1000))})` : ''}`).join(', ');
-  return `<div class="gstat grdup"><p>${L.length > 1 ? `${fmtN(L.length)} fiches en double sont cachées` : 'Une fiche en double est cachée'} : ${it}. Même pseudo qu'un membre : souvent un ancien appareil ou un test. Elle${L.length > 1 ? 's' : ''} ne compte${L.length > 1 ? 'nt' : ''} pas dans les stats du groupe.</p>${isOwner ? `<div class="gact"><button class="btn" data-gr="dups">Retirer ${L.length > 1 ? 'les doubles' : 'le double'}</button></div>` : '<p class="note">Seule la personne qui a créé le groupe peut les retirer.</p>'}</div>`;
+  const g = grMe(), L = grDups(ms); if (!L.length) return '';
+  const when = m => m.ts ? ` (mise à jour le ${fmtDay(tsDay(m.ts / 1000))})` : '', mine = grDupMine(L, g), oth = L.filter(m => !mine.includes(m));
+  let h = mine.map(m => `<div class="gstat grdup"><p><b>Une autre fiche à ton nom, « ${esc(m.name)} », est cachée</b>${when(m)} : sûrement toi sur un autre appareil. ${lkMe() ? 'Tes appareils sont reliés : dès que l\'autre aura synchronisé, Sillon n\'en gardera qu\'une, tout seul.' : 'Relie tes appareils (page Toi, Relier mes appareils) et Sillon n\'en gardera qu\'une, tout seul. Sinon, appuie ici sur l\'appareil que tu utilises le moins : il affichera ta fiche de l\'autre appareil sans en envoyer une deuxième.'}</p>
+    <div class="gact"><button class="btn" data-gr="viewAs" data-id="${esc(m.id)}">C'est moi sur un autre appareil</button>${isOwner ? `<button class="btn" data-gr="dupDel" data-id="${esc(m.id)}">C'est un vieux test : la retirer</button>` : ''}</div></div>`).join('');
+  if (oth.length) {
+    const it = oth.map(m => esc(m.name) + when(m)).join(', ');
+    h += `<div class="gstat grdup"><p><b>${oth.length > 1 ? `${fmtN(oth.length)} fiches en double sont cachées` : 'Une fiche en double est cachée'}</b> : ${it}. Même pseudo qu'un membre : souvent un ancien appareil ou un test. Elle${oth.length > 1 ? 's' : ''} ne compte${oth.length > 1 ? 'nt' : ''} pas dans les stats du groupe.</p>${isOwner ? `<div class="gact"><button class="btn" data-gr="dups">Retirer ${oth.length > 1 ? 'les doubles' : 'le double'}</button></div>` : GRP.group && oth.some(m => m.id === GRP.group.owner) ? '<p class="note">C\'est l\'ancienne fiche qui a créé le groupe : le site ne peut pas la retirer. La personne qui gère Firebase peut la supprimer dans la console Firebase.</p>' : '<p class="note">Seule la personne qui a créé le groupe peut les retirer.</p>'}</div>`;
+  }
+  return h;
+}
+/* ---------- une personne, une fiche : tes appareils reliés (ou ceux que tu désignes) partagent la même ---------- */
+/* appareils reliés : chacun dit dans quel groupe il est et sous quel identifiant (passe par la liaison chiffrée) */
+function grDevMark() {
+  const sy = Prefs.data.sync, uid = GRP.uid; if (!uid) return false;
+  const g = grMe(), gid = (g && g.gid) || '', cur = (sy.grDev || {})[uid];
+  if (cur ? cur.gid === gid : !gid) return false;
+  sy.grDev = Object.assign({}, sy.grDev, { [uid]: { gid, at: Date.now() } }); Prefs.save();
+  return true;
+}
+const grTwins = g => Object.entries(Prefs.data.sync.grDev || {}).filter(([u, v]) => u !== GRP.uid && v && v.gid === g.gid).map(([u]) => u);
+const grDevStamp = m => Object.entries(m || {}).filter(([, v]) => v && v.gid).map(([u, v]) => u + ':' + v.gid).sort().join(',');
+async function grDelOwn(gid) { try { const { F, db, uid } = await fbInit(); await F.deleteDoc(F.doc(db, 'groups', gid, 'members', uid)); } catch (e) { console.warn('groupe', e); } }
+function grTwinSync() {
+  const g = grMe(); if (!g || !g.gid || !GRP.uid || GRP.mGid !== g.gid || GRP.cached || !GRP.group || GRP.loading) return false;
+  grDevMark();
+  const raw = GRP.members, has = id => raw.some(m => m && m.id === id), tw = grTwins(g);
+  let mid = g.mid && has(g.mid) ? g.mid : null;
+  if (tw.length) {
+    /* le créateur du groupe envoie ; sinon, toujours le même, choisi pareil sur chaque appareil */
+    const all = [GRP.uid, ...tw.filter(has)], own = GRP.group.owner, prim = all.includes(own) ? own : all.slice().sort()[0];
+    mid = prim === GRP.uid ? null : prim;
+  }
+  if ((g.mid || null) !== mid) {
+    if (mid) { g.mid = mid; g.pushedAt = 0; grDelOwn(g.gid); } else { delete g.mid; groupAutoPush(300); }
+    Prefs.save(); return true;
+  }
+  if (mid && has(GRP.uid)) grDelOwn(g.gid);
+  return false;
 }
 function grSum(m, key, per) {
   const arr = Array.isArray(m[key]) ? m[key] : [], cm = curMon(), mF = m.mF | 0;
@@ -5834,11 +5877,12 @@ function renderGroup() {
   </section>
 `}
   <section class="blk"><div class="bh"><div><h2>Les membres</h2><p class="sub">Chacun envoie ses chiffres tout seul après chaque import</p></div></div>
-    <ul class="grmem">${ms.map(m => `<li>${grAv(m.name, m.pp)}<span class="nm"><b>${esc(m.name)}${m.me ? ' <small>(toi)</small>' : ''}${GRP.group && GRP.group.owner === m.id ? ' <small>a créé le groupe</small>' : ''}</b><small>${esc([m.svc, 'écoutes jusqu\'au ' + fmtDay(m.last)].filter(Boolean).join(', '))}</small></span>${isOwner && !m.me ? `<button class="btn" data-gr="kick" data-id="${esc(m.id)}">Retirer</button>` : ''}</li>`).join('')}</ul>${grDupHTML(ms, isOwner)}
+    <ul class="grmem">${ms.map(m => `<li>${grAv(m.name, m.pp)}<span class="nm"><b>${esc(m.name)}${m.me ? ' <small>(toi)</small>' : ''}${GRP.group && (GRP.group.owner === m.id || (m.me && GRP.group.owner === GRP.uid)) ? ' <small>a créé le groupe</small>' : ''}</b><small>${esc([m.svc, 'écoutes jusqu\'au ' + fmtDay(m.last)].filter(Boolean).join(', '))}</small></span>${isOwner && !m.me ? `<button class="btn" data-gr="kick" data-id="${esc(m.id)}">Retirer</button>` : ''}</li>`).join('')}</ul>${grDupHTML(ms, isOwner)}
     <div class="grme card"><div class="grpp">${grAv(g.me || '?', Prefs.data.sync.pp)}<div class="grppt"><b>Ta photo</b><small>${ppOk(Prefs.data.sync.pp) ? 'Visible par les membres du groupe.' : 'Sans photo, ce sont tes initiales.'}</small>
       <div class="gact"><label class="btn">${ppOk(Prefs.data.sync.pp) ? 'Changer de photo' : 'Choisir une photo'}<input type="file" accept="image/*" id="grPpIn" class="vh"></label>${ppOk(Prefs.data.sync.pp) ? '<button class="btn" data-gr="ppDel">Retirer</button>' : ''}</div></div></div>
       <label class="grf"><span>Ton pseudo dans le groupe</span><input class="field" id="grMe2" maxlength="30" value="${esc(g.me || '')}" autocomplete="nickname"></label>
-      <div class="gact">${alone ? '' : '<button class="btn pri grinvm" data-gr="invite">Inviter des potes</button>'}<button class="btn" data-gr="rename">Changer de pseudo</button><button class="btn" data-gr="push">Renvoyer mes chiffres</button><button class="btn" data-gr="leave">Quitter le groupe</button></div>
+      ${g.mid ? `<p class="note grview">Cet appareil affiche ta fiche ${grTwins(g).length ? 'de ton appareil relié' : 'de ton autre appareil'} : c'est lui qui envoie tes chiffres au groupe.</p>` : ''}
+      <div class="gact">${alone ? '' : '<button class="btn pri grinvm" data-gr="invite">Inviter des potes</button>'}<button class="btn" data-gr="rename">Changer de pseudo</button>${g.mid ? (grTwins(g).length ? '' : '<button class="btn" data-gr="viewStop">Envoyer depuis cet appareil</button>') : '<button class="btn" data-gr="push">Renvoyer mes chiffres</button>'}<button class="btn" data-gr="leave">Quitter le groupe</button></div>
       <p class="grmsg" id="grMsg" role="status"></p><p class="note">${GR_SHARE}</p></div></section>${grRulesBox()}`;
   const mlab = i => cap(fmtMon(months[i]));
   const svM = $('#grMon'), svH = $('#grHrs');
@@ -5891,6 +5935,7 @@ async function grAct(a, el) {
   if (a === 'leave' && !grConfirm(el, 'Sûr ? Tes chiffres seront retirés')) return;
   if (a === 'kick' && !grConfirm(el, 'Sûr ?')) return;
   if (a === 'dups' && !grConfirm(el, 'Sûr ? Elles seront supprimées')) return;
+  if (a === 'dupDel' && !grConfirm(el, 'Sûr ? Elle sera supprimée')) return;
   if (GRP.busy) return;
   GRP.busy = true; el.disabled = true;
   const g = grMe();
@@ -5928,8 +5973,19 @@ async function grAct(a, el) {
       await F.deleteDoc(F.doc(db, 'groups', g.gid, 'members', uid)).catch(() => {});
       delete Prefs.data.sync.group; Prefs.save(); GRP.members = []; GRP.group = null; GRP.mGid = null;
       toast('Tu as quitté le groupe. Tes chiffres ont été retirés.'); renderGroup();
+    } else if (a === 'viewAs') {
+      g.mid = el.dataset.id; g.pushedAt = 0; Prefs.save();
+      await grDelOwn(g.gid);
+      toast('C\'est noté : une seule fiche pour toi, envoyée par ton autre appareil.'); renderGroup();
+    } else if (a === 'viewStop') {
+      delete g.mid; Prefs.save(); await groupPush(true);
+      toast('Cet appareil envoie de nouveau tes chiffres.'); renderGroup();
+    } else if (a === 'dupDel') {
+      const { F, db } = await fbInit();
+      await F.deleteDoc(F.doc(db, 'groups', g.gid, 'members', el.dataset.id));
+      toast('Fiche retirée du groupe.');
     } else if (a === 'dups') {
-      const { F, db } = await fbInit(), L = grDups(grMembers());
+      const { F, db } = await fbInit(), L0 = grDups(grMembers()), L = L0.filter(m => !grDupMine(L0, g).includes(m));
       for (const m of L) await F.deleteDoc(F.doc(db, 'groups', g.gid, 'members', m.id));
       toast(L.length > 1 ? 'Doubles retirés du groupe.' : 'Double retiré du groupe.');
     } else if (a === 'kick') {
@@ -6085,11 +6141,12 @@ async function lkKeysFor(s) {
 async function lkEnc(key, u8) { const iv = crypto.getRandomValues(new Uint8Array(12)); return { iv: b64(iv), c: new Uint8Array(await crypto.subtle.encrypt({ name: 'AES-GCM', iv }, key, u8)) }; }
 async function lkDec(key, iv, c) { return new Uint8Array(await crypto.subtle.decrypt({ name: 'AES-GCM', iv: unb64(iv) }, key, c)); }
 const lkSig = (X, st) => (X ? [X.n, X.n ? X.s[X.n - 1] : 0, X.created || ''].join('|') : '0') + '|' + st;
-const lkStamp = h => (h && h.ppAt || 0) + '/' + (h && h.meAt || 0) + '/' + (h && h.setAt || 0);
+const lkStamp = h => (h && h.ppAt || 0) + '/' + (h && h.meAt || 0) + '/' + (h && h.setAt || 0) + '/' + grDevStamp(h && h.grDev);
 const lkLocalSig = () => lkSig(DEMO ? null : D, lkStamp(Object.assign({}, Prefs.data.sync, { setAt: S.setAt })));
 function lkBlob() {
   const sy = Prefs.data.sync;
-  const head = te8(JSON.stringify({ v: 1, pp: sy.pp || '', ppAt: sy.ppAt || 0, me: sy.me || '', meAt: sy.meAt || 0, src: (sy.sources || []).slice(-12), set: setPack(), setAt: S.setAt || 0 }));
+  grDevMark();
+  const head = te8(JSON.stringify({ v: 1, pp: sy.pp || '', ppAt: sy.ppAt || 0, me: sy.me || '', meAt: sy.meAt || 0, src: (sy.sources || []).slice(-12), set: setPack(), setAt: S.setAt || 0, grDev: sy.grDev || {} }));
   const body = DEMO ? new Uint8Array(0) : pack(D);
   const out = new Uint8Array(4 + head.length + body.length);
   new DataView(out.buffer).setUint32(0, head.length); out.set(head, 4); out.set(body, 4 + head.length);
@@ -6112,6 +6169,13 @@ function lkApplyHead(h) {
   const sy = Prefs.data.sync;
   if ((h.ppAt || 0) > (sy.ppAt || 0)) { sy.pp = ppOk(h.pp) ? h.pp : ''; sy.ppAt = h.ppAt; groupAutoPush(800); if (S.view === 'groupe') renderGroup(); }
   if ((h.meAt || 0) > (sy.meAt || 0) && typeof h.me === 'string') { sy.me = h.me.slice(0, 30); sy.meAt = h.meAt; const g = grMe(); if (g && sy.me) { g.me = sy.me; groupAutoPush(800); } }
+  if (h.grDev && typeof h.grDev === 'object') {
+    const m = Object.assign({}, sy.grDev);
+    for (const [u, v] of Object.entries(h.grDev)) if (u !== GRP.uid && /^[\w-]{3,128}$/.test(u) && v && typeof v.gid === 'string' && typeof v.at === 'number' && (!m[u] || m[u].at < v.at)) m[u] = { gid: v.gid.slice(0, 64), at: v.at };
+    const L = Object.entries(m).sort((a, b) => b[1].at - a[1].at).slice(0, 8);
+    sy.grDev = Object.fromEntries(L);
+    if (grTwinSync() && S.view === 'groupe') renderGroup();
+  }
   setApplyRemote(h.set, h.setAt || 0);
   renderMeTop(); if (S.view === 'toi') renderMe();
   if (Array.isArray(h.src)) { const by = new Map(); for (const s of (sy.sources || []).concat(h.src)) if (s && s.at) by.set(s.at + '|' + s.n, s); sy.sources = [...by.values()].sort((a, b) => a.at - b.at).slice(-12); }
@@ -6132,6 +6196,7 @@ async function lkPush(F, db, K, base) {
 async function lkOnce(force) {
   const L = lkMe(); if (!L) return;
   const { F, db } = await fbInit(), K = await lkKeysFor(L.s);
+  grDevMark();
   const mref = F.doc(db, 'vaults', K.vid), ms = await F.getDoc(mref);
   LK.lastPull = Date.now();
   const local = DEMO ? null : D;
@@ -7004,7 +7069,7 @@ function grYearMin(m, y) { if (!m || !Array.isArray(m.mMin) || typeof m.mF !== '
 function wrapGroup(R, members) {
   const y = ymd(R.r0)[0], g = grMe(); if (!members || !g || y !== new Date().getFullYear()) return null;
   members = grMembers(members);
-  const me = GRP.uid, list = members.filter(m => m && typeof m.name === 'string' && m.name).map(m => ({ id: m.id, name: m.name, pp: m.pp, me: m.id === me, min: m.id === me ? Math.round(R.X.ms / 60000) : grYearMin(m, y), aNY: m.yr === y && Array.isArray(m.aNY) ? m.aNY : [], aMY: m.yr === y && Array.isArray(m.aMY) ? m.aMY : [] }));
+  const me = GRP.uid, list = members.filter(m => m && typeof m.name === 'string' && m.name).map(m => ({ id: m.id, name: m.name, pp: m.pp, me: !!m.me, min: m.me ? Math.round(R.X.ms / 60000) : grYearMin(m, y), aNY: m.yr === y && Array.isArray(m.aNY) ? m.aNY : [], aMY: m.yr === y && Array.isArray(m.aMY) ? m.aMY : [] }));
   if (list.length < 2 || !list.some(x => x.me)) return null;
   list.sort((a, b) => b.min - a.min);
   const rank = list.findIndex(x => x.me) + 1, mine = new Set(R.A.length ? topIdx(R.X.aM, 25).map(a => norm(D.artists[a])) : []);
@@ -7252,12 +7317,16 @@ function grListen(r) {
   return [GR_LSN[k][0], GR_LSN[k][1](r.n + ' ' + r.a)];
 }
 function grRecHTML(ms, g) {
-  const mine = grRecMine(g), others = ms.filter(m => !m.me).map(grRecOf).filter(Boolean).sort((a, b) => b.at - a.at);
+  const view = !!g.mid, meDoc = ms.find(m => m.me), mine = view ? grRecOf(meDoc) : grRecMine(g), meId = view ? g.mid : GRP.uid;
+  const others = ms.filter(m => !m.me).map(grRecOf).filter(Boolean).sort((a, b) => b.at - a.at);
   const H = grHeard(others), st = r => H.get(r.key) || { after: false, before: 0 };
   const done = others.filter(r => st(r).after).length;
-  const okBy = mine ? ms.filter(m => !m.me && Array.isArray(m.recOk) && m.recOk.includes(GRP.uid + ':' + mine.at)).map(m => m.name) : [];
+  const okBy = mine ? ms.filter(m => !m.me && Array.isArray(m.recOk) && m.recOk.includes(meId + ':' + mine.at)).map(m => m.name) : [];
   let my;
-  if (GRP.pick && !DEMO && D) my = `<div class="card grrc me grpick"><span class="k">Choisis ton son</span>
+  if (view) my = `<div class="card grrc me${mine ? '' : ' add'}"><span class="k">Ton son de la semaine</span>
+      ${mine ? `<div class="grrt">${grCovT(mine.n, mine.a, mine.u)}<span class="nm"><b>${esc(mine.n)}</b><small>${esc(mine.a)}</small></span></div><p class="grrs">${okBy.length ? `<b class="grok">Écouté par ${esc(grAnd(okBy))}</b>` : 'Personne ne l\'a encore écouté'}.</p>` : ''}
+      <p>Ton son se choisit sur ton autre appareil, celui qui envoie tes chiffres.</p></div>`;
+  else if (GRP.pick && !DEMO && D) my = `<div class="card grrc me grpick"><span class="k">Choisis ton son</span>
       <label class="grf"><span>Cherche dans ton historique</span><input class="field" id="grRecQ" placeholder="Un titre ou un artiste" autocomplete="off"></label>
       <ul class="grpl" id="grRecL">${grPickList('')}</ul>
       <div class="gact"><button class="btn" data-gr="recCancel">Annuler</button></div></div>`;
