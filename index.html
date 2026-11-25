@@ -98,8 +98,10 @@ p{margin:0}
 .top .logo.m{display:none;padding:0}
 .ttl{font:800 22px/1 var(--f-head);letter-spacing:-.02em;opacity:0;transition:opacity .2s;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .top.solid .ttl{opacity:1}
-.mini{display:flex;align-items:center;gap:8px}
-.mini b{font:700 15px/1 var(--f-ui);white-space:nowrap}
+.mini{display:flex;align-items:center;gap:8px;min-width:0}
+.mini b{min-width:0;font:700 15px/1.2 var(--f-ui);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.mini .ib{flex:none}
+.mini .mshort{display:none}
 .tr{display:flex;align-items:center;gap:8px;margin-left:auto}
 .np{display:inline-flex;align-items:center;gap:8px;max-width:280px;padding:6px 12px;border-radius:999px;background:rgba(0,0,0,.35);color:#fff;font-size:13px;white-space:nowrap;overflow:hidden}
 body[data-skin=clair] .np,body[data-skin=pomme] .np{background:rgba(255,255,255,.7);color:#121212}
@@ -969,6 +971,8 @@ code.cp{display:inline-block;max-width:100%;padding:4px 8px;border-radius:6px;ba
   .top{padding:0 16px;height:56px;margin-bottom:-56px}
   .top .logo.m{display:flex}
   .top .logo.m span{display:none}
+  .mini .mfull{display:none}
+  .mini .mshort{display:inline}
   .hero{padding:72px 16px 20px;min-height:0;flex-direction:column;align-items:flex-start}
   .hero.sm{min-height:0}
   .actions{padding:16px;gap:12px 10px}
@@ -1121,7 +1125,99 @@ html.wellock{overflow:hidden}
 .upd span{min-width:0}
 .upd .btn{flex:none}
 @media (max-width:720px){.upd{bottom:calc(78px + env(safe-area-inset-bottom));width:calc(100vw - 24px)}.upd span{flex:1}}
+/* goûts dans le temps */
+.gtlf{height:240px}
+.gtle{fill:none;stroke:var(--line);stroke-dasharray:3 3}
+.gts.on{stroke:var(--ink);stroke-width:1.5}
+svg text.yr{fill:var(--ink);font-weight:700}
+/* Sillon Wrapped */
+.wrban{display:flex;align-items:center;gap:16px;margin:0 0 18px;padding:14px 14px 14px 16px;border-radius:12px;color:#fff;background:linear-gradient(120deg,hsl(var(--wh,270) 72% 38%),hsl(calc(var(--wh,270) + 70) 78% 26%))}
+.wrban[hidden]{display:none}
+.wmos{flex:none;display:grid;grid-template-columns:repeat(2,28px);gap:2px;border-radius:6px;overflow:hidden}
+.wmos .cv{width:28px;height:28px;border-radius:0;box-shadow:none}
+.wrdisc{flex:none;width:56px;height:56px;border-radius:50%;background:radial-gradient(circle,#0d0d0d 0 12%,hsl(var(--wh,270) 85% 62%) 13% 30%,#151515 31%)}
+.wrtx{flex:1;min-width:0;display:flex;flex-direction:column;gap:3px}
+.wrtx b{font:800 17px/1.2 var(--f-head)}
+.wrtx small{font-size:13px;line-height:1.4;color:rgba(255,255,255,.85)}
+.wrban .btn.pri{flex:none;background:#fff;color:#111}
+.wrban .x{flex:none;color:#fff}
+@media (max-width:720px){.wrban{flex-wrap:wrap}.wrban .wrtx{flex:1 1 60%}.wrban .btn.pri{order:3;flex:1 1 100%}}
+.wrrow{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:12px}
+.wrc{position:relative;display:flex;flex-direction:column;justify-content:flex-end;gap:6px;min-height:170px;padding:14px;border:0;border-radius:12px;color:#fff;text-align:left;font:inherit;cursor:pointer;overflow:hidden;background:linear-gradient(140deg,hsl(var(--wh) 72% 40%),hsl(calc(var(--wh) + 70) 78% 22%))}
+.wrc.big{grid-column:span 2;min-height:200px}
+.wrc .wmos{position:absolute;top:12px;right:12px;grid-template-columns:repeat(2,30px)}
+.wrc.big .wmos{grid-template-columns:repeat(2,48px)}
+.wrc .wmos .cv{width:30px;height:30px}
+.wrc.big .wmos .cv{width:48px;height:48px}
+.wrcy{display:flex;flex-direction:column}
+.wrcy small{font-size:12px;font-weight:700;opacity:.85}
+.wrcy b{font:900 clamp(36px,6vw,56px)/1 var(--f-head);letter-spacing:-.04em}
+.wrc:not(.big) .wrcy b{font-size:34px}
+.wrcs{font-size:12px;opacity:.85}
+.wrc:focus-visible{outline:2px solid var(--ink);outline-offset:2px}
+@media (max-width:720px){.wrc.big{grid-column:1/-1}}
+.ss .wrt{font-size:min(30cqi,190px);letter-spacing:-.05em;line-height:.85;white-space:nowrap;overflow-wrap:normal}
+.ss .wbad{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
+.ss .wbad span{padding:6px 12px;border-radius:99px;background:rgba(255,255,255,.18);font-weight:700;font-size:14px}
+.ss ol.big li.me b{text-decoration:underline;text-underline-offset:4px}
 /* animations réduites, au choix dans les réglages */
+/* groupe : la semaine, les sons, les nouvelles */
+.grnews{display:flex;flex-wrap:wrap;gap:4px 10px;align-items:baseline;margin:0;padding:12px 16px;border-radius:10px;background:color-mix(in srgb,var(--acc) 12%,var(--card));font-size:14px}
+.grnews b{font-weight:800}
+.grold{background:color-mix(in srgb,#f5a524 15%,var(--card))}
+.grold .gact{margin-top:0}
+.grwk{grid-template-columns:repeat(auto-fit,minmax(190px,1fr))}
+.grwk .who .cv{width:44px}
+@media (max-width:600px){.grwk{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}.grwk .card{padding:12px;gap:8px}.grwk .who{gap:8px}.grwk .who .cv{width:34px}.grwk .who b{font-size:15px}.grwk p{font-size:13px}}
+.grwk p{color:var(--muted)}
+.grdefi{display:flex;align-items:center;gap:14px;margin:0 0 14px;max-width:520px}
+.grdefi b{white-space:nowrap}
+.grdefi .br{flex:1;height:8px;border-radius:99px;background:var(--chip);overflow:hidden}
+.grdefi .br i{display:block;height:100%;border-radius:99px;background:var(--acc)}
+.grdefi.win{flex-wrap:wrap;gap:4px 10px;max-width:none;padding:12px 16px;border-radius:10px;background:color-mix(in srgb,var(--acc) 14%,var(--card))}
+.grrl{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:10px}
+.grrc{display:flex;flex-direction:column;gap:12px;padding:16px;min-width:0}
+.grrc .k{font-weight:800;font-size:13px;color:var(--muted)}
+.grrc>p{margin:0;font-size:14px}
+.grrc .who{display:flex;align-items:center;gap:10px;min-width:0;font-size:14px;color:var(--muted)}
+.grrc .who .cv{width:32px;flex:none}
+.grrc .who b{color:var(--ink);font-weight:700}
+.grrc .gact{margin-top:auto}
+.grrc.me{background:color-mix(in srgb,var(--acc) 7%,var(--card))}
+.grrc.ok{box-shadow:inset 0 0 0 2px color-mix(in srgb,var(--acc) 55%,transparent)}
+.grrt{display:grid;grid-template-columns:64px minmax(0,1fr);gap:12px;align-items:center}
+.grrt .cv{width:64px}
+.grrt .nm{display:flex;flex-direction:column;gap:2px;min-width:0}
+.grrt .nm b{font:800 17px/1.2 var(--f-head);overflow:hidden;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow-wrap:anywhere}
+.grrt .nm small{color:var(--muted);font-size:13px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.grrs{margin:0;font-size:14px;color:var(--muted)}
+.grok{color:var(--acc-t,var(--acc));font-weight:700}
+.grrl .grpick{grid-column:1/-1;max-width:560px}
+.grpl{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:2px}
+.grpl button{display:grid;grid-template-columns:40px minmax(0,1fr);gap:12px;align-items:center;width:100%;padding:6px 8px;border:0;border-radius:8px;background:none;color:inherit;font:inherit;text-align:left;cursor:pointer}
+.grpl button:hover{background:var(--chip)}
+.grpl button:focus-visible{background:var(--chip);outline:2px solid var(--ink);outline-offset:1px}
+.grpl .cv{width:40px}
+.grpl .nm{display:flex;flex-direction:column;min-width:0}
+.grpl .nm b{font-weight:700;font-size:14px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.grpl .nm small{color:var(--muted);font-size:12px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.grpl .none{padding:6px 8px;color:var(--muted);font-size:14px}
+.grrecs .note{margin:12px 0 0}
+.snav a.nws,.bnav a.nws{position:relative}
+.snav a.nws::after,.bnav a.nws::after{content:'';position:absolute;width:9px;height:9px;border-radius:50%;background:var(--acc);box-shadow:0 0 0 2px var(--bg)}
+.snav a.nws::after{left:31px;top:5px}
+.bnav a.nws::after{left:calc(50% + 6px);top:2px}
+@media (max-width:1000px){.snav a.nws::after{left:calc(50% + 6px);top:7px}}
+/* mini-visite */
+.tour{position:fixed;inset:0;z-index:108}
+.tourhole{position:fixed;border-radius:10px;box-shadow:0 0 0 200vmax rgba(0,0,0,.62);pointer-events:none;transition:left .3s,top .3s,width .3s,height .3s}
+.tourbox{position:fixed;display:flex;flex-direction:column;gap:6px;padding:18px 18px 16px;border-radius:14px;background:var(--card);color:var(--ink);box-shadow:0 18px 50px rgba(0,0,0,.45);transition:left .3s,top .3s}
+.tourn{font-size:12px;font-weight:700;color:var(--muted)}
+.tourbox b{font:800 19px/1.2 var(--f-head)}
+.tourbox p{margin:0;font-size:14px;line-height:1.45;color:var(--muted)}
+.tourbox .gact{justify-content:flex-end;margin-top:10px}
+@media (prefers-reduced-motion:reduce){.tourhole,.tourbox{transition:none}}
+.setreset{display:flex;flex-wrap:wrap;gap:8px}
 html.calm *,html.calm *::before,html.calm *::after{transition:none!important;animation:none!important}
 html.calm .stobars .on i{width:100%}
 @media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
@@ -1251,6 +1347,7 @@ html.calm .stobars .on i{width:100%}
     <div class="row2"><button class="btn pri" data-act="data">Importer mon fichier</button></div>
   </div>
   <div class="pad">
+    <div class="wrban" id="wrHome" hidden></div>
     <div class="kpis" id="nums"></div>
     <details class="live" id="liveBox" hidden><summary id="liveSum"></summary><div class="scroll"><table id="liveTable"></table></div></details>
     <section class="blk card">
@@ -1305,6 +1402,7 @@ html.calm .stobars .on i{width:100%}
       <div><h2>Tes habitudes</h2><p class="sub">Comment et quand tu écoutes</p><div class="habs" id="prHab" style="margin-top:14px"></div></div>
     </section>
     <section class="blk"><div class="bh"><div><h2>Ton évolution</h2><p class="sub">Ton artiste n°1 et tes genres, année par année</p></div></div><div id="prEvo"></div></section>
+    <section class="blk"><div class="bh"><div><h2>Tes goûts, mois par mois</h2><p class="sub">La part de chaque genre dans ton écoute, sur les 24 derniers mois</p></div></div><div id="prGtl"></div></section>
     <section class="blk"><div class="bh"><div><h2>Découvertes devenues favorites</h2><p class="sub">Découvertes ces deux dernières années, et déjà dans ton top 40</p></div></div><div class="row" id="prFav"></div></section>
     <section class="blk cols">
       <div><h2>Tes derniers morceaux découverts</h2><p class="sub">Écoutés pour la toute première fois</p><ol class="tl nob" id="prNew" style="margin-top:10px"></ol></div>
@@ -1317,6 +1415,7 @@ html.calm .stobars .on i{width:100%}
 <section class="view" data-view="recaps" aria-label="Récaps" hidden>
   <div class="hero sm" id="rHero"><div class="htx"><p class="kick">Façon Wrapped, pour chaque période</p><h1 class="ht">Récaps</h1><p class="hl" id="rcLead"></p></div></div>
   <div class="pad">
+    <section class="blk" id="wrRc" hidden><div class="bh"><div><h2>Sillon Wrapped</h2><p class="sub">Ton année en stories : ton top, ton mois préféré, ta journée record, ton profil d'auditeur</p></div></div><div class="wrrow" id="wrList"></div></section>
     <section class="blk"><div class="bh"><div><h2>Tes années</h2></div></div><div class="row" id="rcYears"></div></section>
     <section class="blk"><div class="bh"><div><h2>Tes mois</h2></div><button class="more" data-rcm="m"></button></div><div class="row" id="rcMonths"></div></section>
     <section class="blk"><div class="bh"><div><h2>Tes semaines</h2><p class="sub">Les 52 dernières</p></div><button class="more" data-rcm="w"></button></div><div class="row" id="rcWeeks"></div></section>
@@ -1430,7 +1529,7 @@ html.calm .stobars .on i{width:100%}
       <div class="setsec" id="setD"></div>
       <div class="setsec" id="setC"></div>
       <div class="setsec" id="setS"></div>
-      <p class="setreset"><button class="btn" data-set-reset>Tout remettre par défaut</button></p>
+      <p class="setreset"><button class="btn" data-tour-go>Revoir la visite</button><button class="btn" data-set-reset>Tout remettre par défaut</button></p>
     </section>
     <div id="meVer"></div>
   </div>
@@ -1594,7 +1693,38 @@ html.calm .stobars .on i{width:100%}
 <script src="config.js"></script>
 <script>
 {
-/* ================= utils ================= */
+/* ================= version, nouveautés et services (page À propos) ================= */
+/* à chaque mise à jour : changer SILLON_V et ajouter une ligne en haut de SILLON_LOG.
+   X refonte, Y grosse mise à jour, Z correctifs, I première version */
+const SILLON_V = '2.9.1';
+const SV_TYPE = { X: 'Refonte', Y: 'Grosse mise à jour', Z: 'Correctifs', I: 'Première version' };
+const SILLON_LOG = [
+  ['2.9.1', 'Z', ['YouTube Music : les clips et les sons des chaînes d\'artistes que tu regardes sur YouTube comptent aussi. Réimporte ton fichier Google Takeout pour les avoir (réglage dans Toi si tu n\'en veux pas).', 'YouTube Music : les sons rangés sous « Release » (artiste qui n\'a pas rempli sa chaîne) retrouvent leur vrai artiste quand c\'est sûr, sinon ils vont dans « Artiste inconnu ».', 'Réimporter un fichier YouTube ne crée plus de doublons, même quand les durées estimées changent.', 'Sur téléphone, le titre de la période en haut ne passe plus sous les boutons.']],
+  ['2.9.0', 'Y', ['Sillon Wrapped : ton année en stories, de mi-novembre à fin janvier, avec ton mois préféré, ta journée record, ton profil d\'auditeur et ta place dans le groupe.', 'Tes goûts, mois par mois : la part de chaque genre dans ton écoute, sur la page Ta carte.', 'Groupe : la semaine du groupe (en tête, son et artiste de la semaine, gagnant de la semaine dernière), un classement « Cette semaine », et les sons de la semaine à faire écouter à tes potes, avec un défi pour les écouter.', 'Groupe : Sillon te dit à l\'ouverture quand un pote t\'a dépassé ce mois-ci ou te fait écouter un son.', 'Les pochettes apparaissent aussi dans les images que tu télécharges ou partages : récaps, affiches et ta carte.', 'Une mini-visite après ton premier import, à revoir quand tu veux depuis les réglages.']],
+  ['2.8.0', 'Y', ['Mises à jour : Sillon repère quand une nouvelle version est en ligne et te propose de recharger, sans attendre.', 'Tes réglages et ton thème suivent entre tes appareils reliés.', 'Sillon te prévient quand des écoutes manquent entre ton dernier import et tes 50 derniers morceaux Spotify.', 'Règles Firebase plus souples : plus besoin de les recoller quand le groupe gagne des stats.']],
+  ['2.7.1', 'Z', ['Pochettes aussi quand le fichier ne donne pas le nom de l\'album (souvent avec YouTube Music) : Sillon les retrouve à partir du titre du morceau.']],
+  ['2.7.0', 'Y', ['Fenêtre de bienvenue à la première visite : tu choisis ta plateforme, Sillon se met à ses couleurs et t\'ouvre la fiche pour récupérer tes données.', 'Pochettes pour tout le monde, sans connexion ni compte Spotify : elles viennent de Deezer. Un artiste prend la pochette de son album le plus écouté.']],
+  ['2.6.0', 'Y', ['Réglages dans la page Toi : style des graphiques (barres arrondies ou droites, courbe, aire, rétro, notes de musique), ligne de moyenne, lignes de repère, valeur du record.', 'Durées en heures et minutes, en heures ou en minutes, et dates en lettres ou en chiffres.', 'Couleur des pages, pochettes, animations réduites, page et période d\'ouverture, rappel de mise à jour.', 'Thème automatique : Sillon prend les couleurs de ta plateforme (Spotify, Apple Music, YouTube Music ou Deezer).']],
+  ['2.5.1', 'Z', ['Classements : touche une colonne deux fois pour passer de l\'ordre décroissant à l\'ordre croissant.', 'Nouvelle page À propos : versions, services utilisés, comment marche le site.']],
+  ['2.5.0', 'Y', ['Page Toi : ta photo, ton pseudo, ton groupe, tes appareils, le thème et tes données au même endroit.', 'Sur téléphone, la barre du bas avec l\'onglet Plus.', 'Groupe : trophées, duel 1 contre 1 et équivalences.', 'Page Suggestions : micro-genres, artistes et albums à découvrir, extraits de 30 secondes.', 'Numéro de version.']],
+  ['2.4.0', 'Y', ['Écran pour installer l\'appli sur téléphone.', 'Liaison entre ton PC et ton tel, avec des écoutes chiffrées.', 'Photos de profil dans le groupe.']],
+  ['2.3.0', 'Y', ['Stats de groupe entre potes, en direct : classement, top commun, jumeau musical.', 'Fiche pas à pas pour activer Firebase.']],
+  ['2.2.0', 'Y', ['Imports Apple Music, YouTube Music et Deezer.', 'Guide pas à pas pour récupérer ses stats.', 'Récaps en stories et en affiche.', 'Thèmes façon Apple Music, YouTube Music et Deezer.']],
+  ['2.1.0', 'Y', ['Version GitHub : vraies pochettes, connexion Spotify et derniers morceaux à chaque ouverture.', 'Appli installable sur PC et téléphone.']],
+  ['2.0.0', 'X', ['Nouveau design épuré, façon Spotify.', 'Prédictions, récaps par semaine, mois et année, jeux et classements.', 'Fusion de plusieurs comptes.']],
+  ['1.0.0', 'I', ['Graphiques par jour, semaine, mois et année.']]
+];
+const AB_SVC = [
+  ['Spotify Web API', 'Connexion à ton compte, tes derniers morceaux, et les pochettes exactes quand tu es connecté.', 'Version GitHub'],
+  ['Deezer API', 'Pochettes pour tout le monde, genres des artistes, artistes proches, extraits de 30 secondes.', 'Version GitHub'],
+  ['Last.fm API', 'Micro-genres, artistes similaires, albums à découvrir.', 'Version GitHub, avec une clé'],
+  ['Apple iTunes Search API', 'Pochettes de secours pour les images que tu télécharges ou partages.', 'Version GitHub'],
+  ['Firebase', 'Authentication (connexion anonyme) et Cloud Firestore : groupes et liaison entre appareils.', 'Version GitHub'],
+  ['GitHub Pages', 'Hébergement du site.', 'Version GitHub'],
+  ['Google Fonts', 'Polices Figtree et Doto.', 'Les deux versions'],
+  ['Claude (Anthropic)', 'Hébergement et stockage de la version Claude, estimation des genres et des discographies, score de compatibilité, morceau en cours via le connecteur Spotify.', 'Version Claude']
+];
+/* ================= outils ================= */
 const $ = (s, r = document) => r.querySelector(s);
 const $$ = (s, r = document) => [...r.querySelectorAll(s)];
 const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'})[c]);
@@ -1635,14 +1765,14 @@ function mulberry32(a) { return function () { a |= 0; a = a + 0x6D2B79F5 | 0; le
 const sleep = ms => new Promise(r => setTimeout(r, ms));
 function toast(msg) { const t = $('#toast'); t.textContent = msg; t.classList.add('on'); clearTimeout(toast.h); toast.h = setTimeout(() => t.classList.remove('on'), 2800); }
 
-/* ================= state ================= */
+/* ================= état ================= */
 const SA = /*@SA*/true; // true = version autonome (GitHub Pages)
 const SKINS = ['nuit', 'pomme', 'ecarlate', 'violet', 'clair', 'wrapped', 'console'];
 const SKIN_NAMES = { nuit: 'Nuit, façon Spotify', pomme: 'Pomme, façon Apple Music', ecarlate: 'Écarlate, façon YouTube Music', violet: 'Violet, façon Deezer', clair: 'Clair', wrapped: 'Wrapped', console: 'Console' };
 const GRANS = ['day', 'week', 'month', 'year', 'all'];
 /* réglages de la page Toi (restent sur l'appareil) */
-const SET0 = { chart: 'auto', avg: false, grid: true, peak: true, hue: 'artist', motion: 'normal', cov: 'real', dur: 'hm', date: 'short', home: 'stats', gran0: 'last', remind: 30 };
-const SET_OK = { chart: ['auto', 'round', 'square', 'line', 'area', 'seg', 'note'], avg: [true, false], grid: [true, false], peak: [true, false], hue: ['artist', 'theme'], motion: ['normal', 'calm'], cov: ['real', 'gen'], dur: ['hm', 'dec', 'min'], date: ['short', 'num'], home: ['stats', 'recaps', 'classements', 'profil', 'groupe'], gran0: ['last', 'day', 'week', 'month', 'year', 'all'], remind: [30, 90, 0] };
+const SET0 = { chart: 'auto', avg: false, grid: true, peak: true, hue: 'artist', motion: 'normal', cov: 'real', dur: 'hm', date: 'short', home: 'stats', gran0: 'last', remind: 30, ytc: true };
+const SET_OK = { chart: ['auto', 'round', 'square', 'line', 'area', 'seg', 'note'], avg: [true, false], grid: [true, false], peak: [true, false], hue: ['artist', 'theme'], motion: ['normal', 'calm'], cov: ['real', 'gen'], dur: ['hm', 'dec', 'min'], date: ['short', 'num'], home: ['stats', 'recaps', 'classements', 'profil', 'groupe'], gran0: ['last', 'day', 'week', 'month', 'year', 'all'], remind: [30, 90, 0], ytc: [true, false] };
 const SKIN_OF = { spotify: 'nuit', apple: 'pomme', ytm: 'ecarlate', deezer: 'violet' };
 const SKIN_HUE = { nuit: 141, pomme: 350, ecarlate: 352, violet: 272, clair: 141, wrapped: 252, console: 172 };
 const VIEWS = ['stats', 'profil', 'recaps', 'classements', 'predictions', 'jeux', 'guide', 'groupe', 'toi', 'suggestions', 'apropos'];
@@ -1675,52 +1805,11 @@ const shuffle = a => { for (let i = a.length - 1; i > 0; i--) { const j = Math.f
 const pick = a => a[Math.floor(Math.random() * a.length)];
 const spSearchUrl = q => 'https://open.spotify.com/search/' + encodeURIComponent(q);
 const trackUrl = t => D.tu[t] ? `https://open.spotify.com/${D.tk[t] === 1 ? 'episode' : 'track'}/${encodeURIComponent(D.tu[t])}` : spSearchUrl(D.tn[t] + ' ' + D.artists[D.ta[t]]);
-const ICON = {
-  play: '<svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>',
-  up: '<svg viewBox="0 0 24 24"><path d="M7 10v10H4V10zM7 10l4-7c1.5 0 2.5 1 2.5 2.5V9H19a2 2 0 0 1 2 2.3l-1.2 7A2 2 0 0 1 17.8 20H7"/></svg>',
-  down: '<svg viewBox="0 0 24 24"><path d="M17 14V4h3v10zM17 14l-4 7c-1.5 0-2.5-1-2.5-2.5V15H5a2 2 0 0 1-2-2.3l1.2-7A2 2 0 0 1 6.2 4H17"/></svg>'
-};
 
-/* ================= import: zip + json ================= */
+/* ================= lecture des zip et des json ================= */
 async function inflateRaw(bytes) {
   const ds = new DecompressionStream('deflate-raw');
   return new Uint8Array(await new Response(new Blob([bytes]).stream().pipeThrough(ds)).arrayBuffer());
-}
-async function unzip(buf, want, onEntry) {
-  const u8 = new Uint8Array(buf), dv = new DataView(buf);
-  let eocd = -1;
-  for (let i = u8.length - 22; i >= Math.max(0, u8.length - 22 - 65535); i--) if (dv.getUint32(i, true) === 0x06054b50) { eocd = i; break; }
-  if (eocd < 0) throw new Error('Ce fichier ne ressemble pas à un ZIP valide.');
-  let count = dv.getUint16(eocd + 10, true), off = dv.getUint32(eocd + 16, true);
-  if ((off === 0xFFFFFFFF || count === 0xFFFF) && eocd >= 20 && dv.getUint32(eocd - 20, true) === 0x07064b50) {
-    const z = Number(dv.getBigUint64(eocd - 12, true));
-    count = Number(dv.getBigUint64(z + 32, true)); off = Number(dv.getBigUint64(z + 48, true));
-  }
-  const td = new TextDecoder();
-  let p = off;
-  for (let n = 0; n < count; n++) {
-    if (dv.getUint32(p, true) !== 0x02014b50) break;
-    const method = dv.getUint16(p + 10, true);
-    let csize = dv.getUint32(p + 20, true), usize = dv.getUint32(p + 24, true);
-    const nlen = dv.getUint16(p + 28, true), xlen = dv.getUint16(p + 30, true), clen = dv.getUint16(p + 32, true);
-    let loff = dv.getUint32(p + 42, true);
-    const name = td.decode(u8.subarray(p + 46, p + 46 + nlen));
-    if (csize === 0xFFFFFFFF || usize === 0xFFFFFFFF || loff === 0xFFFFFFFF) {
-      let q = p + 46 + nlen; const end = q + xlen;
-      while (q + 4 <= end) {
-        const id = dv.getUint16(q, true), sz = dv.getUint16(q + 2, true);
-        if (id === 1) { let r = q + 4; if (usize === 0xFFFFFFFF) { usize = Number(dv.getBigUint64(r, true)); r += 8; } if (csize === 0xFFFFFFFF) { csize = Number(dv.getBigUint64(r, true)); r += 8; } if (loff === 0xFFFFFFFF) loff = Number(dv.getBigUint64(r, true)); }
-        q += 4 + sz;
-      }
-    }
-    p += 46 + nlen + xlen + clen;
-    if (name.endsWith('/') || !want(name)) continue;
-    const start = loff + 30 + dv.getUint16(loff + 26, true) + dv.getUint16(loff + 28, true);
-    const data = u8.subarray(start, start + csize);
-    let bytes;
-    if (method === 0) bytes = data; else if (method === 8) bytes = await inflateRaw(data); else continue;
-    await onEntry(name, td.decode(bytes));
-  }
 }
 function normPlat(s) {
   if (!s) return '';
@@ -1772,13 +1861,22 @@ function mergeRecs(all) {
     if (seen.has(key)) continue;
     seen.add(key); out.push(r); mins.add(Math.floor(r.t / 60) + tail);
   }
-  const seenB = new Set();
+  /* exports sans durée exacte (YouTube…) : la même écoute peut revenir avec une durée estimée un peu différente,
+     ou avec le vrai nom d'artiste à la place de « Release » : on la reconnaît à son heure de début et à son titre */
+  const seenB = new Set(), byT = new Map(), rkA = a => /^release$/i.test(a) ? 0 : /^artiste inconnu$/i.test(a) ? 1 : 2;
   for (const r of basic) {
     const mm = Math.floor(r.t / 60), tail = '|' + r.artist.toLowerCase() + '|' + r.name.toLowerCase();
     if (mins.has(mm + tail) || mins.has((mm - 1) + tail) || mins.has((mm + 1) + tail)) continue;
-    const key = mm + tail + '|' + r.ms;
+    const key = mm + tail + '|' + r.ms, st = r.t - Math.round(r.ms / 1000), nt = '|' + r.name.toLowerCase();
     if (seenB.has(key)) continue;
-    seenB.add(key); out.push(r);
+    let dup = false; for (let d = -2; d <= 2 && !dup; d++) dup = seenB.has('s' + (st + d) + tail);
+    if (dup) continue;
+    let j = -1; for (let d = -2; d <= 2 && j < 0; d++) { const v = byT.get((st + d) + nt); if (v !== undefined) j = v; }
+    if (j >= 0) {
+      const o = out[j], ro = rkA(o.artist), rn = rkA(r.artist);
+      if (ro < 2 || rn < 2) { if (rn > ro) out[j] = r; seenB.add(key); seenB.add('s' + st + tail); continue; }
+    }
+    seenB.add(key); seenB.add('s' + st + tail); byT.set(st + nt, out.length); out.push(r);
   }
   return out;
 }
@@ -1791,7 +1889,7 @@ function toRecs(X) {
   return out;
 }
 
-/* ================= dataset ================= */
+/* ================= données ================= */
 function build(recs, created) {
   recs.sort((a, b) => (a.t - a.ms / 1000) - (b.t - b.ms / 1000));
   const aMap = new Map(), A = [], tMap = new Map(), TN = [], TA = [], TL = [], TU = [], TK = [];
@@ -1857,7 +1955,7 @@ async function gunz(u8) { return new Uint8Array(await new Response(new Blob([u8]
 function b64(u8) { let s = ''; for (let i = 0; i < u8.length; i += 0x8000) s += String.fromCharCode.apply(null, u8.subarray(i, i + 0x8000)); return btoa(s); }
 function unb64(str) { const b = atob(str), u = new Uint8Array(b.length); for (let i = 0; i < b.length; i++) u[i] = b.charCodeAt(i); return u; }
 
-/* ================= demo data (fictional) ================= */
+/* ================= données de démo (fictives) ================= */
 function makeDemo() {
   const R = mulberry32(20261122);
   const pick = a => a[Math.floor(R() * a.length)];
@@ -1911,7 +2009,7 @@ function makeDemo() {
   return build(recs, null);
 }
 
-/* ================= stats engine ================= */
+/* ================= moteur de stats ================= */
 function makePass(withFocus) {
   const kw = S.content === 'music' ? 0 : S.content === 'pod' ? 1 : -1, ns = S.noSkip;
   const TK = D.tk, TA = D.ta, K = D.k, F = D.f;
@@ -2022,7 +2120,7 @@ function topList(X, kind, n) {
 }
 function rankMap(X, kind) { const m = new Map(); if (X && X.tP) topList(X, kind, 200).forEach((e, j) => m.set(e.i, j + 1)); return m; }
 
-/* ================= labels ================= */
+/* ================= libellés ================= */
 const isPod = () => S.content === 'pod';
 const L = () => isPod()
   ? { a: 'Émissions', a1: 'émission', t: 'Épisodes', t1: 'épisode', tt: 'épisodes', ad: 'émissions différentes', na1: 'nouvelle émission', nan: 'nouvelles émissions', nt: 'nouveaux épisodes', nt1: 'nouvel épisode', disc: 'Émissions découvertes sur la période' }
@@ -2036,6 +2134,15 @@ function periodText(g, r0, r1) {
   if (g === 'month') { const [y, m] = ymd(r0); return cap(MOL[m]) + ' ' + y; }
   if (g === 'year') return String(ymd(r0)[0]);
   return cap(MO[ymd(D.firstDay)[1]]) + ' ' + ymd(D.firstDay)[0] + ' – ' + MO[ymd(D.lastDay)[1]] + ' ' + ymd(D.lastDay)[0];
+}
+/* version courte, pour la barre du haut sur téléphone (la longue passe sous les boutons) */
+function periodMini(g, r0, r1) {
+  const cy = new Date().getFullYear(), yr = y => y === cy ? '' : ' ' + y;
+  if (g === 'day') { const [y, m, d] = ymd(r0); return `${cap(WD[dow(r0)])} ${d}${NS}${MO[m]}${yr(y)}`; }
+  if (g === 'week') { const [y0, m0, d0] = ymd(r0), [y1, m1, d1] = ymd(r1 - 1); return m0 !== m1 ? `${d0}${NS}${MO[m0]} – ${d1}${NS}${MO[m1]}${yr(y1)}` : `${d0}–${d1}${NS}${MO[m1]}${yr(y1)}`; }
+  if (g === 'month') { const [y, m] = ymd(r0); return cap(MO[m]) + ' ' + y; }
+  if (g === 'year') return String(ymd(r0)[0]);
+  return ymd(D.firstDay)[0] + ' – ' + ymd(D.lastDay)[0];
 }
 function periodSub(g, r0, r1) {
   const partial = g !== 'all' && r1 > D.lastDay + 1 && r0 <= D.lastDay;
@@ -2053,7 +2160,7 @@ function bucketLabel(X, i, short, narrow) {
   return short ? (s % 12 === 0 ? String(1970 + Math.floor(s / 12)) : '') : cap(fmtMon(s));
 }
 
-/* ================= charts ================= */
+/* ================= graphiques ================= */
 const figs = new Map();
 const ro = new ResizeObserver(es => { for (const e of es) { const f = figs.get(e.target); if (f) f(); } });
 function fig(el, fn) {
@@ -2191,7 +2298,7 @@ function levels(vals) {
   return v => v <= 0 ? 0 : v <= th[0] ? 1 : v <= th[1] ? 2 : v <= th[2] ? 3 : v <= th[3] ? 4 : 5;
 }
 
-/* ================= persistence ================= */
+/* ================= sauvegarde ================= */
 const Store = {
   where: 'none', db: null, uid: null, ready: null,
   async init() {
@@ -2274,7 +2381,7 @@ async function saveFile(name, data) {
   catch (e) { toast(e && e.code === 'declined' ? 'Téléchargement annulé' : 'Téléchargement impossible ici'); return false; }
 }
 
-/* ================= per-user small store (scores, avis, discographies) ================= */
+/* ================= petites préférences (scores, avis, discographies) ================= */
 const Prefs = {
   data: { games: {}, taste: [], recs: { liked: [], disliked: [], seen: [] }, disco: {}, live: [], sync: {} },
   chain: Promise.resolve(), t: null,
@@ -2309,7 +2416,7 @@ const Prefs = {
   }
 };
 
-/* ================= Claude (sample) ================= */
+/* ================= appels à Claude (version Claude) ================= */
 const AI = {
   fn: null, ready: null, off: false,
   init() { if (!this.ready) this.ready = (async () => { try { if (window.claude && typeof window.claude.use === 'function') this.fn = await window.claude.use('sample'); } catch (e) { this.fn = null; } })(); return this.ready; },
@@ -2327,7 +2434,7 @@ const AI = {
   }
 };
 
-/* ================= Spotify connector (mcp) ================= */
+/* ================= connecteur Spotify (version Claude) ================= */
 const SP = {
   mcp: null, ready: null,
   init() { if (!this.ready) this.ready = (async () => { try { if (window.claude && typeof window.claude.use === 'function') this.mcp = await window.claude.use('mcp'); } catch (e) { this.mcp = null; } })(); return this.ready; },
@@ -2372,7 +2479,7 @@ function spItems(payload) {
   return out;
 }
 
-/* ================= taste model ================= */
+/* ================= modèle de goûts ================= */
 function computeTaste() {
   const n = D.n, na = D.na, nt = D.nt, nl = D.nl, ref = D.lastDay, thr = 30000;
   const aP = new Uint32Array(na), aMs = new Float64Array(na), aSk = new Uint32Array(na), aN = new Uint32Array(na), aRw = new Float64Array(na), aR60 = new Uint32Array(na), aP60 = new Uint32Array(na), aFirst = new Int32Array(na).fill(-1), aLast = new Int32Array(na).fill(-1), aMonths = new Uint32Array(na), aLM = new Int32Array(na).fill(-1);
@@ -2402,10 +2509,6 @@ function computeTaste() {
   T = { aP, aMs, aSk, aN, aRw, aR60, aP60, aFirst, aLast, aMonths, aTr, aAl, aAff, tP, tMs, tSk, tN, tRw, tFirst, tLast, tDone, lP, lRw, lSk, lN, lMs,
     ordAff: ordBy(aAff, na, a => aP[a] > 0), ordP: ordBy(aP, na, a => aP[a] > 0), ordTP: ordBy(tP, nt, t => tP[t] > 0) };
 }
-let TM = null, AM = null;
-function trackSet() { if (!TM) { TM = new Set(); for (let t = 0; t < D.nt; t++) if (D.tk[t] === 0) TM.add(normT(D.artists[D.ta[t]]) + '|' + normT(D.tn[t])); } return TM; }
-function artistSet() { if (!AM) { AM = new Set(); for (let a = 0; a < D.na; a++) if (T.aP[a] >= 3) AM.add(normT(D.artists[a])); } return AM; }
-function knownTracks(a, n) { const arr = []; for (let t = 0; t < D.nt; t++) if (D.ta[t] === a && T.tP[t]) arr.push(t); return arr.sort((x, y) => T.tP[y] - T.tP[x]).slice(0, n).map(t => D.tn[t]); }
 function risingList(n) { const arr = []; for (const a of T.ordP) if (T.aR60[a] >= 5) arr.push(a); return arr.sort((x, y) => (T.aR60[y] + 1) / (T.aP60[y] + 1) - (T.aR60[x] + 1) / (T.aP60[x] + 1)).filter(a => T.aR60[a] > T.aP60[a] * 1.5).slice(0, n); }
 function recentList(n) { const arr = []; for (const a of T.ordP) if (T.aR60[a] > 0) arr.push(a); return arr.sort((x, y) => T.aR60[y] - T.aR60[x]).slice(0, n); }
 function skippedList(n) { const arr = []; for (const a of T.ordP) if (T.aN[a] >= 15 && T.aSk[a] / T.aN[a] >= 0.4) arr.push(a); return arr.sort((x, y) => T.aSk[y] / T.aN[y] - T.aSk[x] / T.aN[x]).slice(0, n); }
@@ -2450,13 +2553,12 @@ function findAlbum(name, artist) {
   return best;
 }
 
-/* ================= views ================= */
+/* ================= vues ================= */
 function route() {
   const [h, sub] = location.hash.replace('#', '').split('/'), prev = S.view;
   S.view = VIEWS.includes(h) ? h : 'stats';
   if (S.view === 'guide') { S.guideSvc = sub || null; platPicked(sub); }
   if (S.view === 'groupe') S.grInvite = sub && GR_ID.test(sub) ? sub : null;
-  else if (prev === 'groupe') groupStop();
   $$('.view').forEach(v => v.hidden = v.dataset.view !== S.view);
   $$('.snav a, .bnav a, .sheet a[data-v]').forEach(a => a.setAttribute('aria-current', a.dataset.v === S.view ? 'page' : 'false'));
   navExtra();
@@ -2492,7 +2594,7 @@ function checkHero() {
 function setData(X, demo) {
   D = X; DEMO = demo; derive(D);
   S.anchor = D.lastDay; S.focus = null; S.calYear = null;
-  computeGlobal(); computeTaste(); TM = AM = null; dataVer++; searchIdx = null; RCX = null; PD = null; PRX = null; ALB_TID = null; ART_ALB = null; ART_TID = null; ART_TRK = null;
+  computeGlobal(); computeTaste(); dataVer++; searchIdx = null; RCX = null; PD = null; PRX = null; ALB_TID = null; ART_ALB = null; ART_TID = null; ART_TRK = null;
   renderView();
   groupAutoPush();
   if (!demo) { lkAutoPush(); closeWelcome(); }
@@ -2512,7 +2614,7 @@ function render() {
     }
   }
   const ta = topList(P, 'a', 1)[0]; setHue(ta ? hueA(ta.i) : 140);
-  renderPanel(r0, r1); renderNums(Qd); renderMain(); renderRanks(); renderGenres(); renderCal(); renderRhythm(); renderHabits(); renderDisc(); renderRecs(); renderYears(); renderOtd(); renderLog(); renderLive();
+  renderPanel(r0, r1); renderNums(Qd); renderMain(); renderRanks(); renderGenres(); renderCal(); renderRhythm(); renderHabits(); renderDisc(); renderRecs(); renderYears(); renderOtd(); renderLog(); renderLive(); renderWrapHome();
 }
 function renderHead() {
   $('#demoBar').hidden = !DEMO || !booted;
@@ -2533,7 +2635,8 @@ function renderPanel(r0, r1) {
   set('gran', S.gran); set('metric', S.metric); set('content', S.content); set('thr', S.thr);
   $('#noSkip').checked = S.noSkip; $('#cmp').checked = S.cmp; $('#liveSw').checked = S.live;
   const main = periodText(S.gran, r0, r1);
-  $('#pTitle').textContent = main; $('#pSub').textContent = periodSub(S.gran, r0, r1); $('#mMain').textContent = main;
+  $('#pTitle').textContent = main; $('#pSub').textContent = periodSub(S.gran, r0, r1);
+  $('#mMain').innerHTML = `<span class="mfull">${esc(main)}</span><span class="mshort">${esc(periodMini(S.gran, r0, r1))}</span>`;
   const canPrev = S.gran !== 'all' && range(S.gran, shift(S.gran, S.anchor, -1))[1] > D.firstDay;
   const canNext = S.gran !== 'all' && range(S.gran, shift(S.gran, S.anchor, 1))[0] <= D.lastDay;
   $('#prev').disabled = $('#mPrev').disabled = !canPrev; $('#next').disabled = $('#mNext').disabled = !canNext;
@@ -3151,7 +3254,7 @@ async function runPct(ev) {
   renderTmHist();
 }
 
-/* ================= now playing (Spotify, opt-in) ================= */
+/* ================= en écoute (Spotify, au choix) ================= */
 let npUnsub = null, NPc = null;
 async function setLive(on) {
   S.live = on; savePrefs();
@@ -3189,7 +3292,7 @@ function onNowPlaying(it) {
   pill.innerHTML = `<i></i><a href="${esc(it.url || spSearchUrl(it.name + ' ' + (it.artist || '')))}" target="_blank" rel="noopener">${esc(it.name)}${it.artist ? ', ' + esc(it.artist) : ''}</a>`;
 }
 
-/* ================= detail drawer & data modal ================= */
+/* ================= fiche détail et fenêtre des données ================= */
 let lastFocus = null;
 function openDetail(type, id) {
   const pass = makePass(false), thr = S.thr * 1000;
@@ -3257,7 +3360,7 @@ function closeAll() {
   if (lastFocus && document.contains(lastFocus)) lastFocus.focus();
 }
 
-/* ================= import flow ================= */
+/* ================= import : le déroulé ================= */
 const oldestDate = (a, b) => !a ? (b || null) : !b ? a : (a < b ? a : b);
 async function importFiles(files) {
   files = [...files]; if (!files.length) return;
@@ -3280,7 +3383,19 @@ async function importFiles(files) {
       const r = apFinish(ctx.ap, recs);
       if (r.n) { ctx.svcs.add('apple'); say(`Apple Music : ${fmtN(r.n)} ${pl(r.n, 'écoute')}${r.unk ? `, artiste introuvable pour ${fmtPct(r.unk / r.n)} d'entre elles` : ''}${ctx.ap.ev.length ? '' : ' (heures approximatives : il manque « Apple Music Play Activity.csv »)'}.`); }
     }
-    if (ctx.ytm.length) { const n = ytmFinish(ctx.ytm, recs); if (n) { ctx.svcs.add('ytm'); say(`YouTube Music : ${fmtN(n)} ${pl(n, 'écoute')}. Google ne donne pas la durée écoutée : elle est estimée.`); } }
+    if (ctx.ytm.length) {
+      const yi = {}, n = ytmFinish(ctx.ytm, recs, yi);
+      if (n) {
+        ctx.svcs.add('ytm');
+        say(`YouTube Music : ${fmtN(n)} ${pl(n, 'écoute')}${yi.clips ? `, dont ${fmtN(yi.clips)} ${yi.clips > 1 ? 'clips et sons regardés' : 'clip ou son regardé'} sur YouTube` : ''}. Google ne donne pas la durée écoutée : elle est estimée.`);
+        if (yi.rel.length) {
+          if (SA) { say(`« Release » : je cherche les vrais noms d'artistes sur Deezer…`); await sleep(0); }
+          const mine = new Set(); for (const r of recs) if (!/^release$/i.test(r.artist)) mine.add(ck(r.artist)); if (!DEMO && D) for (const a of D.artists) mine.add(ck(a));
+          const rr = await ytRelease(yi.rel, mine);
+          say(`« Release » (nom que YouTube met quand l'artiste n'a pas rempli sa chaîne) : ${rr.found ? `${fmtN(rr.found)} ${pl(rr.found, 'écoute')} avec le vrai artiste retrouvé` : 'aucun vrai artiste retrouvé'}${rr.unk ? `, ${fmtN(rr.unk)} rangée${rr.unk > 1 ? 's' : ''} dans « Artiste inconnu »` : ''}.`);
+        }
+      }
+    }
     if (ctx.dz.length) { const n = dzFinish(ctx.dz, recs); if (n) { ctx.svcs.add('deezer'); say(`Deezer : ${fmtN(n)} ${pl(n, 'écoute')}.`); } }
     let X;
     if (ctx.backup) {
@@ -3318,6 +3433,7 @@ async function importFiles(files) {
     const noSk = ['ytm', 'deezer'].filter(k => ctx.svcs.has(k)).map(k => SVCS[k].n);
     if (noSk.length) say(`Info : ${noSk.join(' et ')} ne ${noSk.length > 1 ? 'disent' : 'dit'} pas quand tu zappes ni si tu es en aléatoire${ctx.svcs.size > noSk.length ? ' : ces stats-là se basent sur tes autres écoutes' : ' : ces stats-là restent vides'}.`);
     updateDataStatus(); renderHead(); howSvc = null; renderHow(); $('#wipe').hidden = false;
+    tourArm();
   } catch (e) { console.error(e); say('Oups : ' + (e && e.message ? e.message : 'import impossible') + '.'); }
 }
 
@@ -3342,7 +3458,7 @@ function summary() {
 function sp(s) { return String(s).replace(/[  ]/g, ' '); }
 function fileTag() { const [r0] = range(S.gran, S.anchor), [y, m, d] = ymd(r0); return S.gran === 'all' ? 'tout' : S.gran === 'year' ? String(y) : S.gran === 'month' ? `${y}-${String(m + 1).padStart(2, '0')}` : S.gran === 'week' ? `${y}-S${isoWeek(r0)}` : `${y}-${String(m + 1).padStart(2, '0')}-${String(d).padStart(2, '0')}`; }
 
-/* ================= search ================= */
+/* ================= recherche ================= */
 let searchIdx = null, suggSel = -1;
 function buildSearch() {
   searchIdx = [];
@@ -3360,7 +3476,7 @@ function runSearch() {
   box.hidden = false;
 }
 
-/* ================= covers ================= */
+/* ================= pochettes générées (couleurs et initiales) ================= */
 const PLAY = '<svg class="ic f" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>';
 function hsh(s) { let h = 2166136261; s = String(s); for (let i = 0; i < s.length; i++) { h ^= s.charCodeAt(i); h = Math.imul(h, 16777619); } return h >>> 0; }
 function initials(n) {
@@ -3419,6 +3535,7 @@ function renderRecaps() {
   setHue(X.Y.length && X.Y[0].top >= 0 ? hueA(X.Y[0].top) : 140);
   $('#rcLead').textContent = `${fmtN(X.Y.length)} ${pl(X.Y.length, 'année')}, ${fmtN(X.M.length)} mois et ${fmtN(X.W.length)} semaines à revivre. Ouvre une carte pour voir son récap, puis télécharge-le en image.`;
   $('#rcYears').innerHTML = X.Y.map(e => rcTile('year', e)).join('');
+  renderWrapRecaps();
   const mm = S.rcMore.m ? X.M : X.M.slice(0, 12), ww = S.rcMore.w ? X.W : X.W.slice(0, 12);
   $('#rcMonths').classList.toggle('grid', S.rcMore.m); $('#rcWeeks').classList.toggle('grid', S.rcMore.w);
   $('#rcMonths').innerHTML = mm.map(e => rcTile('month', e)).join('');
@@ -3436,7 +3553,6 @@ function recapData(g, a) {
   let pk = -1, pv = 0; X.bM.forEach((v, i) => { if (v > pv) { pv = v; pk = i; } });
   return { g, a, r0, r1, X, Qd, A: A.slice(0, 5), T: Tt.slice(0, 5), pk };
 }
-const RC_KIND = { day: 'Ta journée', week: 'Ta semaine', month: 'Ton mois', year: 'Ton année', all: 'Toute ton histoire' };
 function recapPrev(R) { if (R.g === 'week') return 'vs la semaine d\'avant'; if (R.g === 'day') return 'vs la veille'; const [y, m] = ymd(R.r0); if (R.g === 'month') return 'vs ' + MOL[(m + 11) % 12]; if (R.g === 'year') return 'vs ' + (y - 1); return ''; }
 function shortPeak(R) { const X = R.X, i = R.pk; if (i < 0) return '–'; if (R.g === 'day') return i + NS + 'h'; if (R.g === 'week' || R.g === 'month') { const d = X.r0 + i, [, m, x] = ymd(d); return `${WD[dow(d)]} ${x}${NS}${MO[m]}`; } const s = X.m0 + i; return R.g === 'year' ? cap(MOL[s % 12]) : cap(MO[s % 12]) + ' ' + (1970 + Math.floor(s / 12)); }
 function recapDelta(R) { if (!R.Qd || !R.Qd.ms) return ''; const d = R.X.ms / R.Qd.ms - 1; return `${d >= 0 ? '+' : '−'}${fmtPct(Math.abs(d))} ${recapPrev(R)}`; }
@@ -3460,33 +3576,6 @@ function drawRecap() {
   $('#rcShare').hidden = !can;
 }
 function tagOf(g, a) { const [r0] = range(g, a), [y, m, d] = ymd(r0); return g === 'all' ? 'tout' : g === 'year' ? String(y) : g === 'month' ? `${y}-${String(m + 1).padStart(2, '0')}` : g === 'week' ? `${y}-S${isoWeek(r0)}` : `${y}-${String(m + 1).padStart(2, '0')}-${String(d).padStart(2, '0')}`; }
-async function recapPng(R) {
-  const K = await pngKit(1080, 1350, R.A.length ? hueA(R.A[0]) : 140), g = K.g, X = R.X, l = L(), fu = K.fu;
-  const W = '#ffffff', W8 = 'rgba(255,255,255,0.84)', W6 = 'rgba(255,255,255,0.66)';
-  if (!X.plays) { K.T(RC_KIND[R.g], 80, 128, `800 34px ${fu}`, W8); K.T(periodText(R.g, R.r0, R.r1), 80, 212, `900 76px ${fu}`, W, 920); K.T('Rien d\'écouté sur cette période.', 80, 320, `600 36px ${fu}`, W8); return K.blob(); }
-  const albs = topIdx(X.lM, 6, 1);
-  let y = 80;
-  if (albs.length >= 3) { for (let j = 0; j < albs.length; j++) await K.cover(80 + j * 158, y, 130, albs[j], false); y += 190; } else y += 40;
-  K.T(RC_KIND[R.g], 80, y + 20, `800 32px ${fu}`, W8);
-  K.T(periodText(R.g, R.r0, R.r1), 80, y + 92, `900 72px ${fu}`, W, 920);
-  K.T(fmtDur(X.ms), 80, y + 200, `900 110px ${fu}`, W, 920);
-  const dl = recapDelta(R); K.T('d\'écoute' + (dl ? ', ' + dl : ''), 80, y + 246, `600 30px ${fu}`, W8, 920);
-  const bars = Array.from(X.bM), mx = Math.max(1, ...bars), pk = bars.indexOf(Math.max(...bars)), bw = 920 / Math.max(1, bars.length);
-  bars.forEach((v, i) => { if (v <= 0) return; const h = v / mx * 60; g.fillStyle = i === pk ? W : 'rgba(255,255,255,0.42)'; g.fillRect(80 + i * bw + bw * 0.14, y + 330 - h, Math.max(2, bw * 0.72), h); });
-  y += 360;
-  const a1 = R.A[0];
-  K.box(80, y, 920, 150, 18); await K.cover(104, y + 18, 114, a1, true, 'a');
-  K.T(`Ton ${l.a1} n° 1`, 246, y + 56, `700 26px ${fu}`, W8); K.T(D.artists[a1], 246, y + 104, `900 46px ${fu}`, W, 720); K.T(fmtDur(X.aM[a1]) + ', ' + fmtPlays(X.aP[a1]), 246, y + 136, `500 25px ${fu}`, W8, 720);
-  y += 200;
-  const col = async (title, list, x) => { K.T(title, x, y, `800 28px ${fu}`, W8); for (let j = 0; j < list.length; j++) { const yy = y + 30 + j * 66; await K.cover(x, yy, 50, list[j][2], list[j][3], list[j][4]); K.T(list[j][0], x + 66, yy + 24, `700 27px ${fu}`, W, 360); K.T(list[j][1], x + 66, yy + 50, `500 21px ${fu}`, W6, 360); } };
-  await col('Top ' + l.a.toLowerCase(), R.A.map(a => [D.artists[a], fmtDur(X.aM[a]), a, true, 'a']), 80);
-  await col('Top ' + l.t.toLowerCase(), R.T.map(t => [D.tn[t], D.artists[D.ta[t]], t, false, 't']), 560);
-  const gs = genreShare(X.aM), tr = traitsOf(X)[0], per = tr && tr.s >= 1 ? tr.k : 'équilibré';
-  const line = (gs.known ? gs.mac.slice(0, 3).map(x => `${x.g} ${fmtPct(x.p)}`).join('   ') + '   ' : '') + 'Profil ' + per;
-  K.T(line, 80, 1270, `700 26px ${fu}`, W8, 920);
-  K.T('Sillon', 80, 1312, `800 24px ${fu}`, W6);
-  return K.blob();
-}
 
 /* ================= prédictions ================= */
 let PD = null;
@@ -3728,7 +3817,6 @@ function renderPredict() {
 }
 
 /* ================= rappel mensuel + fusion ================= */
-const SPOTIFY_PRIVACY = 'https://www.spotify.com/account/privacy/';
 let notifClosed = false, mergeMode = false;
 function syncBase() { const s = Prefs.data.sync || {}; return s.importedAt || Store.savedAt || (D ? (D.lastDay + 1) * DAYMS : Date.now()); }
 function syncState() {
@@ -4023,6 +4111,7 @@ async function saBoot() {
   if (SPA.ok()) syncSpotify(false);
   new MutationObserver(() => queueCovers()).observe(document.body, { childList: true, subtree: true });
   if (S.live) setLive(true);
+  setTimeout(() => grNewsBoot().catch(e => console.warn('groupe', e)), 7000);
 }
 
 /* ================= genres ================= */
@@ -4248,6 +4337,7 @@ function renderProfile() {
     const segs = r.gs.known ? (() => { let rest = 0; const s = []; for (const x of r.gs.mac) { if (glob.includes(x.g)) s.push(`<i style="width:${(x.p * 100).toFixed(2)}%;background:${col(x.g)}" title="${esc(x.g)} ${fmtPct(x.p)}"></i>`); else rest += x.p; } if (rest > 0) s.push(`<i style="width:${(rest * 100).toFixed(2)}%;background:var(--chip2)" title="Autres ${fmtPct(rest)}"></i>`); return s.join(''); })() : '';
     return `<div class="evo"><b class="y">${r.y}</b>${r.ta >= 0 ? `<button class="ea" data-open="a:${r.ta}">${covA(r.ta)}<span><b>${esc(D.artists[r.ta])}</b><small>${esc(fmtDur(r.ms))} en tout</small></span></button>` : '<span></span>'}<span class="eb${r.gs.known ? '' : ' none'}">${segs || 'genres inconnus'}</span></div>`;
   }).join('') + (glob.length ? `<div class="lg2">${glob.map(g => `<span><i style="background:${col(g)}"></i>${esc(g)}</span>`).join('')}<span><i style="background:var(--chip2)"></i>Autres</span></div>` : '');
+  renderGenreTimeline(glob, col);
   const fav = [];
   for (const a of G.ordA) { if (G.rankA[a] > 40) break; const fi = G.firstA[a]; if (fi >= 0 && D.day[fi] >= D.lastDay - 730) fav.push(a); if (fav.length >= 10) break; }
   $('#prFav').innerHTML = fav.length ? fav.map(a => tileA(a, `découvert le ${fmtDay(D.day[G.firstA[a]])}`, `<span class="rk">n°${NS}${G.rankA[a]} de tes ${l.a.toLowerCase()}</span>`)).join('') : `<p class="empty">Aucune découverte de ces deux dernières années dans ton top 40 pour l'instant.</p>`;
@@ -4276,6 +4366,21 @@ async function idPng() {
   K.T('Sillon', 80, 1312, `800 24px ${fu}`, W6);
   return K.blob();
 }
+/* pochette Apple (iTunes Search, sans clé) : seulement pour les images exportées, en secours */
+const ITC = lsMap('sillon-itc');
+async function itArt(ent, name, artist) {
+  const k = ent + '|' + normT(name) + '|' + normT(artist), c = ITC.load()[k];
+  if (c !== undefined) return c || null;
+  try {
+    const r = await fetch('https://itunes.apple.com/search?' + new URLSearchParams({ term: artist + ' ' + name, entity: ent, limit: '10', country: 'FR' }));
+    if (!r.ok) return null;
+    const j = await r.json(), A = normT(artist), N = covN(name);
+    const hit = (j.results || []).find(x => { const xa = normT(x.artistName || ''), xn = covN((ent === 'song' ? x.trackName : x.collectionName) || ''); return xa && xn && (xa === A || xa.includes(A) || A.includes(xa)) && (xn === N || xn.startsWith(N) || N.startsWith(xn)); });
+    const u = hit && hit.artworkUrl100 ? hit.artworkUrl100.replace(/\/\d+x\d+bb\./, '/600x600bb.') : '';
+    ITC.load()[k] = u; ITC.dirty = true; ITC.save();
+    return u || null;
+  } catch (e) { return null; }
+}
 async function pngKit(Wd, Ht, hue) {
   const cv = document.createElement('canvas'); cv.width = Wd; cv.height = Ht;
   const g = cv.getContext('2d'), fu = getComputedStyle(document.body).getPropertyValue('--f-ui').trim() || 'sans-serif';
@@ -4285,7 +4390,7 @@ async function pngKit(Wd, Ht, hue) {
   const rg = g.createRadialGradient(Wd, 0, 0, Wd, 0, Wd); rg.addColorStop(0, `hsla(${(hue + 330) % 360},85%,60%,0.5)`); rg.addColorStop(1, 'hsla(0,0%,0%,0)'); g.fillStyle = rg; g.fillRect(0, 0, Wd, Ht);
   const fit = (t, w) => { t = sp(t); if (g.measureText(t).width <= w) return t; while (t.length > 1 && g.measureText(t + '…').width > w) t = t.slice(0, -1); return t + '…'; };
   const imgs = new Map();
-  const loadImg = u => { if (!imgs.has(u)) imgs.set(u, /dzcdn\.net/.test(u) ? Promise.resolve(null) : new Promise(res => { const im = new Image(); im.crossOrigin = 'anonymous'; const tm = setTimeout(() => res(null), 4000); im.onload = () => { clearTimeout(tm); res(im); }; im.onerror = () => { clearTimeout(tm); res(null); }; im.src = u; })); return imgs.get(u); };
+  const loadImg = u => { if (!imgs.has(u)) imgs.set(u, new Promise(res => { const im = new Image(); im.crossOrigin = 'anonymous'; const tm = setTimeout(() => res(null), 4000); im.onload = () => { clearTimeout(tm); res(im); }; im.onerror = () => { clearTimeout(tm); res(null); }; im.src = u; })); return imgs.get(u); };
   const K = {
     g, fu,
     T(txt, x, y, font, color, w) { g.font = font; g.fillStyle = color; g.fillText(w ? fit(txt, w) : sp(txt), x, y); },
@@ -4303,9 +4408,16 @@ async function pngKit(Wd, Ht, hue) {
       let key, label, url = null;
       if (kind === 'a') { key = 'a|' + D.artists[id]; label = D.artists[id]; }
       else if (kind === 't') { if (D.tl[id]) { kind = 'l'; id = D.tl[id]; } else { key = 't|' + D.tn[id] + '|' + D.artists[D.ta[id]]; label = D.tn[id]; } }
-      if (kind === 'l') { key = 'l|' + D.albums[id] + '|' + D.artists[D.la[id]]; label = D.albums[id]; if (SA) { const u = CC.get(akey(id)); if (u) url = u; } }
-      if (kind === 'a' && SA) { const al = artAlb(id); if (al) { const u = CC.get(akey(al)); if (u) url = u; } }
-      const im = url ? await loadImg(url) : null;
+      let q = null;
+      if (kind === 'l') { key = 'l|' + D.albums[id] + '|' + D.artists[D.la[id]]; label = D.albums[id]; if (SA) { const u = CC.get(akey(id)); if (u) { url = u; q = ['album', D.albums[id], D.artists[D.la[id]]]; } } }
+      if (kind === 't' && SA) { const u = CC.get(tkey(id)); if (u) { url = u; q = ['song', D.tn[id], D.artists[D.ta[id]]]; } }
+      if (kind === 'a' && SA) {
+        const al = artAlb(id), t = al ? -1 : artTrk(id), u = al ? CC.get(akey(al)) : t >= 0 ? CC.get(tkey(t)) : null;
+        if (u) { url = u; q = al ? ['album', D.albums[al], D.artists[id]] : ['song', D.tn[t], D.artists[id]]; }
+      }
+      let im = url ? await loadImg(url) : null;
+      /* si le navigateur refuse de dessiner la pochette Deezer, on prend la même chez Apple */
+      if (!im && q && /dzcdn\.net/.test(url)) { const u2 = await itArt(q[0], q[1], q[2]); if (u2) im = await loadImg(u2); }
       g.save(); g.beginPath(); if (round) g.arc(x + s / 2, y + s / 2, s / 2, 0, Math.PI * 2); else if (g.roundRect) g.roundRect(x, y, s, s, Math.max(4, s * 0.06)); else g.rect(x, y, s, s); g.clip();
       if (im) {
         if (kind === 'a') { g.filter = `blur(${Math.round(s * 0.09)}px) saturate(1.3)`; g.drawImage(im, x - s * 0.3, y - s * 0.3, s * 1.6, s * 1.6); g.filter = 'none'; }
@@ -4564,11 +4676,14 @@ function ytmFromJson(arr, out) {
   let n = 0;
   for (const x of arr) {
     if (!x || typeof x !== 'object' || !x.time) continue;
-    if (!(x.header === 'YouTube Music' || /music\.youtube\.com/.test(x.titleUrl || ''))) continue;
-    const sub = Array.isArray(x.subtitles) ? x.subtitles.find(s => s && s.name) : null;
-    if (!sub) continue;
     const ts = Date.parse(x.time); if (!isFinite(ts)) continue;
-    out.push({ ts, title: String(x.title || '').replace(/[\u00a0\u202f]/g, ' '), artist: String(sub.name) }); n++;
+    const sub = Array.isArray(x.subtitles) ? x.subtitles.find(s => s && s.name) : null;
+    const title = String(x.title || '').replace(/[\u00a0\u202f]/g, ' ');
+    const music = String(x.header || '').replace(/[\u00a0\u202f]/g, ' ') === 'YouTube Music' || /music\.youtube\.com/.test(x.titleUrl || '');
+    if (music && sub) { out.push({ ts, title, artist: String(sub.name), ch: String(sub.url || '') }); n++; continue; }
+    /* le reste sert de repère pour estimer les durées ; les vidéos YouTube qui ont l'air d'être de la musique sont triées à la fin */
+    const ad = Array.isArray(x.details) && x.details.length > 0;
+    out.push(!ad && !music && sub ? { ts, title, artist: String(sub.name), yt: 1 } : { ts, b: 1 });
   }
   return n;
 }
@@ -4601,13 +4716,14 @@ function ytmFromHtml(html, out) {
   let n = 0;
   for (const b of html.split('outer-cell').slice(1)) {
     const hm = b.match(/mdl-typography--title"?>([^<]*)</);
-    if (!(hm && /youtube music/i.test(hm[1])) && !/music\.youtube\.com\/watch/.test(b)) continue;
+    const music = (hm && /youtube music/i.test(hm[1].replace(/[\u00a0\u202f]|&nbsp;/g, ' '))) || /music\.youtube\.com\/watch/.test(b);
     const cm = b.match(/content-cell[^>]*>([\s\S]*?)<\/div>/); if (!cm) continue;
     const links = [...cm[1].matchAll(/<a [^>]*href="([^"]*)"[^>]*>([\s\S]*?)<\/a>/g)];
-    if (links.length < 2) continue;
     const parts = cm[1].split(/<br\s*\/?>/i).map(x => xun(x.replace(/<[^>]+>/g, '')).trim()).filter(Boolean);
     const ts = looseDate(parts[parts.length - 1] || ''); if (!isFinite(ts)) continue;
-    out.push({ ts, title: xun(links[0][2].replace(/<[^>]+>/g, '')), artist: xun(links[1][2].replace(/<[^>]+>/g, '')), raw: true }); n++;
+    const ok = links.length >= 2, e = ok ? { ts, title: xun(links[0][2].replace(/<[^>]+>/g, '')), artist: xun(links[1][2].replace(/<[^>]+>/g, '')), raw: true } : null;
+    if (music && e) { out.push(e); n++; continue; }
+    out.push(e && !music && !/annonces google|google ads/i.test(b) ? Object.assign(e, { yt: 1 }) : { ts, b: 1 });
   }
   return n;
 }
@@ -4619,32 +4735,101 @@ function ytTitle(t, a) {
   if (m && ck(m[1]) === ck(a)) s = m[2].trim();
   return s || t;
 }
-function ytmFinish(list, recs) {
+/* vidéo YouTube (hors YouTube Music) qui a l'air d'être de la musique : [artiste, titre], sinon null */
+const YT_MARK = /(clip officiel|clip vid[ée]o|official (?:music |lyric |lyrics )?video|official audio|audio officiel|visuali[sz]er|lyric video|[\(\[]audio[\)\]])/i;
+const YT_SEP = /^(.+?)\s+[-–—]\s+(.+)$/;
+const ytMark = t => YT_MARK.test(t) || /\bM\/?V\b/.test(t);
+const ytFirst = a => a.split(/\s*(?:,|\bx\b|\bfeat\.?|\bft\.?|\bfeaturing\b)\s*/i)[0].trim();
+function ytClip(ch, t, known) {
+  if (/#[^\s#]/.test(t) && !ytMark(t)) return null;
+  const a = ytArtist(ch), m = t.match(YT_SEP);
+  if (/\s-\s*topic\.?$/i.test(ch)) return a ? [a, t] : null;
+  const k = known.get(ck(a));
+  if (m) {
+    /* « Titre - Artiste (Clip) », courant au Japon : c'est la chaîne qui dit qui est l'artiste */
+    const sw = a && ck(ytFirst(ytClipTitle(m[2]))) === ck(a) && ck(ytFirst(m[1])) !== ck(a);
+    const art = sw ? a : ytFirst(m[1]), ttl = sw ? m[1] : m[2];
+    if (/vevo$/i.test(ch) || ytMark(t)) return [art, ttl];
+    return k && ck(art).includes(ck(a)) ? [k, ttl] : null;
+  }
+  return !/vevo$/i.test(ch) && k && ytMark(t) ? [k, t] : null;
+}
+/* titre d'un clip : sans « (Clip officiel) », « （OFFICIAL VIDEO） », « | Label », « MV »… */
+const ytClipTitle = t => t.replace(/\s*[\(\[（【「][^\)\]）】」]*(?:official|officiel|clip|vid[ée]o|audio|visuali[sz]er|lyrics?|paroles|M\/?V)[^\)\]）】」]*[\)\]）】」]/gi, '').replace(/\s+\|\s+.*$/, '').replace(/\s+M\/?V$/, '').trim() || t;
+function ytmFinish(list, recs, info = {}) {
+  info.clips = 0; info.rel = [];
   if (!list.length) return 0;
   list.sort((a, b) => a.ts - b.ts);
-  const raw = list.filter(x => !x.raw), cnt = new Map();
-  for (const x of raw) { const w = x.title.split(' '); for (let k = 1; k <= 3 && k < w.length; k++) { const p = w.slice(0, k).join(' ') + ' '; cnt.set(p, (cnt.get(p) || 0) + 1); } }
-  let pre = ''; if (raw.length >= 8) for (const [p, c] of cnt) if (c >= raw.length * 0.9 && p.length > pre.length) pre = p;
+  const titled = list.filter(x => !x.b && !x.raw), cnt = new Map();
+  for (const x of titled) { const w = x.title.split(' '); for (let k = 1; k <= 3 && k < w.length; k++) { const p = w.slice(0, k).join(' ') + ' '; cnt.set(p, (cnt.get(p) || 0) + 1); } }
+  let pre = ''; if (titled.length >= 8) for (const [p, c] of cnt) if (c >= titled.length * 0.9 && p.length > pre.length) pre = p;
+  /* artistes écoutés au moins 3 fois sur YouTube Music : servent à reconnaître leurs chaînes sur YouTube */
+  const kc = new Map(), known = new Map();
+  for (const x of list) if (!x.b && !x.yt) { const a = ytArtist(x.artist), k = ck(a); if (k) { kc.set(k, (kc.get(k) || 0) + 1); if (kc.get(k) >= 3 && !known.has(k)) known.set(k, a); } }
+  const clips = S.set.ytc !== false;
+  for (const x of list) {
+    if (x.b) continue;
+    let t = x.title;
+    if (!x.raw) t = pre && t.startsWith(pre) ? t.slice(pre.length) : t.replace(YT_PRE, '');
+    t = t.trim();
+    if (x.yt) {
+      const c = clips && t && !/^https?:\/\//.test(t) ? ytClip(x.artist, t, known) : null;
+      if (!c) { x.b = 1; continue; }
+      x.a = c[0]; x.t = ytClipTitle(c[1]); x.clip = 1;
+    } else { x.a = ytArtist(x.artist); x.t = t; }
+  }
   const names = new Map();
   for (const x of list) {
-    x.a = ytArtist(x.artist); const k = ck(x.a); if (!k) continue;
+    if (x.b) continue;
+    const k = ck(x.a); if (!k) continue;
     let m = names.get(k); if (!m) names.set(k, m = new Map());
     m.set(x.a, (m.get(x.a) || 0) + (/topic\.?$/i.test(x.artist) ? 3 : 1) + (/\s/.test(x.a) ? 1 : 0));
   }
   const canon = new Map(); for (const [k, m] of names) { let b = '', bw = -1; for (const [a, w] of m) if (w > bw) { b = a; bw = w; } canon.set(k, b); }
   let n = 0;
   for (let i = 0; i < list.length; i++) {
-    const x = list[i];
-    let t = x.title;
-    if (!x.raw) t = pre && t.startsWith(pre) ? t.slice(pre.length) : t.replace(YT_PRE, '');
-    t = t.trim();
+    const x = list[i]; if (x.b) continue;
+    const t = x.t;
     if (!t || /^https?:\/\//.test(t)) continue;
     const artist = canon.get(ck(x.a)) || x.a; if (!artist) continue;
-    const gap = i + 1 < list.length ? list[i + 1].ts - x.ts : Infinity, ms = gap > 0 && gap <= 42e4 ? gap : 21e4;
-    recs.push({ t: Math.round((x.ts + ms) / 1000), ms, name: ytTitle(t, artist), artist, album: '', uri: '', kind: 0, f: 64, plat: '', cc: '' });
-    n++;
+    /* durée estimée : jusqu'à la ligne suivante (morceau, vidéo ou pub), 7 min au plus */
+    let j = i + 1; while (j < list.length && list[j].ts <= x.ts) j++;
+    const gap = j < list.length ? list[j].ts - x.ts : Infinity, ms = gap <= 42e4 ? gap : 21e4;
+    const r = { t: Math.round((x.ts + ms) / 1000), ms, name: ytTitle(t, artist), artist, album: '', uri: '', kind: 0, f: 64, plat: '', cc: '' };
+    if (/^release$/i.test(artist)) info.rel.push({ r, ch: x.ch || '' });
+    recs.push(r); n++; if (x.clip) info.clips++;
   }
   return n;
+}
+/* « Release » : nom que YouTube met quand l'artiste n'a pas rempli sa fiche. Version GitHub : Sillon cherche le vrai nom sur Deezer
+   à partir du titre, et le garde seulement s'il n'y a pas de doute. Sinon : « Artiste inconnu ». */
+/* titre comparé tel quel (une version « Sped Up » ou un remix, c'est un autre son) */
+const relN = s => norm(s).replace(/[^\p{L}\p{N}]+/gu, ' ').trim();
+async function ytRelease(rel, mine) {
+  const res = { found: 0, unk: 0 };
+  if (!rel.length) return res;
+  const titles = new Map(); for (const e of rel) { const k = relN(e.r.name); if (k && !titles.has(k)) titles.set(k, e.r.name); }
+  const got = new Map();
+  if (SA) {
+    const L = [...titles].slice(0, 300);
+    for (let i = 0; i < L.length; i += 8) await Promise.all(L.slice(i, i + 8).map(async ([k, name]) => {
+      const d = await dz('/search/track?q=' + encodeURIComponent(`track:"${name}"`) + '&limit=15');
+      const arts = new Map();
+      for (const x of (d && d.data) || []) if (x && x.artist && x.artist.name && (relN(x.title || '') === k || relN(x.title_short || '') === k)) arts.set(ck(x.artist.name), x.artist.name);
+      const mineA = [...arts].filter(([c]) => mine.has(c));
+      const a = mineA.length === 1 ? mineA[0][1] : arts.size === 1 ? [...arts.values()][0] : '';
+      if (a && !/^release$/i.test(a)) got.set(k, a);
+    }));
+  }
+  /* une chaîne « Release » = un seul artiste : un titre retrouvé suffit pour tous ceux de la chaîne */
+  const byCh = new Map();
+  for (const e of rel) { const a = got.get(relN(e.r.name)); if (a && e.ch) { const s = byCh.get(e.ch) || new Set(); s.add(a); byCh.set(e.ch, s); } }
+  for (const e of rel) {
+    let a = got.get(relN(e.r.name));
+    if (!a && e.ch && byCh.has(e.ch) && byCh.get(e.ch).size === 1) a = [...byCh.get(e.ch)][0];
+    if (a) { e.r.artist = a; res.found++; } else { e.r.artist = 'Artiste inconnu'; res.unk++; }
+  }
+  return res;
 }
 
 /* ---------- Deezer (données personnelles : .xlsx, ou .csv / .json) ---------- */
@@ -4736,7 +4921,7 @@ async function ingestJson(base, text, ctx) {
     ctx.say(`${base} : ${fmtN(c)} ${pl(c, 'écoute')} Spotify`);
   } else if ('header' in x0 && ('titleUrl' in x0 || 'subtitles' in x0 || 'time' in x0)) {
     const c = ytmFromJson(arr, ctx.ytm); ctx.ytmJson++;
-    ctx.say(c ? `${base} : ${fmtN(c)} ${pl(c, 'écoute')} YouTube Music` : `${base} : aucune écoute YouTube Music dedans (seulement des vidéos YouTube)`);
+    ctx.say(c ? `${base} : ${fmtN(c)} ${pl(c, 'écoute')} YouTube Music` : `${base} : aucune écoute YouTube Music dedans (Sillon y cherche quand même les clips de musique)`);
   } else {
     const keys = Object.keys(x0), cols = dzCols(keys);
     if (!cols) { ctx.say(base + ' : format non reconnu, ignoré'); return; }
@@ -4806,7 +4991,7 @@ const HOW_A = u => `<a href="${u}" target="_blank" rel="noopener">`;
 const HOW = {
   spotify: `<ol><li>Ouvre ${HOW_A(SVCS.spotify.url)}la page Confidentialité du compte sur spotify.com</a> et connecte-toi.</li><li>Dans « Télécharger vos données », coche <b>Intégralité de votre historique de streaming</b> : c'est celui qui remonte à la création du compte. Valide, puis confirme via le mail de Spotify.</li><li>Spotify t'envoie le fichier par mail, en général en quelques jours (jusqu'à 30 jours).</li><li>Dépose le .zip ici. Les nouvelles écoutes s'ajoutent sans doublons. Le site te le rappelle tous les mois.</li></ol><p class="note">L'export « Données de compte » marche aussi (plus rapide, mais seulement la dernière année, sans appareils ni zappés).</p>`,
   apple: `<ol><li>Ouvre ${HOW_A(SVCS.apple.url)}privacy.apple.com</a> et connecte-toi avec ton compte Apple.</li><li>Choisis <b>Demander une copie de vos données</b>, puis coche seulement <b>Apple Media Services</b> (les services multimédias d'Apple). Inutile de prendre le reste.</li><li>Apple te prévient par mail quand c'est prêt, jusqu'à 7 jours plus tard.</li><li>Dépose le .zip ici tel quel. Si tu l'as déjà ouvert : dans le dossier « Apple Music Activity », dépose <b>Apple Music Play Activity.csv</b> et <b>Apple Music - Play History Daily Tracks.csv</b> ensemble.</li></ol><p class="note">Apple n'écrit pas le nom de l'artiste à côté de chaque écoute : Sillon le retrouve grâce au deuxième fichier.</p>`,
-  ytm: `<ol><li>Ouvre ${HOW_A(SVCS.ytm.url)}Google Takeout</a>, clique sur <b>Tout désélectionner</b>, puis coche <b>YouTube et YouTube Music</b>.</li><li>Dans <b>Toutes les données YouTube incluses</b>, ne garde que <b>historique</b>. Dans <b>Plusieurs formats</b>, choisis <b>JSON</b> pour l'historique (le HTML marche aussi, mais moins bien).</li><li>Crée l'export : Google l'envoie par mail, en quelques minutes ou quelques heures.</li><li>Dépose le .zip ici. Sillon garde seulement ce que tu as écouté sur YouTube Music, pas tes vidéos YouTube.</li></ol><p class="note">Google ne donne ni la durée écoutée ni les zappés : la durée est estimée avec l'écart entre deux morceaux.</p>`,
+  ytm: `<ol><li>Ouvre ${HOW_A(SVCS.ytm.url)}Google Takeout</a>, clique sur <b>Tout désélectionner</b>, puis coche <b>YouTube et YouTube Music</b>.</li><li>Dans <b>Toutes les données YouTube incluses</b>, ne garde que <b>historique</b>. Dans <b>Plusieurs formats</b>, choisis <b>JSON</b> pour l'historique (le HTML marche aussi, mais moins bien).</li><li>Crée l'export : Google l'envoie par mail, en quelques minutes ou quelques heures.</li><li>Dépose le .zip ici. Sillon garde ce que tu as écouté sur YouTube Music, plus les clips et les sons des chaînes d'artistes que tu regardes sur YouTube, pas tes autres vidéos.</li></ol><p class="note">Google ne donne ni la durée écoutée ni les zappés : la durée est estimée avec l'écart entre deux morceaux.</p>`,
   deezer: `<ol><li>Sur ${HOW_A(SVCS.deezer.url)}deezer.com</a>, ouvre les <b>Paramètres du compte</b>, puis la partie sur tes <b>données personnelles</b>.</li><li>Demande tes données et confirme via le mail de Deezer.</li><li>Deezer t'envoie un lien de téléchargement par mail, en quelques jours. Il marche 30 jours.</li><li>Dépose le fichier ici : le tableur « deezer-data… » ou le .zip qui le contient.</li></ol><p class="note">Deezer ne dit pas quand tu zappes ni si tu es en aléatoire : ces stats-là se basent sur tes autres écoutes.</p>`
 };
 let howSvc = null;
@@ -4826,6 +5011,7 @@ function lumOf(h, s, l) {
 /* couleur franche mais assez sombre pour du texte blanc lisible (contraste ≥ 4,5) */
 function deepCol(h, s = 74, lmax = 50) { h = ((h % 360) + 360) % 360; let l = lmax; while (l > 18 && lumOf(h, s, l) > 0.18) l--; return `hsl(${h} ${s}% ${l}%)`; }
 const KIND_ME = { day: 'Ma journée', week: 'Ma semaine', month: 'Mon mois', year: 'Mon année', all: 'Toute mon histoire' };
+const kindMe = R => R.wrap ? 'Mon Sillon Wrapped' : KIND_ME[R.g];
 function posterTitle(R) { return R.g === 'all' ? 'Depuis ' + ymd(D.firstDay)[0] : periodText(R.g, R.r0, R.r1); }
 function posterNums(R) {
   const X = R.X, gs = genreShare(X.aM), g1 = gs.known && gs.mac.length ? gs.mac[0] : null;
@@ -4833,11 +5019,11 @@ function posterNums(R) {
 }
 function posterHTML(R, withId) {
   const X = R.X, l = L(), h = R.A.length ? hueA(R.A[0]) : 140;
-  if (!X.plays) return `<div class="pst" style="--h:${h};--bg:${deepCol(h)}"><div class="psth"><p>${KIND_ME[R.g]}</p><h2${withId ? ' id="rcT"' : ''}>${esc(posterTitle(R))}</h2></div><p>Rien d'écouté sur cette période.</p><div class="pstfoot">Sillon</div></div>`;
+  if (!X.plays) return `<div class="pst" style="--h:${h};--bg:${deepCol(h)}"><div class="psth"><p>${kindMe(R)}</p><h2${withId ? ' id="rcT"' : ''}>${esc(posterTitle(R))}</h2></div><p>Rien d'écouté sur cette période.</p><div class="pstfoot">Sillon</div></div>`;
   const albs = topIdx(X.lM, 4, 1);
   const art = albs.length >= 4 ? `<div class="slv">${albs.map(covL).join('')}</div>` : `<div class="slv one">${albs.length ? covL(albs[0]) : covA(R.A[0])}</div>`;
   return `<div class="pst" style="--h:${h};--bg:${deepCol(h)}">
-    <div class="psth"><div class="pstart"><span class="vinyl" aria-hidden="true"></span>${art}</div><p>${KIND_ME[R.g]}</p><h2${withId ? ' id="rcT"' : ''}>${esc(posterTitle(R))}</h2></div>
+    <div class="psth"><div class="pstart"><span class="vinyl" aria-hidden="true"></span>${art}</div><p>${kindMe(R)}</p><h2${withId ? ' id="rcT"' : ''}>${esc(posterTitle(R))}</h2></div>
     <div class="pstcols"><div><h3>Top ${esc(l.a.toLowerCase())}</h3><ol>${R.A.map((a, j) => `<li><i>${j + 1}</i><span>${esc(D.artists[a])}</span></li>`).join('')}</ol></div><div><h3>Top ${esc(l.t.toLowerCase())}</h3><ol>${R.T.map((t, j) => `<li><i>${j + 1}</i><span>${esc(D.tn[t])}</span></li>`).join('')}</ol></div></div>
     <div class="pstnums">${posterNums(R).map(([k, v, isN]) => `<div><small>${esc(k)}</small><b${isN ? ` class="nb" style="--nch:${String(v).length}"` : ''}>${esc(v)}</b></div>`).join('')}</div>
     <div class="pstfoot">${DEMO ? 'Sillon, exemple fictif' : 'Sillon'}</div>
@@ -4867,7 +5053,7 @@ async function posterPng(R) {
     else await K.cover(M, y, S0, R.A[0], false, 'a');
     y += S0 + 70;
   }
-  K.T(KIND_ME[R.g], M, y, `700 36px ${fu}`, W8); y += 92;
+  K.T(kindMe(R), M, y, `700 36px ${fu}`, W8); y += 92;
   const tl = K.wrap(posterTitle(R), `900 96px ${fu}`, Wd - 2 * M, 2);
   tl.forEach(x => { K.T(x, M, y, `900 96px ${fu}`, W); y += 92; });
   if (!X.plays) { K.T('Rien d\'écouté sur cette période.', M, y + 40, `600 36px ${fu}`, W8); K.T('Sillon', M, Ht - M + 10, `800 28px ${fu}`, W8); return K.blob(); }
@@ -4889,42 +5075,42 @@ function storySlides(R) {
   const X = R.X, l = L(), out = [];
   const kind = { month: 'Ton mois', year: 'Ton année', all: 'Toute ton histoire', week: 'Ta semaine', day: 'Ta journée' }[R.g];
   const per = R.g === 'all' ? 'Depuis ' + ymd(D.firstDay)[0] : periodText(R.g, R.r0, R.r1);
-  if (!X.plays) { out.push({ html: `<p class="k rv">${kind}</p><h2 class="t rv" style="--d:1">${esc(per)}</h2><p class="d rv" style="--d:2">Rien d'écouté sur cette période.</p>` }); return out; }
+  if (!X.plays) { out.push({ id: 'empty', html: `<p class="k rv">${kind}</p><h2 class="t rv" style="--d:1">${esc(per)}</h2><p class="d rv" style="--d:2">Rien d'écouté sur cette période.</p>` }); return out; }
   const albs = topIdx(X.lM, 4, 1);
-  out.push({ dur: 4.5, vy: 'p0 spin', html: `<p class="k rv">${kind}</p><h2 class="t rv" style="--d:1">${esc(per)}</h2>${albs.length >= 4 ? `<div class="mos4 rv" style="--d:2">${albs.map(covL).join('')}</div>` : ''}<p class="d rv" style="--d:3">Le récap de ce que tu as écouté, en ${R.g === 'all' ? 'quelques écrans' : 'quelques écrans'}.</p><p class="hint">Touche à droite pour avancer, à gauche pour revenir</p>` });
+  out.push({ id: 'intro', dur: 4.5, vy: 'p0 spin', html: `<p class="k rv">${kind}</p><h2 class="t rv" style="--d:1">${esc(per)}</h2>${albs.length >= 4 ? `<div class="mos4 rv" style="--d:2">${albs.map(covL).join('')}</div>` : ''}<p class="d rv" style="--d:3">Le récap de ce que tu as écouté, en ${R.g === 'all' ? 'quelques écrans' : 'quelques écrans'}.</p><p class="hint">Touche à droite pour avancer, à gauche pour revenir</p>` });
   const mins = Math.round(X.ms / 60000), dl = recapDelta(R), bars = Array.from(X.bM), mx = Math.max(1, ...bars), pk = bars.indexOf(Math.max(...bars));
-  out.push({ html: `<p class="k rv">Tu as écouté</p><p class="n rv" style="--d:1;--nch:${fmtN(mins).length}" data-count="${mins}">${fmtN(mins)}</p><p class="t rv" style="--d:2">minutes de musique</p><p class="d rv" style="--d:3">Soit ${esc(fmtDur(X.ms))}${dl ? `, <b>${esc(dl)}</b>` : ''}.</p><div class="bars rv" style="--d:4" aria-hidden="true">${bars.map((v, i) => `<i style="height:${Math.max(2, v / mx * 100).toFixed(1)}%"${i === pk ? ' class="pk"' : ''}></i>`).join('')}</div><p class="d rv" style="--d:5">${R.g === 'year' || R.g === 'all' ? 'Ton plus gros mois' : 'Ton plus gros jour'} : <b>${esc(shortPeak(R))}</b></p>` });
+  out.push({ id: 'mins', html: `<p class="k rv">Tu as écouté</p><p class="n rv" style="--d:1;--nch:${fmtN(mins).length}" data-count="${mins}">${fmtN(mins)}</p><p class="t rv" style="--d:2">minutes de musique</p><p class="d rv" style="--d:3">Soit ${esc(fmtDur(X.ms))}${dl ? `, <b>${esc(dl)}</b>` : ''}.</p><div class="bars rv" style="--d:4" aria-hidden="true">${bars.map((v, i) => `<i style="height:${Math.max(2, v / mx * 100).toFixed(1)}%"${i === pk ? ' class="pk"' : ''}></i>`).join('')}</div><p class="d rv" style="--d:5">${R.g === 'year' || R.g === 'all' ? 'Ton plus gros mois' : 'Ton plus gros jour'} : <b>${esc(shortPeak(R))}</b></p>` });
   const a1 = R.A[0];
   if (a1 != null) {
     const sh = X.ms ? X.aM[a1] / X.ms : 0;
-    out.push({ vy: 'p2', html: `<p class="k rv">Ton ${esc(l.a1)} n° 1</p><div class="rv" style="--d:1">${covA(a1).replace('class="cv', 'class="cv big1')}</div><h2 class="t rv" style="--d:2">${esc(D.artists[a1])}</h2><p class="d rv" style="--d:3"><b>${esc(fmtDur(X.aM[a1]))}</b> ensemble, ${esc(fmtPlays(X.aP[a1]))}. C'est ${esc(fmtPct(sh))} de tout ce que tu as écouté.</p>` });
+    out.push({ id: 'a1', vy: 'p2', html: `<p class="k rv">Ton ${esc(l.a1)} n° 1</p><div class="rv" style="--d:1">${covA(a1).replace('class="cv', 'class="cv big1')}</div><h2 class="t rv" style="--d:2">${esc(D.artists[a1])}</h2><p class="d rv" style="--d:3"><b>${esc(fmtDur(X.aM[a1]))}</b> ensemble, ${esc(fmtPlays(X.aP[a1]))}. C'est ${esc(fmtPct(sh))} de tout ce que tu as écouté.</p>` });
   }
-  if (R.A.length >= 3) out.push({ dur: 7, html: `<p class="k rv">Ton top ${R.A.length}</p><h2 class="t rv" style="--d:1">${esc(l.a)}</h2><ol class="big">${R.A.map((a, j) => `<li class="rv" style="--d:${j + 2}"><i>${j + 1}</i>${covA(a)}<span><b>${esc(D.artists[a])}</b><small>${esc(fmtDur(X.aM[a]))}</small></span></li>`).join('')}</ol>` });
+  if (R.A.length >= 3) out.push({ id: 'aTop', dur: 7, html: `<p class="k rv">Ton top ${R.A.length}</p><h2 class="t rv" style="--d:1">${esc(l.a)}</h2><ol class="big">${R.A.map((a, j) => `<li class="rv" style="--d:${j + 2}"><i>${j + 1}</i>${covA(a)}<span><b>${esc(D.artists[a])}</b><small>${esc(fmtDur(X.aM[a]))}</small></span></li>`).join('')}</ol>` });
   const t1 = R.T[0];
-  if (t1 != null) out.push({ vy: 'p3', html: `<p class="k rv">Ton ${esc(l.t1)} n° 1</p><div class="rv" style="--d:1">${covT(t1).replace('class="cv', 'class="cv big1')}</div><h2 class="t rv" style="--d:2">${esc(D.tn[t1])}</h2><p class="d rv" style="--d:3">${esc(D.artists[D.ta[t1]])}, écouté <b>${fmtN(X.tP[t1])} fois</b>.</p>` });
-  if (R.T.length >= 3) out.push({ dur: 7, html: `<p class="k rv">Ton top ${R.T.length}</p><h2 class="t rv" style="--d:1">${esc(l.t)}</h2><ol class="big">${R.T.map((t, j) => `<li class="rv" style="--d:${j + 2}"><i>${j + 1}</i>${covT(t)}<span><b>${esc(D.tn[t])}</b><small>${esc(D.artists[D.ta[t]])}, ${esc(fmtPlays(X.tP[t]))}</small></span></li>`).join('')}</ol>` });
+  if (t1 != null) out.push({ id: 't1', vy: 'p3', html: `<p class="k rv">Ton ${esc(l.t1)} n° 1</p><div class="rv" style="--d:1">${covT(t1).replace('class="cv', 'class="cv big1')}</div><h2 class="t rv" style="--d:2">${esc(D.tn[t1])}</h2><p class="d rv" style="--d:3">${esc(D.artists[D.ta[t1]])}, écouté <b>${fmtN(X.tP[t1])} fois</b>.</p>` });
+  if (R.T.length >= 3) out.push({ id: 'tTop', dur: 7, html: `<p class="k rv">Ton top ${R.T.length}</p><h2 class="t rv" style="--d:1">${esc(l.t)}</h2><ol class="big">${R.T.map((t, j) => `<li class="rv" style="--d:${j + 2}"><i>${j + 1}</i>${covT(t)}<span><b>${esc(D.tn[t])}</b><small>${esc(D.artists[D.ta[t]])}, ${esc(fmtPlays(X.tP[t]))}</small></span></li>`).join('')}</ol>` });
   const gs = genreShare(X.aM);
   if (gs.known && gs.mac.length) {
     const top = gs.mac.slice(0, 4), mxg = top[0].p || 1;
-    out.push({ vy: 'p1', html: `<p class="k rv">Ce qui a tourné</p><h2 class="t rv" style="--d:1">${esc(top[0].g)}</h2><p class="d rv" style="--d:2">Ton genre n° 1, avec ${esc(fmtPct(top[0].p))} de ton écoute.</p><div class="gl">${top.map((x, j) => `<div class="rv" style="--d:${j + 3}"><span>${esc(x.g)}</span><span>${esc(fmtPct(x.p))}</span><em><s style="width:${(x.p / mxg * 100).toFixed(1)}%"></s></em></div>`).join('')}</div>` });
+    out.push({ id: 'gen', vy: 'p1', html: `<p class="k rv">Ce qui a tourné</p><h2 class="t rv" style="--d:1">${esc(top[0].g)}</h2><p class="d rv" style="--d:2">Ton genre n° 1, avec ${esc(fmtPct(top[0].p))} de ton écoute.</p><div class="gl">${top.map((x, j) => `<div class="rv" style="--d:${j + 3}"><span>${esc(x.g)}</span><span>${esc(fmtPct(x.p))}</span><em><s style="width:${(x.p / mxg * 100).toFixed(1)}%"></s></em></div>`).join('')}</div>` });
   }
   if (X.nA > 0) {
     let best = -1, bv = 0;
     for (let a = 0; a < D.na; a++) { const v = X.aM[a]; if (v > bv && G.firstA[a] >= X.i0 && G.firstA[a] < X.i1) { bv = v; best = a; } }
-    out.push({ vy: 'p0', html: `<p class="k rv">Tu as découvert</p><p class="n rv" style="--d:1;--nch:${fmtN(X.nA).length}" data-count="${X.nA}">${fmtN(X.nA)}</p><p class="t rv" style="--d:2">${esc(X.nA > 1 ? l.nan : l.na1)}</p>${best >= 0 ? `<div class="nd rv" style="--d:3">${covA(best)}<p class="d">Ta plus belle découverte : <b>${esc(D.artists[best])}</b>, ${esc(fmtDur(bv))}.</p></div>` : ''}<p class="d rv" style="--d:4">Et ${fmtN(X.nT)} ${esc(X.nT > 1 ? l.nt : l.nt1)} au total.</p>` });
+    out.push({ id: 'disc', vy: 'p0', html: `<p class="k rv">Tu as découvert</p><p class="n rv" style="--d:1;--nch:${fmtN(X.nA).length}" data-count="${X.nA}">${fmtN(X.nA)}</p><p class="t rv" style="--d:2">${esc(X.nA > 1 ? l.nan : l.na1)}</p>${best >= 0 ? `<div class="nd rv" style="--d:3">${covA(best)}<p class="d">Ta plus belle découverte : <b>${esc(D.artists[best])}</b>, ${esc(fmtDur(bv))}.</p></div>` : ''}<p class="d rv" style="--d:4">Et ${fmtN(X.nT)} ${esc(X.nT > 1 ? l.nt : l.nt1)} au total.</p>` });
   }
   const st = styleOf(R.r0, R.r1).sort((x, y) => lean(y) - lean(x)).slice(0, 4);
-  if (st.length >= 2) out.push({ dur: 7, html: `<p class="k rv">Ton style sur la période</p><h2 class="t rv" style="--d:1">${esc(styleTitle(st))}</h2><div class="sls2 rv" style="--d:2">${styleRows(st, true)}</div>` });
-  out.push({ fin: true, html: '' });
+  if (st.length >= 2) out.push({ id: 'style', dur: 7, html: `<p class="k rv">Ton style sur la période</p><h2 class="t rv" style="--d:1">${esc(styleTitle(st))}</h2><div class="sls2 rv" style="--d:2">${styleRows(st, true)}</div>` });
+  out.push({ id: 'fin', fin: true, html: '' });
   return out;
 }
-function openStories(g, a) {
+function openStories(g, a, wrap) {
   if (!D) return;
-  RC = { g, a: clamp(a, D.firstDay, D.lastDay) };
-  const R = recapData(RC.g, RC.a); RC.R = R;
-  const h0 = R.A.length ? hueA(R.A[0]) : 140, slides = storySlides(R);
+  RC = { g, a: clamp(a, D.firstDay, D.lastDay), wrap: !!wrap };
+  const R = recapData(RC.g, RC.a); RC.R = R; R.wrap = !!wrap;
+  const h0 = R.A.length ? hueA(R.A[0]) : 140, slides = wrap ? wrappedSlides(R, wrap) : storySlides(R);
   lastFocus = document.activeElement; hideTip();
-  $('#stoKind').textContent = { month: 'Ton mois', year: 'Ton année', all: 'Toute ton histoire', week: 'Ta semaine', day: 'Ta journée' }[g] + ' en récap';
+  $('#stoKind').textContent = wrap ? 'Sillon Wrapped ' + ymd(R.r0)[0] : { month: 'Ton mois', year: 'Ton année', all: 'Toute ton histoire', week: 'Ta semaine', day: 'Ta journée' }[g] + ' en récap';
   $('#stoSlides').innerHTML = slides.map((s, i) => s.fin ? `<section class="ss fin" data-i="${i}" aria-label="Résumé"></section>` : `<section class="ss" data-i="${i}" style="--h:${(h0 + STO_OFF[i % STO_OFF.length]) % 360};--bg:${deepCol(h0 + STO_OFF[i % STO_OFF.length])}">${s.vy ? `<span class="vinyl vy ${s.vy}" aria-hidden="true"></span>` : ''}${s.html}</section>`).join('');
   $('#stoBars').innerHTML = slides.map(() => '<span><i></i></span>').join('');
   STO = { slides, i: -1, paused: false, hold: 0, R };
@@ -4959,7 +5145,6 @@ function stoGo(i) {
   if (SA) queueCovers();
 }
 function stoPause(on) { if (!STO) return; STO.paused = on; $('#sto').classList.toggle('paused', on); $('#stoPause').setAttribute('aria-pressed', String(on)); $('#stoPause').setAttribute('aria-label', on ? 'Reprendre' : 'Mettre en pause'); }
-function closeStories() { if (!STO) return; STO = null; $('#sto').hidden = true; $('#stoSlides').innerHTML = ''; if (lastFocus && document.contains(lastFocus)) lastFocus.focus(); }
 function wireStories() {
   const fr = $('#stoFrame');
   $('#stoBars').addEventListener('animationend', e => { if (STO && !STO.paused && e.target.parentElement && e.target.parentElement.classList.contains('on')) stoGo(STO.i + 1); });
@@ -4972,12 +5157,12 @@ function wireStories() {
   fr.addEventListener('pointerup', up); fr.addEventListener('pointercancel', up); fr.addEventListener('pointerleave', up);
   $('#stoSlides').addEventListener('click', async e => {
     const b = e.target.closest('[data-sa]'); if (!b || !STO) return;
-    const k = b.dataset.sa, R = STO.R, name = `sillon-recap-${tagOf(R.g, RC.a)}.png`;
+    const k = b.dataset.sa, R = STO.R, name = R.wrap ? `sillon-wrapped-${ymd(R.r0)[0]}.png` : `sillon-recap-${tagOf(R.g, RC.a)}.png`;
     if (k === 'png') { const bl = await posterPng(R); if (bl) saveFile(name, bl); }
-    else if (k === 'share') { const bl = await posterPng(R); if (!bl) return; try { await navigator.share({ files: [new File([bl], name, { type: 'image/png' })], title: 'Mon récap Sillon' }); } catch (er) { if (er && er.name !== 'AbortError') saveFile(name, bl); } }
+    else if (k === 'share') { const bl = await posterPng(R); if (!bl) return; try { await navigator.share({ files: [new File([bl], name, { type: 'image/png' })], title: R.wrap ? 'Mon Sillon Wrapped' : 'Mon récap Sillon' }); } catch (er) { if (er && er.name !== 'AbortError') saveFile(name, bl); } }
     else if (k === 'open') { const g = R.g, a = RC.a; closeAll(); S.gran = g; S.anchor = a; S.calYear = null; savePrefs(); if (S.view !== 'stats') location.hash = 'stats'; else { render(); window.scrollTo(0, 0); } }
     else if (k === 'again') stoGo(0);
-    else if (k === 'prev' || k === 'next') { const g = R.g, a = shift(g, RC.a, k === 'prev' ? -1 : 1); openStories(g, a); }
+    else if (k === 'prev' || k === 'next') { const g = R.g, a = shift(g, RC.a, k === 'prev' ? -1 : 1); if (R.wrap) openWrapped(ymd(a)[0]); else openStories(g, a); }
   });
   document.addEventListener('keydown', e => {
     if (!STO || $('#sto').hidden) return;
@@ -5056,7 +5241,7 @@ const GUIDE = {
       ['Ouvre le mail de Google', 'La plupart du temps, il arrive le jour même.'],
       ['Télécharge le .zip', 'Il commence par « takeout ». Tu as environ 7 jours et 5 téléchargements maximum pour le récupérer.']
     ],
-    imp: 'Dépose le .zip tel quel. Il contient aussi tes vidéos YouTube : Sillon garde seulement ce que tu as écouté sur YouTube Music.',
+    imp: 'Dépose le .zip tel quel. Il contient aussi tes vidéos YouTube : Sillon garde ce que tu as écouté sur YouTube Music, plus les clips et les sons des chaînes d\'artistes, pas tes autres vidéos.',
     faq: [
       ['Sillon dit « aucune écoute YouTube Music dedans »', 'Soit ton historique était en pause, soit tu écoutais sans être connecté. Seules les écoutes faites en étant connecté, historique activé, sont enregistrées.'],
       ['Les minutes d\'écoute sont approximatives', 'Google ne donne pas la durée écoutée. Sillon l\'estime avec l\'écart entre deux morceaux (3 min 30 par défaut). Le nombre d\'écoutes, lui, est juste.'],
@@ -5170,10 +5355,13 @@ function groupSummary() {
   const sA = new Uint8Array(D.na), sT = new Uint8Array(D.nt);
   let tMs = 0, plays = 0, nA = 0, nT = 0, skN = 0, skT = 0;
   const d0 = D.firstDay, dayMs = new Float64Array(Math.max(1, D.lastDay - d0 + 1)), dayOn = new Uint8Array(dayMs.length);
+  const wk = grWk(), wA = new Float64Array(D.na), wT = new Float64Array(D.nt);
+  let wMs = 0, pwMs = 0, wPl = 0;
   for (let i = 0; i < D.n; i++) {
     const t = K[i]; if (TK[t] !== 0) continue;
     const ms = M[i], a = TA[t], mo = MN[i];
     dayMs[DY[i] - d0] += ms; if (ms >= 30000) dayOn[DY[i] - d0] = 1;
+    if (DY[i] >= wk) { wMs += ms; wA[a] += ms; wT[t] += ms; if (ms >= 30000) wPl++; } else if (DY[i] >= wk - 7) pwMs += ms;
     if (!(D.f[i] & 64)) { skT++; if (ms < 30000) skN++; }
     tMs += ms; mMs[mo - mF] += ms; aA[a] += ms; tA[t] += ms; hrs[HR[i]] += ms; wd[dow(DY[i])] += ms;
     if (mo >= y0) aY[a] += ms;
@@ -5184,7 +5372,7 @@ function groupSummary() {
   const mins = v => Math.round(v / 60000), an = a => String(D.artists[a]).slice(0, 80);
   let days = 0, streak = 0, run = 0, bigD = 0, bigDd = d0;
   for (let i = 0; i < dayMs.length; i++) { if (dayOn[i]) { days++; run++; if (run > streak) streak = run; } else run = 0; if (dayMs[i] > bigD) { bigD = dayMs[i]; bigDd = d0 + i; } }
-  const A50 = top(aA, 50), AY = top(aY, 25), AM = top(aMo, 15), T20 = top(tA, 20);
+  const A50 = top(aA, 50), AY = top(aY, 25), AM = top(aMo, 15), T20 = top(tA, 20), AW = top(wA, 10), TW = top(wT, 5);
   const svc = new Set(); for (const s of (Prefs.data.sync.sources || [])) for (const x of String(s.svc || '').split(' + ')) if (x) svc.add(x);
   return {
     v: 1, svc: [...svc].join(' + ').slice(0, 60),
@@ -5195,8 +5383,21 @@ function groupSummary() {
     yr: cy, aNY: AY.map(an), aMY: AY.map(a => mins(aY[a])),
     mo: cm, aNM: AM.map(an), aMM: AM.map(a => mins(aMo[a])),
     tN: T20.map(t => String(D.tn[t]).slice(0, 100)), tA: T20.map(t => an(TA[t])), tM: T20.map(t => mins(tA[t])),
-    hrs: Array.from(hrs, mins), wd: Array.from(wd, mins)
+    hrs: Array.from(hrs, mins), wd: Array.from(wd, mins),
+    wk, wMin: mins(wMs), wPl, pwMin: mins(pwMs), wAN: AW.map(an), wAM: AW.map(a => mins(wA[a])),
+    wTN: TW.map(t => String(D.tn[t]).slice(0, 100)), wTA: TW.map(t => an(TA[t])), wTM: TW.map(t => mins(wT[t]))
   };
+}
+/* le son que tu fais écouter au groupe, et ceux des autres que tu as écoutés : réglés sur cet appareil */
+function grRecPack(g) {
+  const out = {}, r = g && g.rec;
+  if (r && typeof r.n === 'string' && r.n && typeof r.at === 'number' && r.at > Date.now() - 7 * DAYMS) {
+    out.rec = { n: r.n.slice(0, 100), a: String(r.a || '').slice(0, 80), at: r.at };
+    if (typeof r.u === 'string' && /^[A-Za-z0-9]{22}$/.test(r.u)) out.rec.u = r.u;
+  }
+  const ok = Array.isArray(g && g.recOk) ? g.recOk.filter(k => typeof k === 'string').slice(0, 20) : [];
+  if (ok.length) out.recOk = ok;
+  return out;
 }
 let grPushT = 0;
 function groupAutoPush(delay = 4000) {
@@ -5213,13 +5414,23 @@ function grRemoved(g) {
 }
 async function groupPush(force) {
   const g = grMe(); if (!fbCfg() || !g || !g.gid || DEMO || !D) return false;
-  const sum = groupSummary(), pp = Prefs.data.sync.pp, sig = [D.n, D.lastDay, sum.tMin, g.me, sum.mo, sum.svc, Prefs.data.sync.ppAt || 0].join('|');
+  if (GRP.mGid === g.gid && GRP.members.length && GRP.uid) g.recOk = grRecOkCalc(grMembers());
+  const sum = Object.assign(groupSummary(), grRecPack(g)), pp = Prefs.data.sync.pp;
+  const sig = [D.n, D.lastDay, sum.tMin, g.me, sum.mo, sum.svc, Prefs.data.sync.ppAt || 0, sum.wk, sum.rec ? sum.rec.at : 0, (sum.recOk || []).join(',')].join('|');
   if (ppOk(pp)) sum.pp = pp;
   if (!force && g.sig === sig) return false;
   const { F, db, uid } = await fbInit();
   const ref = F.doc(db, 'groups', g.gid, 'members', uid);
   if (g.pushedAt && g.uid === uid && !(await F.getDoc(ref)).exists()) { grRemoved(g); return false; }
-  await F.setDoc(ref, Object.assign(sum, { name: g.me, updatedAt: F.serverTimestamp() }));
+  const doc = Object.assign(sum, { name: g.me, updatedAt: F.serverTimestamp() });
+  try { await F.setDoc(ref, doc); GRP.oldRules = false; }
+  catch (e) {
+    /* anciennes règles Firebase (liste de champs fermée) : on envoie l'essentiel, et on prévient */
+    if (!/permission-denied|insufficient permissions/i.test(String((e && (e.code || e.message)) || e))) throw e;
+    const lite = {}; for (const k of GR_KEYS) if (k in doc) lite[k] = doc[k];
+    await F.setDoc(ref, lite);
+    if (!GRP.oldRules) { GRP.oldRules = true; if (S.view === 'groupe') grRefresh(); }
+  }
   g.sig = sig; g.pushedAt = Date.now(); g.uid = uid; Prefs.save();
   return true;
 }
@@ -5241,7 +5452,7 @@ async function groupListen() {
     const un = F.onSnapshot(F.collection(db, 'groups', gid, 'members'), snap => {
       if (GRP.gid !== gid) return;
       GRP.members = snap.docs.map(d => Object.assign({ id: d.id }, d.data({ serverTimestamps: 'estimate' })));
-      GRP.loading = false;
+      GRP.loading = false; GRP.cached = !!snap.metadata.fromCache;
       const g2 = grMe();
       if (g2 && g2.gid === gid && g2.pushedAt && g2.uid === GRP.uid && !snap.metadata.fromCache && !snap.metadata.hasPendingWrites && !GRP.members.some(m => m.id === GRP.uid)) { grRemoved(g2); return; }
       grRefresh();
@@ -5259,7 +5470,7 @@ function groupForget() {
 }
 /* pas de nouveau rendu pendant qu'on tape dans un champ du groupe */
 function grRefresh() {
-  if (S.view !== 'groupe') return;
+  if (S.view !== 'groupe') { grWatch(); return; }
   const a = document.activeElement;
   if (a && a.matches && a.matches('#grBody input')) { GRP.dirty = true; return; }
   GRP.dirty = false; renderGroup();
@@ -5292,9 +5503,9 @@ async function grSetPp(file) {
 }
 
 /* ---------- calculs sur les membres ---------- */
-function grMembers() {
+function grMembers(list = GRP.members) {
   const by = new Map();
-  for (const m of GRP.members) {
+  for (const m of list) {
     if (!m || typeof m.name !== 'string' || !m.name) continue;
     m.ts = m.updatedAt && m.updatedAt.toMillis ? m.updatedAt.toMillis() : 0;
     m.me = m.id === GRP.uid;
@@ -5309,12 +5520,15 @@ function grSum(m, key, per) {
   let s = 0; for (let i = Math.max(0, from - mF); i <= cm - mF && i < arr.length; i++) s += arr[i] || 0;
   return s;
 }
-const grMin = (m, per) => per === 'a' ? (m.tMin || 0) : grSum(m, 'mMin', per);
-const grPlays = (m, per) => per === 'a' ? (m.plays || 0) : grSum(m, 'mPl', per);
+/* semaine en cours : numéro du lundi (jours depuis 1970, heure locale) */
+const grWk = () => { const t = tsDay(Date.now() / 1000); return t - dow(t); };
+const grWkOn = m => m.wk === grWk();
+const grMin = (m, per) => per === 'w' ? (grWkOn(m) ? m.wMin || 0 : 0) : per === 'a' ? (m.tMin || 0) : grSum(m, 'mMin', per);
+const grPlays = (m, per) => per === 'w' ? (grWkOn(m) ? m.wPl || 0 : 0) : per === 'a' ? (m.plays || 0) : grSum(m, 'mPl', per);
 function grArtists(ms, per) {
   const cm = curMon(), cy = new Date().getFullYear(), map = new Map();
   for (const m of ms) {
-    const [N, V] = per === 'a' ? [m.aN, m.aM] : per === 'y' ? (m.yr === cy ? [m.aNY, m.aMY] : []) : (m.mo === cm ? [m.aNM, m.aMM] : []);
+    const [N, V] = per === 'a' ? [m.aN, m.aM] : per === 'w' ? (grWkOn(m) ? [m.wAN, m.wAM] : []) : per === 'y' ? (m.yr === cy ? [m.aNY, m.aMY] : []) : (m.mo === cm ? [m.aNM, m.aMM] : []);
     (N || []).forEach((n, i) => { const k = norm(n); let o = map.get(k); if (!o) map.set(k, o = { name: n, min: 0, who: [] }); o.min += (V && V[i]) || 0; if (!o.who.includes(m.name)) o.who.push(m.name); });
   }
   return [...map.values()];
@@ -5404,10 +5618,10 @@ function grEquiv(min) {
 }
 
 /* ---------- affichage ---------- */
-const GR_PER = { m: 'Ce mois-ci', y: 'Cette année', a: 'Depuis le début' };
+const GR_PER = { w: 'Cette semaine', m: 'Ce mois-ci', y: 'Cette année', a: 'Depuis le début' };
 const grH = min => { min = Math.round(min); return min >= 60 ? `${fmtN(Math.floor(min / 60))}${NB}h${min % 60 ? NB + String(min % 60).padStart(2, '0') : ''}` : `${fmtN(min)}${NB}min`; };
 function grHero(kick, title, lead) { $('#grKick').textContent = kick; $('#grTitle').textContent = title; $('#grLead').textContent = lead; }
-/* champs envoyés au groupe (pour info : les règles limitent seulement leur nombre, à 60) */
+/* champs acceptés par les règles Firebase d'avant la 2.8.0 : sert de repli si un groupe les a encore */
 const GR_KEYS = ['v', 'name', 'updatedAt', 'pp', 'svc', 'first', 'last', 'tMin', 'plays', 'nA', 'nT', 'sk', 'days', 'streak', 'bigD', 'bigDd', 'mF', 'mMin', 'mPl', 'aN', 'aM', 'yr', 'aNY', 'aMY', 'mo', 'aNM', 'aMM', 'tN', 'tA', 'tM', 'hrs', 'wd'];
 const GR_RULES = `rules_version = '2';
 service cloud.firestore {
@@ -5529,7 +5743,7 @@ function grSetupHTML() {
   </article>`;
 }
 const grRulesBox = () => `<details class="how2 grrules"><summary>Règles Firebase à jour</summary><p>Pour la personne qui gère Firebase. Si une mise à jour de Sillon change ces règles, recolle-les dans l'onglet «\u00a0Règles\u00a0» de Firestore, puis «\u00a0Publier\u00a0».</p><div class="grcode"><div class="gact"><button class="btn" data-gr="copyRules">Copier les règles</button></div><pre tabindex="0" aria-label="Règles de sécurité Firestore">${esc(GR_RULES)}</pre></div></details>`;
-const GR_SHARE = 'Ce qui part dans le groupe : ton pseudo, ta photo si tu en mets une, ton temps d\'écoute mois par mois, tes heures d\'écoute, tes 50 artistes et tes 20 titres les plus écoutés. Jamais ton historique complet. Tu peux retirer tes chiffres quand tu veux.';
+const GR_SHARE = 'Ce qui part dans le groupe : ton pseudo, ta photo si tu en mets une, ton temps d\'écoute mois par mois et de la semaine, tes heures d\'écoute, tes 50 artistes et tes 20 titres les plus écoutés (et ceux de la semaine), et le son que tu fais écouter. Jamais ton historique complet. Tu peux retirer tes chiffres quand tu veux.';
 const grInviteLabel = () => navigator.share && matchMedia('(pointer:coarse)').matches ? 'Partager le lien' : 'Copier le lien';
 function renderGroup() {
   const body = $('#grBody'); if (!body) return;
@@ -5554,6 +5768,7 @@ function renderGroup() {
   grHero('Ton groupe', g.name || 'Groupe', ms.length ? `${fmtN(ms.length)} ${pl(ms.length, 'membre')}, mis à jour en direct.` : 'Mis à jour en direct.');
   if (GRP.err) { body.innerHTML = `<div class="card"><p>${esc(GRP.err)}</p><div class="gact"><button class="btn pri" data-gr="retry">Réessayer</button><button class="btn" data-gr="leave">Quitter ce groupe</button></div><p class="grmsg" id="grMsg" role="status"></p></div>`; return; }
   if (GRP.loading && !ms.length) { body.innerHTML = '<p class="gintro">Connexion au groupe…</p>'; return; }
+  if (ms.length) grLive(ms, g);
   const meIn = ms.some(m => m.me), alone = ms.filter(m => !m.me).length === 0;
   const rows = ms.map(m => ({ m, min: grMin(m, per), pl: grPlays(m, per) })).sort((a, b) => b.min - a.min || b.pl - a.pl);
   const tot = rows.reduce((s, r) => s + r.min, 0), totP = rows.reduce((s, r) => s + r.pl, 0), mx = Math.max(1, ...rows.map(r => r.min));
@@ -5567,6 +5782,8 @@ function renderGroup() {
   const link = grLink(g.gid), pname = GR_PER[per].toLowerCase();
   body.innerHTML = `
   ${meIn ? '' : `<div class="gstat"><p>${DEMO ? 'Importe ton historique pour apparaître dans le classement.' : 'Tes chiffres arrivent dans quelques secondes…'}</p>${DEMO ? '<div class="gact"><button class="btn pri" data-gr="import">Importer mon fichier</button><a class="btn" href="#guide">Voir le guide</a></div>' : ''}</div>`}
+  ${GRP.oldRules ? `<div class="gstat grold"><p>Les nouveautés du groupe (la semaine, les sons à faire écouter) attendent les nouvelles règles Firebase. La personne qui gère Firebase doit les recoller : bouton «\u00a0Copier les règles\u00a0» en bas de cette page.</p><div class="gact"><a class="btn" href="https://console.firebase.google.com/project/${esc(encodeURIComponent(fbCfg().projectId))}/firestore/rules" target="_blank" rel="noopener">Ouvrir les règles Firebase</a></div></div>` : ''}
+  ${GRP.news && GRP.news.length ? `<p class="grnews"><b>Depuis ta dernière visite</b><span>${GRP.news.map(x => esc(x.txt)).join('. ')}.</span></p>` : ''}
   ${alone ? `<section class="card grinv"><h2>Invite tes potes</h2><p class="sub">Envoie-leur ce lien : ils choisissent un pseudo et apparaissent ici dès qu'ils ont importé leurs stats.</p><input class="field" readonly value="${esc(link)}" aria-label="Lien d'invitation" data-sel><div class="gact"><button class="btn pri" data-gr="invite">${grInviteLabel()}</button></div></section>` : ''}
   <div class="grhead"><div class="grbar"><div class="chips" role="group" aria-label="Période">${Object.entries(GR_PER).map(([k, v]) => `<button aria-pressed="${k === per}" data-grp="${k}">${v}</button>`).join('')}</div>
     ${alone ? '' : `<button class="btn" data-gr="invite">Inviter des potes</button>`}</div>
@@ -5577,14 +5794,16 @@ function renderGroup() {
     <div class="kpi"><span class="k">Le plus accro</span><span class="v sm">${top1 ? esc(top1.m.name) : '–'}</span><span class="d">${top1 ? grH(top1.min) + ' ' + esc(pname) : 'personne pour l\'instant'}</span></div>
   </div>${grEquiv(tot) ? `<p class="grequiv">${esc(GR_PER[per])}, le groupe a écouté ${grH(tot)} de musique. ${esc(grEquiv(tot))}</p>` : ''}</div>
   <section class="blk"><div class="bh"><div><h2>Qui écoute le plus</h2><p class="sub">${esc(GR_PER[per])}, en temps d'écoute</p></div></div>
-    <ol class="grlb">${rows.map((r, i) => `<li class="${r.m.me ? 'me' : ''}"><span class="rk">${i + 1}</span>${grAv(r.m.name, r.m.pp)}<span class="nm"><b>${esc(r.m.name)}${r.m.me ? ' <small>(toi)</small>' : ''}</b>${stale(r.m) || `<small>${esc(r.m.svc || '')}</small>`}</span><span class="br" aria-hidden="true"><i style="width:${(r.min / mx * 100).toFixed(1)}%"></i></span><span class="vl"><b>${grH(r.min)}</b><small>${tot ? fmtPct(r.min / tot) : '0' + NB + '%'}</small></span></li>`).join('')}</ol></section>
+    <ol class="grlb">${rows.map((r, i) => `<li class="${r.m.me ? 'me' : ''}"><span class="rk">${i + 1}</span>${grAv(r.m.name, r.m.pp)}<span class="nm"><b>${esc(r.m.name)}${r.m.me ? ' <small>(toi)</small>' : ''}</b>${(per === 'w' && !grWkOn(r.m) ? '<small class="grst">pas de chiffres cette semaine</small>' : stale(r.m)) || `<small>${esc(r.m.svc || '')}</small>`}</span><span class="br" aria-hidden="true"><i style="width:${(r.min / mx * 100).toFixed(1)}%"></i></span><span class="vl"><b>${grH(r.min)}</b><small>${tot ? fmtPct(r.min / tot) : '0' + NB + '%'}</small></span></li>`).join('')}</ol></section>
   ${alone ? '' : `
+  ${grWeekHTML(ms)}
+  ${grRecHTML(ms, g)}
   ${aw.length ? `<section class="blk"><div class="bh"><div><h2>Les trophées du groupe</h2><p class="sub">Depuis le début, d'après les chiffres de chacun</p></div></div>
     <div class="graw">${aw.map(x => `<div class="card${x.m.me ? ' me' : ''}"><span class="k">${esc(x.title)}</span><div class="who">${grAv(x.m.name, x.m.pp)}<b>${esc(x.m.name)}${x.m.me ? ' <small>(toi)</small>' : ''}</b></div><p>${esc(x.txt)}</p></div>`).join('')}</div></section>` : ''}
   ${grDuelHTML(ms, per)}
   ${twin ? `<section class="blk"><div class="card grtwin">${grAv(twin.m.name, twin.m.pp)}<div><p class="sub">Ton jumeau musical dans le groupe</p><h2>${esc(twin.m.name)}</h2><p>${fmtPct(Math.max(0, Math.min(1, twin.sim)))} de goûts en commun${twin.common.length ? `, surtout ${esc(twin.common.join(', '))}` : ''}.</p></div></div></section>` : ''}
   <section class="blk"><div class="bh"><div><h2>Le top du groupe</h2><p class="sub">${esc(GR_PER[per])}, en additionnant le temps de chacun</p></div></div>
-    ${arts.length ? `<ol class="grtop">${arts.slice(0, 10).map((a, i) => `<li><span class="rk">${i + 1}</span>${cov('a|' + a.name, a.name, 'r')}<span class="nm"><b>${esc(a.name)}</b><small>${esc(a.who.length > 1 ? `${a.who.length} membres : ${grAnd(a.who)}` : a.who[0])}</small></span><span class="vl"><b>${grH(a.min)}</b></span></li>`).join('')}</ol>` : '<p class="gintro">Pas encore assez d\'écoutes sur cette période.</p>'}</section>
+    ${arts.length ? `<ol class="grtop">${arts.slice(0, 10).map((a, i) => `<li><span class="rk">${i + 1}</span>${grCovA(a.name)}<span class="nm"><b>${esc(a.name)}</b><small>${esc(a.who.length > 1 ? `${a.who.length} membres : ${grAnd(a.who)}` : a.who[0])}</small></span><span class="vl"><b>${grH(a.min)}</b></span></li>`).join('')}</ol>` : '<p class="gintro">Pas encore assez d\'écoutes sur cette période.</p>'}</section>
   ${trs.length ? `<section class="blk"><div class="bh"><div><h2>Les titres du groupe</h2><p class="sub">Depuis le début, en additionnant le temps de chacun</p></div></div>
     <ol class="grtop">${trs.slice(0, 8).map((t, i) => `<li><span class="rk">${i + 1}</span>${cov('t|' + t.name + '|' + t.artist, t.name)}<span class="nm"><b>${esc(t.name)}</b><small>${esc(t.artist)}, écouté par ${esc(grAnd(t.who))}</small></span><span class="vl"><b>${grH(t.min)}</b></span></li>`).join('')}</ol></section>` : ''}
   ${common.length ? `<section class="blk"><div class="bh"><div><h2>Vos artistes en commun</h2><p class="sub">Dans le top de plusieurs d'entre vous, ${esc(pname)}</p></div></div><div class="grcom">${common.map(a => `<div class="card"><b>${esc(a.name)}</b><small>${esc(grAnd(a.who))}</small></div>`).join('')}</div></section>` : ''}
@@ -5638,6 +5857,7 @@ function grConfirm(el, label) {
 }
 async function grAct(a, el) {
   if (a === 'invite') { grInvite(); return; }
+  if (/^rec/.test(a)) { grRecAct(a, el); return; }
   if (a === 'ppDel') { Prefs.data.sync.pp = ''; Prefs.data.sync.ppAt = Date.now(); Prefs.save(); renderGroup(); renderMeTop(); groupPush(true).then(() => grSay('Photo retirée.'), e => grSay(fbErr(e))); lkAutoPush(); return; }
   if (a === 'import') { openData(); return; }
   if (a === 'copyCfg') { navigator.clipboard.writeText(GR_CFG).then(() => toast('Modèle copié. Colle-le dans config.js sur GitHub.'), () => toast('Sélectionne le texte du modèle et copie-le.')); return; }
@@ -5707,6 +5927,7 @@ function wireGroup() {
     const b = e.target.closest('[data-gr]'); if (b) grAct(b.dataset.gr, b);
   });
   B.addEventListener('focusin', e => { if (e.target.matches('[data-sel]')) e.target.select(); });
+  B.addEventListener('input', e => { if (e.target.id === 'grRecQ') { const L = $('#grRecL'); if (L) L.innerHTML = grPickList(e.target.value); } });
   B.addEventListener('change', e => { if (e.target.id === 'grDuel') { GRP.duel = e.target.value; renderGroup(); return; } if (e.target.id === 'grPpIn' && e.target.files && e.target.files[0]) grSetPp(e.target.files[0]); });
   B.addEventListener('keydown', e => {
     if (e.key !== 'Enter' || !e.target.matches('input.field')) return;
@@ -6112,32 +6333,6 @@ async function meSetPp(file) {
   } catch (e) { meSay(e && e.message === 'img' ? 'Cette image ne s\'ouvre pas. Essaie une photo en JPEG ou en PNG.' : fbErr(e)); }
 }
 
-/* ---------- version : X refonte, Y grosse mise à jour, Z correctifs ---------- */
-const SILLON_V = '2.8.0';
-const SV_TYPE = { X: 'Refonte', Y: 'Grosse mise à jour', Z: 'Correctifs', I: 'Première version' };
-const SILLON_LOG = [
-  ['2.8.0', 'Y', ['Mises à jour : Sillon repère quand une nouvelle version est en ligne et te propose de recharger, sans attendre.', 'Tes réglages et ton thème suivent entre tes appareils reliés.', 'Sillon te prévient quand des écoutes manquent entre ton dernier import et tes 50 derniers morceaux Spotify.', 'Règles Firebase plus souples : plus besoin de les recoller quand le groupe gagne des stats.']],
-  ['2.7.1', 'Z', ['Pochettes aussi quand le fichier ne donne pas le nom de l\'album (souvent avec YouTube Music) : Sillon les retrouve à partir du titre du morceau.']],
-  ['2.7.0', 'Y', ['Fenêtre de bienvenue à la première visite : tu choisis ta plateforme, Sillon se met à ses couleurs et t\'ouvre la fiche pour récupérer tes données.', 'Pochettes pour tout le monde, sans connexion ni compte Spotify : elles viennent de Deezer. Un artiste prend la pochette de son album le plus écouté.']],
-  ['2.6.0', 'Y', ['Réglages dans la page Toi : style des graphiques (barres arrondies ou droites, courbe, aire, rétro, notes de musique), ligne de moyenne, lignes de repère, valeur du record.', 'Durées en heures et minutes, en heures ou en minutes, et dates en lettres ou en chiffres.', 'Couleur des pages, pochettes, animations réduites, page et période d\'ouverture, rappel de mise à jour.', 'Thème automatique : Sillon prend les couleurs de ta plateforme (Spotify, Apple Music, YouTube Music ou Deezer).']],
-  ['2.5.1', 'Z', ['Classements : touche une colonne deux fois pour passer de l\'ordre décroissant à l\'ordre croissant.', 'Nouvelle page À propos : versions, services utilisés, comment marche le site.']],
-  ['2.5.0', 'Y', ['Page Toi : ta photo, ton pseudo, ton groupe, tes appareils, le thème et tes données au même endroit.', 'Sur téléphone, la barre du bas avec l\'onglet Plus.', 'Groupe : trophées, duel 1 contre 1 et équivalences.', 'Page Suggestions : micro-genres, artistes et albums à découvrir, extraits de 30 secondes.', 'Numéro de version.']],
-  ['2.4.0', 'Y', ['Écran pour installer l\'appli sur téléphone.', 'Liaison entre ton PC et ton tel, avec des écoutes chiffrées.', 'Photos de profil dans le groupe.']],
-  ['2.3.0', 'Y', ['Stats de groupe entre potes, en direct : classement, top commun, jumeau musical.', 'Fiche pas à pas pour activer Firebase.']],
-  ['2.2.0', 'Y', ['Imports Apple Music, YouTube Music et Deezer.', 'Guide pas à pas pour récupérer ses stats.', 'Récaps en stories et en affiche.', 'Thèmes façon Apple Music, YouTube Music et Deezer.']],
-  ['2.1.0', 'Y', ['Version GitHub : vraies pochettes, connexion Spotify et derniers morceaux à chaque ouverture.', 'Appli installable sur PC et téléphone.']],
-  ['2.0.0', 'X', ['Nouveau design épuré, façon Spotify.', 'Prédictions, récaps par semaine, mois et année, jeux et classements.', 'Fusion de plusieurs comptes.']],
-  ['1.0.0', 'I', ['Graphiques par jour, semaine, mois et année.']]
-];
-const AB_SVC = [
-  ['Spotify Web API', 'Connexion à ton compte, tes derniers morceaux, et les pochettes exactes quand tu es connecté.', 'Version GitHub'],
-  ['Deezer API', 'Pochettes pour tout le monde, genres des artistes, artistes proches, extraits de 30 secondes.', 'Version GitHub'],
-  ['Last.fm API', 'Micro-genres, artistes similaires, albums à découvrir.', 'Version GitHub, avec une clé'],
-  ['Firebase', 'Authentication (connexion anonyme) et Cloud Firestore : groupes et liaison entre appareils.', 'Version GitHub'],
-  ['GitHub Pages', 'Hébergement du site.', 'Version GitHub'],
-  ['Google Fonts', 'Polices Figtree et Doto.', 'Les deux versions'],
-  ['Claude (Anthropic)', 'Hébergement et stockage de la version Claude, estimation des genres et des discographies, score de compatibilité, morceau en cours via le connecteur Spotify.', 'Version Claude']
-];
 function renderVersion() {
   const b = $('#meVer'); if (!b) return;
   b.innerHTML = `<p class="small mever"><a href="#apropos">Sillon ${SILLON_V}</a>${SA ? ', version GitHub' : ''} : les nouveautés et les infos du site.</p>`;
@@ -6158,7 +6353,7 @@ function renderAbout() {
     'Sillon garde les titres, artistes, albums, dates, durées et appareils. Les adresses IP de l\'export sont ignorées.',
     'Une écoute compte à partir de 30 secondes. En dessous, c\'est un morceau zappé.',
     SA ? 'Tes données restent dans ce navigateur. Si tu relies tes appareils, une copie chiffrée passe par Firebase : personne d\'autre ne peut la lire, même pas la personne qui a mis le site en ligne.' : 'Tes données sont gardées dans ton espace privé Claude, lié à ton compte.',
-    ...(SA ? ['Si tu rejoins un groupe, ses membres voient un résumé de tes stats : pseudo, photo, chiffres clés, temps d\'écoute par mois, par heure et par jour, tes 50 artistes et 20 titres les plus écoutés. Jamais ton historique complet.', 'Pour les pochettes, les genres et les suggestions, des noms d\'albums et d\'artistes sont envoyés à Deezer (et à Last.fm pour les suggestions), le temps de la recherche. Jamais ton historique.'] : [])
+    ...(SA ? ['Si tu rejoins un groupe, ses membres voient un résumé de tes stats : pseudo, photo, chiffres clés, temps d\'écoute par mois, de la semaine, par heure et par jour, tes 50 artistes et 20 titres les plus écoutés, ceux de ta semaine, et le son que tu choisis de faire écouter. Jamais ton historique complet.', 'Pour les pochettes, les genres et les suggestions, des noms d\'albums et d\'artistes sont envoyés à Deezer (et à Last.fm pour les suggestions), le temps de la recherche. Pour les images que tu télécharges, une pochette peut aussi être demandée à Apple (iTunes). Jamais ton historique.'] : [])
   ])}</section>
   <section class="blk"><div class="bh"><div><h2>Services et API</h2><p class="sub">Ce que Sillon utilise en dehors de ton navigateur</p></div></div>
     <table class="abtab"><thead><tr><th>Service</th><th>À quoi il sert</th><th>Version</th></tr></thead><tbody>${AB_SVC.map(([n, d, v]) => `<tr><td>${esc(n)}</td><td>${esc(d)}</td><td>${esc(v)}</td></tr>`).join('')}</tbody></table></section>
@@ -6373,7 +6568,7 @@ function wireSugg() {
   });
 }
 
-/* ================= réglages (page Toi) et thème selon la plateforme ================= */
+/* ================= réglages, fenêtre de bienvenue et nouvelle version en ligne ================= */
 const SKIN_SHORT = { nuit: 'Nuit', pomme: 'Pomme', ecarlate: 'Écarlate', violet: 'Violet', clair: 'Clair', wrapped: 'Wrapped', console: 'Console' };
 function applySet() {
   const r = document.documentElement;
@@ -6438,12 +6633,15 @@ const SET_UI = [
   { g: 'c', k: 'content', s: 1, t: 'Ce que Sillon compte', o: [['music', 'Musique'], ['pod', 'Podcasts'], ['all', 'Tout']] },
   { g: 'c', k: 'thr', s: 1, t: 'Une écoute compte à partir de', d: 'En dessous, c\'est un morceau zappé.', o: [[0, '0 s'], [30, '30 s'], [60, '60 s']] },
   { g: 'c', k: 'noSkip', s: 1, t: 'Ignorer les morceaux zappés', d: 'Ils sortent de toutes les stats, temps d\'écoute compris.' },
+  { g: 'c', k: 'ytc', yt: 1, t: 'Clips YouTube', d: 'Avec YouTube Music, compte aussi les clips et les sons des chaînes d\'artistes que tu regardes sur YouTube. Change ton prochain import.' },
   { g: 's', k: 'home', t: 'Page d\'ouverture', d: 'La page qui s\'affiche quand tu ouvres Sillon.', o: [['stats', 'Accueil'], ['recaps', 'Récaps'], ['classements', 'Classements'], ['profil', 'Ta carte'], ['groupe', 'Groupe', 1]] },
   { g: 's', k: 'gran0', t: 'Période de l\'accueil', d: 'Celle qui s\'affiche à l\'ouverture.', o: [['last', 'La dernière utilisée'], ['day', 'Jour'], ['week', 'Semaine'], ['month', 'Mois'], ['year', 'Année'], ['all', 'Tout']] },
   { g: 's', k: 'remind', t: 'Rappel pour mettre à jour tes stats', d: 'Sillon te prévient quand ton dernier import commence à dater.', o: [[30, 'Tous les mois'], [90, 'Tous les 3 mois'], [0, 'Jamais']] }
 ];
 const SET_G = { g: ['Graphiques', 'Pour les graphiques de l\'accueil, des fiches, des prédictions et du groupe.'], d: ['Affichage', ''], c: ['Ce qui compte comme une écoute', 'Les mêmes réglages que le bouton de réglages de l\'accueil.'], s: ['Au démarrage', ''] };
 const setGet = d => d.s ? S[d.k] : S.set[d.k];
+/* réglages YouTube : seulement pour qui a importé du YouTube Music (ou l'a choisi au départ) */
+const ytUser = () => platNow() === 'ytm' || (Prefs.data.sync.sources || []).some(x => /YouTube/.test(x.svc || ''));
 /* petit dessin de chaque style, pour les boutons */
 function chIcon(st) {
   const v = [9, 16, 12, 21], x0 = 4, w = 7, gap = 3, b = 23, y = h => b - h;
@@ -6496,7 +6694,7 @@ function renderSettings(fk, fv) {
   skSync();
   for (const g of Object.keys(SET_G)) {
     const el = $('#set' + g.toUpperCase()); if (!el) continue;
-    const rows = SET_UI.filter(d => d.g === g && (!d.sa || SA)).map(setRow).join('');
+    const rows = SET_UI.filter(d => d.g === g && (!d.sa || SA) && (!d.yt || ytUser())).map(setRow).join('');
     const [t, sub] = SET_G[g];
     let html = `<h3>${esc(t)}</h3>${sub ? `<p class="sub">${esc(sub)}</p>` : ''}`;
     if (g === 'g') {
@@ -6662,7 +6860,522 @@ function wireUpd() {
   document.addEventListener('visibilitychange', () => { if (document.visibilityState === 'visible') updCheck(); });
 }
 
-/* ================= wiring ================= */
+/* ================= tes goûts dans le temps (page Ta carte) ================= */
+const msDay = ms => dn(1970 + Math.floor(ms / 12), ((ms % 12) + 12) % 12, 1);
+let GTL = null;
+/* minutes par mois et par grande famille de genres, sur les 24 derniers mois */
+function genreTimeline(glob) {
+  const key = dataVer + '|' + S.content + '|' + S.thr + '|' + S.noSkip + '|' + GENVER + '|' + glob.join(',');
+  if (GTL && GTL.key === key) return GTL;
+  const m1 = monSerial(D.lastDay), m0 = Math.max(monSerial(D.firstDay), m1 - 23), nM = m1 - m0 + 1;
+  const cats = glob.concat(['Autres']), K = cats.length, ci = new Map(glob.map((g, j) => [g, j]));
+  const mat = new Float64Array(nM * K), known = new Float64Array(nM), tot = new Float64Array(nM), am = new Map();
+  const pass = makePass(false), thr = S.thr * 1000;
+  for (let i = lb(D.day, msDay(m0)); i < D.n; i++) {
+    if (!pass(i) || D.m[i] < thr) continue;
+    const mi = D.mon[i] - m0; if (mi < 0 || mi >= nM) continue;
+    const a = D.ta[D.k[i]], v = D.m[i]; tot[mi] += v;
+    let cs = am.get(a);
+    if (cs === undefined) { const gs = artistGenres(a); cs = gs.length ? [...new Set(gs.map(macroOf))].map(g => ci.has(g) ? ci.get(g) : K - 1) : null; am.set(a, cs); }
+    if (!cs) continue;
+    known[mi] += v; for (const c of cs) mat[mi * K + c] += v / cs.length;
+  }
+  GTL = { key, m0, nM, cats, K, mat, known, tot };
+  return GTL;
+}
+function gtlLabel(R, i, long) { const ms = R.m0 + i, y = 1970 + Math.floor(ms / 12), m = ms % 12; return long ? cap(MOL[m]) + ' ' + y : (m === 0 ? String(y) : MO[m]); }
+function renderGenreTimeline(glob, col) {
+  const box = $('#prGtl'); if (!box) return;
+  const R = genreTimeline(glob);
+  if (!R.known.some(v => v >= 60000)) { box.innerHTML = genreEmpty(); return; }
+  const lg = `<div class="lg2">${R.cats.map(g => `<span><i style="background:${col(g)}"></i>${esc(g)}</span>`).join('')}</div>`;
+  box.innerHTML = `<div class="fig md gtlf"><svg id="gtlSvg" role="group" aria-label="Part de chaque genre dans ton écoute, mois par mois"></svg></div>${lg}`;
+  const svg = $('#gtlSvg');
+  fig(svg, () => drawGtl(svg, R, col));
+}
+function drawGtl(svg, R, col) {
+  const W = svg.clientWidth, H = svg.clientHeight; if (!W || !H) return;
+  const narrow = W < 520, n = R.nM, K = R.K, mL = 42, mR = 6, mT = 8, mB = 26;
+  const pw = W - mL - mR, ph = H - mT - mB, y0 = mT + ph, band = pw / n, bw = Math.max(3, Math.min(30, band * 0.74)), gap = n > 18 ? 1 : 1.5;
+  let s = '';
+  for (const p of [0, 0.5, 1]) { const yy = Math.round(y0 - p * ph) + 0.5; s += `<line class="${p ? 'gl' : 'bl'}" x1="${mL}" x2="${W - mR}" y1="${yy}" y2="${yy}"/><text x="${mL - 8}" y="${yy}" dy="0.32em" text-anchor="end">${p * 100}${NS}%</text>`; }
+  const tipOf = [];
+  for (let i = 0; i < n; i++) {
+    const x = mL + i * band + (band - bw) / 2, kn = R.known[i], lab = gtlLabel(R, i, true);
+    if (kn < 60000) {
+      s += `<rect class="gtle" x="${x.toFixed(1)}" y="${mT}" width="${bw.toFixed(1)}" height="${ph}" rx="3"/>`;
+      tipOf[i] = `<b>${esc(lab)}</b><span>${R.tot[i] >= 60000 ? 'Genres inconnus pour ce mois' : 'Rien d\'écouté'}</span>`;
+      continue;
+    }
+    let yc = y0; const rows = [];
+    for (let c = 0; c < K; c++) {
+      const v = R.mat[i * K + c]; if (v <= 0) continue;
+      const p = v / kn, h = p * ph; rows.push([R.cats[c], p]);
+      const top = yc - h, hh = Math.max(0, h - gap);
+      if (hh > 0.3) s += `<rect class="gts" data-b="${i}" x="${x.toFixed(1)}" y="${(top + gap).toFixed(1)}" width="${bw.toFixed(1)}" height="${hh.toFixed(1)}" rx="${c === K - 1 || yc - h <= mT + 1 ? 2 : 1}" style="fill:${col(R.cats[c])}"/>`;
+      yc = top;
+    }
+    rows.sort((a, b) => (a[0] === 'Autres') - (b[0] === 'Autres') || b[1] - a[1]);
+    tipOf[i] = `<b>${esc(lab)}</b>` + rows.slice(0, 5).map(([g, p]) => `<span>${esc(g)}${NS}: ${esc(fmtPct(p))}</span>`).join('') + (kn < R.tot[i] * 0.9 ? `<span>Sur ${esc(fmtPct(kn / R.tot[i]))} de ton écoute du mois</span>` : '');
+  }
+  /* étiquettes : les années d'abord (janvier), puis des mois réguliers sans chevauchement */
+  const cw = 7.2, need = 5 * cw + 12, step = Math.max(1, Math.ceil(need / band)), placed = [];
+  const put = i => { const ms = R.m0 + i, l = gtlLabel(R, i, false), x = clamp(mL + i * band + band / 2, mL + l.length * cw / 2, W - mR - l.length * cw / 2); if (placed.some(p => Math.abs(p - x) < need)) return; placed.push(x); s += `<text x="${x.toFixed(1)}" y="${H - 7}" text-anchor="middle"${ms % 12 === 0 ? ' class="yr"' : ''}>${esc(l)}</text>`; };
+  for (let i = 0; i < n; i++) if ((R.m0 + i) % 12 === 0) put(i);
+  for (let i = 0; i < n; i++) if ((R.m0 + i) % 12 !== 0 && (n - 1 - i) % step === 0) put(i);
+  for (let i = 0; i < n; i++) s += `<rect class="hit" data-i="${i}" x="${(mL + i * band).toFixed(1)}" y="${mT}" width="${band.toFixed(1)}" height="${ph}" tabindex="0" role="img" aria-label="${esc(tipOf[i].replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ').trim())}"/>`;
+  svg.innerHTML = s;
+  svg._tip = i => tipOf[i]; svg._click = null;
+  svg._hov = i => { svg.querySelectorAll('.on').forEach(e => e.classList.remove('on')); if (i >= 0) svg.querySelectorAll(`[data-b="${i}"]`).forEach(e => e.classList.add('on')); };
+  bindChart(svg);
+}
+
+/* ================= Sillon Wrapped : l'année en stories, version complète ================= */
+/* saison : du 15 novembre au 31 janvier, Sillon met le Wrapped de l'année en avant sur l'accueil */
+function wrapYearNow() { const n = new Date(), m = n.getMonth(), d = n.getDate(); if (m === 11 || (m === 10 && d >= 15)) return n.getFullYear(); if (m === 0) return n.getFullYear() - 1; return null; }
+function wrapYears() {
+  if (!D || !D.n) return [];
+  const out = [], y0 = ymd(D.firstDay)[0], y1 = ymd(D.lastDay)[0];
+  for (let y = y1; y >= y0; y--) { const r0 = dn(y, 0, 1), r1 = dn(y + 1, 0, 1); let ms = 0; for (let i = lb(D.day, r0); i < D.n && D.day[i] < r1; i++) ms += D.m[i]; if (ms >= 3600e3) out.push({ y, ms, done: D.lastDay >= r1 - 1 || y < new Date().getFullYear() }); }
+  return out;
+}
+function wrapStats(R) {
+  const pass = makePass(false), thr = S.thr * 1000, r0 = R.r0, r1 = Math.min(R.r1, D.lastDay + 1);
+  const dayMs = new Map(), monA = new Map(); let rp = 0, rn = 0;
+  for (let i = lb(D.day, r0); i < D.n && D.day[i] < r1; i++) {
+    if (!pass(i) || D.m[i] < thr) continue;
+    const d = D.day[i], a = D.ta[D.k[i]], v = D.m[i];
+    dayMs.set(d, (dayMs.get(d) || 0) + v);
+    rp++; const fa = G.firstA[a]; if (fa >= 0 && D.day[fa] >= r0) rn++;
+    let m = monA.get(D.mon[i]); if (!m) monA.set(D.mon[i], m = new Map()); m.set(a, (m.get(a) || 0) + v);
+  }
+  let bigD = -1, bigV = 0; for (const [d, v] of dayMs) if (v > bigV) { bigV = v; bigD = d; }
+  const dA = new Map(); for (let i = lb(D.day, bigD); i < D.n && D.day[i] === bigD; i++) { if (!pass(i) || D.m[i] < thr) continue; const a = D.ta[D.k[i]]; dA.set(a, (dA.get(a) || 0) + D.m[i]); }
+  const argmax = m => { let k = -1, b = 0; for (const [x, v] of m || []) if (v > b) { b = v; k = x; } return k; };
+  const days = [...dayMs.keys()].sort((a, b) => a - b); let streak = 0, run = 0, prev = -9, sEnd = -1;
+  for (const d of days) { run = d === prev + 1 ? run + 1 : 1; prev = d; if (run > streak) { streak = run; sEnd = d; } }
+  const bM = R.X.bM; let fm = -1, fv = 0; for (let i = 0; i < bM.length; i++) if (bM[i] > fv) { fv = bM[i]; fm = i; }
+  const hr = new Float64Array(24); for (let k = 0; k < 168; k++) hr[k % 24] += R.X.rh[k] || 0;
+  let hB = 0; for (let h = 1; h < 24; h++) if (hr[h] > hr[hB]) hB = h;
+  return { bigD, bigV, bigA: argmax(dA), streak, sEnd, favM: fm, favMv: fv, favMA: fm >= 0 ? argmax(monA.get(monSerial(r0) + fm)) : -1, hr, hB, explore: rp ? rn / rp : 0, daysOn: dayMs.size };
+}
+/* membres du groupe, une seule lecture (pas d'écoute en continu) */
+function grFetchOnce(ms = 4000) {
+  return new Promise(async res => {
+    const g = grMe(); if (!SA || !fbCfg() || !g || !g.gid) return res(null);
+    if (GRP.mGid === g.gid && GRP.members.length && GRP.gid === g.gid) return res(GRP.members);
+    let un = null, done = false; const fin = v => { if (done) return; done = true; clearTimeout(tm); if (un) setTimeout(() => un && un(), 0); res(v); };
+    const tm = setTimeout(() => fin(null), ms);
+    try {
+      const { F, db } = await fbInit();
+      un = F.onSnapshot(F.collection(db, 'groups', g.gid, 'members'), snap => { if (snap.metadata && snap.metadata.fromCache) return; fin(snap.docs.map(d => Object.assign({ id: d.id }, d.data({ serverTimestamps: 'estimate' })))); }, () => fin(null));
+      if (done && un) un();
+    } catch (e) { fin(null); }
+  });
+}
+/* minutes d'un membre sur une année, d'après son résumé (mois par mois) */
+function grYearMin(m, y) { if (!m || !Array.isArray(m.mMin) || typeof m.mF !== 'number') return 0; const a = (y - 1970) * 12; let s = 0; for (let k = 0; k < 12; k++) { const j = a + k - m.mF; if (j >= 0 && j < m.mMin.length) s += +m.mMin[j] || 0; } return s; }
+function wrapGroup(R, members) {
+  const y = ymd(R.r0)[0], g = grMe(); if (!members || !g || y !== new Date().getFullYear()) return null;
+  const me = GRP.uid, list = members.filter(m => m && typeof m.name === 'string' && m.name).map(m => ({ id: m.id, name: m.name, pp: m.pp, me: m.id === me, min: m.id === me ? Math.round(R.X.ms / 60000) : grYearMin(m, y), aNY: m.yr === y && Array.isArray(m.aNY) ? m.aNY : [], aMY: m.yr === y && Array.isArray(m.aMY) ? m.aMY : [] }));
+  if (list.length < 2 || !list.some(x => x.me)) return null;
+  list.sort((a, b) => b.min - a.min);
+  const rank = list.findIndex(x => x.me) + 1, mine = new Set(R.A.length ? topIdx(R.X.aM, 25).map(a => norm(D.artists[a])) : []);
+  const cnt = new Map(); for (const x of list) { const seen = new Set(); (x.me ? [...mine] : x.aNY.map(norm)).forEach((k, j) => { if (seen.has(k)) return; seen.add(k); const o = cnt.get(k) || { n: 0, v: 0, name: x.me ? null : x.aNY[j] }; o.n++; o.v += x.me ? 0 : (+x.aMY[j] || 0); if (!o.name && !x.me) o.name = x.aNY[j]; cnt.set(k, o); }); }
+  for (const a of topIdx(R.X.aM, 25)) { const o = cnt.get(norm(D.artists[a])); if (o && !o.name) o.name = D.artists[a]; }
+  const common = [...cnt.values()].filter(o => o.n >= 2 && o.name).sort((a, b) => b.n - a.n || b.v - a.v)[0] || null;
+  let twin = null; for (const x of list) { if (x.me || !x.aNY.length) continue; const s = new Set(x.aNY.map(norm)); let k = 0; for (const n of mine) if (s.has(n)) k++; const sim = k / Math.max(1, Math.min(mine.size, s.size)); if (!twin || sim > twin.sim) twin = { x, sim }; }
+  return { name: g.name || 'ton groupe', list, rank, common, twin: twin && twin.sim > 0 ? twin : null };
+}
+function wrappedSlides(R, ctx) {
+  const base = storySlides(R), pick = id => base.find(s => s.id === id), X = R.X, l = L(), out = [];
+  if (!X.plays) return base;
+  const y = ymd(R.r0)[0], last = Math.min(R.r1 - 1, D.lastDay), full = last >= R.r1 - 1, W = wrapStats(R);
+  const albs = topIdx(X.lM, 4, 1), add = s => { if (s) out.push(s); };
+  add({ id: 'wi', dur: 5, vy: 'p0 spin', html: `<p class="k rv">Sillon Wrapped</p><h2 class="t wrt rv" style="--d:1">${y}</h2>${albs.length >= 4 ? `<div class="mos4 rv" style="--d:2">${albs.map(covL).join('')}</div>` : ''}<p class="d rv" style="--d:3">${full ? 'Ton année en musique, du premier au dernier jour.' : `Ton année en musique, du 1er janvier au ${esc(fmtDay(last))}.`}</p><p class="hint">Touche à droite pour avancer, à gauche pour revenir</p>` });
+  add(pick('mins'));
+  if (W.favM >= 0) {
+    const mo = MOL[(monSerial(R.r0) + W.favM) % 12];
+    add({ id: 'wm', vy: 'p1', html: `<p class="k rv">Ton mois préféré</p><h2 class="t rv" style="--d:1">${esc(cap(mo))}</h2><p class="d rv" style="--d:2"><b>${esc(fmtDur(W.favMv))}</b> d'écoute, ton record de l'année.${W.favMA >= 0 ? ` Ce mois-là, c'est <b>${esc(D.artists[W.favMA])}</b> qui a le plus tourné.` : ''}</p>${W.favMA >= 0 ? `<div class="nd rv" style="--d:3">${covA(W.favMA)}</div>` : ''}` });
+  }
+  add(pick('a1')); add(pick('aTop')); add(pick('t1')); add(pick('tTop')); add(pick('gen'));
+  if (W.bigD >= 0) add({ id: 'wd', vy: 'p3', html: `<p class="k rv">Ta journée record</p><h2 class="t rv" style="--d:1">${esc(cap(WDL[dow(W.bigD)]) + ' ' + fmtDay(W.bigD))}</h2><p class="d rv" style="--d:2"><b>${esc(fmtDur(W.bigV))}</b> de musique en une seule journée${W.bigA >= 0 ? `, surtout <b>${esc(D.artists[W.bigA])}</b>` : ''}.</p>${W.streak >= 2 ? `<p class="d rv" style="--d:3">Et ta plus longue série : <b>${fmtN(W.streak)} jours d'affilée</b> sans un jour sans musique, jusqu'au ${esc(fmtDay(W.sEnd))}.</p>` : ''}` });
+  { const mx = Math.max(1, ...W.hr), h = W.hB, when = h >= 22 || h < 5 ? 'la nuit' : h < 12 ? 'le matin' : h < 18 ? 'l\'après-midi' : 'le soir';
+    add({ id: 'wh', html: `<p class="k rv">Ton heure</p><p class="n rv" style="--d:1;--nch:4">${h}${NS}h</p><p class="d rv" style="--d:2">C'est l'heure où tu as le plus écouté de musique cette année : tu es plutôt du genre à écouter ${when}.</p><div class="bars rv" style="--d:3" aria-hidden="true">${Array.from(W.hr, (v, i) => `<i style="height:${Math.max(2, v / mx * 100).toFixed(1)}%"${i === h ? ' class="pk"' : ''}></i>`).join('')}</div>` }); }
+  add(pick('disc'));
+  { const tr = traitsOf(X, W.explore), lead = tr.filter(t => t.s >= 1).slice(0, 3), t0 = lead[0] || { k: 'équilibré', d: 'rien d\'extrême, un peu de tout à toutes les heures' };
+    add({ id: 'wp', vy: 'p2', html: `<p class="k rv">Ton profil d'auditeur</p><h2 class="t rv" style="--d:1">Profil ${esc(t0.k)}</h2><p class="d rv" style="--d:2">${esc(cap(t0.d))}.</p>${lead.length > 1 ? `<div class="wbad rv" style="--d:3">${lead.map(t => `<span>${esc(t.k)}</span>`).join('')}</div>` : ''}` }); }
+  const gr = wrapGroup(R, ctx && ctx.members);
+  if (gr) {
+    const top = gr.list.slice(0, 5); if (!top.some(x => x.me)) top[4] = gr.list.find(x => x.me);
+    add({ id: 'wg', dur: 8, html: `<p class="k rv">Ton année dans « ${esc(gr.name)} »</p><h2 class="t rv" style="--d:1">${gr.rank === 1 ? 'N° 1 du groupe' : `N° ${gr.rank} sur ${gr.list.length}`}</h2><ol class="big">${top.map((x, j) => `<li class="rv${x.me ? ' me' : ''}" style="--d:${j + 2}"><i>${gr.list.indexOf(x) + 1}</i>${grAv(x.name, x.pp)}<span><b>${esc(x.me ? 'Toi' : x.name)}</b><small>${esc(fmtDur(x.min * 60000))}</small></span></li>`).join('')}</ol>${gr.common ? `<p class="d rv" style="--d:7">Votre artiste en commun : <b>${esc(gr.common.name)}</b>, dans le top de ${gr.common.n} ${pl(gr.common.n, 'membre')}.</p>` : ''}${gr.twin ? `<p class="d rv" style="--d:8">Ton jumeau musical de l'année : <b>${esc(gr.twin.x.name)}</b>.</p>` : ''}` });
+  }
+  add(pick('style'));
+  out.push({ id: 'fin', fin: true, html: '' });
+  return out;
+}
+async function openWrapped(y) {
+  if (!D) return;
+  const a = clamp(dn(y, 6, 1), Math.max(D.firstDay, dn(y, 0, 1)), Math.min(D.lastDay, dn(y, 11, 31)));
+  let members = null;
+  if (SA && grMe() && y === new Date().getFullYear()) { const t = setTimeout(() => toast('Je prépare ton Wrapped…'), 400); members = await grFetchOnce(3500); clearTimeout(t); }
+  openStories('year', a, { members });
+}
+function renderWrapHome() {
+  const box = $('#wrHome'); if (!box) return;
+  const y = wrapYearNow(), ys = !DEMO && y ? wrapYears() : [], e = ys.find(x => x.y === y);
+  let off = ''; try { off = localStorage.getItem('sillon-wr-x') || ''; } catch (er) {}
+  if (!e || off === String(y)) { box.hidden = true; box.innerHTML = ''; return; }
+  const R = recapData('year', clamp(dn(y, 6, 1), D.firstDay, D.lastDay)), albs = topIdx(R.X.lM, 4, 1), h = R.A.length ? hueA(R.A[0]) : 270;
+  box.hidden = false; box.style.setProperty('--wh', h);
+  box.innerHTML = `${albs.length >= 4 ? `<span class="wmos">${albs.map(covL).join('')}</span>` : `<span class="wrdisc" aria-hidden="true"></span>`}<div class="wrtx"><b>Ton Sillon Wrapped ${y} est prêt</b><small>Ton année en stories : ton top, ton mois préféré, ta journée record, ton profil d'auditeur${SA && grMe() ? ', et ton groupe' : ''}.</small></div><button class="btn pri" data-wr="${y}">Voir mon Wrapped</button><button class="x" data-wrx="${y}" aria-label="Masquer jusqu'à l'an prochain">×</button>`;
+}
+function renderWrapRecaps() {
+  const box = $('#wrList'), sec = $('#wrRc'); if (!box || !sec) return;
+  const ys = DEMO ? wrapYears().slice(0, 1) : wrapYears();
+  sec.hidden = !ys.length; if (!ys.length) return;
+  box.innerHTML = ys.map((e, j) => {
+    const R = recapData('year', clamp(dn(e.y, 6, 1), D.firstDay, D.lastDay)), albs = topIdx(R.X.lM, 4, 1), h = R.A.length ? hueA(R.A[0]) : 270;
+    return `<button class="wrc${j === 0 ? ' big' : ''}" data-wr="${e.y}" style="--wh:${h}">${albs.length >= 4 ? `<span class="wmos">${albs.map(covL).join('')}</span>` : ''}<span class="wrcy"><small>Sillon Wrapped</small><b>${e.y}</b></span><small class="wrcs">${e.done ? esc(fmtDur(e.ms)) + ' d\'écoute' : 'En cours, jusqu\'au ' + esc(fmtDay(D.lastDay))}</small></button>`;
+  }).join('');
+}
+function wireWrapped() {
+  document.addEventListener('click', e => {
+    const b = e.target.closest('[data-wr]'); if (b) { openWrapped(+b.dataset.wr); return; }
+    const x = e.target.closest('[data-wrx]'); if (x) { try { localStorage.setItem('sillon-wr-x', x.dataset.wrx); } catch (er) {} renderWrapHome(); toast('Ok : ton Wrapped reste dans Récaps.'); }
+  });
+}
+
+/* ================= un groupe plus vivant : la semaine, les sons à faire écouter, les nouvelles ================= */
+const grD1 = d => { const [, m, x] = ymd(d); return (x === 1 ? '1er' : x) + NB + MOL[m]; };
+const grWkTxt = w => { const [, m1, x1] = ymd(w), [, m2] = ymd(w + 6); return m1 === m2 ? `du ${x1 === 1 ? '1er' : x1} au ${grD1(w + 6)}` : `du ${grD1(w)} au ${grD1(w + 6)}`; };
+const grArtEq = (x, y) => x === y || (x.length > 2 && y.length > 2 && (x.includes(y) || y.includes(x)));
+
+/* index des titres de ton historique, refait seulement quand les données changent */
+let GRT = null;
+function grTrIdx() {
+  if (GRT && GRT.v === dataVer) return GRT;
+  const byT = new Map(), s = new Array(D.nt), tot = new Float64Array(D.nt);
+  for (let t = 0; t < D.nt; t++) {
+    if (D.tk[t] !== 0) continue;
+    const n = normT(D.tn[t]); s[t] = n + ' ' + normT(D.artists[D.ta[t]]);
+    let L = byT.get(n); if (!L) byT.set(n, L = []); L.push(t);
+  }
+  for (let i = 0; i < D.n; i++) tot[D.k[i]] += D.m[i];
+  return GRT = { v: dataVer, byT, s, tot };
+}
+let GRA = null;
+function grCovA(name) {
+  if (!D) return cov('a|' + name, name, 'r');
+  if (!GRA || GRA.v !== dataVer) { GRA = { v: dataVer, m: new Map() }; for (let a = 0; a < D.na; a++) GRA.m.set(normT(D.artists[a]), a); }
+  const a = GRA.m.get(normT(name));
+  return a !== undefined ? covA(a) : cov('a|' + name, name, 'r');
+}
+const grCovT = (n, a, u) => { const h = cov('t|' + n + '|' + a, n); return SA && S.set.cov !== 'gen' ? withImg(h, 't:' + normT(n) + '|' + normT(a), u || '') : h; };
+
+/* le son d'un membre, s'il a moins de 7 jours */
+function grRecOf(m) {
+  const r = m && m.rec, now = Date.now();
+  if (!r || typeof r !== 'object' || typeof r.n !== 'string' || !r.n || typeof r.at !== 'number' || r.at < now - 7 * DAYMS || r.at > now + DAYMS) return null;
+  return { n: r.n.slice(0, 100), a: String(r.a || '').slice(0, 80), at: r.at, u: typeof r.u === 'string' && /^[A-Za-z0-9]{22}$/.test(r.u) ? r.u : '', key: m.id + ':' + r.at, by: m };
+}
+const grRecMine = g => { const r = g && g.rec; return r && typeof r.at === 'number' && r.at > Date.now() - 7 * DAYMS ? r : null; };
+
+/* as-tu écouté ces sons (30 s ou plus) depuis qu'on te les a proposés ? Et avant ? */
+let GRH = null;
+function grHeard(recs) {
+  const sig = dataVer + '|' + recs.map(r => r.key + '|' + r.n + '|' + r.a).join('|');
+  if (GRH && GRH.sig === sig) return GRH.res;
+  const res = new Map();
+  if (D && !DEMO && recs.length) {
+    const X = grTrIdx(), want = new Map();
+    for (const r of recs) {
+      res.set(r.key, { after: false, before: 0 });
+      const A = normT(r.a);
+      for (const t of X.byT.get(normT(r.n)) || []) if (grArtEq(normT(D.artists[D.ta[t]]), A)) { let L = want.get(t); if (!L) want.set(t, L = []); L.push(r); }
+    }
+    if (want.size) for (let i = 0; i < D.n; i++) {
+      const L = want.get(D.k[i]); if (!L || D.m[i] < 30000) continue;
+      const s = D.s[i] * 1000;
+      for (const r of L) { const o = res.get(r.key); if (s >= r.at) o.after = true; else o.before++; }
+    }
+  }
+  GRH = { sig, res };
+  return res;
+}
+/* garde à jour la liste des sons écoutés (envoyée au groupe pour que l'autre le voie) */
+function grRecOkCalc(ms) {
+  const recs = ms.filter(m => !m.me).map(grRecOf).filter(Boolean), H = grHeard(recs);
+  return recs.filter(r => H.get(r.key) && H.get(r.key).after).map(r => r.key).sort().slice(0, 20);
+}
+function grRecSync(ms, g) {
+  if (DEMO || !D) return false;
+  const ok = grRecOkCalc(ms);
+  if (ok.join(',') === (g.recOk || []).slice().sort().join(',')) return false;
+  g.recOk = ok; groupAutoPush(1500);
+  return true;
+}
+/* le groupe change pendant que tu es sur une autre page : pastille, et un mot si un pote te fait écouter un son */
+function grWatch() {
+  const g = grMe(); if (!g || DEMO || !GRP.newsDone || GRP.mGid !== g.gid || !GRP.members.length) return;
+  const ms = grMembers(), unseen = ms.filter(m => !m.me).map(grRecOf).filter(r => r && !(g.recSeen || []).includes(r.key));
+  const fresh = unseen.filter(r => !(g.recNoted || []).includes(r.key));
+  if (unseen.length && !GRP.badge) grBadge(true);
+  if (!fresh.length) return;
+  g.recNoted = unseen.map(r => r.key).slice(0, 20); Prefs.save();
+  toast(`${grAnd(fresh.map(r => r.by.name))} ${fresh.length > 1 ? 'te font' : 'te fait'} écouter un son, dans « ${g.name || 'ton groupe'} ».`);
+}
+
+/* ---------- les nouvelles depuis ta dernière visite ---------- */
+const grOrder = ms => ms.slice().sort((a, b) => grMin(b, 'm') - grMin(a, 'm')).map(m => m.id);
+/* garde le classement du mois tel que tu l'as vu en dernier ; dit s'il a changé */
+function grSnap(ms, g) {
+  if (!ms.some(m => m.me)) return false;
+  const o = grOrder(ms).slice(0, 40), cm = curMon();
+  if (g.snap && g.snap.mo === cm && Array.isArray(g.snap.order) && g.snap.order.join() === o.join()) return false;
+  g.snap = { mo: cm, order: o };
+  return true;
+}
+function grNews(ms, g) {
+  const out = [], me = ms.find(m => m.me), val = m => grMin(m, 'm');
+  const sn = g.snap && g.snap.mo === curMon() && Array.isArray(g.snap.order) ? g.snap.order : null;
+  if (me && sn && val(me) > 0) {
+    const order = grOrder(ms), i0 = sn.indexOf(me.id), i1 = order.indexOf(me.id);
+    if (i0 >= 0) for (const m of ms) {
+      if (m.me) continue;
+      const a0 = sn.indexOf(m.id), a1 = order.indexOf(m.id); if (a0 < 0) continue;
+      if (a0 > i0 && a1 < i1 && val(m) > val(me)) out.push({ k: 'up', txt: `${m.name} t'a dépassé ce mois-ci` });
+      else if (a0 < i0 && a1 > i1 && val(m) < val(me)) out.push({ k: 'dn', txt: `Tu as dépassé ${m.name} ce mois-ci` });
+    }
+  }
+  const seen = g.recSeen || [], fresh = ms.filter(m => !m.me).map(grRecOf).filter(r => r && !seen.includes(r.key));
+  if (fresh.length) out.push({ k: 'rec', txt: `${grAnd(fresh.map(r => r.by.name))} ${fresh.length > 1 ? 'te font' : 'te fait'} écouter un son` });
+  return out;
+}
+/* pastille sur « Groupe » tant que tu n'as pas vu les nouvelles */
+function grBadge(on) { GRP.badge = !!on; $$('a[data-v="groupe"]').forEach(a => a.classList.toggle('nws', GRP.badge)); }
+/* à l'ouverture du site : un coup d'œil au groupe, sans rester connecté */
+async function grNewsBoot() {
+  const g = grMe(); if (!SA || DEMO || !D || !fbCfg() || !g || !g.gid || GRP.newsDone) return;
+  const raw = await grFetchOnce(6000);
+  if (!raw || GRP.newsDone || grMe() !== g || DEMO) return;
+  const ms = grMembers(raw);
+  GRP.news = grNews(ms, g); GRP.newsDone = true; grSnap(ms, g);
+  grRecSync(ms, g);
+  const unseen = ms.filter(m => !m.me).map(grRecOf).filter(r => r && !(g.recSeen || []).includes(r.key));
+  const fresh = unseen.filter(r => !(g.recNoted || []).includes(r.key));
+  g.recNoted = unseen.map(r => r.key).slice(0, 20);
+  Prefs.save();
+  const up = GRP.news.find(x => x.k === 'up'), dn = GRP.news.find(x => x.k === 'dn'), rc = GRP.news.find(x => x.k === 'rec');
+  groupListen();
+  if (S.view === 'groupe') { renderGroup(); return; }
+  grBadge(!!(up || dn || unseen.length));
+  const msg = up ? up.txt : fresh.length && rc ? rc.txt : dn ? dn.txt : '';
+  if (msg) toast(`${msg}, dans « ${g.name || 'ton groupe'} ».`);
+}
+/* appelé à chaque affichage du groupe, une fois les membres arrivés */
+function grLive(ms, g) {
+  if (GRP.badge) grBadge(false);
+  let ch = false;
+  if (GRP.cached) return;
+  if (!GRP.newsDone && GRP.uid) { GRP.news = grNews(ms, g); GRP.newsDone = true; }
+  if (grSnap(ms, g)) ch = true;
+  if (grRecSync(ms, g)) ch = true;
+  const keys = ms.filter(m => !m.me).map(grRecOf).filter(Boolean).map(r => r.key).slice(0, 20);
+  if (keys.join(',') !== (g.recSeen || []).join(',')) { g.recSeen = keys; g.recNoted = keys; ch = true; }
+  if (ch) Prefs.save();
+}
+
+/* ---------- la semaine du groupe ---------- */
+function grWeekHTML(ms) {
+  const cw = grWk(), on = ms.filter(grWkOn);
+  const cur = on.map(m => ({ m, v: m.wMin || 0 })).filter(x => x.v > 0).sort((a, b) => b.v - a.v);
+  const last = ms.map(m => ({ m, v: m.wk === cw ? (m.pwMin || 0) : m.wk === cw - 7 ? (m.wMin || 0) : 0 })).filter(x => x.v > 0).sort((a, b) => b.v - a.v);
+  if (!cur.length && !last.length) return '';
+  const tr = new Map();
+  for (const m of on) (m.wTN || []).forEach((n, i) => {
+    if (typeof n !== 'string' || !n) return;
+    const a = String((m.wTA || [])[i] || ''), k = normT(n) + '|' + normT(a);
+    let o = tr.get(k); if (!o) tr.set(k, o = { n, a, min: 0, who: [] });
+    o.min += +(m.wTM || [])[i] || 0; if (!o.who.includes(m.name)) o.who.push(m.name);
+  });
+  const son = [...tr.values()].sort((a, b) => b.who.length - a.who.length || b.min - a.min)[0];
+  const art = grArtists(on, 'w').sort((a, b) => b.who.length - a.who.length || b.min - a.min)[0];
+  const me = x => x.m.me ? ' <small>(toi)</small>' : '';
+  const tiles = [];
+  tiles.push(`<div class="card${cur[0] && cur[0].m.me ? ' me' : ''}"><span class="k">En tête cette semaine</span>${cur[0] ? `<div class="who">${grAv(cur[0].m.name, cur[0].m.pp)}<b>${esc(cur[0].m.name)}${me(cur[0])}</b></div><p>${grH(cur[0].v)} d'écoute${cur[1] ? `, devant ${esc(cur[1].m.name)} (${grH(cur[1].v)})` : ''}</p>` : '<p>Personne n\'a encore écouté de musique cette semaine.</p>'}</div>`);
+  if (son) tiles.push(`<div class="card"><span class="k">Le son de la semaine</span><div class="who">${grCovT(son.n, son.a)}<b>${esc(son.n)}</b></div><p>${esc(son.a)}, ${son.who.length > 1 ? 'écouté par ' + esc(grAnd(son.who)) : 'chez ' + esc(son.who[0])} (${grH(son.min)})</p></div>`);
+  if (art) tiles.push(`<div class="card"><span class="k">L'artiste de la semaine</span><div class="who">${grCovA(art.name)}<b>${esc(art.name)}</b></div><p>${grH(art.min)}${art.who.length > 1 ? ', chez ' + esc(grAnd(art.who)) : ', chez ' + esc(art.who[0])}</p></div>`);
+  if (last[0]) tiles.push(`<div class="card${last[0].m.me ? ' me' : ''}"><span class="k">La semaine dernière</span><div class="who">${grAv(last[0].m.name, last[0].m.pp)}<b>${esc(last[0].m.name)}${me(last[0])}</b></div><p>a gagné avec ${grH(last[0].v)}${last[1] ? `, devant ${esc(last[1].m.name)}` : ''}</p></div>`);
+  return `<section class="blk"><div class="bh"><div><h2>La semaine du groupe</h2><p class="sub">Semaine ${esc(grWkTxt(cw))}, d'après les chiffres envoyés par chacun</p></div></div><div class="graw grwk">${tiles.join('')}</div></section>`;
+}
+
+/* ---------- le défi : les sons de la semaine ---------- */
+const GR_LSN = {
+  spotify: ['Spotify', q => 'https://open.spotify.com/search/' + encodeURIComponent(q)],
+  deezer: ['Deezer', q => 'https://www.deezer.com/search/' + encodeURIComponent(q)],
+  apple: ['Apple Music', q => 'https://music.apple.com/fr/search?term=' + encodeURIComponent(q)],
+  ytm: ['YouTube Music', q => 'https://music.youtube.com/search?q=' + encodeURIComponent(q)]
+};
+function grListen(r) {
+  const p = platNow(), k = GR_LSN[p] ? p : 'spotify';
+  if (k === 'spotify' && r.u) return ['Spotify', 'https://open.spotify.com/track/' + r.u];
+  return [GR_LSN[k][0], GR_LSN[k][1](r.n + ' ' + r.a)];
+}
+function grRecHTML(ms, g) {
+  const mine = grRecMine(g), others = ms.filter(m => !m.me).map(grRecOf).filter(Boolean).sort((a, b) => b.at - a.at);
+  const H = grHeard(others), st = r => H.get(r.key) || { after: false, before: 0 };
+  const done = others.filter(r => st(r).after).length;
+  const okBy = mine ? ms.filter(m => !m.me && Array.isArray(m.recOk) && m.recOk.includes(GRP.uid + ':' + mine.at)).map(m => m.name) : [];
+  let my;
+  if (GRP.pick && !DEMO && D) my = `<div class="card grrc me grpick"><span class="k">Choisis ton son</span>
+      <label class="grf"><span>Cherche dans ton historique</span><input class="field" id="grRecQ" placeholder="Un titre ou un artiste" autocomplete="off"></label>
+      <ul class="grpl" id="grRecL">${grPickList('')}</ul>
+      <div class="gact"><button class="btn" data-gr="recCancel">Annuler</button></div></div>`;
+  else if (mine) my = `<div class="card grrc me"><span class="k">Ton son de la semaine</span>
+      <div class="grrt">${grCovT(mine.n, mine.a, mine.u)}<span class="nm"><b>${esc(mine.n)}</b><small>${esc(mine.a)}</small></span></div>
+      <p class="grrs">${okBy.length ? `<b class="grok">Écouté par ${esc(grAnd(okBy))}</b>` : 'Personne ne l\'a encore écouté'}. Il reste affiché jusqu'au ${esc(grD1(tsDay(mine.at / 1000) + 7))}.</p>
+      <div class="gact"><button class="btn" data-gr="recPick">Changer de son</button><button class="btn" data-gr="recDel">Retirer</button></div></div>`;
+  else my = `<div class="card grrc me add"><span class="k">Ton son de la semaine</span>
+      <p>${DEMO ? 'Importe ton historique pour choisir un son à faire écouter au groupe.' : 'Fais écouter un son à ton groupe. Il reste affiché 7 jours, et tu vois qui l\'a écouté.'}</p>
+      ${DEMO ? '' : '<div class="gact"><button class="btn pri" data-gr="recPick">Choisir mon son</button></div>'}</div>`;
+  const cards = others.map(r => {
+    const s = st(r), [svc, url] = grListen(r);
+    return `<div class="card grrc${s.after ? ' ok' : ''}">
+      <div class="who">${grAv(r.by.name, r.by.pp)}<span><b>${esc(r.by.name)}</b> te fait écouter</span></div>
+      <div class="grrt">${grCovT(r.n, r.a, r.u)}<span class="nm"><b>${esc(r.n)}</b><small>${esc(r.a)}</small></span></div>
+      <p class="grrs">${s.after ? '<b class="grok">Écouté</b>' : DEMO ? 'À écouter' : s.before ? `Tu l'avais déjà écouté ${fmtN(s.before)}${NB}fois, mais pas depuis` : 'Pas encore écouté'}</p>
+      <div class="gact"><a class="btn${s.after ? '' : ' pri'}" href="${esc(url)}" target="_blank" rel="noopener">Écouter sur ${esc(svc)}</a></div></div>`;
+  });
+  const n = others.length;
+  const head = n ? (done === n && !DEMO ? `<p class="grdefi win"><b>Défi réussi</b><span>Tu as écouté ${n > 1 ? `les ${fmtN(n)} sons` : 'le son'} de la semaine.</span></p>`
+    : `<p class="grdefi"><b>Ton défi : ${fmtN(done)} sur ${fmtN(n)}</b><span class="br" aria-hidden="true"><i style="width:${(done / n * 100).toFixed(1)}%"></i></span></p>`)
+    : '<p class="gintro">Personne n\'a encore proposé de son cette semaine.</p>';
+  return `<section class="blk grrecs"><div class="bh"><div><h2>Les sons de la semaine</h2><p class="sub">Chacun fait écouter un son au groupe. Ton défi : écouter ceux des autres dans la semaine.</p></div></div>
+    ${head}<div class="grrl">${cards.join('')}${my}</div>
+    ${n && !DEMO ? `<p class="note">Un son se coche tout seul quand ton écoute arrive dans Sillon${typeof SPA !== 'undefined' && SPA.ok && SPA.ok() ? ', quelques minutes après avec Spotify connecté' : ', à ton prochain import'}.</p>` : ''}</section>`;
+}
+/* choix du son : tes titres du dernier mois, ou une recherche dans tout ton historique */
+function grPickList(q) {
+  const X = grTrIdx(), sc = new Map();
+  const Q = normT(q || '').split(' ').filter(Boolean);
+  if (Q.length) { for (let t = 0; t < D.nt; t++) { const s = X.s[t]; if (s && Q.every(w => s.includes(w))) sc.set(t, X.tot[t]); } }
+  else { const d0 = D.lastDay - 30; for (let i = D.n - 1; i >= 0 && D.day[i] >= d0; i--) { const t = D.k[i]; if (D.tk[t] === 0) sc.set(t, (sc.get(t) || 0) + D.m[i]); } }
+  const ids = [...sc.entries()].filter(x => x[1] > 0).sort((a, b) => b[1] - a[1]).slice(0, 6).map(x => x[0]);
+  if (!ids.length) return `<li class="none">${Q.length ? 'Rien de tel dans ton historique.' : 'Pas d\'écoute ce dernier mois : cherche un titre.'}</li>`;
+  return ids.map(t => `<li><button type="button" data-gr="recSet" data-t="${t}">${covT(t)}<span class="nm"><b>${esc(D.tn[t])}</b><small>${esc(D.artists[D.ta[t]])}</small></span></button></li>`).join('');
+}
+async function grRecAct(a, el) {
+  const g = grMe(); if (!g) return;
+  if (a === 'recPick') { GRP.pick = true; renderGroup(); const q = $('#grRecQ'); if (q) q.focus(); return; }
+  if (a === 'recCancel') { GRP.pick = false; renderGroup(); return; }
+  if (a === 'recSet') {
+    const t = +el.dataset.t; if (!D || !(t >= 0 && t < D.nt)) return;
+    const u = String(D.tu[t] || '');
+    g.rec = { n: String(D.tn[t]).slice(0, 100), a: String(D.artists[D.ta[t]]).slice(0, 80), at: Date.now() };
+    if (/^[A-Za-z0-9]{22}$/.test(u)) g.rec.u = u;
+  } else if (a === 'recDel') delete g.rec;
+  else return;
+  GRP.pick = false; Prefs.save(); renderGroup();
+  try {
+    await groupPush(true);
+    if (grMe()) toast(a === 'recSet' ? `C'est envoyé : ton groupe a 7 jours pour écouter « ${g.rec.n} ».` : 'Ton son est retiré du groupe.');
+  } catch (e) { console.warn(e); toast(fbErr(e)); }
+}
+
+/* ================= mini-visite, après ton premier import ================= */
+const TOUR = { on: false, i: 0, steps: [], back: null, t: 0 };
+const tourSeen = () => { try { return localStorage.getItem('sillon-tour') === '1'; } catch (e) { return true; } };
+const tourMark = () => { try { localStorage.setItem('sillon-tour', '1'); } catch (e) {} };
+const tourBusy = () => ['#inst', '#wel', '#drawer', '#recap', '#sto', '#dataModal', '#moreSheet'].some(s => { const e = $(s); return e && !e.hidden; });
+const tourVis = sel => $$(sel).find(e => { if (e.closest('[hidden]')) return false; const r = e.getBoundingClientRect(); return r.width > 0 && r.height > 0; });
+function tourSteps() {
+  const grp = SA ? tourVis('a[data-v="groupe"]') : null;
+  const L = [
+    ['#pbar .seg.gran', 'Choisis ta période', 'Jour, semaine, mois, année ou tout ton historique. Les flèches passent à la période d\'avant ou d\'après.'],
+    ['#svgMain', 'Ton écoute en un coup d\'œil', 'Passe la souris ou ton doigt sur le graphique pour voir le détail.'],
+    ['#rcGo', 'Ton récap en stories', 'Ce bouton lance le récap de la période affichée, à regarder ou à partager en image.'],
+    grp ? [grp, 'Compare avec tes potes', 'Crée un groupe et envoie le lien : vous voyez qui écoute le plus, vos artistes en commun et les sons de la semaine.']
+      : ['a[data-v="recaps"]', 'Tes récaps', 'Chaque mois et chaque année en stories, avec ton Sillon Wrapped en fin d\'année.'],
+    ['#meTop', 'Toi', 'Ton profil d\'auditeur, tes goûts mois par mois, et les réglages : thème, style des graphiques, pochettes.']
+  ];
+  return L.map(([el, t, p]) => ({ node: typeof el === 'string' ? tourVis(el) : el, t, p })).filter(s => s.node);
+}
+function tourDom() {
+  let T = $('#tour'); if (T) return T;
+  T = document.createElement('div'); T.className = 'tour'; T.id = 'tour'; T.hidden = true;
+  T.innerHTML = `<div class="tourhole" id="tourHole"></div><div class="tourbox" id="tourBox" role="dialog" aria-modal="true" aria-labelledby="tourT" aria-describedby="tourP">
+    <span class="tourn" id="tourN"></span><b id="tourT"></b><p id="tourP"></p>
+    <div class="gact"><button type="button" class="btn" data-tour="skip">Passer</button><button type="button" class="btn pri" data-tour="next">Suivant</button></div></div>`;
+  document.body.appendChild(T);
+  T.addEventListener('click', e => { const b = e.target.closest('[data-tour]'); if (b) { if (b.dataset.tour === 'next') tourGo(TOUR.i + 1); else tourEnd(); } });
+  T.addEventListener('keydown', e => {
+    if (e.key === 'Escape') { e.preventDefault(); tourEnd(); return; }
+    if (e.key === 'Tab') { const f = $$('#tourBox button'), a = document.activeElement, i = f.indexOf(a); e.preventDefault(); f[(i + (e.shiftKey ? f.length - 1 : 1)) % f.length].focus(); }
+  });
+  return T;
+}
+function tourPlace() {
+  if (!TOUR.on) return;
+  const s = TOUR.steps[TOUR.i]; if (!s || !s.node.isConnected) { tourEnd(); return; }
+  const r = s.node.getBoundingClientRect(), pad = 6, H = $('#tourHole'), B = $('#tourBox');
+  const vw = innerWidth, vh = innerHeight;
+  Object.assign(H.style, { left: (r.left - pad) + 'px', top: (r.top - pad) + 'px', width: (r.width + pad * 2) + 'px', height: (r.height + pad * 2) + 'px' });
+  const bw = Math.min(340, vw - 32), bh = B.offsetHeight || 170;
+  let top = r.bottom + pad + 12;
+  if (top + bh > vh - 12) top = r.top - pad - 12 - bh;
+  if (top < 12) top = Math.max(12, Math.min(vh - bh - 12, r.top + r.height / 2 - bh / 2));
+  const left = Math.max(16, Math.min(vw - bw - 16, r.left + r.width / 2 - bw / 2));
+  Object.assign(B.style, { width: bw + 'px', left: left + 'px', top: top + 'px' });
+}
+function tourGo(i) {
+  if (i >= TOUR.steps.length) { tourEnd(); return; }
+  TOUR.i = i; const s = TOUR.steps[i];
+  $('#tourN').textContent = `${i + 1} sur ${TOUR.steps.length}`;
+  $('#tourT').textContent = s.t; $('#tourP').textContent = s.p;
+  $('#tourBox [data-tour="next"]').textContent = i === TOUR.steps.length - 1 ? 'C\'est parti' : 'Suivant';
+  const r = s.node.getBoundingClientRect();
+  if (r.top < 70 || r.bottom > innerHeight - 90) s.node.scrollIntoView({ block: 'center', behavior: REDUCED() ? 'auto' : 'smooth' });
+  tourPlace(); setTimeout(tourPlace, 360);
+  $('#tourBox [data-tour="next"]').focus({ preventScroll: true });
+}
+function tourStart() {
+  if (TOUR.on || !D) return false;
+  const st = tourSteps(); if (st.length < 2) return false;
+  const T = tourDom();
+  TOUR.on = true; TOUR.steps = st; TOUR.back = document.activeElement;
+  T.hidden = false; document.documentElement.classList.add('touring');
+  addEventListener('resize', tourPlace); addEventListener('scroll', tourPlace, { passive: true, capture: true });
+  tourMark(); tourGo(0);
+  return true;
+}
+function tourEnd() {
+  if (!TOUR.on) return;
+  TOUR.on = false; tourMark();
+  const T = $('#tour'); if (T) T.hidden = true;
+  document.documentElement.classList.remove('touring');
+  removeEventListener('resize', tourPlace); removeEventListener('scroll', tourPlace, { capture: true });
+  const b = TOUR.back; TOUR.back = null; if (b && b.isConnected && b.focus) b.focus({ preventScroll: true });
+}
+/* après un import : attend que la fenêtre d'import soit fermée et qu'on soit sur l'accueil */
+function tourArm() {
+  if (tourSeen() || TOUR.on) return;
+  clearInterval(TOUR.t); let n = 0;
+  TOUR.t = setInterval(() => {
+    if (tourSeen() || TOUR.on || ++n > 300) { clearInterval(TOUR.t); return; }
+    if (DEMO || !D || document.hidden || S.view !== 'stats' || tourBusy()) return;
+    clearInterval(TOUR.t); setTimeout(() => { if (!tourBusy() && S.view === 'stats') tourStart(); }, 500);
+  }, 600);
+}
+function wireTour() {
+  document.addEventListener('click', e => {
+    if (!e.target.closest('[data-tour-go]')) return;
+    if (S.view !== 'stats') location.hash = 'stats';
+    setTimeout(() => { if (!tourStart()) toast('La visite a besoin de tes stats : importe ton historique d\'abord.'); }, 450);
+  });
+}
+
+/* ================= branchements (boutons, clavier, écouteurs) ================= */
 function go(k) {
   if (S.gran === 'all') return;
   const a = shift(S.gran, S.anchor, k), [r0, r1] = range(S.gran, a);
@@ -6708,7 +7421,7 @@ function wire() {
   $('#rcGo').addEventListener('click', () => openRecap(S.gran, S.anchor));
   $('#rcPrev').addEventListener('click', () => rcGo(-1));
   $('#rcNext').addEventListener('click', () => rcGo(1));
-  wireStories(); wireGuide(); wireGroup(); wireInstall(); wireLink(); wireMe(); wireSugg(); wireSettings(); wireWelcome(); wireUpd();
+  wireStories(); wireGuide(); wireGroup(); wireInstall(); wireLink(); wireMe(); wireSugg(); wireSettings(); wireWelcome(); wireUpd(); wireWrapped(); wireTour();
   if (SA) $$('.sao').forEach(e => { e.hidden = false; });
   document.addEventListener('click', e => { if (e.target.closest('#howBody a[href^="#guide"]')) closeAll(); });
   $('#rcPng').addEventListener('click', async () => { if (!RC || !RC.R) return; const b = await posterPng(RC.R); if (b) saveFile(`sillon-recap-${tagOf(RC.g, RC.a)}.png`, b); });
@@ -6794,7 +7507,7 @@ function wire() {
 }
 function renderGameCards() { $$('#gameList .gcard').forEach(b => { const g = b.dataset.game; b.classList.toggle('on', !!GS && GS.id === g); const s = b.querySelector('.rk'); if (s) s.textContent = bestText(g); }); }
 
-/* ================= boot ================= */
+/* ================= démarrage ================= */
 if (SA) SPA.load();
 loadPrefs(); applySkin(); wire();
 setData(makeDemo(), true);
