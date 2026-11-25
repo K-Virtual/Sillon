@@ -398,6 +398,8 @@ html.instlock{overflow:hidden}
 .btn.big{min-height:52px;width:100%;padding:10px 24px;font-size:17px}
 .btn.big:disabled{opacity:.6}
 .instskip{align-self:center;margin-top:6px;padding:10px 12px;border:0;background:none;color:var(--muted);font-weight:600;font-size:14px;text-decoration:underline;text-underline-offset:3px}
+.instno{display:flex;flex-wrap:wrap;justify-content:center;gap:0 6px;margin:6px 0 0}
+.instno .instskip{margin-top:0}
 /* navigation téléphone : panneau Plus, avatar */
 .meb{padding:5px}
 .meb .cv{width:30px;font-size:0}
@@ -475,6 +477,10 @@ a.sgcard:hover{background:var(--hover)}
 .sgpl[aria-pressed=true]{background:var(--ink);color:var(--bg)}
 .lnk2{margin-top:6px;color:var(--muted);font-size:13px;font-weight:700;text-decoration:underline;text-underline-offset:3px}
 .lnk2:hover{color:var(--ink)}
+.sgpl2{display:flex;flex-wrap:wrap;align-items:center;gap:8px 14px;margin-top:18px}
+.sgpl2 .small{margin:0;max-width:62ch}
+.sgplerr{color:var(--ink)}
+.sgpl2 .lnk{white-space:nowrap}
 .sgfoot{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px}
 .sgfoot .small{margin:0}
 .sglf{max-width:80ch}
@@ -512,6 +518,16 @@ a.sgcard:hover{background:var(--hover)}
 .lkjoin .field{text-transform:uppercase;letter-spacing:.06em}
 .lkok{margin:8px 0 4px}
 .lkerr{margin:10px 0 0;color:#ff8a7a;font-size:14px}
+.acbox{display:flex;flex-direction:column}
+.acrow{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:10px 16px;padding:14px 0;border-top:1px solid var(--line)}
+.acrow:first-child{padding-top:0;border-top:0}
+.acrow>div:first-child{flex:1 1 260px;min-width:0}
+.acrow b{display:block;font-weight:700}
+.acrow small{display:block;margin-top:3px;color:var(--muted);font-size:13px;line-height:1.45}
+.acrow .gact{margin:0}
+.accode{margin:8px 0 4px;font:800 clamp(18px,4.6vw,24px)/1.25 var(--f-num);letter-spacing:.06em;font-variant-numeric:tabular-nums;overflow-wrap:anywhere;user-select:all}
+.acbox .lkjoin{padding-top:14px;border-top:1px solid var(--line)}
+.acsec{margin:14px 0 0;line-height:1.45}
 /* photo de profil */
 .grpp{display:flex;align-items:center;gap:16px}
 .grpp>.cv{width:72px;flex:none}
@@ -847,6 +863,28 @@ button.opt:hover:not(:disabled){border-color:var(--chip2)}
 .idtop small{font-size:13px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .habs{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
 .kpi .v.sm{font-size:clamp(17px,1.7vw,21px)}
+.slots{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px}
+.slotc{display:flex;flex-direction:column;gap:12px;min-width:0;padding:14px 16px;border-radius:8px;background:var(--card)}
+.slotc .slh{margin:0;font-size:13px;font-weight:700;color:var(--ink)}
+.slotc .slh small{font-weight:500;color:var(--muted)}
+.slotc .sle{margin:0;color:var(--muted);font-size:14px}
+.slota{display:grid;grid-template-columns:52px minmax(0,1fr);gap:12px;align-items:center;width:100%;padding:0;border:0;background:none;color:inherit;text-align:left;cursor:pointer}
+.slota .cv{width:52px}
+.slota .nm{display:flex;flex-direction:column;gap:2px;min-width:0}
+.slota .nm b{font:800 16px/1.25 var(--f-head);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.slota .nm small{color:var(--muted);font-size:13px;line-height:1.3}
+.slot2{display:flex;flex-direction:column;gap:2px;margin:0;padding:8px 0 0;border-top:1px solid var(--line);list-style:none}
+.slot2 button{display:grid;grid-template-columns:14px minmax(0,1fr) auto;gap:8px;align-items:baseline;width:100%;padding:3px 0;border:0;background:none;color:inherit;text-align:left;font-size:14px;cursor:pointer}
+.slot2 .n{color:var(--muted);font-size:13px;font-variant-numeric:tabular-nums}
+.slot2 span:not(.n){overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.slot2 small{color:var(--muted);font-size:13px;font-variant-numeric:tabular-nums}
+.slota:hover b,.slot2 button:hover span:not(.n){text-decoration:underline;text-underline-offset:3px}
+.slotfact{max-width:70ch;margin:14px 0 0;color:var(--muted);font-size:14px;line-height:1.5}
+#prSes .kpi .d{margin-top:4px;font-size:12.5px;line-height:1.45}
+#prSes .kpi .d b{color:var(--ink);font-weight:700}
+#prSes .meters{max-width:640px}
+@media (max-width:1000px){.slots{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:720px){.slotc{padding:12px}.slota{grid-template-columns:40px minmax(0,1fr);gap:10px}.slota .cv{width:40px}.slota .nm b{font-size:15px}}
 .evo{display:grid;grid-template-columns:52px minmax(0,240px) minmax(0,1fr);align-items:center;gap:14px;padding:8px 0;border-bottom:1px solid var(--line)}
 .evo .y{font-weight:800;color:var(--muted)}
 .evo .ea{display:grid;grid-template-columns:40px minmax(0,1fr);gap:10px;align-items:center;border:0;background:none;padding:0;text-align:left}
@@ -1119,6 +1157,8 @@ html[data-chart=line] .lg i.g,html[data-chart=area] .lg i.g{height:0;border:0;bo
 .sw-ecarlate{background:linear-gradient(135deg,#0f0f0f 50%,#ff0033 50%)}
 .sw-violet{background:linear-gradient(135deg,#1b191f 50%,#a238ff 50%)}
 .welnote{margin:0;color:var(--muted);font-size:13px;line-height:1.45}
+.welre{margin:0;text-align:center;color:var(--muted);font-size:14px}
+.welre .lnk{color:var(--ink)}
 .welskip{align-self:center;padding:8px 12px;border:0;background:none;color:var(--muted);font:inherit;font-weight:600;font-size:14px;text-decoration:underline;text-underline-offset:3px;cursor:pointer}
 html.wellock{overflow:hidden}
 @media (max-width:380px){.welp{grid-template-columns:1fr}.welp button{min-height:50px}}
@@ -1408,9 +1448,12 @@ html.calm .stobars .on i{width:100%}
       <div><h2>Tes genres</h2><p class="sub">Sur tout ton historique</p><div id="prGen" style="margin-top:14px"></div></div>
       <div><h2>Tes habitudes</h2><p class="sub">Comment et quand tu écoutes</p><div class="habs" id="prHab" style="margin-top:14px"></div></div>
     </section>
+    <section class="blk"><div class="bh"><div><h2 id="prSlotsH">Tes artistes selon l'heure</h2><p class="sub">Qui tu écoutes le matin, l'après-midi, le soir et la nuit, sur tout ton historique</p></div></div><div id="prSlots"></div></section>
+    <section class="blk"><div class="bh"><div><h2>Tes sessions</h2><p class="sub">Une session, c'est tout ce que t'écoutes sans t'arrêter plus de 15 minutes</p></div></div><div id="prSes"></div></section>
     <section class="blk"><div class="bh"><div><h2>Ton évolution</h2><p class="sub">Ton artiste n°1 et tes genres, année par année</p></div></div><div id="prEvo"></div></section>
     <section class="blk"><div class="bh"><div><h2>Tes goûts, mois par mois</h2><p class="sub">La part de chaque genre dans ton écoute, sur les 24 derniers mois</p></div></div><div id="prGtl"></div></section>
     <section class="blk"><div class="bh"><div><h2>Découvertes devenues favorites</h2><p class="sub">Découvertes ces deux dernières années, et déjà dans ton top 40</p></div></div><div class="row" id="prFav"></div></section>
+    <section class="blk"><div class="bh"><div><h2>Tes albums d'une traite</h2><p class="sub" id="prAlbS"></p></div></div><ol class="tl" id="prAlb"></ol></section>
     <section class="blk cols">
       <div><h2>Tes derniers morceaux découverts</h2><p class="sub">Écoutés pour la toute première fois</p><ol class="tl nob" id="prNew" style="margin-top:10px"></ol></div>
       <div><h2>Écoutés une seule fois</h2><p class="sub" id="prOnceS"></p><ol class="tl nob" id="prOnce" style="margin-top:10px"></ol></div>
@@ -1518,6 +1561,7 @@ html.calm .stobars .on i{width:100%}
   <div class="pad mepad" id="mePage">
     <section class="card meid" id="meId"></section>
     <section class="blk sao" hidden><div class="bh"><div><h2>Ton groupe</h2></div></div><div id="meGr"></div></section>
+    <section class="blk sao" id="acTop" hidden><div class="bh"><div><h2>Ton compte</h2><p class="sub">Pour retrouver tes stats sur un autre appareil, ou après avoir changé de tel, sans réimporter ton fichier</p></div></div><div class="mergeb acbox" id="acBox"><div id="acBody"></div></div></section>
     <section class="blk sao" hidden><div class="bh"><div><h2>Tes appareils</h2><p class="sub">Les mêmes stats sur ton PC et ton tel</p></div></div><div class="mergeb" id="lkBox"><div id="lkBody"></div></div></section>
     <section class="blk"><div class="bh"><div><h2>Tes données</h2></div></div><div id="meData"></div></section>
     <section class="blk" id="meInstW" hidden><div class="bh"><div><h2>L'appli</h2></div></div><div id="meInst"></div></section>
@@ -1703,9 +1747,10 @@ html.calm .stobars .on i{width:100%}
 /* ================= version, nouveautés et services (page À propos) ================= */
 /* à chaque mise à jour : changer SILLON_V et ajouter une ligne en haut de SILLON_LOG.
    X refonte, Y grosse mise à jour, Z correctifs, I première version */
-const SILLON_V = '2.9.2';
+const SILLON_V = '2.10.0';
 const SV_TYPE = { X: 'Refonte', Y: 'Grosse mise à jour', Z: 'Correctifs', I: 'Première version' };
 const SILLON_LOG = [
+  ['2.10.0', 'Y', ['Ton compte : connecte-toi avec Google, ou garde un code de sauvegarde de 20 caractères, et retrouve tes stats sur n\'importe quel appareil sans réimporter ton fichier. Avec Google, tous tes appareils n\'ont plus qu\'une seule fiche dans le groupe.', 'Ta carte : tes artistes selon l\'heure (matin, après-midi, soir, nuit), tes sessions (la plus longue, la durée typique, ton record sans pause) et les albums que tu écoutes d\'une traite.', 'Suggestions : crée une playlist Spotify avec un son de chaque artiste à découvrir.', 'Écran d\'installation sur téléphone : « Ne plus me le proposer » le fait disparaître pour de bon. Tu peux toujours installer l\'appli depuis ta page Toi.']],
   ['2.9.2', 'Z', ['Groupe : une seule fiche par personne. Si tes appareils sont reliés, un seul envoie tes chiffres (celui qui a créé le groupe), l\'autre affiche ta fiche sans en créer une deuxième. Pas reliés ? Le bouton « C\'est moi sur un autre appareil » fait pareil.', 'Groupe : quand une fiche en double est celle qui a créé le groupe, la page explique comment la retirer.']],
   ['2.9.1', 'Z', ['YouTube Music : les clips et les sons des chaînes d\'artistes que tu regardes sur YouTube comptent aussi. Réimporte ton fichier Google Takeout pour les avoir (réglage dans Toi si tu n\'en veux pas).', 'YouTube Music : les sons rangés sous « Release » (artiste qui n\'a pas rempli sa chaîne) retrouvent leur vrai artiste quand c\'est sûr, sinon ils vont dans « Artiste inconnu ».', 'Réimporter un fichier YouTube ne crée plus de doublons, même quand les durées estimées changent.', 'Sur téléphone, le titre de la période en haut ne passe plus sous les boutons.', 'Groupe : les vraies pochettes s\'affichent aussi pour les titres, et pour les artistes que tu n\'écoutes pas toi-même.', 'Groupe : une fiche en double (même pseudo, souvent un ancien appareil ou un test) est signalée, et la personne qui a créé le groupe peut la retirer. Elle n\'apparaît plus dans le Wrapped.', 'Récaps en stories : plus de carré bleu quand tu touches à gauche ou à droite.', 'Tes records : la date de première écoute ne déborde plus de sa case sur téléphone.']],
   ['2.9.0', 'Y', ['Sillon Wrapped : ton année en stories, de mi-novembre à fin janvier, avec ton mois préféré, ta journée record, ton profil d\'auditeur et ta place dans le groupe.', 'Tes goûts, mois par mois : la part de chaque genre dans ton écoute, sur la page Ta carte.', 'Groupe : la semaine du groupe (en tête, son et artiste de la semaine, gagnant de la semaine dernière), un classement « Cette semaine », et les sons de la semaine à faire écouter à tes potes, avec un défi pour les écouter.', 'Groupe : Sillon te dit à l\'ouverture quand un pote t\'a dépassé ce mois-ci ou te fait écouter un son.', 'Les pochettes apparaissent aussi dans les images que tu télécharges ou partages : récaps, affiches et ta carte.', 'Une mini-visite après ton premier import, à revoir quand tu veux depuis les réglages.']],
@@ -1723,11 +1768,11 @@ const SILLON_LOG = [
   ['1.0.0', 'I', ['Graphiques par jour, semaine, mois et année.']]
 ];
 const AB_SVC = [
-  ['Spotify Web API', 'Connexion à ton compte, tes derniers morceaux, et les pochettes exactes quand tu es connecté.', 'Version GitHub'],
+  ['Spotify Web API', 'Connexion à ton compte, tes derniers morceaux, les pochettes exactes quand tu es connecté, et la playlist des suggestions.', 'Version GitHub'],
   ['Deezer API', 'Pochettes pour tout le monde, genres des artistes, artistes proches, extraits de 30 secondes.', 'Version GitHub'],
   ['Last.fm API', 'Micro-genres, artistes similaires, albums à découvrir.', 'Version GitHub, avec une clé'],
   ['Apple iTunes Search API', 'Pochettes de secours pour les images que tu télécharges ou partages.', 'Version GitHub'],
-  ['Firebase', 'Authentication (connexion anonyme) et Cloud Firestore : groupes et liaison entre appareils.', 'Version GitHub'],
+  ['Firebase', 'Authentication (connexion anonyme, et connexion Google si tu la choisis) et Cloud Firestore : groupes, liaison entre appareils et sauvegarde.', 'Version GitHub'],
   ['GitHub Pages', 'Hébergement du site.', 'Version GitHub'],
   ['Google Fonts', 'Polices Figtree et Doto.', 'Les deux versions'],
   ['Claude (Anthropic)', 'Hébergement et stockage de la version Claude, estimation des genres et des discographies, score de compatibilité, morceau en cours via le connecteur Spotify.', 'Version Claude']
@@ -2573,7 +2618,7 @@ function route() {
   if (prev !== S.view) window.scrollTo(0, 0);
   heroVisible = true;
   renderView(); updateMini(); checkHero();
-  if (S.view === 'toi' && sub === 'reglages') { const go = () => { const e = $('#setTop'); if (e) e.scrollIntoView({ block: 'start' }); }; requestAnimationFrame(() => { go(); const y1 = scrollY; setTimeout(() => { if (Math.abs(scrollY - y1) < 2) go(); }, 450); }); }
+  if (S.view === 'toi' && (sub === 'reglages' || sub === 'compte')) { const go = () => { const e = $(sub === 'compte' ? '#acTop' : '#setTop'); if (e) e.scrollIntoView({ block: 'start' }); }; requestAnimationFrame(() => { go(); const y1 = scrollY; setTimeout(() => { if (Math.abs(scrollY - y1) < 2) go(); }, 450); }); }
 }
 function renderView() {
   if (['guide', 'groupe', 'toi', 'suggestions', 'apropos'].includes(S.view)) { if (D) renderHead(); if (S.view === 'guide') renderGuide(); else if (S.view === 'groupe') renderGroup(); else if (S.view === 'toi') renderMe(); else if (S.view === 'apropos') renderAbout(); else renderSugg(); return; }
@@ -3890,11 +3935,15 @@ const SPA = {
   saveTok() { try { if (this.tok) localStorage.setItem('sillon-sp-tok', JSON.stringify(this.tok)); else localStorage.removeItem('sillon-sp-tok'); } catch (e) {} },
   redirect() { return location.origin + location.pathname; },
   ok() { return !!(SA && this.cid && this.tok && this.tok.refresh); },
-  async login() {
+  /* droits en plus (créer des playlists) : demandés seulement quand il faut, puis gardés pour les connexions suivantes */
+  scopeX() { try { return localStorage.getItem('sillon-sp-scx') || ''; } catch (e) { return ''; } },
+  hasScope(sc) { return !!(this.tok && typeof this.tok.scope === 'string' && this.tok.scope.split(/\s+/).includes(sc)); },
+  async login(extra) {
     if (!this.cid) return;
     const v = rndStr(64), st = rndStr(16), ch = await sha256b64url(v);
     try { localStorage.setItem('sillon-sp-pkce', JSON.stringify({ v, st })); } catch (e) {}
-    const q = new URLSearchParams({ client_id: this.cid, response_type: 'code', redirect_uri: this.redirect(), code_challenge_method: 'S256', code_challenge: ch, state: st, scope: 'user-read-recently-played user-read-currently-playing user-top-read' });
+    const sc = new Set(('user-read-recently-played user-read-currently-playing user-top-read ' + this.scopeX() + ' ' + (extra || '')).trim().split(/\s+/));
+    const q = new URLSearchParams({ client_id: this.cid, response_type: 'code', redirect_uri: this.redirect(), code_challenge_method: 'S256', code_challenge: ch, state: st, scope: [...sc].join(' ') });
     location.href = 'https://accounts.spotify.com/authorize?' + q;
   },
   async token(body) {
@@ -3911,13 +3960,14 @@ const SPA = {
     let pk = null; try { pk = JSON.parse(localStorage.getItem('sillon-sp-pkce') || 'null'); localStorage.removeItem('sillon-sp-pkce'); } catch (e) {}
     if (!pk || pk.st !== st) { toast('Connexion Spotify expirée, réessaie.'); return false; }
     const j = await this.token({ grant_type: 'authorization_code', code, redirect_uri: this.redirect(), code_verifier: pk.v });
-    this.tok = { access: j.access_token, refresh: j.refresh_token, exp: Date.now() + (j.expires_in - 60) * 1000 }; this.saveTok();
+    this.tok = { access: j.access_token, refresh: j.refresh_token, exp: Date.now() + (j.expires_in - 60) * 1000, scope: String(j.scope || '') }; this.saveTok();
+    if (this.hasScope('playlist-modify-private')) try { localStorage.setItem('sillon-sp-scx', 'playlist-modify-private'); } catch (e) {}
     return true;
   },
   async refresh() {
     try {
       const j = await this.token({ grant_type: 'refresh_token', refresh_token: this.tok.refresh });
-      this.tok.access = j.access_token; if (j.refresh_token) this.tok.refresh = j.refresh_token; this.tok.exp = Date.now() + (j.expires_in - 60) * 1000; this.saveTok();
+      this.tok.access = j.access_token; if (j.refresh_token) this.tok.refresh = j.refresh_token; if (j.scope) this.tok.scope = String(j.scope); this.tok.exp = Date.now() + (j.expires_in - 60) * 1000; this.saveTok();
     } catch (e) { if (e.code === 'invalid_grant' || e.code === 'invalid_client') { this.tok = null; this.saveTok(); } throw e; }
   },
   async get(path) {
@@ -3932,6 +3982,21 @@ const SPA = {
       if (!r.ok) throw new Error('HTTP ' + r.status);
       this.denied = false;
       return r.json();
+    }
+    throw new Error('trop de demandes, réessaie plus tard');
+  },
+  /* écriture (playlists) : les erreurs gardent leur code HTTP et le message de Spotify */
+  async req(method, path, body) {
+    if (!this.ok()) throw new Error('pas connecté');
+    if (Date.now() > this.tok.exp) await this.refresh();
+    for (let k = 0; k < 4; k++) {
+      const h = { Authorization: 'Bearer ' + this.tok.access }; if (body) h['Content-Type'] = 'application/json';
+      const r = await fetch('https://api.spotify.com/v1' + path, { method, headers: h, body: body ? JSON.stringify(body) : undefined });
+      if (r.status === 401 && k === 0) { await this.refresh(); continue; }
+      if (r.status === 429) { await sleep((+r.headers.get('Retry-After') || 3) * 1000); continue; }
+      if (r.status === 204) return null;
+      if (!r.ok) { const j = await r.json().catch(() => ({})), er = new Error(String((j.error && (j.error.message || j.error)) || 'HTTP ' + r.status)); er.status = r.status; throw er; }
+      return r.json().catch(() => null);
     }
     throw new Error('trop de demandes, réessaie plus tard');
   },
@@ -4123,7 +4188,7 @@ async function saBoot() {
   if ('serviceWorker' in navigator && location.protocol === 'https:') navigator.serviceWorker.register('sw.js').catch(() => {});
   let ok = false;
   try { ok = await SPA.handleRedirect(); } catch (e) { toast('Connexion Spotify impossible : ' + (e.message || e)); }
-  if (ok) { toast('Spotify connecté'); openData(); }
+  if (ok) { if (sgPlResume()) toast('Spotify connecté, je crée ta playlist…'); else { toast('Spotify connecté'); openData(); } }
   if (SPA.ok()) syncSpotify(false);
   new MutationObserver(() => queueCovers()).observe(document.body, { childList: true, subtree: true });
   if (S.live) setLive(true);
@@ -4363,6 +4428,7 @@ function renderProfile() {
   once.sort((x, y) => G.firstA[y] - G.firstA[x]);
   $('#prOnceS').textContent = once.length ? `${fmtN(once.length)} ${pl(once.length, l.a1)} écouté${once.length >= 2 ? 's' : ''} une seule fois, souvent croisé${once.length >= 2 ? 's' : ''} dans une playlist ou une radio. Les plus récents :` : 'Aucun : t\'as réécouté tous ceux que t\'as croisés.';
   $('#prOnce').innerHTML = once.slice(0, 10).map((a, j) => arRow(a, j + 1, fmtDay(D.day[G.firstA[a]]), `« ${D.tn[D.k[G.firstA[a]]]} »`)).join('');
+  renderProfilePlus();
 }
 async function idPng() {
   const R = profileData(), X = R.X, l = L(), topA = topIdx(X.aM, 5), albs = topIdx(X.lM, 4, 1);
@@ -4518,6 +4584,112 @@ async function styPng() {
   return K.blob();
 }
 
+/* ================= ta carte, en plus : selon l'heure, tes sessions, tes albums d'une traite ================= */
+const SLOTS = [['Le matin', '6 h – 12 h', 'de tes matins', 'le matin'], ['L\'après-midi', '12 h – 18 h', 'de tes après-midi', 'l\'après-midi'], ['Le soir', '18 h – minuit', 'de tes soirées', 'le soir'], ['La nuit', 'minuit – 6 h', 'de tes nuits', 'la nuit']];
+const slotOf = h => h < 6 ? 3 : h < 12 ? 0 : h < 18 ? 1 : 2;
+const clockOf = s => { const d = new Date(s * 1000); return `${d.getHours()}${NS}h${NS}${String(d.getMinutes()).padStart(2, '0')}`; };
+let PPX = null;
+function profPlus() {
+  const key = dataVer + '|' + S.content + '|' + S.noSkip;
+  if (PPX && PPX.key === key) return PPX;
+  const pass = makePass(false), na = D.na, K = D.k, TK = D.tk, TA = D.ta, TL = D.tl;
+  const am = new Float64Array(na * 4), sl = new Float64Array(4), at = new Float64Array(na), heard = new Uint8Array(D.nt);
+  const ses = [];
+  let cS = -1, cE = 0, cN = 0, i0 = 0, i1 = 0, pS = -1, pE = 0;
+  let np = { d: 0, s: 0, e: 0 };
+  for (let i = 0; i < D.n; i++) {
+    if (!pass(i)) continue;
+    const t = K[i], m = D.m[i], st = D.s[i], en = st + m / 1000, a = TA[t], s = slotOf(D.hr[i]);
+    am[a * 4 + s] += m; sl[s] += m; at[a] += m;
+    if (TK[t] === 0 && m >= 30000) heard[t] = 1;
+    /* une session s'arrête après plus de 15 min sans rien (comme le record « plus longue session ») */
+    if (cS < 0 || st - cE > 900) { if (cS >= 0) ses.push([cS, cE, cN, i0, i1]); cS = st; cE = en; cN = 1; i0 = i; } else { if (en > cE) cE = en; cN++; }
+    i1 = i;
+    /* sans pause : jamais plus d'une minute entre deux morceaux */
+    if (pS < 0 || st - pE > 60) { if (pS >= 0 && pE - pS > np.d) np = { d: pE - pS, s: pS, e: pE }; pS = st; pE = en; } else if (en > pE) pE = en;
+  }
+  if (cS >= 0) ses.push([cS, cE, cN, i0, i1]);
+  if (pS >= 0 && pE - pS > np.d) np = { d: pE - pS, s: pS, e: pE };
+
+  /* albums d'une traite : au moins 80 % des titres que tu connais de l'album (5 au minimum), à la suite */
+  const kn = new Uint16Array(D.nl); for (let t = 0; t < D.nt; t++) if (heard[t] && TL[t]) kn[TL[t]]++;
+  const full = new Map(); let rl = 0, rset = null, rEnd = 0, rDay = 0, runs = 0;
+  const flush = () => { if (rl && kn[rl] >= 5 && rset.size >= Math.max(5, Math.ceil(kn[rl] * 0.8))) { const o = full.get(rl) || { n: 0, last: 0 }; o.n++; o.last = rDay; full.set(rl, o); runs++; } rl = 0; rset = null; };
+  for (let i = 0; i < D.n; i++) {
+    if (!pass(i)) continue;
+    const t = K[i], l = TL[t];
+    if (TK[t] !== 0 || !l) { flush(); continue; }
+    const st = D.s[i], m = D.m[i];
+    if (l !== rl || st - rEnd > 300) { flush(); rl = l; rset = new Set(); rDay = D.day[i]; }
+    if (m >= 30000) rset.add(t);
+    rEnd = st + m / 1000;
+  }
+  flush();
+  return (PPX = { key, am, sl, at, ses, np, full, runs, albums: D.nl > 1 });
+}
+
+function renderSlots() {
+  const P = profPlus(), l = L(), box = $('#prSlots'); if (!box) return;
+  $('#prSlotsH').textContent = `Tes ${l.a.toLowerCase()} selon l'heure`;
+  const tot = P.sl.reduce((x, y) => x + y, 0);
+  if (!tot) { box.innerHTML = '<p class="empty">Pas encore assez d\'écoutes.</p>'; return; }
+  const cards = SLOTS.map(([k, h, of], s) => {
+    const head = `<p class="slh">${k} <small>${h}</small></p>`;
+    if (!P.sl[s]) return `<div class="slotc">${head}<p class="sle">Rien à ces heures-là.</p></div>`;
+    const top = []; for (let a = 0; a < D.na; a++) { const v = P.am[a * 4 + s]; if (v > 0) top.push([a, v]); }
+    top.sort((x, y) => y[1] - x[1]);
+    const [a0, v0] = top[0];
+    return `<div class="slotc">${head}
+      <button class="slota" data-open="a:${a0}">${covA(a0)}<span class="nm"><b>${esc(D.artists[a0])}</b><small>${fmtPct(v0 / P.sl[s])} ${of}</small></span></button>
+      ${top.length > 1 ? `<ol class="slot2">${top.slice(1, 3).map(([a, v], j) => `<li><button data-open="a:${a}"><span class="n">${j + 2}</span><span>${esc(D.artists[a])}</span><small>${fmtPct(v / P.sl[s])}</small></button></li>`).join('')}</ol>` : ''}</div>`;
+  }).join('');
+  /* l'artiste le plus « marqué » par un moment de la journée */
+  let best = null;
+  const min = Math.max(36e5, tot * 0.005);
+  for (let a = 0; a < D.na; a++) {
+    if (P.at[a] < min) continue;
+    for (let s = 0; s < 4; s++) {
+      const sh = P.am[a * 4 + s] / P.at[a], base = P.sl[s] / tot, lift = base ? sh / base : 0;
+      if (sh >= 0.5 && lift >= 2 && (!best || lift > best.lift)) best = { a, s, sh, base, lift };
+    }
+  }
+  box.innerHTML = `<div class="slots">${cards}</div>${best ? `<p class="slotfact"><button class="lnk" data-open="a:${best.a}">${esc(D.artists[best.a])}</button>, c'est surtout ${SLOTS[best.s][3]} : ${fmtPct(best.sh)} de ses écoutes, contre ${fmtPct(best.base)} pour l'ensemble de ce que t'écoutes.</p>` : ''}`;
+}
+
+function renderSessions() {
+  const P = profPlus(), box = $('#prSes'); if (!box) return;
+  const Ls = P.ses; if (!Ls.length) { box.innerHTML = '<p class="empty">Pas encore assez d\'écoutes.</p>'; return; }
+  const dur = x => (x[1] - x[0]) * 1000;
+  let lg = Ls[0]; for (const x of Ls) if (x[1] - x[0] > lg[1] - lg[0]) lg = x;
+  const pass = makePass(false), cnt = new Map();
+  for (let i = lg[3]; i <= lg[4]; i++) { if (!pass(i)) continue; const a = D.ta[D.k[i]]; cnt.set(a, (cnt.get(a) || 0) + D.m[i]); }
+  let ta = -1, tv = 0; for (const [a, v] of cnt) if (v > tv) { ta = a; tv = v; }
+  const ds = Ls.map(dur).sort((a, b) => a - b), med = ds[Math.floor(ds.length / 2)];
+  const days = new Set(Ls.map(x => tsDay(x[0]))).size, avg = Ls.length / Math.max(1, days);
+  const B = [['Moins de 15 min', 0, 9e5], ['15 à 45 min', 9e5, 27e5], ['45 min à 2 h', 27e5, 72e5], ['Plus de 2 h', 72e5, Infinity]];
+  const bc = B.map(([, a, b]) => ds.filter(v => v >= a && v < b).length), bmax = Math.max(1, ...bc);
+  const k = (lab, v, sub) => `<div class="kpi"><span class="k">${lab}</span><span class="v">${v}</span>${sub ? `<span class="d">${sub}</span>` : ''}</div>`;
+  const span = (a, b) => { const da = tsDay(a), db = tsDay(b); return da === db ? `le ${esc(fmtDay(da))}, de ${clockOf(a)} à ${clockOf(b)}` : db === da + 1 ? `le ${esc(fmtDay(da))}, de ${clockOf(a)} à ${clockOf(b)} le lendemain` : `du ${esc(fmtDay(da))} ${clockOf(a)} au ${esc(fmtDay(db))} ${clockOf(b)}`; };
+  box.innerHTML = `<div class="kpis grk">
+      ${k('Ta plus longue session', esc(fmtDur(dur(lg))), `${span(lg[0], lg[1])}, ${fmtN(lg[2])} ${pl(lg[2], 'morceau', 'morceaux')}${ta >= 0 ? `, surtout <b>${esc(D.artists[ta])}</b>` : ''}`)}
+      ${k('Ta session typique', esc(fmtDur(med)), 'la moitié de tes sessions dure moins longtemps')}
+      ${k('Ton record sans pause', esc(fmtDur(P.np.d * 1000)), P.np.d ? `${span(P.np.s, P.np.e)}, jamais plus d'une minute de pause` : '')}
+      ${k('Sessions par jour', avg.toLocaleString('fr-FR', { maximumFractionDigits: 1 }), `les jours où t'écoutes, ${fmtN(Ls.length)} en tout`)}
+    </div>
+    <h3 class="h3">Combien de temps durent tes sessions</h3>
+    <div class="meters">${B.map(([lab], j) => `<div class="mt"><span>${lab}</span><span class="tr"><i style="width:${(bc[j] / bmax * 100).toFixed(1)}%"></i></span><b>${fmtPct(bc[j] / Ls.length)}</b></div>`).join('')}</div>`;
+}
+
+function renderFullAlbums() {
+  const P = profPlus(), box = $('#prAlb'), sub = $('#prAlbS'); if (!box) return;
+  if (isPod()) { sub.textContent = 'Ça ne concerne que la musique.'; box.innerHTML = ''; return; }
+  if (!P.albums) { sub.textContent = 'Ton historique ne dit pas de quel album vient chaque titre (c\'est le cas de l\'historique Spotify simple et de YouTube Music).'; box.innerHTML = ''; return; }
+  const Ls = [...P.full].sort((x, y) => y[1].n - x[1].n || y[1].last - x[1].last);
+  if (!Ls.length) { sub.textContent = 'Aucun pour l\'instant : il faut presque tous les titres d\'un album à la suite, sans passer à autre chose.'; box.innerHTML = ''; return; }
+  sub.textContent = `${fmtN(Ls.length)} ${pl(Ls.length, 'album')} écouté${Ls.length > 1 ? 's' : ''} presque en entier, à la suite, ${fmtN(P.runs)} fois en tout.`;
+  box.innerHTML = Ls.slice(0, 10).map(([l, o], j) => `<li><button class="tlr" data-open="l:${l}"><span class="n">${j + 1}</span>${covL(l)}<span class="nm"><b>${esc(D.albums[l])}</b><small>${esc(D.artists[D.la[l]] || '')}</small></span><span class="al">dernière fois le ${esc(fmtDay(o.last))}</span><span class="v">${fmtN(o.n)}${NS}fois</span><span class="c"></span></button></li>`).join('');
+}
+function renderProfilePlus() { renderSlots(); renderSessions(); renderFullAlbums(); }
 /* ================= import : Spotify, Apple Music, YouTube Music, Deezer ================= */
 const SVCS = {
   spotify: { n: 'Spotify', url: 'https://www.spotify.com/account/privacy/', wait: 'quelques jours' },
@@ -5339,7 +5511,8 @@ function fbInit() {
     else await new Promise(r => { const off = U.onAuthStateChanged(auth, () => { setTimeout(() => off(), 0); r(); }); });
     if (!auth.currentUser) await U.signInAnonymously(auth);
     GRP.uid = auth.currentUser.uid;
-    return { F, db, uid: GRP.uid };
+    /* uid lu à chaque fois : il change quand cet appareil se connecte à un compte Google déjà utilisé ailleurs */
+    return { F, db, U, auth, get uid() { return GRP.uid; } };
   })();
   FBP.catch(() => { FBP = null; });
   return FBP;
@@ -5430,7 +5603,7 @@ function grRemoved(g) {
 }
 async function groupPush(force) {
   const g = grMe(); if (!fbCfg() || !g || !g.gid || DEMO || !D) return false;
-  if (g.mid) return false;
+  if (g.mid || AC.sw) return false;
   if (GRP.mGid === g.gid && GRP.members.length && GRP.uid) g.recOk = grRecOkCalc(grMembers());
   const sum = Object.assign(groupSummary(), grRecPack(g)), pp = Prefs.data.sync.pp;
   const sig = [D.n, D.lastDay, sum.tMin, g.me, sum.mo, sum.svc, Prefs.data.sync.ppAt || 0, sum.wk, sum.rec ? sum.rec.at : 0, (sum.recOk || []).join(',')].join('|');
@@ -5699,7 +5872,12 @@ service cloud.firestore {
         && request.resource.data.name.size() > 0
         && request.resource.data.name.size() <= 40
         && request.resource.data.createdAt == request.time;
-      allow update, delete: if false;
+      allow update: if request.auth != null
+        && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['owner'])
+        && request.resource.data.owner == request.auth.uid
+        && exists(/databases/$(database)/documents/groups/$(gid)/members/$(request.auth.uid))
+        && !exists(/databases/$(database)/documents/groups/$(gid)/members/$(resource.data.owner));
+      allow delete: if false;
       match /members/{uid} {
         allow read: if request.auth != null;
         allow create, update: if request.auth != null
@@ -5745,6 +5923,22 @@ service cloud.firestore {
         && request.resource.data.at == request.time;
       allow delete: if request.auth != null;
     }
+    match /backups/{rid} {
+      allow get, delete: if request.auth != null;
+      allow create: if request.auth != null
+        && request.resource.data.keys().hasOnly(['s', 'iv', 'salt', 'at'])
+        && request.resource.data.s is string
+        && request.resource.data.s.size() <= 200
+        && request.resource.data.at == request.time;
+    }
+    match /users/{uid} {
+      allow get, delete: if request.auth != null && request.auth.uid == uid;
+      allow create, update: if request.auth != null && request.auth.uid == uid
+        && request.resource.data.keys().hasOnly(['s', 'at'])
+        && request.resource.data.s is string
+        && request.resource.data.s.size() <= 200
+        && request.resource.data.at == request.time;
+    }
   }
 }`;
 const GR_CFG = `window.SILLON = {
@@ -5787,6 +5981,7 @@ function grSetupHTML() {
   ])}</section>
   <section class="gsec"><h3>Étape 2 : régler la connexion et la base</h3>${guideSteps([
     pb('Active la connexion anonyme', 'Dans le menu de gauche, ouvre Authentication (rangé sous Security, ou tape-le dans la recherche en haut). Clique sur « Commencer », onglet « Sign-in method » (méthode de connexion), choisis « Anonyme », active l\'interrupteur et enregistre.', 'Tes potes n\'auront ni compte ni mot de passe à créer : Firebase leur donne un identifiant invisible.'),
+    pb('Active aussi Google (pour « Ton compte »)', 'Toujours dans « Sign-in method », clique sur « Ajouter un fournisseur », choisis Google, active l\'interrupteur, choisis ton adresse mail d\'assistance, puis « Enregistrer ». Ensuite, onglet « Paramètres », « Domaines autorisés » : « Ajouter un domaine », et tape l\'adresse de ton site sans https:// ni le reste (par exemple <code>ton-pseudo.github.io</code>).', 'C\'est ce qui permet à chacun de se connecter avec Google pour retrouver ses stats sur un autre appareil. Sans ça, le code de sauvegarde marche quand même.'),
     pb('Crée la base Firestore', 'Dans le menu de gauche, ouvre Firestore (rangé sous Databases &amp; Storage), puis « Créer une base de données ». Si on te demande une édition, prends Standard.'),
     pb('Garde l\'identifiant « (default) » et choisis l\'Europe', 'Ne change pas l\'identifiant de la base : il doit rester « (default) ». Comme emplacement, prends l\'Europe, par exemple europe-west9 (Paris).', 'Avec un autre identifiant, Sillon ne trouve pas la base. Et l\'emplacement ne se change plus après.'),
     pb('Démarre en mode production', 'Choisis « mode production », puis « Créer ». Le mode test laisserait n\'importe qui lire et modifier la base.'),
@@ -6039,7 +6234,7 @@ if (SA) {
 function needInstall() {
   if (!SA || isStandalone() || !(OS_IOS || OS_AND)) return false;
   if (/[?&](code|error|state)=/.test(location.search)) return false;
-  try { if (sessionStorage.getItem('sillon-noinst')) return false; } catch (e) {}
+  try { if (sessionStorage.getItem('sillon-noinst') || localStorage.getItem('sillon-noinst')) return false; } catch (e) {}
   return true;
 }
 /* lien d'invitation ou fiche du guide : on le garde pour la première ouverture de l'appli (Android partage le stockage) */
@@ -6100,10 +6295,11 @@ function renderInstall() {
   }
   box.innerHTML = `<svg class="disc" viewBox="0 0 64 64" aria-hidden="true"><circle class="d1" cx="32" cy="32" r="30"/><circle class="d2" cx="32" cy="32" r="24"/><circle class="d2" cx="32" cy="32" r="18"/><circle class="d3" cx="32" cy="32" r="10"/><circle class="d4" cx="32" cy="32" r="2.4"/></svg>
     <h1 id="instT" tabindex="-1">${title}</h1><p class="lead">${sub}</p>${body}${tip ? `<p class="gtip">${tip}</p>` : ''}${note ? `<p class="note">${note}</p>` : ''}${after}
-    ${INST.done ? '' : '<button class="instskip" data-in="skip">Continuer sans installer</button>'}`;
+    ${INST.done ? '' : '<p class="instno"><button class="instskip" data-in="skip">Continuer sans installer</button><button class="instskip" data-in="never">Ne plus me le proposer</button></p>'}`;
 }
 async function instAct(a) {
   if (a === 'skip') { closeInstall(); return; }
+  if (a === 'never') { try { localStorage.setItem('sillon-noinst', '1'); } catch (e) {} closeInstall(); toast('C\'est noté, on ne te le proposera plus. Tu pourras toujours l\'installer depuis ta page Toi.'); return; }
   if (a === 'copy') { const u = location.href; navigator.clipboard.writeText(u).then(() => toast('Lien copié.'), () => toast(u)); return; }
   if (a === 'install' && INST.ev) {
     const e = INST.ev; INST.ev = null;
@@ -6141,12 +6337,19 @@ async function lkKeysFor(s) {
 async function lkEnc(key, u8) { const iv = crypto.getRandomValues(new Uint8Array(12)); return { iv: b64(iv), c: new Uint8Array(await crypto.subtle.encrypt({ name: 'AES-GCM', iv }, key, u8)) }; }
 async function lkDec(key, iv, c) { return new Uint8Array(await crypto.subtle.decrypt({ name: 'AES-GCM', iv: unb64(iv) }, key, c)); }
 const lkSig = (X, st) => (X ? [X.n, X.n ? X.s[X.n - 1] : 0, X.created || ''].join('|') : '0') + '|' + st;
-const lkStamp = h => (h && h.ppAt || 0) + '/' + (h && h.meAt || 0) + '/' + (h && h.setAt || 0) + '/' + grDevStamp(h && h.grDev);
-const lkLocalSig = () => lkSig(DEMO ? null : D, lkStamp(Object.assign({}, Prefs.data.sync, { setAt: S.setAt })));
+const lkStamp = h => (h && h.ppAt || 0) + '/' + (h && h.meAt || 0) + '/' + (h && h.setAt || 0) + '/' + grDevStamp(h && h.grDev) + '/' + (h && h.bk && h.bk.at || 0);
+const lkLocalSig = () => { const L = lkMe(); return lkSig(DEMO ? null : D, lkStamp(Object.assign({}, Prefs.data.sync, { setAt: S.setAt, bk: L && L.bk }))); };
+/* le secret commun à tes appareils : créé au premier besoin (code de liaison, code de sauvegarde, compte Google) */
+function lkEnsure() {
+  let L = lkMe();
+  if (!L) { L = Prefs.data.sync.link = { s: b64u(crypto.getRandomValues(new Uint8Array(32))), ver: null, sig: null, at: 0 }; LK.k = null; Prefs.save(); }
+  return L;
+}
+const BK_RE = /^[A-HJ-NP-Z2-9]{20}$/;
 function lkBlob() {
-  const sy = Prefs.data.sync;
+  const sy = Prefs.data.sync, L = lkMe();
   grDevMark();
-  const head = te8(JSON.stringify({ v: 1, pp: sy.pp || '', ppAt: sy.ppAt || 0, me: sy.me || '', meAt: sy.meAt || 0, src: (sy.sources || []).slice(-12), set: setPack(), setAt: S.setAt || 0, grDev: sy.grDev || {} }));
+  const head = te8(JSON.stringify({ v: 1, pp: sy.pp || '', ppAt: sy.ppAt || 0, me: sy.me || '', meAt: sy.meAt || 0, src: (sy.sources || []).slice(-12), set: setPack(), setAt: S.setAt || 0, grDev: sy.grDev || {}, bk: L && L.bk && L.bk.at ? { c: L.bk.c, at: L.bk.at } : null }));
   const body = DEMO ? new Uint8Array(0) : pack(D);
   const out = new Uint8Array(4 + head.length + body.length);
   new DataView(out.buffer).setUint32(0, head.length); out.set(head, 4); out.set(body, 4 + head.length);
@@ -6176,6 +6379,8 @@ function lkApplyHead(h) {
     sy.grDev = Object.fromEntries(L);
     if (grTwinSync() && S.view === 'groupe') renderGroup();
   }
+  const L = lkMe();
+  if (L && h.bk && typeof h.bk.c === 'string' && BK_RE.test(h.bk.c) && typeof h.bk.at === 'number' && h.bk.at > ((L.bk && L.bk.at) || 0)) L.bk = { c: h.bk.c, at: h.bk.at };
   setApplyRemote(h.set, h.setAt || 0);
   renderMeTop(); if (S.view === 'toi') renderMe();
   if (Array.isArray(h.src)) { const by = new Map(); for (const s of (sy.sources || []).concat(h.src)) if (s && s.at) by.set(s.at + '|' + s.n, s); sy.sources = [...by.values()].sort((a, b) => a.at - b.at).slice(-12); }
@@ -6253,8 +6458,7 @@ function lkStopCode(delDoc) {
   if (delDoc && pid) fbInit().then(({ F, db }) => F.deleteDoc(F.doc(db, 'pairs', pid))).catch(() => {});
 }
 async function lkShowCode() {
-  let L = lkMe();
-  if (!L) { L = Prefs.data.sync.link = { s: b64u(crypto.getRandomValues(new Uint8Array(32))), ver: null, sig: null, at: 0 }; Prefs.save(); }
+  const L = lkEnsure();
   const { F, db } = await fbInit();
   const a = crypto.getRandomValues(new Uint8Array(8)), code = Array.from(a, b => LK_ALPHA[b % 32]).join('');
   const salt = crypto.getRandomValues(new Uint8Array(16)), enc = await lkEnc(await lkPairKey(code, salt), te8(L.s)), pid = await lkPid(code);
@@ -6285,10 +6489,17 @@ async function lkJoin(raw) {
   const p = snap.data();
   const secret = new TextDecoder().decode(await lkDec(await lkPairKey(code, unb64(p.salt)), p.iv, unb64(p.s)));
   await F.deleteDoc(ref).catch(() => {});
-  Prefs.data.sync.link = { s: secret, ver: null, sig: null, at: 0 }; Prefs.save();
-  LK.k = null; LK.err = ''; updateDataStatus();
+  lkAdopt(secret);
   await lkSync(true);
-  if (!LK.err) toast('Appareils reliés.');
+  if (!LK.err) { toast('Appareils reliés.'); acKeep(); }
+}
+/* cet appareil rejoint d'autres données reliées (code, compte Google) : ses écoutes s'y ajoutent à la prochaine synchro */
+function lkAdopt(secret, bk) {
+  const L = lkMe();
+  if (L && L.s === secret) { if (bk && !L.bk) { L.bk = bk; Prefs.save(); } return false; }
+  Prefs.data.sync.link = Object.assign({ s: secret, ver: null, sig: null, at: 0 }, bk ? { bk } : {});
+  LK.k = null; LK.err = ''; Prefs.save(); updateDataStatus();
+  return true;
 }
 function lkAgo(t) {
   const s = Math.round((Date.now() - t) / 1000);
@@ -6306,7 +6517,7 @@ function renderLink() {
   } else if (L) {
     box.innerHTML = `<p class="lkok"><b>Cet appareil est relié.</b> ${LK.busy ? 'Synchro en cours…' : L.at ? 'Dernière synchro ' + lkAgo(L.at) + '.' : ''}</p>
       <p class="note">Tes nouvelles écoutes partent toutes seules après chaque import, et tes autres appareils les récupèrent à l'ouverture.</p>${err}
-      <div class="gact"><button class="btn lite" data-lk="sync"${LK.busy ? ' disabled' : ''}>Synchroniser maintenant</button><button class="btn" data-lk="show">Relier un autre appareil</button><button class="btn" data-lk="unlink">Délier cet appareil</button></div>`;
+      <div class="gact"><button class="btn lite" data-lk="sync"${LK.busy ? ' disabled' : ''}>Synchroniser maintenant</button><button class="btn" data-lk="show">Relier un autre appareil</button>${acMe() ? '' : '<button class="btn" data-lk="unlink">Délier cet appareil</button>'}</div>${acMe() ? '<p class="note">Pour délier cet appareil, déconnecte-toi de ton compte Google, juste au-dessus.</p>' : ''}`;
   } else {
     box.innerHTML = `<p class="note">Retrouve les mêmes stats sur ton PC et ton tel. Un appareil affiche un code, tu le tapes sur l'autre, une seule fois. Tes écoutes sont chiffrées avant d'être envoyées : personne d'autre ne peut les lire, même pas la personne qui a mis le site en ligne.</p>${err}
       <div class="gact"><button class="btn lite" data-lk="show">Afficher un code</button></div>
@@ -6336,6 +6547,204 @@ function wireLink() {
 }
 function lkBoot() { renderLink(); if (lkMe() && fbCfg()) setTimeout(() => lkSync(), 1200); }
 
+/* ================= ton compte : connexion Google et code de sauvegarde (version GitHub) ================= */
+/* Les deux retrouvent les mêmes données reliées que « Relier tes appareils » (le même secret, LK) :
+   - Google : users/{uid} garde ce secret, lisible seulement une fois connecté avec ce compte Google
+     (et, techniquement, par la personne qui gère Firebase) ;
+   - code de sauvegarde, 20 caractères : backups/{id} garde ce secret chiffré avec le code,
+     comme le code de liaison, mais sans limite de temps. Personne d'autre ne peut le lire. */
+const AC = { busy: '', err: '', checked: false, sw: false };
+const acMe = () => (SA && Prefs.data.sync && Prefs.data.sync.acct) || null;
+const bkId = async c => hexOf(await sha256('sillon-backup|' + c)).slice(0, 40);
+const bkFmt = c => String(c).replace(/(.{4})(?!$)/g, '$1-');
+const bkClean = raw => String(raw || '').toUpperCase().replace(/[^A-Z0-9]/g, '');
+function acErr(e) {
+  const c = String((e && (e.code || e.message)) || e || '');
+  if (/popup-closed-by-user|cancelled-popup-request|user-cancelled/.test(c)) return '';
+  if (/popup-blocked/.test(c)) return 'Ton navigateur a bloqué la fenêtre Google. Autorise les fenêtres pour ce site, puis réessaie.';
+  if (/operation-not-allowed|admin-restricted|configuration-not-found/.test(c)) return 'La connexion Google n\'est pas encore activée sur ce site : la personne qui gère Firebase doit l\'activer (Authentication, Sign-in method, Google). En attendant, le code de sauvegarde marche.';
+  if (/unauthorized-domain/.test(c)) return 'Firebase ne reconnaît pas ce site pour la connexion Google : ajoute-le dans Authentication, Paramètres, Domaines autorisés.';
+  if (/web-storage-unsupported|operation-not-supported/.test(c)) return 'La connexion Google ne marche pas dans ce navigateur. Utilise plutôt un code de sauvegarde.';
+  if (/network-request-failed/.test(c)) return 'Pas de connexion internet : réessaie.';
+  return lkErr(e);
+}
+
+/* ---------- Google ---------- */
+async function acGoogle() {
+  const { U, auth } = await fbInit();
+  const prov = new U.GoogleAuthProvider(); prov.setCustomParameters({ prompt: 'select_account' });
+  const old = auth.currentUser ? auth.currentUser.uid : null;
+  let cred = null;
+  try {
+    if (auth.currentUser && auth.currentUser.isAnonymous) await U.linkWithPopup(auth.currentUser, prov);
+    else await U.signInWithPopup(auth, prov);
+  } catch (e) {
+    if (/credential-already-in-use|email-already-in-use/.test(String(e && e.code))) cred = U.GoogleAuthProvider.credentialFromError(e);
+    if (!cred) throw e;
+  }
+  if (cred) {
+    /* ce compte Google sert déjà sur un autre appareil : cet appareil le rejoint et laisse tomber son compte anonyme.
+       Pendant le changement, rien ne part vers le groupe (sinon l'ancienne fiche reviendrait) */
+    AC.sw = true;
+    try {
+      const own = await acDropOld(old);
+      await U.signInWithCredential(auth, cred);
+      GRP.uid = auth.currentUser.uid;
+      AC.sw = false;
+      await acRegroup(old, own);
+    } finally { AC.sw = false; }
+  }
+  GRP.uid = auth.currentUser.uid;
+  const u = auth.currentUser, gp = (u.providerData || []).find(x => x && x.providerId === 'google.com') || {};
+  Prefs.data.sync.acct = { p: 'google', email: String(gp.email || u.email || '').slice(0, 120), name: String(gp.displayName || u.displayName || '').slice(0, 60), uid: u.uid, at: Date.now(), ok: false };
+  Prefs.save();
+  await acFinish();
+}
+/* dernière étape, à refaire si elle a raté (règles Firebase pas à jour, coupure) : le compte garde le secret des données reliées */
+async function acFinish() {
+  const moved = await acVault(), A = acMe();
+  if (A) { A.ok = true; Prefs.save(); }
+  toast(moved ? 'Connecté. Tes stats arrivent sur cet appareil.' : 'Connecté avec Google : tes stats te suivent sur tes autres appareils.');
+}
+/* avant de changer de compte : la fiche de groupe de l'ancien compte anonyme part (sinon elle resterait en double) */
+async function acDropOld(old) {
+  const g = grMe(); if (!old || !g || !g.gid) return false;
+  g.pushedAt = 0; Prefs.save();   /* sinon, la fiche qui disparaît ferait croire qu'on a été retiré du groupe */
+  try {
+    const { F, db } = await fbInit();
+    const gs = await F.getDoc(F.doc(db, 'groups', g.gid)), own = gs.exists() && gs.data().owner === old;
+    await F.deleteDoc(F.doc(db, 'groups', g.gid, 'members', old)).catch(() => {});
+    return own;
+  } catch (e) { console.warn('compte', e); return false; }
+}
+/* après : on renvoie la fiche sous le compte Google, et on reprend la main sur le groupe si l'ancien compte l'avait créé */
+async function acRegroup(old, own) {
+  const sy = Prefs.data.sync, g = grMe();
+  if (old && sy.grDev && sy.grDev[old]) { sy.grDev = Object.assign({}, sy.grDev); delete sy.grDev[old]; }
+  if (!g || !g.gid) { Prefs.save(); return; }
+  if (g.mid === GRP.uid) delete g.mid;
+  g.pushedAt = 0; g.sig = ''; Prefs.save();
+  try {
+    await groupPush(true);
+    if (own) {
+      const { F, db } = await fbInit();
+      await F.updateDoc(F.doc(db, 'groups', g.gid), { owner: GRP.uid });
+      if (GRP.group && GRP.mGid === g.gid) GRP.group.owner = GRP.uid;
+    }
+  } catch (e) { console.warn('compte', e); }
+  if (S.view === 'groupe') renderGroup();
+}
+/* le compte garde le secret des données reliées : le premier appareil connecté le dépose, les suivants le récupèrent */
+async function acVault() {
+  const { F, db, uid } = await fbInit(), ref = F.doc(db, 'users', uid);
+  const snap = await F.getDoc(ref), rs = snap.exists() ? String(snap.data().s || '') : '';
+  if (rs) { const moved = lkAdopt(rs); await lkSync(true); return moved; }
+  const L = lkEnsure();
+  await F.setDoc(ref, { s: L.s, at: F.serverTimestamp() });
+  await lkSync(true);
+  return false;
+}
+/* cet appareil a rejoint d'autres données (code de liaison, code de sauvegarde) : le compte Google suit */
+async function acKeep() {
+  const A = acMe(), L = lkMe(); if (!A || !L) return;
+  try { const { F, db, uid } = await fbInit(); if (uid === A.uid) await F.setDoc(F.doc(db, 'users', uid), { s: L.s, at: F.serverTimestamp() }); }
+  catch (e) { console.warn('compte', e); }
+}
+/* déconnexion : les stats restent ici, mais l'appareil ne se synchronise plus et quitte le groupe */
+async function acSignOut() {
+  const { U, auth } = await fbInit();
+  groupStop();
+  const sy = Prefs.data.sync; delete sy.acct; delete sy.link; delete sy.group; Prefs.save();
+  LK.k = null; LK.err = ''; GRP.members = []; GRP.group = null; GRP.mGid = null;
+  await U.signOut(auth);
+  FBP = null; GRP.uid = null;
+  updateDataStatus();
+  toast('Déconnecté. Tes stats restent sur cet appareil.');
+}
+/* la connexion Google peut avoir sauté (données du site effacées en partie) : on remet l'affichage d'aplomb */
+async function acCheck() {
+  const A = acMe(); if (!A || AC.checked) return;
+  AC.checked = true;
+  try {
+    const { auth } = await fbInit(), u = auth.currentUser;
+    if (!u || u.isAnonymous || u.uid !== A.uid) { delete Prefs.data.sync.acct; Prefs.save(); if (S.view === 'toi') renderAcct(); }
+  } catch (e) { AC.checked = false; }
+}
+
+/* ---------- code de sauvegarde ---------- */
+async function bkCreate() {
+  const { F, db } = await fbInit(), L = lkEnsure();
+  const a = crypto.getRandomValues(new Uint8Array(20)), code = Array.from(a, b => LK_ALPHA[b % 32]).join('');
+  const salt = crypto.getRandomValues(new Uint8Array(16)), enc = await lkEnc(await lkPairKey(code, salt), te8(L.s));
+  await F.setDoc(F.doc(db, 'backups', await bkId(code)), { s: b64(enc.c), iv: enc.iv, salt: b64(salt), at: F.serverTimestamp() });
+  const old = L.bk && L.bk.c;
+  L.bk = { c: code, at: Date.now() }; Prefs.save();
+  if (old && old !== code) bkId(old).then(id => F.deleteDoc(F.doc(db, 'backups', id))).catch(() => {});
+  toast('Ton code est prêt : note-le bien.');
+  await lkSync();
+  acKeep();
+}
+async function bkRestore(raw) {
+  const code = bkClean(raw);
+  if (code.length === 8 && [...code].every(ch => LK_ALPHA.includes(ch))) { await lkJoin(code); AC.err = LK.err; LK.err = ''; return; }
+  if (!BK_RE.test(code)) { AC.err = 'Le code de sauvegarde fait 20 caractères, comme ABCD-EFGH-JKLM-NPQR-STUV. Il n\'a jamais de O, de I, de 0 ni de 1.'; return; }
+  const { F, db } = await fbInit();
+  let snap = null;
+  try { snap = await F.getDoc(F.doc(db, 'backups', await bkId(code))); } catch (e) { if (!/permission/i.test(String(e.code || e.message))) throw e; }
+  if (!snap || !snap.exists()) { AC.err = 'Ce code ne marche pas : vérifie-le. S\'il a été changé depuis, c\'est le nouveau qui compte.'; return; }
+  const p = snap.data();
+  const secret = new TextDecoder().decode(await lkDec(await lkPairKey(code, unb64(p.salt)), p.iv, unb64(p.s)));
+  const moved = lkAdopt(secret, { c: code, at: 0 });
+  await lkSync(true);
+  if (LK.err) { AC.err = LK.err; LK.err = ''; return; }
+  if (moved) acKeep();
+  const i = $('#acIn'); if (i) i.value = '';
+  toast(moved ? 'Tes stats sont de retour.' : 'Cet appareil avait déjà ces stats.');
+}
+
+/* ---------- affichage ---------- */
+function renderAcct() {
+  const box = $('#acBody'); if (!box || !SA) return;
+  if (!fbCfg()) { box.innerHTML = '<p class="note">La sauvegarde passe par Firebase, comme les groupes. La personne qui a mis le site en ligne doit d\'abord l\'activer : la fiche est sur la page Groupe.</p>'; return; }
+  if (acMe()) acCheck(); else fbInit().catch(() => {});   /* prêt avant le clic : sinon certains navigateurs bloquent la fenêtre Google */
+  const A = acMe(), L = lkMe(), bk = L && L.bk && L.bk.c, dis = AC.busy ? ' disabled' : '';
+  const gRow = A
+    ? `<div class="acrow"><div><b>Connecté avec Google</b><small>${esc(A.email || A.name || 'ton compte Google')}. ${A.ok === false ? 'La connexion n\'est pas allée jusqu\'au bout : tes stats ne suivent pas encore.' : 'Tes stats, ton pseudo et ta photo te suivent sur tous les appareils où tu te connectes.'}</small></div><div class="gact">${A.ok === false ? `<button class="btn lite" data-ac="finish"${dis}>Terminer la connexion</button>` : ''}<button class="btn" data-ac="out"${dis}>Se déconnecter</button></div></div>`
+    : `<div class="acrow"><div><b>Avec ton compte Google</b><small>Le plus simple : connecte-toi sur chaque appareil, et tes stats te suivent.</small></div><button class="btn lite" data-ac="google"${dis}>Se connecter avec Google</button></div>`;
+  const cRow = bk
+    ? `<div class="acrow"><div><b>Ton code de sauvegarde</b><p class="accode" aria-label="Code de sauvegarde ${esc(bk.split('').join(' '))}">${bkFmt(bk)}</p><small>Garde-le pour toi. Sur un nouvel appareil, tape-le ici et tout revient.</small></div><div class="gact"><button class="btn" data-ac="copy">Copier</button><button class="btn" data-ac="new"${dis}>Changer de code</button></div></div>`
+    : `<div class="acrow"><div><b>Avec un code de sauvegarde</b><small>Sans compte : 20 caractères à garder quelque part. Tes écoutes restent chiffrées, personne d'autre ne peut les lire.</small></div><button class="btn" data-ac="new"${dis}>Créer mon code</button></div>`;
+  box.innerHTML = `${gRow}${cRow}
+    ${AC.busy ? `<p class="note" aria-live="polite">${esc(AC.busy)}</p>` : ''}${AC.err ? `<p class="lkerr" role="alert">${esc(AC.err)}</p>` : ''}
+    ${A ? '' : `<div class="lkjoin"><label class="grf"><span>Tu as déjà un code de sauvegarde ?</span><input class="field" id="acIn" maxlength="32" placeholder="ABCD-EFGH-JKLM-NPQR-STUV" autocomplete="off" autocapitalize="characters" spellcheck="false"></label><button class="btn" data-ac="restore"${dis}>Retrouver mes stats</button></div>`}
+    <p class="note acsec">Avec Google, la clé de tes données reliées est rangée dans Firebase avec ton compte : la personne qui gère Firebase pourrait techniquement y accéder. Avec le code seul, personne d'autre que toi.</p>`;
+}
+async function acAct(a, el) {
+  if (AC.busy) return;
+  if (a === 'copy') { const L = lkMe(), c = L && L.bk && bkFmt(L.bk.c); if (c) navigator.clipboard.writeText(c).then(() => toast('Code copié.'), () => toast(c)); return; }
+  if (a === 'out' && el.dataset.sure !== '1') { el.dataset.sure = '1'; el.textContent = 'Sûr ? Cet appareil quitte aussi ton groupe'; return; }
+  if (a === 'new' && lkMe() && lkMe().bk && el.dataset.sure !== '1') { el.dataset.sure = '1'; el.textContent = 'Sûr ? L\'ancien code ne marchera plus'; return; }
+  const val = a === 'restore' && $('#acIn') ? $('#acIn').value : '';
+  AC.err = ''; AC.busy = a === 'google' ? 'Connexion à Google…' : a === 'restore' ? 'Je cherche tes stats…' : a === 'new' ? 'Je crée ton code…' : 'Un instant…';
+  renderAcct();
+  try {
+    if (a === 'google') await acGoogle();
+    else if (a === 'finish') await acFinish();
+    else if (a === 'out') await acSignOut();
+    else if (a === 'new') await bkCreate();
+    else if (a === 'restore') await bkRestore(val);
+  } catch (e) { console.warn('compte', e); AC.err = a === 'google' || a === 'finish' ? acErr(e) : lkErr(e); }
+  finally {
+    AC.busy = '';
+    if (S.view === 'toi') renderMe(); else renderAcct();
+    if (a === 'restore' && AC.err) { const i = $('#acIn'); if (i) { i.value = val; i.focus(); } }
+  }
+}
+function wireAcct() {
+  const B = $('#acBody'); if (!B) return;
+  B.addEventListener('click', e => { const b = e.target.closest('[data-ac]'); if (b && !b.disabled) acAct(b.dataset.ac, b); });
+  B.addEventListener('keydown', e => { if (e.key === 'Enter' && e.target.id === 'acIn') { e.preventDefault(); acAct('restore', B.querySelector('[data-ac=restore]')); } });
+}
 /* ================= toi : profil perso, réglages, et le panneau « Plus » sur téléphone ================= */
 const MORE_V = SA ? ['toi', 'profil', 'predictions', 'suggestions', 'jeux', 'guide', 'apropos'] : ['toi', 'predictions', 'jeux', 'guide', 'apropos'];
 const meName = () => { const sy = Prefs.data.sync || {}, g = grMe(); return String(sy.me || (g && g.me) || '').trim(); };
@@ -6383,7 +6792,7 @@ function renderMe() {
     box.innerHTML = !fbCfg() ? '<div class="card merow2"><p>Les groupes ne sont pas encore activés sur ce site.</p><a class="btn" href="#groupe">Voir comment</a></div>'
       : g ? `<div class="card merow2"><div><b>${esc(g.name || 'Ton groupe')}</b><small>Tu y es sous le pseudo ${esc(g.me || n || '?')}.</small></div><div class="gact"><a class="btn lite" href="#groupe">Ouvrir le groupe</a><button class="btn" data-me="invite">Inviter des potes</button></div></div>`
       : '<div class="card merow2"><div><b>Pas encore de groupe</b><small>Compare tes stats avec tes potes, en direct.</small></div><a class="btn lite" href="#groupe">Créer ou rejoindre un groupe</a></div>';
-    renderLink();
+    renderAcct(); renderLink();
   }
   const sp = SA && window.SILLON && window.SILLON.spotifyClientId;
   $('#meData').innerHTML = `<div class="card medata"><p>${esc(DEMO ? 'Pour l\'instant, ce sont des données d\'exemple, inventées.' : `${fmtN(D.n)} morceaux lancés, du ${fmtDay(D.firstDay)} au ${fmtDay(D.lastDay)}.`)}</p>
@@ -6403,7 +6812,7 @@ async function meAct(a, el) {
   if (a === 'bak') { const b = $('#exBak'); if (b) b.click(); return; }
   if (a === 'spotify') { openData(); const s = $('#spBox'); if (s) s.scrollIntoView({ block: 'start' }); return; }
   if (a === 'invite') return grInvite();
-  if (a === 'install') { try { sessionStorage.removeItem('sillon-noinst'); } catch (e) {} openInstall(); return; }
+  if (a === 'install') { try { sessionStorage.removeItem('sillon-noinst'); localStorage.removeItem('sillon-noinst'); } catch (e) {} openInstall(); return; }
   if (a === 'ppDel') { Prefs.data.sync.pp = ''; Prefs.data.sync.ppAt = Date.now(); Prefs.save(); renderMe(); renderMeTop(); lkAutoPush(); if (grMe()) groupPush(true).catch(() => {}); meSay('Photo retirée.'); return; }
   if (a === 'name') {
     const v = ($('#meName').value || '').trim().replace(/\s+/g, ' ').slice(0, 30);
@@ -6503,7 +6912,7 @@ function wireMe() {
 }
 
 /* ================= suggestions : micro-genres (Last.fm), artistes et albums à découvrir, extraits (Deezer) ================= */
-const SG = { busy: false, data: null, err: '', prog: '', tag: null, tags: {}, audio: null, play: null, ver: -1 };
+const SG = { busy: false, data: null, err: '', prog: '', tag: null, tags: {}, audio: null, play: null, ver: -1, pl: null, autoPl: false };
 const SGC = lsMap('sillon-sugg');
 const lfKey = () => (SA && window.SILLON && window.SILLON.lastfmKey ? String(window.SILLON.lastfmKey).trim() : '');
 const SG_STOP = new Set(['seen live', 'favorites', 'favourites', 'favorite', 'favourite', 'my favorite', 'love', 'loved', 'awesome', 'beautiful', 'amazing', 'cool', 'good', 'great', 'best', 'male vocalists', 'female vocalists', 'male vocalist', 'female vocalist', 'singer-songwriter', 'spotify', 'all', 'music', 'under 2000 listeners', 'albums i own', 'check out', 'favorite artists', 'favourite artists', 'vocalists', 'artists', 'sexy', 'fip', 'radio', 'live', 'cover', 'covers', 'instrumental', 'usa', 'american', 'british', 'uk', 'france', 'french', 'english', 'canadian', 'german', 'belgian', 'swiss', 'quebec', 'paris', 'new york', 'london', '00s', '10s', '20s', '90s', '80s', '70s', '60s', '2000s', '2010s', '2020s', '1990s', '1980s', '1970s', 'oldies', 'classic']);
@@ -6626,12 +7035,13 @@ function renderSugg() {
     <div class="sgtags" role="group" aria-label="Tes micro-genres">${R.map(x => `<button data-tag="${esc(x.t)}" aria-pressed="${x.t === tg}" style="--p:${Math.max(0.12, x.p).toFixed(2)}"><span>${esc(x.t)}</span><i aria-hidden="true"></i></button>`).join('')}</div>
     ${tg ? `<div class="sgexp" aria-live="polite">${!td ? '<p class="gintro">Je cherche…</p>' : td.err ? `<p class="gintro">${esc(td.err)}</p>` : `<h3>À découvrir en ${esc(tg)}</h3>${td.arts.length ? `<div class="sggrid">${td.arts.map(sgArtistCard).join('')}</div>` : '<p class="gintro">Tu connais déjà tous les grands noms de ce genre.</p>'}${td.albs.length ? `<h3>Des albums de ce genre</h3><div class="sggrid">${td.albs.map(x => sgAlbumCard(x, y => y.ar)).join('')}</div>` : ''}`}</div>` : ''}</section>` : ''}
   <section class="blk"><div class="bh"><div><h2>Artistes à découvrir</h2><p class="sub">Proches de ceux que tu écoutes le plus, et absents de ton historique</p></div></div>
-    ${d.artists.length ? `<div class="sggrid">${d.artists.map(sgArtistCard).join('')}</div>` : '<p class="gintro">Pas de suggestion pour l\'instant : réessaie plus tard.</p>'}</section>
+    ${d.artists.length ? `<div class="sggrid">${d.artists.map(sgArtistCard).join('')}</div>${sgPlHTML()}` : '<p class="gintro">Pas de suggestion pour l\'instant : réessaie plus tard.</p>'}</section>
   ${d.missed.length ? `<section class="blk"><div class="bh"><div><h2>Les albums que tu as ratés</h2><p class="sub">Des albums de tes artistes préférés que tu n'as jamais lancés</p></div></div>
     <div class="sggrid">${d.missed.map(x => sgAlbumCard(x, y => `${y.ar}, ton n°${NS}${y.rank}`)).join('')}</div></section>` : ''}
   <div class="sgfoot"><p class="small">Sources : ${d.lf ? 'Last.fm et ' : ''}Deezer. Les extraits durent 30 secondes.</p><button class="btn" data-sg="refresh">Actualiser</button></div>
   ${d.lf ? '' : SG_LF_HELP}`;
   if (SG.play) sgPlayState(SG.play);
+  if (SG.autoPl && !SG.busy) { SG.autoPl = false; sgPlaylist(); }
 }
 async function sgRun() {
   if (SG.busy) return;
@@ -6643,6 +7053,7 @@ async function sgRun() {
 async function sgAct(a, el) {
   if (a === 'import') return openData();
   if (a === 'retry') { SG.err = ''; SG.ver = -1; return renderSugg(); }
+  if (a === 'playlist') return sgPlaylist();
   if (a === 'refresh') { const m = SGC.load(); for (const k of Object.keys(m)) if (!k.startsWith('dz:id:')) delete m[k]; SGC.dirty = true; SGC.save(); SG.tags = {}; SG.ver = -1; SG.data = null; return renderSugg(); }
 }
 function wireSugg() {
@@ -6659,6 +7070,76 @@ function wireSugg() {
   });
 }
 
+/* ---------- playlist Spotify : un son de chaque artiste suggéré (version GitHub, Spotify connecté) ---------- */
+const SG_PL_SC = 'playlist-modify-private';
+const sgPlOn = () => SA && typeof SPA !== 'undefined' && !!SPA.cid;
+function sgPlItems() {
+  const d = SG.data, out = [], seen = new Set(); if (!d) return out;
+  const push = x => { const k = x && normT(x.name); if (k && x.tr && x.tr.title && !seen.has(k)) { seen.add(k); out.push({ a: x.name, t: x.tr.title }); } };
+  d.artists.forEach(push);
+  const td = SG.tag && SG.tags[SG.tag]; if (td && td.arts) td.arts.forEach(push);
+  return out.slice(0, 30);
+}
+function sgPlHTML() {
+  if (!sgPlOn()) return '';
+  const P = SG.pl || {}, n = sgPlItems().length;
+  const st = P.busy ? `<p class="small" aria-live="polite">${esc(P.msg || 'Un instant…')}</p>`
+    : P.url ? `<p class="small" aria-live="polite">Playlist créée : ${fmtN(P.n)} ${pl(P.n, 'son')}${P.n < P.of ? ` sur ${fmtN(P.of)} (les autres ne sont pas sur Spotify)` : ''}. <a class="lnk" href="${esc(P.url)}" target="_blank" rel="noopener">Ouvrir dans Spotify</a></p>`
+    : P.err ? `<p class="small sgplerr" role="alert">${esc(P.err)}</p>`
+    : `<p class="small">Une playlist privée sur ton compte, avec un son de chaque artiste${SG.tag && SG.tags[SG.tag] && SG.tags[SG.tag].arts ? `, ceux de « ${esc(SG.tag)} » compris` : ''}.</p>`;
+  return `<div class="sgpl2"><button class="btn pri" data-sg="playlist"${P.busy || !n ? ' disabled' : ''}>${P.url ? 'Recréer la playlist' : 'Créer la playlist sur Spotify'}</button>${st}</div>`;
+}
+/* au retour de la page Spotify (droit « playlists » accordé), on reprend là où on en était */
+function sgPlResume() {
+  let p = null; try { p = JSON.parse(localStorage.getItem('sillon-sp-next') || 'null'); localStorage.removeItem('sillon-sp-next'); } catch (e) {}
+  if (!p || p.a !== 'playlist' || Date.now() - p.t > 15 * 60000 || !SPA.hasScope(SG_PL_SC)) return false;
+  SG.autoPl = true; if (location.hash !== '#suggestions') location.hash = 'suggestions'; else if (S.view === 'suggestions') renderSugg();
+  return true;
+}
+function sgPlAsk() {
+  try { localStorage.setItem('sillon-sp-next', JSON.stringify({ a: 'playlist', t: Date.now() })); } catch (e) {}
+  toast('Spotify va te demander le droit de créer des playlists.');
+  setTimeout(() => SPA.login(SG_PL_SC), 900);
+}
+async function sgSpFind(a, t) {
+  const q = s => '/search?type=track&limit=5&q=' + encodeURIComponent(s), cl = x => String(x).replace(/"/g, '');
+  const na = normT(a), nt = normT(t);
+  const its = j => arr1(j && j.tracks && j.tracks.items);
+  let L = its(await SPA.req('GET', q(`track:"${cl(t)}" artist:"${cl(a)}"`)));
+  if (!L.length) L = its(await SPA.req('GET', q(a + ' ' + t)));
+  const byA = L.filter(x => x && (x.artists || []).some(y => normT(y.name) === na));
+  const hit = byA.find(x => normT(x.name) === nt) || byA.find(x => normT(x.name).startsWith(nt)) || byA[0];
+  return (hit && hit.uri) || '';
+}
+async function sgPlaylist() {
+  if (!sgPlOn() || (SG.pl && SG.pl.busy)) return;
+  if (!SPA.ok() || !SPA.hasScope(SG_PL_SC)) return sgPlAsk();
+  const items = sgPlItems(); if (!items.length) { toast('Pas encore de sons à mettre dans la playlist.'); return; }
+  /* seule la ligne de la playlist bouge pendant la recherche : le reste de la page (images, extraits) ne se redessine pas */
+  const set = o => { SG.pl = o; if (S.view !== 'suggestions') return; const el = $('#sgBody .sgpl2'); if (el && o && o.busy) el.outerHTML = sgPlHTML(); else renderSugg(); };
+  set({ busy: true, msg: `Je cherche les sons sur Spotify… 0 sur ${items.length}` });
+  try {
+    const uris = [];
+    for (let i = 0; i < items.length; i++) {
+      try { const u = await sgSpFind(items[i].a, items[i].t); if (u && !uris.includes(u)) uris.push(u); }
+      catch (e) { if (e.status === 401 || e.status === 403) throw e; }
+      set({ busy: true, msg: `Je cherche les sons sur Spotify… ${i + 1} sur ${items.length}` });
+      await sleep(120);
+    }
+    if (!uris.length) throw Object.assign(new Error('Aucun de ces sons n\'est sur Spotify.'), { user: 1 });
+    set({ busy: true, msg: 'Je crée la playlist…' });
+    const now = new Date(), day = dn(now.getFullYear(), now.getMonth(), now.getDate());
+    const p = await SPA.req('POST', '/me/playlists', { name: 'Sillon : à découvrir', description: `Des artistes proches de ceux que t'écoutes, choisis par Sillon le ${fmtDay(day)}.`, public: false });
+    if (!p || !p.id) throw new Error('pas de playlist');
+    for (let i = 0; i < uris.length; i += 100) await SPA.req('POST', `/playlists/${encodeURIComponent(p.id)}/items`, { uris: uris.slice(i, i + 100) });
+    set({ url: (p.external_urls && p.external_urls.spotify) || 'https://open.spotify.com/playlist/' + p.id, n: uris.length, of: items.length });
+    toast(`Playlist créée sur Spotify : ${fmtN(uris.length)} ${pl(uris.length, 'son')}.`);
+  } catch (e) {
+    console.warn('playlist', e);
+    if (/scope/i.test(e.message || '')) { set(null); return sgPlAsk(); }
+    set({ err: e.user ? e.message : e.status === 403 ? 'Spotify refuse de créer la playlist. Avec une appli Spotify en mode développement, le compte qui l\'a créée doit avoir Premium, et ton compte doit être dans sa liste d\'utilisateurs (User Management, sur developer.spotify.com/dashboard).' : 'Spotify ne répond pas pour l\'instant. Réessaie dans un moment.' });
+  }
+}
 /* ================= réglages, fenêtre de bienvenue et nouvelle version en ligne ================= */
 const SKIN_SHORT = { nuit: 'Nuit', pomme: 'Pomme', ecarlate: 'Écarlate', violet: 'Violet', clair: 'Clair', wrapped: 'Wrapped', console: 'Console' };
 function applySet() {
@@ -6885,7 +7366,8 @@ function openWelcome() {
     <h3 class="welq">Tu écoutes ta musique sur…</h3>
     <div class="welp" role="group" aria-label="Ta plateforme">${Object.keys(SVCS).map(k => `<button type="button" data-wel="${k}"><i class="sw-${SKIN_OF[k]}" aria-hidden="true"></i><span><b>${esc(SVCS[k].n)}</b><small>${esc(WEL_WAIT[k])}</small></span></button>`).join('')}</div>
     <p class="welnote">${inv ? 'Choisis ta plateforme : tu restes sur l\'invitation, et le guide t\'explique ensuite comment récupérer tes données.' : 'Sillon se met à ses couleurs, et t\'explique comment récupérer tes données, étape par étape.'}</p>
-    <button class="welskip" data-wel="later">Regarder l'exemple d'abord</button>`;
+    <button class="welskip" data-wel="later">Regarder l'exemple d'abord</button>
+    ${SA && fbCfg() ? '<p class="welre">Déjà sur Sillon sur un autre appareil ? <button class="lnk" data-wel="restore">Retrouver mes stats</button></p>' : ''}`;
   welPrev = document.activeElement;
   $('#wel').hidden = false; document.documentElement.classList.add('wellock');
   setTimeout(() => { const h = $('#welT'); if (h) h.focus({ preventScroll: true }); }, 40);
@@ -6898,6 +7380,7 @@ function closeWelcome() {
 }
 function welAct(a) {
   if (a === 'close' || a === 'later') { closeWelcome(); return; }
+  if (a === 'restore') { closeWelcome(); location.hash = 'toi/compte'; return; }
   if (!SVCS[a]) return;
   const inv = S.view === 'groupe' && S.grInvite;
   closeWelcome();
@@ -7519,7 +8002,7 @@ function wire() {
   $('#rcGo').addEventListener('click', () => openRecap(S.gran, S.anchor));
   $('#rcPrev').addEventListener('click', () => rcGo(-1));
   $('#rcNext').addEventListener('click', () => rcGo(1));
-  wireStories(); wireGuide(); wireGroup(); wireInstall(); wireLink(); wireMe(); wireSugg(); wireSettings(); wireWelcome(); wireUpd(); wireWrapped(); wireTour();
+  wireStories(); wireGuide(); wireGroup(); wireInstall(); wireLink(); wireAcct(); wireMe(); wireSugg(); wireSettings(); wireWelcome(); wireUpd(); wireWrapped(); wireTour();
   if (SA) $$('.sao').forEach(e => { e.hidden = false; });
   document.addEventListener('click', e => { if (e.target.closest('#howBody a[href^="#guide"]')) closeAll(); });
   $('#rcPng').addEventListener('click', async () => { if (!RC || !RC.R) return; const b = await posterPng(RC.R); if (b) saveFile(`sillon-recap-${tagOf(RC.g, RC.a)}.png`, b); });
