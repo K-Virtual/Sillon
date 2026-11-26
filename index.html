@@ -711,6 +711,31 @@ a.sgcard:hover{background:var(--hover)}
 .ss .hint{position:absolute;bottom:4cqh;left:0;right:0;text-align:center;font:700 13px/1 var(--f-ui);color:var(--sub)}
 .ss.on .rv{animation:rv .55s cubic-bezier(.2,.7,.2,1) both;animation-delay:calc(var(--d,0) * 90ms)}
 @keyframes rv{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+.cv img.fi{opacity:0;transition:opacity .35s ease}
+.cv img.fi.on{opacity:1}
+.cv img.bl.fi.on{opacity:1}
+.view.enter{animation:vin .24s ease-out both}
+.find{position:fixed;inset:0;z-index:110;display:flex;justify-content:center;align-items:flex-start;padding:min(12vh,96px) 16px 16px;background:rgba(0,0,0,.55)}
+.find[hidden]{display:none}
+.findbox{display:flex;flex-direction:column;width:min(560px,100%);max-height:min(640px,calc(100vh - 120px));border-radius:12px;background:var(--elev);box-shadow:0 24px 60px rgba(0,0,0,.5);overflow:hidden}
+.findq{display:flex;align-items:center;gap:10px;padding:12px 12px 12px 16px;border-bottom:1px solid var(--line)}
+.findq>.ic{flex:none;width:20px;height:20px;color:var(--muted)}
+.findq .field{flex:1;min-width:0;border:0;background:transparent;padding:6px 0;font-size:17px;box-shadow:none}
+.findq .field:focus-visible{outline:none}
+.findq:focus-within{box-shadow:inset 0 -2px 0 var(--acc)}
+.findq .field::-webkit-search-cancel-button{display:none;-webkit-appearance:none}
+.findq .ib{background:var(--chip);color:var(--ink)}
+.findl{margin:0;padding:6px;overflow:auto;overscroll-behavior:contain;list-style:none}
+.findl .fsec{padding:10px 10px 4px;color:var(--muted);font-size:12px;font-weight:700}
+.findl .fhint{padding:14px 10px;color:var(--muted);font-size:14px}
+.findl [data-fi]{display:grid;grid-template-columns:40px minmax(0,1fr);gap:12px;align-items:center;padding:6px 10px;border-radius:8px;cursor:pointer}
+.findl [data-fi] .cv{width:40px}
+.findl [data-fi][aria-selected=true],.findl [data-fi]:hover{background:var(--hover)}
+.findl .nm{display:flex;flex-direction:column;min-width:0}
+.findl .nm b{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.findl .nm small{overflow:hidden;color:var(--muted);font-size:13px;text-overflow:ellipsis;white-space:nowrap}
+@media (max-width:720px){.find{padding:8px}.findbox{max-height:calc(100vh - 16px)}}
+@keyframes vin{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
 @media (max-width:720px){.sto{background:#000}.stoframe{width:100vw;height:100dvh;border-radius:0;aspect-ratio:auto}}
 @media (prefers-reduced-motion:reduce){.ss.on .rv{animation:none}.ss .vy.spin{animation:none}.stobars .on i{animation:none;width:100%}}
 
@@ -1342,8 +1367,40 @@ body[data-skin=clair] .arbg.on,body[data-skin=pomme] .arbg.on{opacity:.32}
 .arshare{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:14px 24px;padding:22px 26px;border-radius:10px;background:linear-gradient(115deg,color-mix(in oklab,var(--art) 28%,var(--card)),var(--card) 70%)}
 .arshare b{display:block;font:800 20px/1.25 var(--f-head);letter-spacing:-.01em}
 .arshare .sub{margin-top:4px}
+.arnavs{display:flex;gap:8px;min-width:0}
+.arnav{display:inline-flex;align-items:center;gap:8px;min-width:0;max-width:230px;min-height:44px;padding:4px 16px 4px 10px;border-radius:999px;background:var(--chip);color:var(--ink);text-decoration:none;transition:background .15s}
+.arnav.nx{padding:4px 10px 4px 16px}
+.arnav:hover{background:var(--chip2)}
+.arnav .ic{flex:none;width:18px;height:18px}
+.arnav span{display:flex;flex-direction:column;min-width:0;line-height:1.15}
+.arnav.nx span{align-items:flex-end;text-align:right}
+.arnav small{color:var(--muted);font-size:12px;font-variant-numeric:tabular-nums}
+.arnav b{max-width:100%;overflow:hidden;font-size:14px;text-overflow:ellipsis;white-space:nowrap}
+.aryrs{display:grid;grid-auto-flow:column;grid-auto-columns:minmax(112px,1fr);gap:8px;margin:0 -12px;padding:2px 12px 10px;overflow-x:auto;list-style:none;scroll-padding:0 12px;scroll-snap-type:x proximity;scrollbar-width:thin}
+.aryrs li{display:flex;flex-direction:column;gap:2px;min-width:0;padding:14px 16px;border-radius:8px;background:var(--card);scroll-snap-align:start}
+.aryrs li.best{background:color-mix(in oklab,var(--art) 26%,var(--card));box-shadow:inset 0 0 0 2px color-mix(in oklab,var(--art) 70%,transparent)}
+.aryrs .yy{color:var(--muted);font-size:13px;font-weight:700;font-variant-numeric:tabular-nums}
+.aryrs em{margin-top:6px;font-size:12px;font-style:normal;font-weight:700;line-height:1.2}
+.aryrs b{font:var(--numw) 26px/1.1 var(--f-num);letter-spacing:-.02em;font-variant-numeric:tabular-nums}
+.aryrs small{color:var(--muted);font-size:13px}
+.aryrs .mv{margin-top:2px;color:var(--muted);font-size:13px;font-weight:700;font-variant-numeric:tabular-nums}
+.aryrs .mv.up{color:var(--acc-t,var(--acc))}.aryrs .mv.dn{color:#ff8a7a}
+body[data-skin=clair] .aryrs .mv.dn,body[data-skin=pomme] .aryrs .mv.dn{color:#c0392b}
+.arnow{display:flex;flex-wrap:wrap;align-items:center;gap:10px 18px;margin:0 0 14px;padding:12px 14px;border-radius:10px;background:color-mix(in oklab,var(--art) 13%,var(--card))}
+.arnow p{display:flex;flex-direction:column;margin:0;line-height:1.25}
+.arnow p b{font:800 16px/1.2 var(--f-head)}
+.arnow p small{color:var(--muted);font-size:12px}
+.arnowl{flex:1 1 320px;display:flex;gap:8px;min-width:0;overflow-x:auto;scrollbar-width:none}
+.arnowi{flex:none;display:inline-flex;align-items:center;gap:10px;max-width:250px;padding:4px 16px 4px 4px;border:0;border-radius:999px;background:var(--card2);color:var(--ink);text-align:left;cursor:pointer;transition:background .15s}
+.arnowi:hover{background:var(--chip2)}
+.arnowi .cv{flex:none;width:34px}
+.arnowi span{display:flex;flex-direction:column;min-width:0;line-height:1.2}
+.arnowi b{overflow:hidden;font-size:14px;text-overflow:ellipsis;white-space:nowrap}
+.arnowi small{color:var(--muted);font-size:12px}
+.arnvs{margin:-4px 0 10px}
+.arnever{color:var(--ink);text-decoration:none}
 @media (max-width:900px){.arhist,.ardisc{grid-template-columns:1fr;gap:28px}.armom{grid-template-columns:1fr;gap:24px}}
-@media (max-width:720px){.arh{min-height:0}.arh .hcv{width:min(52vw,220px)}.arstats{gap:8px 22px}.arbars{height:108px}.arnew li{padding:6px 0}.arshare{padding:18px}}
+@media (max-width:720px){.arnavs{flex:1 1 100%}.arnavs>*{flex:1 1 0}.arnav{max-width:none}.arnav.nx{justify-content:flex-end}.aryrs{margin:0 -16px;padding:2px 16px 10px;scroll-padding:0 16px;grid-auto-columns:minmax(104px,1fr)}.aryrs li{padding:12px 14px}.aryrs b{font-size:22px}.arh{min-height:0}.arh .hcv{width:min(52vw,220px)}.arstats{gap:8px 22px}.arbars{height:108px}.arnew li{padding:6px 0}.arshare{padding:18px}}
 @media (prefers-reduced-motion:reduce){.arbg{transition:none}}
 html.calm *,html.calm *::before,html.calm *::after{transition:none!important;animation:none!important}
 html.calm .stobars .on i{width:100%}
@@ -1403,6 +1460,7 @@ html.calm .stobars .on i{width:100%}
     <div class="tr">
       <span class="np" id="np" hidden></span>
       <button class="ib" id="bell" aria-label="Rappel de mise à jour" hidden><svg class="ic" viewBox="0 0 24 24"><path d="M6 16V11a6 6 0 0 1 12 0v5l1.5 2h-15z"/><path d="M10 20a2 2 0 0 0 4 0"/></svg></button>
+      <button class="ib" id="findBtn" aria-label="Chercher un artiste, un son ou un album" title="Chercher (/)"><svg class="ic" viewBox="0 0 24 24"><circle cx="11" cy="11" r="6.5"/><path d="M16 16l4.5 4.5"/></svg></button>
             <button class="ib" id="skCycle" aria-label="Changer de thème" title="Changer de thème"><svg class="ic" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"/><path d="M12 4a8 8 0 0 1 0 16z" fill="currentColor"/></svg></button>
       <button class="ib" data-act="data" aria-label="Tes données"><svg class="ic" viewBox="0 0 24 24"><path d="M12 4v11M7 10l5 5 5-5M5 20h14"/></svg></button>
       <a class="ib meb" id="meTop" href="#toi" aria-label="Toi : ton profil et tes réglages" title="Toi"></a>
@@ -1677,6 +1735,7 @@ html.calm .stobars .on i{width:100%}
   <div class="pad" id="sgBody"></div>
 </section>
 
+<div class="find" id="find" hidden role="dialog" aria-modal="true" aria-label="Chercher dans ta musique"><div class="findbox"><div class="findq"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="6.5"/><path d="M16 16l4.5 4.5"/></svg><input class="field" id="findIn" type="search" placeholder="Un artiste, un son, un album…" autocomplete="off" spellcheck="false" role="combobox" aria-expanded="true" aria-controls="findList" aria-autocomplete="list"><button class="ib" data-find-x aria-label="Fermer la recherche">×</button></div><ul class="findl" id="findList" role="listbox" aria-label="Résultats"></ul></div></div>
 <section class="view" data-view="artiste" aria-label="Artiste" hidden><div class="arp" id="arPage"></div></section>
 
 <section class="view" data-view="jeux" aria-label="Jeux" hidden>
@@ -1830,9 +1889,11 @@ html.calm .stobars .on i{width:100%}
 /* ================= version, nouveautés et services (page À propos) ================= */
 /* à chaque mise à jour : changer SILLON_V et ajouter une ligne en haut de SILLON_LOG.
    X refonte, Y grosse mise à jour, Z correctifs, I première version */
-const SILLON_V = '2.12.0';
+const SILLON_V = '2.13.0';
 const SV_TYPE = { X: 'Refonte', Y: 'Grosse mise à jour', Z: 'Correctifs', I: 'Première version' };
 const SILLON_LOG = [
+  ['2.13.0', 'Y', ['Recherche : la loupe en haut (ou la touche « / », ou Ctrl+K) trouve un artiste, un son ou un album et t\'y emmène direct.', 'Les artistes s\'ouvrent maintenant directement sur leur page, partout sur le site (classements, accueil, groupe…).', 'Pages artistes : passe d\'un artiste de ton top au suivant (boutons ou flèches du clavier), vois sa place dans ton top année par année, ce que t\'écoutes de lui en ce moment, et ses albums que t\'as jamais lancés.', 'Quand tu reviens d\'une page artiste, tu retrouves la page d\'avant pile là où t\'étais.', 'Plus rapide avec un gros historique : l\'accueil s\'affiche environ 2 fois plus vite, ta carte et les récaps environ 3 fois plus vite.', 'Les pochettes apparaissent en fondu et les pages ont une petite entrée (rien si t\'as demandé moins d\'animations).']],
+  ['2.12.1', 'Z', ['Pages artistes : la barre de chaque album s\'affiche aussi quand Deezer met du temps à répondre (avant, elle pouvait manquer pendant un mois). Jusqu\'à 20 albums, avec Spotify en renfort si t\'es connecté.']],
   ['2.12.0', 'Y', ['Pages artistes : chaque artiste a sa vraie page, aux couleurs de la pochette de ton album le plus écouté. On y arrive depuis sa fiche, avec « Voir sa page ».', 'Ton histoire avec lui : ta première écoute, ton mois à fond, ta grande pause et ton retour, ta plus grosse journée, ta dernière écoute.', 'Ses sons, ses albums avec la part que tu connais, et quand tu l\'écoutes (heure par heure, jour par jour).', 'Qui l\'écoute dans ton groupe, ses sons que t\'as jamais écoutés avec des extraits, et des artistes proches.', 'Une image « Toi et… » au format story, à partager.']],
   ['2.11.1', 'Z', ['Pendant ce temps-là : toutes les anecdotes portent sur la période affichée. En vue Jour, tout est sur la journée ; en vue Mois, tout est sur le mois.']],
   ['2.11.0', 'Y', ['Accueil : « Pendant ce temps-là », ton temps d\'écoute vu autrement. Une trentaine d\'anecdotes (respirations, battements de cœur, tours de la Terre pour l\'ISS, paquets de pâtes…) calculées par jour, par semaine, par mois ou sur la période. Le tirage change chaque jour, et le bouton « D\'autres » en propose d\'autres.']],
@@ -1855,7 +1916,7 @@ const SILLON_LOG = [
 ];
 const AB_SVC = [
   ['Spotify Web API', 'Connexion à ton compte, tes derniers morceaux, les pochettes exactes quand tu es connecté, et la playlist des suggestions.', 'Version GitHub'],
-  ['Deezer API', 'Pochettes pour tout le monde, genres des artistes, artistes proches, extraits de 30 secondes, sons les plus connus et nombre de titres des albums sur les pages artistes.', 'Version GitHub'],
+  ['Deezer API', 'Pochettes pour tout le monde, genres des artistes, artistes proches, extraits de 30 secondes, sons les plus connus, nombre de titres des albums et albums pas encore écoutés sur les pages artistes.', 'Version GitHub'],
   ['Last.fm API', 'Micro-genres, artistes similaires, albums à découvrir.', 'Version GitHub, avec une clé'],
   ['Apple iTunes Search API', 'Pochettes de secours pour les images que tu télécharges ou partages, et pour les couleurs des pages artistes.', 'Version GitHub'],
   ['Firebase', 'Authentication (connexion anonyme, et connexion Google si tu la choisis) et Cloud Firestore : groupes, liaison entre appareils et sauvegarde.', 'Version GitHub'],
@@ -2251,10 +2312,14 @@ function computeGlobal() {
 }
 function topList(X, kind, n) {
   const pa = kind === 'a' ? X.aP : kind === 't' ? X.tP : X.lP, ma = kind === 'a' ? X.aM : kind === 't' ? X.tM : X.lM;
-  const idx = [];
-  for (let i = kind === 'l' ? 1 : 0; i < pa.length; i++) if (pa[i] > 0) idx.push(i);
-  const byMs = S.metric === 'ms';
-  idx.sort((x, y) => byMs ? (ma[y] - ma[x]) || (pa[y] - pa[x]) : (pa[y] - pa[x]) || (ma[y] - ma[x]));
+  const byMs = S.metric === 'ms', ck = kind + (byMs ? 'm' : 'p'), memo = X._tl || (X._tl = {});
+  let idx = memo[ck];
+  if (!idx) {
+    idx = [];
+    for (let i = kind === 'l' ? 1 : 0; i < pa.length; i++) if (pa[i] > 0) idx.push(i);
+    idx.sort((x, y) => byMs ? (ma[y] - ma[x]) || (pa[y] - pa[x]) : (pa[y] - pa[x]) || (ma[y] - ma[x]));
+    memo[ck] = idx;
+  }
   return idx.slice(0, n).map(i => ({ i, p: pa[i], ms: ma[i] }));
 }
 function rankMap(X, kind) { const m = new Map(); if (X && X.tP) topList(X, kind, 200).forEach((e, j) => m.set(e.i, j + 1)); return m; }
@@ -2301,10 +2366,12 @@ function bucketLabel(X, i, short, narrow) {
 
 /* ================= graphiques ================= */
 const figs = new Map();
-const ro = new ResizeObserver(es => { for (const e of es) { const f = figs.get(e.target); if (f) f(); } });
+/* le premier signal du ResizeObserver arrive juste après le dessin : on ne redessine que si la taille a vraiment changé */
+const ro = new ResizeObserver(es => { for (const e of es) { const el = e.target, f = figs.get(el); if (!f) continue; const sz = el.clientWidth + 'x' + el.clientHeight; if (el._fz === sz && el._ff === f) continue; el._fz = sz; el._ff = f; f(); } });
 function fig(el, fn) {
   for (const k of [...figs.keys()]) if (!k.isConnected) { ro.unobserve(k); figs.delete(k); }
-  if (!figs.has(el)) ro.observe(el); figs.set(el, fn); fn();
+  if (!figs.has(el)) ro.observe(el); figs.set(el, fn);
+  el._fz = el.clientWidth + 'x' + el.clientHeight; el._ff = fn; fn();
 }
 const tip = $('#tip');
 function showTip(html, x, y) {
@@ -2693,8 +2760,13 @@ function findAlbum(name, artist) {
 }
 
 /* ================= vues ================= */
+/* position de scroll gardée quand tu pars vers une page artiste, rendue quand tu reviens.
+   Notée au moment du clic : en changeant d'adresse, le navigateur peut remonter la page avant que route() passe. */
+try { history.scrollRestoration = 'manual'; } catch (e) {}
+const SCR = new Map(); let lastHash = '', SCR_AT = null;
+function noteScroll() { SCR_AT = { y: scrollY, v: S.view, t: Date.now() }; }
 function route() {
-  const [h, sub] = location.hash.replace('#', '').split('/'), prev = S.view;
+  const [h, sub] = location.hash.replace('#', '').split('/'), prev = S.view, hash = location.hash || '#stats';
   S.view = VIEWS.includes(h) ? h : 'stats';
   if (S.view === 'guide') { S.guideSvc = sub || null; platPicked(sub); }
   if (S.view === 'groupe') S.grInvite = sub && GR_ID.test(sub) ? sub : null;
@@ -2702,9 +2774,16 @@ function route() {
   $$('.view').forEach(v => v.hidden = v.dataset.view !== S.view);
   $$('.snav a, .bnav a, .sheet a[data-v]').forEach(a => a.setAttribute('aria-current', a.dataset.v === S.view ? 'page' : 'false'));
   navExtra();
-  if (prev !== S.view) window.scrollTo(0, 0);
+  let back = null;
+  if (prev !== S.view) {
+    if (S.view === 'artiste' && prev) SCR.set(prev, { y: SCR_AT && SCR_AT.v === prev && Date.now() - SCR_AT.t < 3000 ? SCR_AT.y : scrollY, h: lastHash });
+    const sv = prev === 'artiste' && SCR.get(S.view); if (sv && sv.h === hash) back = sv.y;
+    window.scrollTo(0, 0); const v = $(`.view[data-view="${S.view}"]`); if (v) { v.classList.remove('enter'); void v.offsetWidth; v.classList.add('enter'); }
+  }
+  lastHash = hash;
   heroVisible = true;
   renderView(); updateMini(); checkHero();
+  if (back) { const go = () => window.scrollTo(0, back); go(); requestAnimationFrame(() => { go(); const y1 = scrollY; setTimeout(() => { if (Math.abs(scrollY - y1) < 2 && Math.abs(scrollY - back) > 4) go(); }, 350); }); }
   if (S.view === 'toi' && (sub === 'reglages' || sub === 'compte')) { const go = () => { const e = $(sub === 'compte' ? '#acTop' : '#setTop'); if (e) e.scrollIntoView({ block: 'start' }); }; requestAnimationFrame(() => { go(); const y1 = scrollY; setTimeout(() => { if (Math.abs(scrollY - y1) < 2) go(); }, 450); }); }
 }
 function renderView() {
@@ -2863,8 +2942,12 @@ function renderRanks() {
   const len = { art: A.length, trk: Tt.length, alb: B.length };
   $$('.more[data-more]').forEach(b => { const k = b.dataset.more; b.textContent = S.top[k] > 10 ? 'Réduire' : 'Tout afficher'; b.hidden = S.top[k] <= 10 && len[k] < 10; });
 }
+let CAL_KEY = '';
 function renderCal() {
   const y = S.calYear ?? ymd(S.anchor)[0];
+  const [q0, q1] = range(S.gran, S.anchor), ck = [dataVer, S.content, S.thr, S.noSkip, S.focus ? S.focus.type + S.focus.id : '', y, S.metric, S.gran, q0, q1, S.skin, S.set.dur, S.set.date].join('|');
+  if (ck === CAL_KEY && $('#svgCal').firstChild) return;
+  CAL_KEY = ck;
   const y0 = ymd(D.firstDay)[0], y1 = ymd(D.lastDay)[0];
   const r0 = dn(y, 0, 1), r1 = dn(y + 1, 0, 1), n = r1 - r0;
   const pass = makePass(true), thr = S.thr * 1000;
@@ -2986,7 +3069,10 @@ function renderRecs() {
   box.innerHTML = items.map(([k, v, d, fn], j) => `<${fn ? 'button' : 'div'} class="rec"${fn ? ` data-r="${j}"` : ''}><span>${esc(k)}</span><b>${esc(String(v).replace(new RegExp(NS + '(\\d{4})$'), ' $1'))}</b><small>${esc(d)}</small></${fn ? 'button' : 'div'}>`).join('');
   box._fns = items.map(x => x[3]);
 }
-function renderYears() {
+let YRX = null;
+function yearRows() {
+  const key = dataVer + '|' + S.content + '|' + S.thr + '|' + S.noSkip + '|' + (S.focus ? S.focus.type + S.focus.id : '');
+  if (YRX && YRX.key === key) return YRX.rows;
   const pass = makePass(true), thr = S.thr * 1000;
   const y0 = ymd(D.firstDay)[0], y1 = ymd(D.lastDay)[0], ny = y1 - y0 + 1;
   const rows = Array.from({ length: ny }, (_, k) => ({ y: y0 + k, p: 0, ms: 0, ut: 0, ua: 0, ta: new Map(), tt: new Map() }));
@@ -2997,6 +3083,11 @@ function renderYears() {
     r.ms += D.m[i];
     if (D.m[i] >= thr) { r.p++; if (seenT[t] !== st + yi) { seenT[t] = st + yi; r.ut++; } if (seenA[a] !== st + yi) { seenA[a] = st + yi; r.ua++; } r.ta.set(a, (r.ta.get(a) || 0) + 1); r.tt.set(t, (r.tt.get(t) || 0) + 1); }
   }
+  YRX = { key, rows };
+  return rows;
+}
+function renderYears() {
+  const rows = yearRows();
   const top = m => { let b = -1, v = 0; for (const [k, c] of m) if (c > v) { v = c; b = k; } return b; };
   const l = L();
   $('#yrTitle').textContent = 'Année par année' + (S.focus ? ', focus sur ' + focusName() : '');
@@ -3127,8 +3218,10 @@ const FUN = [
 ];
 let FUN_SH = 0;
 /* durée d'un titre : sa plus longue écoute (jamais plus de 20 min) */
+let FUN_TL = null;
 function funTrackLen(t) {
-  let mx = 0; for (let j = 0; j < D.n; j++) if (D.k[j] === t && D.m[j] > mx) mx = D.m[j];
+  if (!FUN_TL || FUN_TL.v !== dataVer) { const a = new Float64Array(D.nt); for (let j = 0; j < D.n; j++) { const k = D.k[j]; if (D.m[j] > a[k]) a[k] = D.m[j]; } FUN_TL = { v: dataVer, a }; }
+  const mx = FUN_TL.a[t] || 0;
   return mx >= 30000 ? Math.min(mx, 12e5) : 0;
 }
 /* toutes les anecdotes possibles pour la période affichée (sans tirage) */
@@ -3747,7 +3840,19 @@ function arHero(a, X) {
       <a class="play" href="${esc(spSearchUrl(name))}" target="_blank" rel="noopener" aria-label="Ouvrir dans Spotify" title="Ouvrir dans Spotify">${PLAY}</a>
       <button class="btn" data-ar="focus">${S.focus && S.focus.type === 'a' && S.focus.id === a ? 'Retirer le focus' : 'Focus sur l\'accueil'}</button>
       <button class="btn" data-ar="share">Partager</button>
+      ${arNav(a)}
     </div>`;
+}
+/* passer d'un artiste de ton top à l'autre, sans revenir en arrière (flèches gauche/droite aussi) */
+function arNbr(a) {
+  const r = G.rankA[a]; if (!r || !G.ordA) return [null, null];
+  return [r > 1 ? G.ordA[r - 2] : null, r < G.ordA.length ? G.ordA[r] : null];
+}
+function arNav(a) {
+  const [pv, nx] = arNbr(a); if (pv == null && nx == null) return '';
+  const r = G.rankA[a], chev = d => `<svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="${d ? 'M9 5l7 7-7 7' : 'M15 5l-7 7 7 7'}"/></svg>`;
+  const b = (x, k, d) => x == null ? '<span></span>' : `<a class="arnav${d ? ' nx' : ''}" href="${esc(arHref(x))}" data-arnav="${d ? 1 : -1}" aria-label="${d ? 'Suivant' : 'Précédent'} dans ton top : ${esc(D.artists[x])}, n° ${fmtN(k)}" title="${d ? 'Suivant (flèche droite)' : 'Précédent (flèche gauche)'}">${d ? '' : chev(0)}<span><small>n°${NS}${fmtN(k)}</small><b>${esc(D.artists[x])}</b></span>${d ? chev(1) : ''}</a>`;
+  return `<span class="sp"></span><nav class="arnavs" aria-label="Ton top">${b(pv, r - 1, 0)}${b(nx, r + 1, 1)}</nav>`;
 }
 function arStory(a, X) {
   const ev = [], tn = i => `« ${esc(D.tn[D.k[i]])} »`;
@@ -3764,13 +3869,44 @@ function arStory(a, X) {
   ev.sort((x, y) => x[0] - y[0]);
   return `<ol class="arstory">${ev.map(([, d, t, x]) => `<li><time>${d}</time><b>${t}</b><p>${x}</p></li>`).join('')}</ol>`;
 }
+/* le rang de l'artiste dans ton top, année par année (écoutes complètes, toute ta musique) */
+let ARY = null;
+function arYearPlays() {
+  const key = dataVer + '|' + S.content + '|' + S.thr + '|' + S.noSkip;
+  if (ARY && ARY.key === key) return ARY;
+  const pass = makePass(false), thr = S.thr * 1000, y0 = ymd(D.firstDay)[0], ny = ymd(D.lastDay)[0] - y0 + 1;
+  const P2 = Array.from({ length: ny }, () => new Uint32Array(D.na));
+  for (let i = 0; i < D.n; i++) { if (!pass(i) || D.m[i] < thr) continue; P2[Math.floor(D.mon[i] / 12) + 1970 - y0][D.ta[D.k[i]]]++; }
+  return (ARY = { key, y0, P2 });
+}
+function arYears(a) {
+  const Y = arYearPlays(), out = [];
+  Y.P2.forEach((row, k) => { const v = row[a]; if (!v) { out.push({ y: Y.y0 + k, r: 0, p: 0 }); return; } let r = 1; for (let x = 0; x < row.length; x++) if (row[x] > v) r++; out.push({ y: Y.y0 + k, r, p: v }); });
+  while (out.length && !out[0].p) out.shift();
+  return out;
+}
+function arYearsHTML(a) {
+  const L0 = arYears(a); if (L0.length < 2) return '';
+  let bi = -1; L0.forEach((x, j) => { if (x.r && (bi < 0 || x.r < L0[bi].r || (x.r === L0[bi].r && x.p > L0[bi].p))) bi = j; });
+  const mv = (pr, r) => !r || !pr ? '' : pr > r ? `<span class="mv up"><span aria-hidden="true">▲</span><span class="sr">gagne </span>${fmtN(pr - r)}<span class="sr"> ${pl(pr - r, 'place')}</span></span>` : pr < r ? `<span class="mv dn"><span aria-hidden="true">▼</span><span class="sr">perd </span>${fmtN(r - pr)}<span class="sr"> ${pl(r - pr, 'place')}</span></span>` : '<span class="mv">=<span class="sr"> même place</span></span>';
+  return `<section class="blk"><div class="bh"><div><h2>Année par année</h2><p class="sub">Sa place dans ton top, chaque année</p></div></div>
+    <ol class="aryrs">${L0.map((x, j) => `<li${j === bi ? ' class="best"' : ''}><span class="yy">${x.y}</span><b>${x.r ? 'n°' + NS + fmtN(x.r) : '–'}</b><small>${x.p ? esc(fmtPlays(x.p)) : 'pas écouté'}</small>${mv(j ? L0[j - 1].r : 0, x.r)}${j === bi ? '<em>Sa meilleure année</em>' : ''}</li>`).join('')}</ol></section>`;
+}
+/* en ce moment : ses sons des 30 derniers jours de ton historique */
+function arNow(a) {
+  const pass = makePass(false), thr = S.thr * 1000, d0 = D.lastDay - 29, c = new Map();
+  for (let i = lb(D.day, d0); i < D.n; i++) { if (!pass(i) || D.m[i] < thr) continue; const t = D.k[i]; if (D.ta[t] === a) c.set(t, (c.get(t) || 0) + 1); }
+  if (!c.size) return '';
+  const L0 = [...c].sort((x, y) => y[1] - x[1]).slice(0, 4), now = new Date(), fresh = dn(now.getFullYear(), now.getMonth(), now.getDate()) - D.lastDay <= 7;
+  return `<div class="arnow"><p><b>${fresh ? 'En ce moment' : 'Dernièrement'}</b><small>${fresh ? 'tes 30 derniers jours' : 'du ' + esc(fmtDay(d0)) + ' au ' + esc(fmtDay(D.lastDay))}</small></p><div class="arnowl">${L0.map(([t, p]) => `<button class="arnowi" data-open="t:${t}">${covT(t)}<span><b>${esc(D.tn[t])}</b><small>${esc(fmtPlays(p))}</small></span></button>`).join('')}</div></div>`;
+}
 function arTracks(a, X) {
   const n = AR.more ? 50 : 10, L0 = X.tracks.slice(0, n);
   return `<ol class="tl artr">${L0.map(([t, p], j) => `<li><button class="tlr" data-open="t:${t}"><span class="n">${j + 1}</span>${covT(t)}<span class="nm"><b>${esc(D.tn[t])}</b><small>${esc(D.albums[D.tl[t]] || '')}</small></span><span class="al">${esc(fmtDur(X.tM.get(t) || 0))}</span><span class="v">${fmtN(p)}</span><span class="c"></span></button></li>`).join('')}</ol>`;
 }
 function arAlbums(a, X) {
   const full = profPlus().full;
-  return `<div class="row">${X.albums.slice(0, 12).map(([l, p]) => {
+  return `<div class="row">${X.albums.slice(0, AR_ALB_N).map(([l, p]) => {
     const h = X.heardIn.get(l) || 0, f = full.get(l);
     return `<button class="tile artile" data-open="l:${l}">${covL(l)}<b>${esc(D.albums[l])}</b><small data-aln="${l}">${fmtN(h)} ${pl(h, 'titre écouté', 'titres écoutés')}</small><span class="arpg" data-alp="${l}" hidden><i></i></span>${f ? `<span class="artag">D'une traite${f.n > 1 ? `, ${fmtN(f.n)}${NS}fois` : ''}</span>` : ''}</button>`;
   }).join('')}</div>`;
@@ -3817,12 +3953,20 @@ function arShareCard(a) {
 /* ---------- à découvrir (Deezer, version GitHub) ---------- */
 const AR_PLAY = '<svg class="ic" viewBox="0 0 24 24"><path d="M8 5.5v13l11-6.5z"/></svg>', AR_PAUSE = '<svg class="ic" viewBox="0 0 24 24"><path d="M8 5v14M16 5v14"/></svg>';
 async function arDiscLoad(a) {
-  const name = D.artists[a], id = await dzId(name); if (!id) return { top: [], rel: [] };
-  const [top, rel] = await Promise.all([
+  const name = D.artists[a], id = await dzId(name); if (!id) return { top: [], rel: [], albs: [] };
+  const [top, rel, albs] = await Promise.all([
     sgCached('dz:top50:' + id, 7, async () => { const r = await dz(`/artist/${id}/top?limit=50`); return arr1(r && r.data).map(x => ({ t: String(x.title || ''), pv: String(x.preview || ''), img: String((x.album && (x.album.cover_medium || x.album.cover)) || ''), al: String((x.album && x.album.title) || '') })).filter(x => x.t); }),
-    dzRelated(id)
+    dzRelated(id),
+    dzAlbums(id).catch(() => [])
   ]);
-  return { top: top || [], rel: rel || [] };
+  return { top: top || [], rel: rel || [], albs: albs || [] };
+}
+/* ses albums que t'as jamais lancés (Deezer, albums seulement, pas les singles) */
+function arNeverHTML(a, R) {
+  const mine = new Set(); for (let l = 1; l < D.nl; l++) if (D.la[l] === a) mine.add(covN(D.albums[l]));
+  const seen = new Set(), L0 = (R.albs || []).filter(x => { const k = covN(x.t); if (!k || mine.has(k) || seen.has(k)) return false; seen.add(k); for (const m of mine) if (m.length > 3 && k.length > 3 && (m.startsWith(k) || k.startsWith(m))) return false; return true; }).slice(0, 12);
+  if (!L0.length) return '';
+  return `<h3 class="h3">Pas encore écoutés</h3><p class="sub arnvs">Ses albums que t'as jamais lancés, à ouvrir dans Spotify</p><div class="row">${L0.map(x => `<a class="tile arnever" href="${esc(spSearchUrl(x.t + ' ' + D.artists[a]))}" target="_blank" rel="noopener">${x.img ? `<span class="cv"><img src="${esc(x.img)}" alt="" loading="lazy" decoding="async"></span>` : cov('l|' + x.t + '|' + D.artists[a], x.t)}<b>${esc(x.t)}</b><small>${esc(x.y || 'Album')}</small></a>`).join('')}</div>`;
 }
 function arDiscHTML(a, R) {
   const heard = new Set(); for (let t = 0; t < D.nt; t++) if (D.ta[t] === a) heard.add(covN(D.tn[t]));
@@ -3838,29 +3982,54 @@ function arDiscHTML(a, R) {
 }
 async function arDiscFill(a) {
   const box = $('#arDisc'); if (!box) return;
-  if (AR.disc && AR.disc.a === a) { box.innerHTML = arDiscHTML(a, AR.disc.R); arPlayState(AR.play); queueCovers(); return; }
+  if (AR.disc && AR.disc.a === a) { box.innerHTML = arDiscHTML(a, AR.disc.R); arPlayState(AR.play); queueCovers(); const nv = $('#arNever'); if (nv) nv.innerHTML = arNeverHTML(a, AR.disc.R); return; }
   box.innerHTML = '<p class="sub">Je cherche ses sons…</p>';
   let R = null; try { R = await arDiscLoad(a); } catch (e) { console.warn('artiste', e); }
   if (AR.a !== a || S.view !== 'artiste') return;
   if (!R) { box.innerHTML = '<p class="sub">Deezer ne répond pas pour l\'instant.</p>'; return; }
   AR.disc = { a, R }; box.innerHTML = arDiscHTML(a, R); arPlayState(AR.play); queueCovers();
+  const nv = $('#arNever'); if (nv) nv.innerHTML = arNeverHTML(a, R);
 }
-/* combien de titres dans chaque album (Deezer), pour la part que tu connais */
-const dzAlbN = (al, ar) => sgCached('dz:aln:' + normT(al) + '|' + normT(ar), 30, async () => {
-  const d = await dz('/search/album?limit=10&q=' + encodeURIComponent(`artist:"${ar}" album:"${al}"`)), L0 = arr1(d && d.data), A = covN(al), R = normT(ar);
-  const same = x => normT((x.artist && x.artist.name) || '') === R, t = x => covN(x.title || '');
-  const x = L0.find(y => same(y) && t(y) === A) || L0.find(y => same(y) && A && (t(y).startsWith(A) || A.startsWith(t(y))));
-  return x && +x.nb_tracks > 0 ? +x.nb_tracks : 0;
+/* combien de titres dans chaque album, pour la part que tu connais : Deezer, puis Spotify si t'es connecté.
+   Une erreur (Deezer qui sature, coupure) n'est jamais gardée en cache : on réessaie un peu plus tard */
+const AR_ALB_N = 20;
+const dzAlbN = (al, ar) => sgCached('dz:aln2:' + normT(al) + '|' + normT(ar), 30, async () => {
+  const A = covN(al), R = normT(ar);
+  const sameA = n => { const x = normT(n || ''); return !!x && (x === R || (x.length > 2 && R.length > 2 && (x.includes(R) || R.includes(x)))); };
+  const sameT = n => { const t = covN(n || ''); return !!t && !!A && (t === A || t.startsWith(A) || A.startsWith(t)); };
+  for (const q of [`artist:"${ar}" album:"${al}"`, ar + ' ' + al]) {
+    const d = await dz('/search/album?limit=10&q=' + encodeURIComponent(q));
+    if (!d || d.error) throw new Error('deezer');
+    const L0 = arr1(d.data), x = L0.find(y => sameA(y.artist && y.artist.name) && covN(y.title || '') === A) || L0.find(y => sameA(y.artist && y.artist.name) && sameT(y.title));
+    if (x && +x.nb_tracks > 0) return +x.nb_tracks;
+  }
+  if (SA && SPA.ok() && !SPA.denied) {
+    const j = await SPA.get('/search?type=album&limit=10&q=' + encodeURIComponent(`album:${al} artist:${ar}`));
+    const x = arr1(j && j.albums && j.albums.items).find(y => y && (y.artists || []).some(z => sameA(z && z.name)) && sameT(y.name));
+    if (x && +x.total_tracks > 0) return +x.total_tracks;
+  }
+  return 0;
 });
+function arAlbSet(l, h, n) {
+  const sm = $(`#arPage [data-aln="${l}"]`), pg = $(`#arPage [data-alp="${l}"]`);
+  if (!n || !sm || !pg) return;
+  const k = Math.min(h, n);
+  sm.textContent = `${fmtN(k)} ${pl(k, 'titre')} sur ${fmtN(n)}`;
+  pg.hidden = false; pg.firstElementChild.style.width = Math.min(100, h / n * 100).toFixed(1) + '%';
+  pg.setAttribute('role', 'img'); pg.setAttribute('aria-label', `${fmtPct(Math.min(1, h / n))} de l'album écouté`);
+}
 async function arAlbFill(a, X) {
-  for (const [l] of X.albums.slice(0, 8)) {
-    let n = 0; try { n = await dzAlbN(D.albums[l], D.artists[a]); } catch (e) { n = 0; }
-    if (AR.a !== a || S.view !== 'artiste') return;
-    const h = X.heardIn.get(l) || 0, sm = $(`#arPage [data-aln="${l}"]`), pg = $(`#arPage [data-alp="${l}"]`);
-    if (!n || !sm || !pg) continue;
-    sm.textContent = `${fmtN(Math.min(h, n))} ${pl(Math.min(h, n), 'titre')} sur ${fmtN(n)}`;
-    pg.hidden = false; pg.firstElementChild.style.width = Math.min(100, h / n * 100).toFixed(1) + '%';
-    pg.setAttribute('role', 'img'); pg.setAttribute('aria-label', `${fmtPct(Math.min(1, h / n))} de l'album écouté`);
+  let todo = X.albums.slice(0, AR_ALB_N).map(([l]) => l);
+  for (let pass = 0; pass < 3 && todo.length; pass++) {
+    if (pass) { await sleep(6000 * pass); if (AR.a !== a || S.view !== 'artiste') return; }
+    const fail = [];
+    for (const l of todo) {
+      let n = 0;
+      try { n = await dzAlbN(D.albums[l], D.artists[a]); } catch (e) { fail.push(l); continue; }
+      if (AR.a !== a || S.view !== 'artiste') return;
+      arAlbSet(l, X.heardIn.get(l) || 0, n);
+    }
+    todo = fail;
   }
 }
 function arPlay(btn) {
@@ -3912,11 +4081,12 @@ function renderArtist() {
   }
   if (AR.a !== a) { arStop(); AR.a = a; AR.more = false; AR.grTry = 0; AR.tint = null; const k = arCovKey(a), m = k && arc().load()[k]; if (m) AR.tint = m; window.scrollTo(0, 0); }
   const X = arData(a), name = D.artists[a];
-  const albs = X.albums.length ? `<section class="blk"><div class="bh"><div><h2>Ses albums</h2><p class="sub">${fmtN(X.albums.length)} ${pl(X.albums.length, 'album')} dans ton historique, avec la part que tu connais</p></div></div>${arAlbums(a, X)}</section>` : '';
+  const albs = X.albums.length ? `<section class="blk"><div class="bh"><div><h2>Ses albums</h2><p class="sub">${fmtN(X.albums.length)} ${pl(X.albums.length, 'album')} dans ton historique, avec la part que tu connais</p></div></div>${arAlbums(a, X)}<div id="arNever"></div></section>` : '';
   box.innerHTML = arHero(a, X) + `<div class="pad">
     <section class="blk"><div class="bh"><div><h2>Ton histoire avec ${esc(name)}</h2><p class="sub">De ta première écoute à la dernière</p></div></div>
       <div class="arhist">${arStory(a, X)}<figure class="arfig armon"><figcaption>Écoutes mois par mois</figcaption><div class="fig md"><svg id="svgAr" role="img" aria-label="Écoutes de ${esc(name)} mois par mois"></svg></div></figure></div></section>
-    <section class="blk"><div class="bh"><div><h2>Ses sons</h2><p class="sub">${fmtN(X.tP.size)} ${pl(X.tP.size, 'son différent', 'sons différents')}, classés par écoutes</p></div>${X.tracks.length > 10 ? `<button class="more" data-ar="more">${AR.more ? 'Moins' : 'Tout voir'}</button>` : ''}</div>${arTracks(a, X)}</section>
+    ${arYearsHTML(a)}
+    <section class="blk"><div class="bh"><div><h2>Ses sons</h2><p class="sub">${fmtN(X.tP.size)} ${pl(X.tP.size, 'son différent', 'sons différents')}, classés par écoutes</p></div>${X.tracks.length > 10 ? `<button class="more" data-ar="more">${AR.more ? 'Moins' : 'Tout voir'}</button>` : ''}</div>${arNow(a)}${arTracks(a, X)}</section>
     ${albs}
     <section class="blk"><div class="bh"><div><h2>Quand tu l'écoutes</h2></div></div>${arMoments(a, X)}</section>
     ${SA && fbCfg() ? `<section class="blk"><div class="bh"><div><h2>Dans ton groupe</h2></div></div><div id="arGr">${arGroup(a, X)}</div></section>` : ''}
@@ -3931,12 +4101,14 @@ function renderArtist() {
     fig(svg, () => drawBars(svg, { vals, unit: '', fmtV: v => fmtPlays(v), label: (i, sh) => { const s = m0 + i; return sh ? (nb <= 14 ? MO[s % 12] : s % 12 === 0 ? String(1970 + Math.floor(s / 12)) : '') : cap(fmtMon(s)); }, everyLabel: nb > 14, tip: i => `<b>${fmtPlays(vals[i])}</b><span>${cap(fmtMon(m0 + i))}</span>`, click: i => setView('month', monStart(m0 + i), true) }));
   }
   queueCovers();
+  const yr = box.querySelector('.aryrs'); if (yr) yr.scrollLeft = yr.scrollWidth;
   if (!AR.tint) arTint(a).then(c => { if (c && AR.a === a && S.view === 'artiste') { AR.tint = c; arApplyTint(a); } });
   if (SA && !DEMO) { arDiscFill(a); arAlbFill(a, X); }
 }
 function wireArtist() {
   const B = $('#arPage'); if (!B) return;
   B.addEventListener('click', e => {
+    const nv = e.target.closest('a[data-arnav]'); if (nv && !e.ctrlKey && !e.metaKey && !e.shiftKey && e.button === 0) { e.preventDefault(); location.replace(nv.getAttribute('href')); return; }
     const pv = e.target.closest('[data-pv]'); if (pv) { arPlay(pv); return; }
     const b = e.target.closest('[data-ar]'); if (!b || b.disabled) return;
     const act = b.dataset.ar, a = AR.a; if (a < 0) return;
@@ -3946,6 +4118,93 @@ function wireArtist() {
     else if (act === 'focus') { const on = S.focus && S.focus.type === 'a' && S.focus.id === a; S.focus = on ? null : { type: 'a', id: a }; location.hash = 'stats'; toast(S.focus ? 'Focus : ' + D.artists[a] : 'Focus retiré'); }
   });
   addEventListener('hashchange', () => { if (!/^#artiste\//.test(location.hash)) arStop(); });
+  addEventListener('keydown', e => {
+    if (S.view !== 'artiste' || AR.a < 0 || (e.key !== 'ArrowLeft' && e.key !== 'ArrowRight') || e.altKey || e.ctrlKey || e.metaKey || e.shiftKey) return;
+    if (e.target.closest && e.target.closest('input,textarea,select,[contenteditable],.row,.aryrs,.arnowl')) return;
+    if (!$('#drawer').hidden || !$('#find').hidden || !$('#sto').hidden || !$('#dataModal').hidden || !$('#recap').hidden) return;
+    const x = arNbr(AR.a)[e.key === 'ArrowLeft' ? 0 : 1]; if (x == null) return;
+    e.preventDefault(); location.replace(arHref(x));
+  });
+}
+/* ================= recherche : un artiste, un son, un album (bouton loupe, touche « / » ou Ctrl+K) ================= */
+const FIND = { k: -1, idx: null, items: [], back: null };
+function findIndex() {
+  if (FIND.idx && FIND.idx.v === dataVer) return FIND.idx;
+  const a = D.artists.map(normT), t = Array.from(D.tn, normT), l = D.albums.map(normT);
+  return (FIND.idx = { v: dataVer, a, t, l });
+}
+/* d'abord ce qui commence par la recherche, puis ce qui la contient ; à égalité, ce que t'écoutes le plus */
+function findIn(names, q, score, n, skip0) {
+  const hits = [];
+  for (let i = skip0 ? 1 : 0; i < names.length; i++) {
+    const s = names[i]; if (!s) continue;
+    const at = s.indexOf(q); if (at < 0) continue;
+    hits.push([i, (at === 0 ? 2 : / /.test(s[at - 1]) ? 1 : 0), score(i)]);
+  }
+  hits.sort((x, y) => y[1] - x[1] || y[2] - x[2]);
+  return hits.slice(0, n).map(x => x[0]);
+}
+function findRun() {
+  const q = normT($('#findIn').value || ''), box = $('#findList');
+  FIND.items = []; FIND.k = -1;
+  if (!D || q.length < 1) { box.innerHTML = `<li class="fhint">${DEMO ? 'Tu regardes l\'exemple : importe tes stats pour chercher dans ta musique.' : 'Tape le nom d\'un artiste, d\'un son ou d\'un album.'}</li>`; return; }
+  const I = findIndex(), l = L();
+  const A = findIn(I.a, q, i => T.aP[i] || 0, 5), Tt = findIn(I.t, q, i => T.tP[i] || 0, 5), Al = findIn(I.l, q, i => T.lP[i] || 0, 4, true);
+  const row = (k, i, cov, name, sub) => { FIND.items.push([k, i]); return `<li role="option" id="fi${FIND.items.length - 1}" data-fi="${FIND.items.length - 1}" aria-selected="false">${cov}<span class="nm"><b>${esc(name)}</b><small>${esc(sub)}</small></span></li>`; };
+  let h = '';
+  if (A.length) h += `<li class="fsec" role="presentation">${esc(l.a)}</li>` + A.map(a => row('a', a, covA(a), D.artists[a], fmtPlays(T.aP[a] || 0))).join('');
+  if (Tt.length) h += `<li class="fsec" role="presentation">${esc(l.t)}</li>` + Tt.map(t => row('t', t, covT(t), D.tn[t], D.artists[D.ta[t]] + ', ' + fmtPlays(T.tP[t] || 0))).join('');
+  if (Al.length) h += '<li class="fsec" role="presentation">Albums</li>' + Al.map(x => row('l', x, covL(x), D.albums[x], D.artists[D.la[x]] + ', ' + fmtPlays(T.lP[x] || 0))).join('');
+  box.innerHTML = h || `<li class="fhint">Rien trouvé pour « ${esc($('#findIn').value)} ».</li>`;
+  if (FIND.items.length) findSel(0);
+  queueCovers();
+}
+function findSel(k) {
+  const n = FIND.items.length; if (!n) return;
+  FIND.k = (k + n) % n;
+  $$('#findList [data-fi]').forEach(el => el.setAttribute('aria-selected', String(+el.dataset.fi === FIND.k)));
+  const el = $('#fi' + FIND.k); if (el) { el.scrollIntoView({ block: 'nearest' }); $('#findIn').setAttribute('aria-activedescendant', el.id); }
+}
+function findGo(k) {
+  const it = FIND.items[k]; if (!it) return;
+  closeFind(false);
+  if (it[0] === 'a') location.hash = arHref(it[1]); else openDetail(it[0], it[1]);
+}
+function openFind() {
+  if (!D) return;
+  FIND.back = document.activeElement;
+  $('#find').hidden = false; $('#findIn').value = ''; findRun();
+  $('#findIn').focus();   /* tout de suite, pas après : sur iPhone, le clavier ne s'ouvre que pendant le geste */
+}
+function closeFind(refocus = true) {
+  $('#find').hidden = true;
+  if (refocus && FIND.back && FIND.back.isConnected) FIND.back.focus();
+}
+function wireFind() {
+  const F = $('#find'); if (!F) return;
+  $('#findBtn').addEventListener('click', openFind);
+  $('#findIn').addEventListener('input', findRun);
+  $('#findIn').addEventListener('keydown', e => {
+    if (e.key === 'ArrowDown') { e.preventDefault(); findSel(FIND.k + 1); }
+    else if (e.key === 'ArrowUp') { e.preventDefault(); findSel(FIND.k - 1); }
+    else if (e.key === 'Enter') { e.preventDefault(); findGo(Math.max(0, FIND.k)); }
+    else if (e.key === 'Escape') { e.preventDefault(); e.stopPropagation(); closeFind(); }
+  });
+  F.addEventListener('click', e => { const li = e.target.closest('[data-fi]'); if (li) { findGo(+li.dataset.fi); return; } if (e.target === F || e.target.closest('[data-find-x]')) closeFind(); });
+  F.addEventListener('keydown', e => {
+    if (e.key === 'Escape') { e.preventDefault(); e.stopPropagation(); closeFind(); return; }
+    if (e.key !== 'Tab') return;
+    const f = [$('#findIn'), F.querySelector('[data-find-x]')], i = f.indexOf(document.activeElement);
+    if (e.shiftKey ? i <= 0 : i === f.length - 1) { e.preventDefault(); f[e.shiftKey ? f.length - 1 : 0].focus(); }
+  });
+  addEventListener('keydown', e => {
+    if (!F.hidden) return;
+    const typing = e.target.closest && e.target.closest('input,textarea,select,[contenteditable]');
+    if ((e.key === '/' && !typing && !e.ctrlKey && !e.metaKey && !e.altKey) || ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'k')) {
+      if (!$('#drawer').hidden || !$('#sto').hidden) return;
+      e.preventDefault(); openFind();
+    }
+  });
 }
 /* ================= import : le déroulé ================= */
 const oldestDate = (a, b) => !a ? (b || null) : !b ? a : (a < b ? a : b);
@@ -4129,7 +4388,17 @@ function renderRecaps() {
   $('#rcWeeks').innerHTML = ww.map(e => rcTile('week', e)).join('');
   $$('[data-rcm]').forEach(b => { const k = b.dataset.rcm, n = (k === 'm' ? X.M : X.W).length; b.hidden = n <= 12; b.textContent = S.rcMore[k] ? 'Réduire' : `Tout afficher (${n})`; });
 }
+/* mémorisé : l'accueil (bannière Wrapped), les récaps et les stories redemandent souvent les mêmes */
+const RDC = new Map();
 function recapData(g, a) {
+  const key = dataVer + '|' + S.content + '|' + S.thr + '|' + S.noSkip + '|' + g + '|' + a, hit = RDC.get(key);
+  if (hit) return Object.assign({}, hit);
+  const R = recapCalc(g, a);
+  if (RDC.size > 12) RDC.delete(RDC.keys().next().value);
+  RDC.set(key, R);
+  return Object.assign({}, R);
+}
+function recapCalc(g, a) {
   const [r0, r1] = range(g, a), X = aggAll(r0, r1, g, true);
   let Qd = null;
   if (g !== 'all') { const [q0, q1] = range(g, shift(g, a, -1)); if (q1 > D.firstDay) Qd = aggAll(q0, Math.min(q1, q0 + (Math.min(r1, D.lastDay + 1) - r0)), g, false); }
@@ -4620,7 +4889,16 @@ async function dzCover(k) {
 }
 const imgPick = ims => { if (!ims || !ims.length) return 0; const s = ims.slice().sort((a, b) => (a.width || 0) - (b.width || 0)); return (s.find(i => (i.width || 0) >= 250) || s[s.length - 1]).url || 0; };
 function seedCovers(tracks) { noteArtists(tracks); for (const tr of tracks || []) { if (!tr || !tr.album) continue; const k = normT(tr.album.name || '') + '|' + normT(((tr.artists || [])[0] || {}).name || ''); if (!CC.get(k)) { const u = imgPick(tr.album.images); if (u) CC.set(k, u); } } }
-function applyCover(k) { const u = CC.get(k); if (!u) return; $$('.cv[data-ck]').forEach(el => { if (el.dataset.ck !== k) return; el.removeAttribute('data-ck'); el.insertAdjacentHTML('beforeend', `<img${el.classList.contains('r') ? ' class="bl"' : ''} src="${esc(u)}" alt="" loading="lazy" decoding="async">`); }); }
+function applyCover(k) {
+  const u = CC.get(k); if (!u) return;
+  $$('.cv[data-ck]').forEach(el => {
+    if (el.dataset.ck !== k) return;
+    el.removeAttribute('data-ck');
+    const im = document.createElement('img'); im.alt = ''; im.loading = 'lazy'; im.decoding = 'async'; im.className = (el.classList.contains('r') ? 'bl ' : '') + 'fi';
+    im.addEventListener('load', () => im.classList.add('on'), { once: true });
+    im.src = u; el.appendChild(im); if (im.complete) im.classList.add('on');
+  });
+}
 let covTimer = 0, covBusy = false;
 let covPause = 0;
 function queueCovers() { if (!covOn() || Date.now() < covPause) return; clearTimeout(covTimer); covTimer = setTimeout(fillCovers, 300); }
@@ -5051,7 +5329,13 @@ async function pngKit(Wd, Ht, hue) {
 }
 
 /* ================= ton style d'écoute (curseurs entre deux mots opposés) ================= */
+let STY = null;
 function styleOf(r0, r1) {
+  const key = dataVer + '|' + S.content + '|' + S.thr + '|' + S.noSkip + '|' + r0 + '|' + r1;
+  if (STY && STY.key === key) return STY.list;
+  const list = styleCalc(r0, r1); STY = { key, list }; return list;
+}
+function styleCalc(r0, r1) {
   const pass = makePass(false), thr = S.thr * 1000, l = L();
   let night = 0, day = 0, wkMs = 0, wdMs = 0, ext = 0, sk = 0, sh = 0, fresh = 0, plays = 0, same = 0, prevL = -1, prevT = -1, mob = 0, desk = 0, sesN = 0, sesMs = 0, cS = -1, cE = 0, cM = 0;
   const aMs = new Map();
@@ -5190,18 +5474,23 @@ function renderSlots() {
   box.innerHTML = `<div class="slots">${cards}</div>${best ? `<p class="slotfact"><button class="lnk" data-open="a:${best.a}">${esc(D.artists[best.a])}</button>, c'est surtout ${SLOTS[best.s][3]} : ${fmtPct(best.sh)} de ses écoutes, contre ${fmtPct(best.base)} pour l'ensemble de ce que t'écoutes.</p>` : ''}`;
 }
 
+const SES_B = [['Moins de 15 min', 0, 9e5], ['15 à 45 min', 9e5, 27e5], ['45 min à 2 h', 27e5, 72e5], ['Plus de 2 h', 72e5, Infinity]];
 function renderSessions() {
   const P = profPlus(), box = $('#prSes'); if (!box) return;
   const Ls = P.ses; if (!Ls.length) { box.innerHTML = '<p class="empty">Pas encore assez d\'écoutes.</p>'; return; }
-  const dur = x => (x[1] - x[0]) * 1000;
-  let lg = Ls[0]; for (const x of Ls) if (x[1] - x[0] > lg[1] - lg[0]) lg = x;
-  const pass = makePass(false), cnt = new Map();
-  for (let i = lg[3]; i <= lg[4]; i++) { if (!pass(i)) continue; const a = D.ta[D.k[i]]; cnt.set(a, (cnt.get(a) || 0) + D.m[i]); }
-  let ta = -1, tv = 0; for (const [a, v] of cnt) if (v > tv) { ta = a; tv = v; }
-  const ds = Ls.map(dur).sort((a, b) => a - b), med = ds[Math.floor(ds.length / 2)];
-  const days = new Set(Ls.map(x => tsDay(x[0]))).size, avg = Ls.length / Math.max(1, days);
-  const B = [['Moins de 15 min', 0, 9e5], ['15 à 45 min', 9e5, 27e5], ['45 min à 2 h', 27e5, 72e5], ['Plus de 2 h', 72e5, Infinity]];
-  const bc = B.map(([, a, b]) => ds.filter(v => v >= a && v < b).length), bmax = Math.max(1, ...bc);
+  const dur = x => (x[1] - x[0]) * 1000, B = SES_B;
+  /* le résumé se calcule une fois par jeu de données (il y a vite des dizaines de milliers de sessions) */
+  if (!P.sum) {
+    let lg = Ls[0]; for (const x of Ls) if (x[1] - x[0] > lg[1] - lg[0]) lg = x;
+    const pass = makePass(false), cnt = new Map();
+    for (let i = lg[3]; i <= lg[4]; i++) { if (!pass(i)) continue; const a = D.ta[D.k[i]]; cnt.set(a, (cnt.get(a) || 0) + D.m[i]); }
+    let ta = -1, tv = 0; for (const [a, v] of cnt) if (v > tv) { ta = a; tv = v; }
+    const ds = Ls.map(dur).sort((x, y) => x - y), dset = new Set();
+    for (const x of Ls) dset.add(D.day[x[3]]);
+    const bc = B.map(([, x, y]) => { let c = 0; for (const v of ds) if (v >= x && v < y) c++; return c; });
+    P.sum = { lg, ta, med: ds[Math.floor(ds.length / 2)], avg: Ls.length / Math.max(1, dset.size), bc };
+  }
+  const { lg, ta, med, avg, bc } = P.sum, bmax = Math.max(1, ...bc);
   const k = (lab, v, sub) => `<div class="kpi"><span class="k">${lab}</span><span class="v">${v}</span>${sub ? `<span class="d">${sub}</span>` : ''}</div>`;
   const span = (a, b) => { const da = tsDay(a), db = tsDay(b); return da === db ? `le ${esc(fmtDay(da))}, de ${clockOf(a)} à ${clockOf(b)}` : db === da + 1 ? `le ${esc(fmtDay(da))}, de ${clockOf(a)} à ${clockOf(b)} le lendemain` : `du ${esc(fmtDay(da))} ${clockOf(a)} au ${esc(fmtDay(db))} ${clockOf(b)}`; };
   box.innerHTML = `<div class="kpis grk">
@@ -8130,12 +8419,14 @@ async function openWrapped(y) {
   if (SA && grMe() && y === new Date().getFullYear()) { const t = setTimeout(() => toast('Je prépare ton Wrapped…'), 400); members = await grFetchOnce(3500); clearTimeout(t); }
   openStories('year', a, { members });
 }
+/* pochettes et couleur des cartes Wrapped : tirées de l'index des récaps (déjà calculé), sans tout recalculer par année */
+function wrapLook(y) { const e = recapIndex().Y.find(x => x.k === y); return e ? { albs: e.albs, h: e.top >= 0 ? hueA(e.top) : 270 } : { albs: [], h: 270 }; }
 function renderWrapHome() {
   const box = $('#wrHome'); if (!box) return;
   const y = wrapYearNow(), ys = !DEMO && y ? wrapYears() : [], e = ys.find(x => x.y === y);
   let off = ''; try { off = localStorage.getItem('sillon-wr-x') || ''; } catch (er) {}
   if (!e || off === String(y)) { box.hidden = true; box.innerHTML = ''; return; }
-  const R = recapData('year', clamp(dn(y, 6, 1), D.firstDay, D.lastDay)), albs = topIdx(R.X.lM, 4, 1), h = R.A.length ? hueA(R.A[0]) : 270;
+  const { albs, h } = wrapLook(y);
   box.hidden = false; box.style.setProperty('--wh', h);
   box.innerHTML = `${albs.length >= 4 ? `<span class="wmos">${albs.map(covL).join('')}</span>` : `<span class="wrdisc" aria-hidden="true"></span>`}<div class="wrtx"><b>Ton Sillon Wrapped ${y} est prêt</b><small>Ton année en stories : ton top, ton mois préféré, ta journée record, ton profil d'auditeur${SA && grMe() ? ', et ton groupe' : ''}.</small></div><button class="btn pri" data-wr="${y}">Voir mon Wrapped</button><button class="x" data-wrx="${y}" aria-label="Masquer jusqu'à l'an prochain">×</button>`;
 }
@@ -8144,7 +8435,7 @@ function renderWrapRecaps() {
   const ys = DEMO ? wrapYears().slice(0, 1) : wrapYears();
   sec.hidden = !ys.length; if (!ys.length) return;
   box.innerHTML = ys.map((e, j) => {
-    const R = recapData('year', clamp(dn(e.y, 6, 1), D.firstDay, D.lastDay)), albs = topIdx(R.X.lM, 4, 1), h = R.A.length ? hueA(R.A[0]) : 270;
+    const { albs, h } = wrapLook(e.y);
     return `<button class="wrc${j === 0 ? ' big' : ''}" data-wr="${e.y}" style="--wh:${h}">${albs.length >= 4 ? `<span class="wmos">${albs.map(covL).join('')}</span>` : ''}<span class="wrcy"><small>Sillon Wrapped</small><b>${e.y}</b></span><small class="wrcs">${e.done ? esc(fmtDur(e.ms)) + ' d\'écoute' : 'En cours, jusqu\'au ' + esc(fmtDay(D.lastDay))}</small></button>`;
   }).join('');
 }
@@ -8536,7 +8827,7 @@ function wire() {
   $('#rcGo').addEventListener('click', () => openRecap(S.gran, S.anchor));
   $('#rcPrev').addEventListener('click', () => rcGo(-1));
   $('#rcNext').addEventListener('click', () => rcGo(1));
-  wireStories(); wireGuide(); wireGroup(); wireInstall(); wireLink(); wireAcct(); wireMe(); wireFun(); wireArtist(); wireSugg(); wireSettings(); wireWelcome(); wireUpd(); wireWrapped(); wireTour();
+  wireStories(); wireGuide(); wireGroup(); wireInstall(); wireLink(); wireAcct(); wireMe(); wireFun(); wireArtist(); wireFind(); wireSugg(); wireSettings(); wireWelcome(); wireUpd(); wireWrapped(); wireTour();
   if (SA) $$('.sao').forEach(e => { e.hidden = false; });
   document.addEventListener('click', e => { if (e.target.closest('#howBody a[href^="#guide"]')) closeAll(); });
   $('#rcPng').addEventListener('click', async () => { if (!RC || !RC.R) return; const b = await posterPng(RC.R); if (b) saveFile(`sillon-recap-${tagOf(RC.g, RC.a)}.png`, b); });
@@ -8550,7 +8841,7 @@ function wire() {
     if (t.closest('[data-close]')) { closeAll(); return; }
     const rc = t.closest('[data-rc]'); if (rc) { const [g, a] = rc.dataset.rc.split(':'); openRecap(g, +a); return; }
     const rcm = t.closest('[data-rcm]'); if (rcm) { const k = rcm.dataset.rcm; S.rcMore[k] = !S.rcMore[k]; renderRecaps(); return; }
-    const o = t.closest('[data-open]'); if (o) { const [k, i] = o.dataset.open.split(':'); openDetail(k, +i); return; }
+    const o = t.closest('[data-open]'); if (o) { const [k, i] = o.dataset.open.split(':'); if (k === 'a') { if (!$('#drawer').hidden) closeAll(); location.hash = arHref(+i); } else openDetail(k, +i); return; }
     const m = t.closest('.more[data-more]'); if (m) { const k = m.dataset.more; S.top[k] = S.top[k] > 10 ? 10 : 50; renderRanks(); return; }
     const r = t.closest('.rec[data-r]'); if (r) { const fn = $('#recs')._fns[+r.dataset.r]; fn && fn(); return; }
     const y = t.closest('tr[data-y]'); if (y) { setView('year', Math.min(D.lastDay, dn(+y.dataset.y, 11, 31)), true); return; }
@@ -8617,6 +8908,8 @@ function wire() {
     else if (/^[1-5]$/.test(e.key)) { S.gran = GRANS[+e.key - 1]; S.calYear = null; savePrefs(); render(); }
   });
   addEventListener('hashchange', route);
+  document.addEventListener('click', noteScroll, true);
+  document.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') noteScroll(); }, true);
   let rafS = 0;
   addEventListener('scroll', () => { if (rafS) return; rafS = requestAnimationFrame(() => { rafS = 0; checkHero(); }); }, { passive: true });
 }
