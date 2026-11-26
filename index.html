@@ -790,6 +790,15 @@ a.sgcard:hover{background:var(--hover)}
 .miles span{color:var(--muted);font-size:14px}
 .miles em{font-style:normal;font-weight:800;text-align:right;white-space:nowrap}
 .endyr{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+.card .endyr .kpi{background:var(--card2)}
+.pdnx{margin-top:18px}
+.pdnx .h3{margin:0 0 8px}
+.odds .nm small{display:block;overflow:hidden;color:var(--muted);font-size:13px;text-overflow:ellipsis;white-space:nowrap}
+.pring{width:40px;aspect-ratio:1;border-radius:50%;background:conic-gradient(var(--acc) var(--p),var(--chip2) 0);-webkit-mask:radial-gradient(farthest-side,transparent 64%,#000 66%);mask:radial-gradient(farthest-side,transparent 64%,#000 66%)}
+.bets .nm b,.bets .nm small{white-space:normal}
+.bets li>*{align-items:center}
+#pdOvr .lnk{padding:0;border:0;background:none;color:inherit;font:inherit;text-decoration:underline;text-decoration-color:var(--chip2);text-underline-offset:3px;cursor:pointer}
+#pdOvr .lnk:hover{text-decoration-color:currentColor}
 .how2{color:var(--muted);font-size:14px}
 .how2 summary{cursor:pointer;font-weight:700;color:var(--ink)}
 .how2 p{margin-top:8px;max-width:80ch}
@@ -1650,6 +1659,11 @@ html.calm .stobars .on i{width:100%}
   <div class="hero" id="pdHero"><div class="htx"><p class="kick" id="pdKick"></p><h1 class="ht" id="pdTitle"></h1><p class="hl" id="pdLead"></p></div></div>
   <div class="pad">
     <div class="kpis pd" id="pdNums"></div>
+    <section class="blk card" id="pdNxB">
+      <div class="bh"><div><h2 id="pdNxT"></h2><p class="sub" id="pdNxS"></p></div></div>
+      <div class="endyr" id="pdNx"></div>
+      <div class="cols pdnx"><div><h3 class="h3">Ton n°&#8239;1 du mois</h3><ol class="odds" id="pdNxA"></ol></div><div><h3 class="h3">Ton son du mois</h3><ol class="odds" id="pdNxSon"></ol></div></div>
+    </section>
     <section class="blk card" id="pdBtB">
       <div class="bh"><div><h2>Fiabilité, testée sur ton passé</h2><p class="sub" id="pdBtS"></p></div></div>
       <div class="scroll"><table class="stack" id="pdBt"></table></div>
@@ -1665,7 +1679,11 @@ html.calm .stobars .on i{width:100%}
     </section>
     <section class="blk cols">
       <div><h2 id="pdTopT"></h2><p class="sub" id="pdTopS"></p><ol class="odds" id="pdTop" style="margin-top:14px"></ol></div>
-      <div><h2>Tes prochains paliers</h2><p class="sub">Si tu gardes le rythme des 3 derniers mois</p><ol class="miles" id="pdMiles" style="margin-top:8px"></ol></div>
+      <div><h2>Tes prochains paliers</h2><p class="sub">Au rythme prévu pour les mois qui viennent</p><ol class="miles" id="pdMiles" style="margin-top:8px"></ol></div>
+    </section>
+    <section class="blk cols">
+      <div><h2>Petits paris</h2><p class="sub">Tes chances, d'après ton rythme et tes habitudes</p><ol class="odds bets" id="pdBets" style="margin-top:14px"></ol></div>
+      <div><h2>Dépassements à venir</h2><p class="sub">Dans ton classement de tous les temps, à ton rythme des 3 derniers mois</p><ol class="miles" id="pdOvr" style="margin-top:8px"></ol></div>
     </section>
     <section class="blk cols">
       <div><h2>En train de monter</h2><p class="sub">Les 3 derniers mois comparés aux 9 d'avant</p><ol class="tl nob" id="pdRise" style="margin-top:10px"></ol></div>
@@ -1674,9 +1692,9 @@ html.calm .stobars .on i{width:100%}
     <section class="blk card" id="pdEndB"><h2 id="pdEndT"></h2><p class="sub" id="pdEndS"></p><div class="endyr" id="pdEnd" style="margin-top:14px"></div></section>
     <section class="blk" id="pdWrB"><div class="bh"><div><h2 id="pdWrT"></h2><p class="sub" id="pdWrS"></p></div></div><div class="row" id="pdWr"></div></section>
     <details class="how2"><summary>Comment c'est calculé</summary>
-      <p>Deux méthodes, et le site fait la moyenne. La première part de tes 12 derniers mois et prolonge ta tendance (par rapport aux 12 mois d'avant), amortie de moitié parce que les gros changements se calment souvent. La deuxième lisse ton historique mois par mois en séparant ton niveau, ta tendance (qui s'essouffle avec le temps), tes saisons (tes mois forts et faibles des années complètes) et tes jours de la semaine, puis la prolonge jour par jour jusqu'à fin 2027.</p>
-      <p>Ensuite, le site se teste : pour chaque année passée, il se remet à la même date l'année d'avant, prédit avec ce qu'il savait alors, et compare au vrai. S'il se trompe toujours dans le même sens, il corrige ; plus il se trompe, plus les fourchettes s'élargissent. En gros, 8 fois sur 10, le vrai chiffre devrait tomber dedans.</p>
-      <p>Pour le n°1, le site simule 2 000 années possibles avec tes artistes du moment, et ajoute la chance que ce soit quelqu'un que tu ne connais pas encore, d'après la fréquence où c'est arrivé dans ton historique. Les paliers suivent ton rythme des 3 derniers mois.</p>
+      <p>Le site regarde ton rythme mois par mois et le prolonge de quatre façons : ton rythme des derniers mois, ta tendance sur un an et sur deux ans (qui s'essouffle avec le temps), et ta moyenne des 12 derniers mois. Les mois bizarres (un pic, un mois sans écoute) sont calmés pour ne pas tout fausser. Tes saisons ne comptent que si elles reviennent au moins trois années de suite, et seulement si elles auraient amélioré les prévisions passées.</p>
+      <p>Pour savoir quelle façon croire, le site se remet à chacun de tes mois passés, prédit la suite avec ce qu'il savait alors, et compare au vrai. Les façons qui se sont le moins trompées pèsent le plus, les erreurs récentes comptent plus que les vieilles, et la largeur des fourchettes vient de ces erreurs : en gros, 8 fois sur 10, le vrai chiffre tombe dedans.</p>
+      <p>Pour les n°&#8239;1, le site simule 2 000 fois l'année (ou le mois) avec tes artistes et tes sons du moment, et ajoute la chance que ce soit quelqu'un de nouveau, d'après la fréquence où c'est arrivé chez toi. Les paris viennent des mêmes calculs : la chance de dépasser un chiffre, ta régularité jour après jour, ton rythme de découvertes.</p>
     </details>
   </div>
 </section>
@@ -1889,9 +1907,10 @@ html.calm .stobars .on i{width:100%}
 /* ================= version, nouveautés et services (page À propos) ================= */
 /* à chaque mise à jour : changer SILLON_V et ajouter une ligne en haut de SILLON_LOG.
    X refonte, Y grosse mise à jour, Z correctifs, I première version */
-const SILLON_V = '2.13.0';
+const SILLON_V = '2.14.0';
 const SV_TYPE = { X: 'Refonte', Y: 'Grosse mise à jour', Z: 'Correctifs', I: 'Première version' };
 const SILLON_LOG = [
+  ['2.14.0', 'Y', ['Prédictions refaites : le site prolonge ton rythme de quatre façons et fait confiance à celles qui auraient le mieux prédit ton passé. Un gros mois isolé (comme un décembre à fond) n\'est plus pris pour une saison qui revient chaque année, et une grosse montée n\'est plus prolongée sans fin.', 'Fiabilité : l\'erreur typique du site sur ta dernière année, et tes derniers mois prédits le mois d\'avant, comparés au vrai.', 'Nouveau sur la page Prédictions : le mois prochain (écoutes, temps, découvertes), ton n°\u202f1 et ton son du mois, des petits paris (faire mieux que le mois d\'avant, ta plus grosse année, ta journée record, ta série) et les dépassements à venir dans ton classement de tous les temps.', 'Pendant ce temps-là : 21 anecdotes en plus (Usain Bolt, le Boléro de Ravel, 4′33″ de John Cage, les recherches Google, les éclairs dans le monde…).']],
   ['2.13.0', 'Y', ['Recherche : la loupe en haut (ou la touche « / », ou Ctrl+K) trouve un artiste, un son ou un album et t\'y emmène direct.', 'Les artistes s\'ouvrent maintenant directement sur leur page, partout sur le site (classements, accueil, groupe…).', 'Pages artistes : passe d\'un artiste de ton top au suivant (boutons ou flèches du clavier), vois sa place dans ton top année par année, ce que t\'écoutes de lui en ce moment, et ses albums que t\'as jamais lancés.', 'Quand tu reviens d\'une page artiste, tu retrouves la page d\'avant pile là où t\'étais.', 'Plus rapide avec un gros historique : l\'accueil s\'affiche environ 2 fois plus vite, ta carte et les récaps environ 3 fois plus vite.', 'Les pochettes apparaissent en fondu et les pages ont une petite entrée (rien si t\'as demandé moins d\'animations).']],
   ['2.12.1', 'Z', ['Pages artistes : la barre de chaque album s\'affiche aussi quand Deezer met du temps à répondre (avant, elle pouvait manquer pendant un mois). Jusqu\'à 20 albums, avec Spotify en renfort si t\'es connecté.']],
   ['2.12.0', 'Y', ['Pages artistes : chaque artiste a sa vraie page, aux couleurs de la pochette de ton album le plus écouté. On y arrive depuis sa fiche, avec « Voir sa page ».', 'Ton histoire avec lui : ta première écoute, ton mois à fond, ta grande pause et ton retour, ta plus grosse journée, ta dernière écoute.', 'Ses sons, ses albums avec la part que tu connais, et quand tu l\'écoutes (heure par heure, jour par jour).', 'Qui l\'écoute dans ton groupe, ses sons que t\'as jamais écoutés avec des extraits, et des artistes proches.', 'Une image « Toi et… » au format story, à partager.']],
@@ -3145,7 +3164,7 @@ function renderLive() {
 }
 
 /* ================= Pendant ce temps-là : ton temps d'écoute en anecdotes (accueil) ================= */
-/* Une trentaine d'équivalences, toutes des ordres de grandeur, toutes calculées sur la période affichée :
+/* Une soixantaine d'équivalences, toutes des ordres de grandeur, toutes calculées sur la période affichée :
    en vue Jour, tout porte sur la journée ; en vue Mois, sur le mois ; etc.
    Le tirage change chaque jour, avec la période affichée, et avec le bouton « D'autres ». */
 /* des ordres de grandeur : 16 762 devient 17 000, 1 154 devient 1 150 */
@@ -3176,7 +3195,7 @@ const FUN = [
   { id: 'yeux', c: 'corps', r: 17, s: 'clignement d\'yeux', p: 'clignements d\'yeux', t: 'Environ 17 par minute, même pendant les refrains.' },
   { id: 'air', c: 'corps', r: 7.5, s: 'litre d\'air respiré', p: 'litres d\'air respirés', t: 'Un demi-litre à chaque inspiration, ça monte vite.' },
   { id: 'sang', c: 'corps', r: 5, s: 'litre de sang pompé', p: 'litres de sang pompés', t: 'Ton cœur en fait passer environ 5 par minute.' },
-  { id: 'cheveux', c: 'corps', f: m => funLen(m * 10 / (30 * 1440)), u: 'de cheveux en plus', t: 'Ils poussent d\'environ 1 cm par mois, musique ou pas.' },
+  { id: 'cheveux', c: 'corps', g: 'pousse', f: m => funLen(m * 10 / (30 * 1440)), u: 'de cheveux en plus', t: 'Ils poussent d\'environ 1 cm par mois, musique ou pas.' },
   { id: 'peau', c: 'corps', r: 35000, s: 'cellule de peau perdue', p: 'cellules de peau perdues', t: 'On en perd 30 000 à 40 000 par minute. Elles se renouvellent, t\'inquiète.' },
   // en route
   { id: 'pied', c: 'route', g: 'pied', r: 5 / 60, s: 'km à pied', p: 'km à pied', t: 'À 5 km/h, sans t\'arrêter. Le casque sur les oreilles.' },
@@ -3184,10 +3203,10 @@ const FUN = [
   { id: 'tgv', c: 'route', r: 1 / 120, s: 'Paris-Lyon en TGV', p: 'Paris-Lyon en TGV', t: 'Environ 2 h le trajet. La bande-son, t\'as déjà.' },
   { id: 'ny', c: 'route', r: 1 / 480, s: 'vol Paris-New York', p: 'vols Paris-New York', t: 'Environ 8 h de vol chacun, playlist comprise.' },
   { id: 'monde', c: 'route', min: 0.1, r: 1 / 2700, s: 'tour du monde en avion', p: 'tours du monde en avion', t: 'Il faut environ 45 h de vol pour en boucler un.' },
-  { id: 'rotation', c: 'route', r: 1150 / 60, s: 'km parcouru sans bouger', p: 'km parcourus sans bouger', t: 'En France, la Terre tourne à environ 1 150 km/h. Et toi avec.' },
+  { id: 'rotation', c: 'route', g: 'tourne', r: 1150 / 60, s: 'km parcouru sans bouger', p: 'km parcourus sans bouger', t: 'En France, la Terre tourne à environ 1 150 km/h. Et toi avec.' },
   // l'espace
   { id: 'iss', c: 'espace', r: 1 / 92, s: 'tour de la Terre pour l\'ISS', p: 'tours de la Terre pour l\'ISS', t: 'La station spatiale en fait un toutes les 92 minutes.' },
-  { id: 'orbite', c: 'espace', r: 107000 / 60, s: 'km de la Terre autour du Soleil', p: 'km de la Terre autour du Soleil', t: 'Elle file à 107 000 km/h. Ta musique avec.' },
+  { id: 'orbite', c: 'espace', g: 'tourne', r: 107000 / 60, s: 'km de la Terre autour du Soleil', p: 'km de la Terre autour du Soleil', t: 'Elle file à 107 000 km/h. Ta musique avec.' },
   { id: 'lune', c: 'espace', g: 'lumiere', r: 60 / 2.56, s: 'aller-retour Terre-Lune', p: 'allers-retours Terre-Lune', t: 'Pour la lumière, qui le fait en 2,6 secondes.' },
   { id: 'soleil', c: 'espace', g: 'lumiere', r: 60 / 500, s: 'trajet Soleil-Terre', p: 'trajets Soleil-Terre', t: 'Pour la lumière du Soleil, qui met 8 min 20 à arriver.' },
   { id: 'eloigne', c: 'espace', f: m => funLen(m * 38 / (365.25 * 1440)), u: 'de plus entre la Terre et la Lune', t: 'Elle s\'éloigne d\'environ 3,8 cm par an. Rien à voir avec toi.' },
@@ -3200,8 +3219,8 @@ const FUN = [
   { id: 'foot', c: 'sport', r: 1 / 90, s: 'match de foot', p: 'matchs de foot', t: '90 minutes chacun, sans les prolongations.' },
   { id: 'marathon', c: 'sport', r: 1 / 270, s: 'marathon', t: 'Au rythme d\'un coureur moyen, environ 4 h 30 chacun.' },
   // à la maison
-  { id: 'pates', c: 'maison', r: 1 / 10, s: 'paquet de pâtes cuit', p: 'paquets de pâtes cuits', t: '10 minutes chacun, al dente.' },
-  { id: 'oeufs', c: 'maison', r: 1 / 3, s: 'œuf à la coque', p: 'œufs à la coque', t: '3 minutes chacun, pas une de plus.' },
+  { id: 'pates', c: 'maison', g: 'cuisine', r: 1 / 10, s: 'paquet de pâtes cuit', p: 'paquets de pâtes cuits', t: '10 minutes chacun, al dente.' },
+  { id: 'oeufs', c: 'maison', g: 'cuisine', r: 1 / 3, s: 'œuf à la coque', p: 'œufs à la coque', t: '3 minutes chacun, pas une de plus.' },
   { id: 'nuits', c: 'maison', r: 1 / 480, s: 'nuit de 8 h', p: 'nuits de 8 h', t: 'Autant de nuits complètes, si t\'avais dormi à la place.' },
   { id: 'dents', c: 'maison', r: 1 / 2, s: 'brossage de dents', p: 'brossages de dents', t: '2 minutes chacun, comme dit le dentiste.' },
   // musique
@@ -3213,8 +3232,31 @@ const FUN = [
   { id: 'boucle', c: 'musique', top: 1, min: 2, t: 'Ton son le plus écouté sur la période, en boucle.' },
   // nature
   { id: 'bambou', c: 'nature', f: m => funLen(m * 900 / 1440), u: 'de bambou', t: 'Certaines espèces poussent jusqu\'à 90 cm par jour.' },
-  { id: 'escargot', c: 'nature', f: m => funLen(m * 60), u: 'parcourus par un escargot', t: 'À 1 mm par seconde, il prend son temps.' },
-  { id: 'colibri', c: 'nature', r: 3000, s: 'battement d\'ailes de colibri', p: 'battements d\'ailes de colibri', t: 'Environ 50 par seconde. Ça, c\'est du BPM.' }
+  { id: 'escargot', c: 'nature', g: 'lent', f: m => funLen(m * 60), u: 'parcourus par un escargot', t: 'À 1 mm par seconde, il prend son temps.' },
+  { id: 'colibri', c: 'nature', g: 'ailes', r: 3000, s: 'battement d\'ailes de colibri', p: 'battements d\'ailes de colibri', t: 'Environ 50 par seconde. Ça, c\'est du BPM.' },
+  // 2.14 : une deuxième fournée
+  { id: 'calories', c: 'corps', r: 1.2, s: 'calorie brûlée sans bouger', p: 'calories brûlées sans bouger', t: 'Au repos, ton corps en brûle environ 1,2 par minute, rien qu\'à vivre.' },
+  { id: 'ongles', c: 'corps', g: 'pousse', f: m => funLen(m * 3.5 / (30 * 1440)), u: 'd\'ongles en plus', t: 'Ils poussent d\'environ 3,5 mm par mois. Pense au coupe-ongles.' },
+  { id: 'autoroute', c: 'route', g: 'pied', r: 130 / 60, s: 'km d\'autoroute', p: 'km d\'autoroute', t: 'À 130 km/h, limitations respectées.' },
+  { id: 'metro', c: 'route', r: 1 / 35, s: 'trajet complet sur la ligne 1 du métro parisien', p: 'trajets complets sur la ligne 1 du métro parisien', t: 'De La Défense au château de Vincennes, environ 35 minutes.' },
+  { id: 'galaxie', c: 'espace', g: 'tourne', r: 828000 / 60, s: 'km parcouru dans la galaxie', p: 'km parcourus dans la galaxie', t: 'Le Soleil fait le tour de la Voie lactée à 828 000 km/h. Toi avec.' },
+  { id: 'mars', c: 'espace', g: 'lumiere', r: 1 / 12.5, s: 'message radio envoyé vers Mars', p: 'messages radio envoyés vers Mars', t: 'Le signal met entre 3 et 22 minutes à arriver, 12 en moyenne.' },
+  { id: 'bolt', c: 'sport', r: 60 / 9.58, s: 'sprint d\'Usain Bolt sur 100 m', p: 'sprints d\'Usain Bolt sur 100 m', t: 'Son record du monde : 9,58 secondes.' },
+  { id: 'tdf', c: 'sport', min: 0.1, r: 1 / (83 * 60), s: 'Tour de France', p: 'Tours de France', t: 'Le vainqueur boucle ses 3 400 km en à peu près 83 h de selle.' },
+  { id: 'pizza', c: 'maison', g: 'cuisine', r: 1 / 1.5, s: 'pizza napolitaine cuite', p: 'pizzas napolitaines cuites', t: 'Au feu de bois, à 450 °C, 90 secondes suffisent.' },
+  { id: 'expresso', c: 'maison', g: 'cuisine', r: 60 / 25, s: 'expresso coulé', p: 'expressos coulés', t: 'Environ 25 secondes chacun, crème comprise.' },
+  { id: 'machine', c: 'maison', r: 1 / 120, s: 'cycle de machine à laver', p: 'cycles de machine à laver', t: 'Un cycle classique tourne à peu près 2 h.' },
+  { id: 'bolero', c: 'musique', r: 1 / 15, s: 'Boléro de Ravel', p: 'Boléros de Ravel', t: 'Un quart d\'heure de crescendo sur le même thème.' },
+  { id: 'bohemian', c: 'musique', g: 'titre', r: 60 / 355, s: 'fois « Bohemian Rhapsody »', p: 'fois « Bohemian Rhapsody »', t: '5 min 55 d\'opéra rock à chaque fois.' },
+  { id: 'cage', c: 'musique', g: 'titre', r: 60 / 273, s: 'fois « 4′33″ » de John Cage', p: 'fois « 4′33″ » de John Cage', t: '4 min 33 de silence complet. Toi, t\'as préféré mettre du son.' },
+  { id: 'cd', c: 'musique', g: '90', r: 1 / 74, s: 'CD plein à ras bord', p: 'CD pleins à ras bord', t: '74 minutes : assez pour caser la 9e de Beethoven, dit la légende.' },
+  { id: 'abeille', c: 'nature', g: 'ailes', r: 230 * 60, s: 'battement d\'ailes d\'abeille', p: 'battements d\'ailes d\'abeille', t: 'Environ 230 par seconde, d\'où le bourdonnement.' },
+  { id: 'paresseux', c: 'nature', g: 'lent', f: m => funLen(m * 4000), u: 'parcourus par un paresseux', t: 'Environ 4 mètres par minute, et encore, quand il se presse.' },
+  // pendant ce temps, dans le monde
+  { id: 'google', c: 'monde', r: 99000 * 60, s: 'recherche Google', p: 'recherches Google', t: 'Environ 99 000 par seconde, sur toute la planète.' },
+  { id: 'youtube', c: 'monde', r: 500, s: 'heure de vidéo mise en ligne sur YouTube', p: 'heures de vidéo mises en ligne sur YouTube', t: 'Il en arrive environ 500 heures par minute. Impossible à rattraper.' },
+  { id: 'naissances', c: 'monde', r: 255, s: 'bébé né dans le monde', p: 'bébés nés dans le monde', t: 'Environ 4 par seconde, sur toute la planète.' },
+  { id: 'eclairs', c: 'monde', r: 44 * 60, s: 'éclair dans le monde', p: 'éclairs dans le monde', t: 'Environ 44 par seconde, quelque part sur Terre.' }
 ];
 let FUN_SH = 0;
 /* durée d'un titre : sa plus longue écoute (jamais plus de 20 min) */
@@ -4433,12 +4475,159 @@ function drawRecap() {
 }
 function tagOf(g, a) { const [r0] = range(g, a), [y, m, d] = ymd(r0); return g === 'all' ? 'tout' : g === 'year' ? String(y) : g === 'month' ? `${y}-${String(m + 1).padStart(2, '0')}` : g === 'week' ? `${y}-S${isoWeek(r0)}` : `${y}-${String(m + 1).padStart(2, '0')}-${String(d).padStart(2, '0')}`; }
 
+/* ================= moteur de prévision ================= */
+/* Prend une série par jour (écoutes, temps d'écoute, découvertes) et prédit les mois à venir, avec une fourchette.
+   Tout se passe sur le log du rythme par jour de chaque mois :
+   - les mois bizarres (un pic, un mois sans écoute) sont écrêtés par rapport aux 6 mois d'avant ;
+   - les saisons : l'écart de chaque mois à sa moyenne glissante sur 12 mois (donc sans la tendance), seulement quand au
+     moins trois années le montrent, rétréci et borné à ±25 %, et gardé seulement s'il améliore les prévisions passées ;
+   - quatre façons de prolonger : le rythme récent, deux tendances (sur 12 et 24 mois) qui s'essoufflent, la moyenne des
+     12 derniers mois ;
+   - le site se remet à chaque mois du passé, prédit la suite avec ce qu'il savait alors et compare au vrai : ça donne le
+     poids de chaque façon et la largeur des fourchettes, horizon par horizon (les erreurs récentes comptent plus).
+   Testé sur des historiques fabriqués (montée puis plateau, saisons, baisse, pic isolé, mois sans écoute, palier…). */
+const FC_Z = 1.2816, FC_TR = [[12, 0.85], [24, 0.85]], FC_NM = 2 + FC_TR.length;
+const FC_HM = [1, 2.5, 5, 9.5, 18], FC_S0 = [0.12, 0.15, 0.19, 0.24, 0.3], FC_CAP = [0.28, 0.32, 0.38, 0.43, 0.48];
+const fcBk = h => h <= 1 ? 0 : h <= 3 ? 1 : h <= 6 ? 2 : h <= 12 ? 3 : 4;
+/* loi normale : chances d'être sous x (pour les paris) */
+function nCdf(x) { const t = 1 / (1 + 0.3275911 * Math.abs(x) / Math.SQRT2), y = 1 - ((((1.061405429 * t - 1.453152027) * t + 1.421413741) * t - 0.284496736) * t + 0.254829592) * t * Math.exp(-x * x / 2); return x >= 0 ? (1 + y) / 2 : (1 - y) / 2; }
+function fcSeason(X, s0, j1) {
+  const sm = new Float64Array(12), cn = new Float64Array(12);
+  for (let j = 6; j + 6 <= j1; j++) {
+    let t = (X[j - 6] + X[j + 6]) / 2; for (let k = -5; k <= 5; k++) t += X[j + k];
+    const m = (s0 + j) % 12; sm[m] += clamp(X[j] - t / 12, -0.6, 0.6); cn[m]++;
+  }
+  const S = Array.from({ length: 12 }, (_, m) => cn[m] >= 3 ? sm[m] / (cn[m] + 1.5) : 0), mu = S.reduce((a, b) => a + b, 0) / 12;
+  return S.map(v => clamp(v - mu, -0.22, 0.22));
+}
+/* les façons de prolonger, à partir des mois 0..j1 sans leurs saisons (y) et de la part observée de chaque mois (w) */
+function fcModels(y, w, j1, H) {
+  const out = [];
+  { const lam = Math.pow(0.5, 1 / 1.5); let a = 0, b = 0; for (let i = Math.max(0, j1 - 5); i <= j1; i++) { const k = Math.pow(lam, j1 - i) * w[i]; a += k * y[i]; b += k; } const L = a / b; out.push(() => L); }
+  /* tendances : la droite la plus « médiane » de tes 12 (ou 24) derniers mois (Theil-Sen, insensible aux mois bizarres),
+     qui s'essouffle ensuite ; jamais plus de ±30 % au total, on n'écoute pas de plus en plus à l'infini */
+  FC_TR.forEach(([k, ph]) => {
+    const i0 = j1 - k + 1; if (i0 < 0 || j1 < 5) { out.push(null); return; }
+    const sl = []; for (let i = i0; i <= j1; i++) for (let j = i + 1; j <= j1; j++) sl.push((y[j] - y[i]) / (j - i));
+    sl.sort((a, b) => a - b); const m = clamp(sl[sl.length >> 1], -0.08, 0.08);
+    const r = []; for (let i = i0; i <= j1; i++) r.push(y[i] - m * (i - j1)); r.sort((a, b) => a - b); const L = r[r.length >> 1];
+    const cum = [0]; let p = 1; for (let h = 1; h <= H; h++) { p *= ph; cum.push(cum[h - 1] + p); }
+    out.push(h => L + clamp(m * cum[Math.min(h, H)], -0.3, 0.3));
+  });
+  { let a = 0, b = 0; for (let i = Math.max(0, j1 - 11); i <= j1; i++) { a += w[i] * y[i]; b += w[i]; } const L = a / b; out.push(() => L); }
+  return out;
+}
+function fcSeries(arr, f0, H, lamFix) {
+  const n = arr.length, L0 = f0 + n - 1, m1 = monSerial(L0), mo = [];
+  for (let s = monSerial(f0); s <= m1; s++) {
+    const a = Math.max(monStart(s), f0), b = Math.min(monStart(s + 1), L0 + 1), dim = monStart(s + 1) - monStart(s);
+    let v = 0; for (let d = a; d < b; d++) v += arr[d - f0];
+    if (b - a >= 7) mo.push({ s, v, nd: b - a, dim, r: v / (b - a), w: (b - a) / dim });
+  }
+  const J = mo.length - 1;
+  /* rythme selon le jour de la semaine (rétréci), pour passer des mois aux jours */
+  const ws = new Float64Array(7), wc = new Float64Array(7);
+  for (let i = Math.max(0, n - 364); i < n; i++) { const d = dow(f0 + i); ws[d] += arr[i]; wc[d]++; }
+  const wav = ws.reduce((a, b) => a + b, 0) / Math.max(1, wc.reduce((a, b) => a + b, 0));
+  const wf = Array.from({ length: 7 }, (_, d) => wav > 0 && wc[d] ? 1 + ((ws[d] / wc[d]) / wav - 1) * 0.7 : 1);
+  const wfm = new Map(), wfa = s => { let v = wfm.get(s); if (v == null) { v = 0; const a = monStart(s), b = monStart(s + 1); for (let d = a; d < b; d++) v += wf[dow(d)]; v /= b - a; wfm.set(s, v); } return v; };
+  if (J < 2) {
+    /* moins de trois mois utilisables : ton rythme à plat, et des fourchettes larges */
+    let v = 0; for (let i = Math.max(0, n - 60); i < n; i++) v += arr[i];
+    const r = v / Math.min(60, n), sJ = m1, sg = s => [0.3, 0.33, 0.38, 0.45, 0.55][fcBk(Math.max(1, s - sJ))], mu = () => Math.log(Math.max(r, 1e-9));
+    return fcOut({ mu, sg, sJ, eps: 0, wf, wfa, J: -1, mo, S: new Array(12).fill(0), lam: 0, wts: [], sig: [0.3, 0.33, 0.38, 0.45, 0.55], nb: [0, 0, 0, 0, 0], mape: [null, null, null, null, null], mapeR: [null, null, null, null, null], nbR: [0, 0, 0, 0, 0], one: [], yrs: [], flat: true });
+  }
+  const rs = mo.map(x => x.r).sort((a, b) => a - b), med = rs[rs.length >> 1], mean = rs.reduce((a, b) => a + b, 0) / rs.length;
+  const eps = Math.max(1e-3, 0.02 * mean), fl = 0.1 * med, W = mo.map(x => x.w), s0 = mo[0].s;
+  const X0 = mo.map(x => Math.log(Math.max(x.r, fl) + eps));
+  const X = X0.map((x, j) => { if (j < 3) return x; const p = X0.slice(Math.max(0, j - 6), j).sort((a, b) => a - b), md = p[p.length >> 1]; return clamp(x, md - 0.7, md + 0.7); });
+  /* 1. on se remet à chaque mois du passé et on prédit la suite ; les erreurs récentes comptent plus (demi-vie 9 mois) */
+  const ok = j => j <= J && mo[j].w >= 0.45, om = o => Math.pow(0.5, (J - o) / 9);
+  /* au-delà de 5 ans en arrière, les erreurs ne pèsent presque plus rien (demi-vie 9 mois) : on ne les calcule pas */
+  const oA = Math.max(5, J - 60), Sat = []; for (let o = oA; o < J; o++) Sat[o] = fcSeason(X, s0, o);
+  const test = lam => {
+    const runs = [];
+    for (let o = oA; o < J; o++) { const S = Sat[o].map(v => v * lam), y = X.map((x, j) => x - S[(s0 + j) % 12]); runs.push({ o, S, md: fcModels(y, W, o, H) }); }
+    const se = Array.from({ length: FC_NM }, () => Array.from({ length: 5 }, () => [0, 0]));
+    for (const R of runs) { const k0 = om(R.o); for (let h = 1; h <= H && R.o + h <= J; h++) { const j = R.o + h; if (!ok(j)) continue; const sj = R.S[(s0 + j) % 12], b = fcBk(h); R.md.forEach((f, k) => { if (f) { const e = X[j] - f(h) - sj; se[k][b][0] += k0 * e * e; se[k][b][1] += k0; } }); } }
+    const wts = []; let last = null;
+    for (let b = 0; b < 5; b++) {
+      /* une façon qui n'a pas encore fait ses preuves (moins de ~3 essais récents) ne compte pas */
+      const ms = se.map(E => E[b][1] >= 2.5 ? (E[b][0] + 2 * 0.03) / (E[b][1] + 2) : null);
+      if (ms.some(v => v != null)) { const iv = ms.map(v => v == null ? 0 : 1 / v), t = iv.reduce((a, c) => a + c, 0); last = iv.map(v => v / t); }
+      wts.push(last);
+    }
+    for (let b = 0; b < 5; b++) if (!wts[b]) wts[b] = new Array(FC_NM).fill(1 / FC_NM);
+    const ens = (md, h) => { const wb = wts[fcBk(h)]; let a = 0, t = 0; md.forEach((f, k) => { if (f && wb[k] > 0) { a += wb[k] * f(h); t += wb[k]; } }); if (!t) md.forEach(f => { if (f) { a += f(h); t++; } }); return a / t; };
+    const E = Array.from({ length: 5 }, () => []), one = []; let tot = 0, tw = 0;
+    for (const R of runs) { const k0 = om(R.o); for (let h = 1; h <= H && R.o + h <= J; h++) { const j = R.o + h; if (!ok(j)) continue; const p = ens(R.md, h) + R.S[(s0 + j) % 12], e = X[j] - p; E[fcBk(h)].push([e, k0, R.o]); if (h <= 12) { tot += k0 * e * e; tw += k0; } if (h === 1 && mo[j].nd === mo[j].dim) one.push({ s: mo[j].s, pred: Math.max(0, Math.exp(p) - eps) * mo[j].dim, act: mo[j].v }); } }
+    return { lam, runs, wts, ens, E, one, mse: tw ? tot / tw : Infinity };
+  };
+  /* les saisons : gardées en entier, à moitié ou pas du tout, selon ce qui aurait le mieux prédit ton passé
+     (lamFix : on reprend le choix fait pour une série sœur, les écoutes pour le temps d'écoute) */
+  let T = test(lamFix ?? 1);
+  if (lamFix == null && J >= 23) for (const lam of [0, 0.5]) { const T2 = test(lam); if (T2.mse < T.mse * 0.98) T = T2; }
+  const { wts, ens, E, lam } = T;
+  /* 2. largeur des fourchettes : le 80e centile des erreurs passées (les récentes d'abord), mêlé à un a priori et plafonné */
+  const sig = [], nb = E.map(e => e.length); let lastB = -1;
+  for (let b = 0; b < 5; b++) {
+    const e = E[b].map(([x, k0]) => [Math.abs(x), k0]).sort((p, q) => p[0] - q[0]); let t = 0; for (const x of e) t += x[1];
+    if (!e.length) { sig.push(null); continue; }
+    let c = 0, q = e[e.length - 1][0]; for (const [x, k0] of e) { c += k0; if (c >= 0.8 * t) { q = x; break; } }
+    sig.push(Math.sqrt((t * (q / FC_Z) ** 2 + 2 * FC_S0[b] ** 2) / (t + 2))); if (e.length >= 3) lastB = b;
+  }
+  for (let b = 0; b < 5; b++) if (sig[b] == null) sig[b] = lastB >= 0 && b > lastB ? sig[lastB] * Math.sqrt(FC_HM[b] / FC_HM[lastB]) : FC_S0[b] * 1.25;
+  for (let b = 0; b < 5; b++) sig[b] = clamp(sig[b] * (J < 11 ? 1.2 : 1), 0.05, FC_CAP[b]);
+  const mape = E.map(e => e.length ? e.reduce((a, x) => a + Math.abs(Math.exp(x[0]) - 1), 0) / e.length : null);
+  /* l'erreur typique (la médiane) sur ta dernière année seulement (prévisions faites depuis 12 mois) : c'est celle qui parle de toi aujourd'hui */
+  const ER = E.map(e => e.filter(x => x[2] >= J - 12).map(x => Math.abs(Math.exp(x[0]) - 1)).sort((a, b) => a - b));
+  const mapeR = ER.map(e => !e.length ? null : e.length % 2 ? e[e.length >> 1] : (e[e.length / 2 - 1] + e[e.length / 2]) / 2), nbR = ER.map(e => e.length);
+  /* 3. la vraie prévision, depuis le dernier mois connu */
+  const SF = fcSeason(X, s0, J).map(v => v * lam), yF = X.map((x, j) => x - SF[(s0 + j) % 12]), mdF = fcModels(yF, W, J, H), sJ = mo[J].s;
+  const mu = s => { const h = Math.max(1, s - sJ); return ens(mdF, Math.min(h, H)) + SF[((s % 12) + 12) % 12]; };
+  const sg = s => sig[fcBk(Math.max(1, s - sJ))];
+  /* bilan des années complètes, prédites depuis le même mois un an avant */
+  const yrs = [];
+  for (const R of T.runs) {
+    const so = mo[R.o].s; if (so % 12 !== sJ % 12) continue;
+    const Y = Math.floor(so / 12) + 1, j0 = Y * 12 - s0, j11 = j0 + 11; if (j0 < 0 || j11 > J || j11 - R.o > H) continue;
+    let pr = 0, ac = 0, full = true;
+    for (let j = j0; j <= j11; j++) { if (mo[j].nd !== mo[j].dim) full = false; pr += Math.max(0, Math.exp(ens(R.md, j - R.o) + R.S[(s0 + j) % 12]) - eps) * mo[j].dim; ac += mo[j].v; }
+    if (full) yrs.push({ Y: 1970 + Y, pred: pr, act: ac });
+  }
+  return fcOut({ mu, sg, sJ, eps, wf, wfa, J, mo, S: SF, lam, wts, sig, nb, mape, mapeR, nbR, one: T.one, yrs });
+}
+/* ce que le reste du site utilise : un mois (prévu, fourchette), un jour, des chances de dépasser un total */
+function fcOut(F) {
+  const { mu, sg, eps, wf, wfa } = F;
+  const rate = s => Math.max(0, Math.exp(mu(s)) - eps);
+  F.rate = rate;
+  F.day = d => { const s = monSerial(d); return rate(s) * wf[dow(d)] / wfa(s); };
+  F.month = s => { const dim = monStart(s + 1) - monStart(s), k = FC_Z * sg(s); return { est: rate(s) * dim, lo: Math.max(0, Math.exp(mu(s) - k) - eps) * dim, hi: Math.max(0, Math.exp(mu(s) + k) - eps) * dim, sd: sg(s), h: s - F.sJ }; };
+  /* chances que le mois s dépasse v */
+  F.pGt = (s, v) => { const dim = monStart(s + 1) - monStart(s); return 1 - nCdf((Math.log(Math.max(v / dim + eps, 1e-12)) - mu(s)) / sg(s)); };
+  /* un total sur plusieurs mois : l'erreur d'un mois se retrouve en partie dans les autres (corrélation 0,5) */
+  F.span = ss => { const L = ss.map(F.month), est = L.reduce((a, x) => a + x.est, 0), m1 = L.reduce((a, x) => a + x.sd, 0) / L.length, m2 = L.reduce((a, x) => a + x.sd * x.sd, 0) / L.length, sd = Math.sqrt(0.5 * m1 * m1 + 0.5 * m2 / L.length), k = FC_Z * sd; return { est, lo: est * Math.exp(-k), hi: est * Math.exp(k), sd, months: L }; };
+  return F;
+}
 /* ================= prédictions ================= */
+/* les chiffres viennent du moteur de prévision (23b-prevision.js) ; ici, ce qu'on en tire et la page */
 let PD = null;
+/* simule N fois « qui finit devant » quand chacun a une valeur attendue e et un aléa log-normal de largeur sd */
+function simOdds(L0, sd, N, seed) {
+  const win = new Float64Array(L0.length), rnd = mulberry32(seed);
+  for (let s = 0; s < N && L0.length; s++) {
+    let b = -1, bv = -1;
+    for (let j = 0; j < L0.length; j++) { const u1 = rnd() || 1e-9, u2 = rnd(), z = Math.sqrt(-2 * Math.log(u1)) * Math.cos(2 * Math.PI * u2), v = L0[j].e * Math.exp(sd * z); if (v > bv) { bv = v; b = j; } }
+    win[b]++;
+  }
+  return L0.map((x, j) => Object.assign({}, x, { p: win[j] / N }));
+}
 function predict() {
   const key = dataVer + '|' + S.content + '|' + S.thr + '|' + S.noSkip;
   if (PD && PD.key === key) return PD;
-  const f0 = D.firstDay, L0 = D.lastDay, n = G.span, l = L(), TY = new Date().getFullYear() + 1, curY = new Date().getFullYear();
+  const f0 = D.firstDay, L0 = D.lastDay, n = G.span, l = L(), now = new Date(), curY = now.getFullYear(), TY = curY + 1;
+  const today = dn(curY, now.getMonth(), now.getDate());
   const pass = makePass(false), thr = S.thr * 1000;
   const dA = new Float64Array(n), dT = new Float64Array(n);
   for (let a = 0; a < D.na; a++) if (G.firstA[a] >= 0) dA[D.day[G.firstA[a]] - f0]++;
@@ -4446,99 +4635,53 @@ function predict() {
   const SER = { P: G.dPl, M: G.dMs, A: dA, T: dT }, C = {};
   for (const k in SER) { const c = new Float64Array(n + 1), a = SER[k]; for (let i = 0; i < n; i++) c[i + 1] = c[i] + a[i]; C[k] = c; }
   const sum = (c, a, b) => c[clamp(b, 0, n)] - c[clamp(a, 0, n)];
-  const dim = (y, m) => dn(y, m + 1, 1) - dn(y, m, 1);
-  /* forecast of series k for calendar year Y, using only the first e days of data */
-  function fc(k, e, Y) {
-    const c = C[k], arr = SER[k], Ld = f0 + e - 1;
-    const ws = new Float64Array(7), wc = new Float64Array(7);
-    for (let i = Math.max(0, e - 365); i < e; i++) { const d = dow(f0 + i); ws[d] += arr[i]; wc[d]++; }
-    const avg = ws.reduce((a, b) => a + b, 0) / Math.max(1, wc.reduce((a, b) => a + b, 0));
-    const wf = Array.from({ length: 7 }, (_, d) => avg > 0 && wc[d] ? 1 + ((ws[d] / wc[d]) / avg - 1) * 0.7 : 1);
-    const sh = new Float64Array(12); let ny = 0;
-    for (let y = ymd(f0)[0]; y <= ymd(Ld)[0]; y++) {
-      const a = dn(y, 0, 1), b = dn(y + 1, 0, 1); if (a < f0 || b - 1 > Ld) continue;
-      const tot = sum(c, a - f0, b - f0); if (tot <= 0) continue;
-      for (let m = 0; m < 12; m++) sh[m] += (sum(c, dn(y, m, 1) - f0, dn(y, m + 1, 1) - f0) / dim(y, m)) / (tot / (b - a));
-      ny++;
-    }
-    const sf = Array.from({ length: 12 }, (_, m) => ny ? (sh[m] + 1) / (ny + 1) : 1);
-    const m0 = monSerial(f0), m1 = monSerial(Ld), ys = [];
-    for (let s = m0; s <= m1; s++) {
-      const a = Math.max(monStart(s), f0), b = Math.min(monStart(s + 1), Ld + 1); if (b <= a) continue;
-      let wd = 0; for (let d = a; d < b; d++) wd += wf[dow(d)];
-      ys.push({ y: sum(c, a - f0, b - f0) / (wd * sf[s % 12]), w: (b - a) / (monStart(s + 1) - monStart(s)) });
-    }
-    let best = null;
-    if (ys.length) {
-      const holt = (al, be, ph) => { let lv = (ys[0].y + (ys[1] || ys[0]).y + (ys[2] || ys[0]).y) / 3, tr = 0, sse = 0; for (let i = 0; i < ys.length; i++) { const f = lv + ph * tr, er = ys[i].y - f; if (i >= 3) sse += er * er * ys[i].w; lv = f + al * er; tr = ph * tr + al * be * er; } return { lv, tr, sse }; };
-      for (const al of [0.15, 0.3, 0.5]) for (const be of [0.05, 0.2]) for (const ph of [0.8, 0.9, 0.97]) { const r = holt(al, be, ph); if (!best || r.sse < best.sse) best = Object.assign(r, { ph }); }
-    } else best = { lv: 0, tr: 0, ph: 0.9 };
-    const rateAt = s => { const hh = Math.max(1, s - m1); let p = 1, phs = 0; for (let j = 1; j <= hh; j++) { p *= best.ph; phs += p; } return Math.max(0, best.lv + phs * best.tr) * sf[((s % 12) + 12) % 12]; };
-    const day = d => rateAt(monSerial(d)) * wf[dow(d)];
-    const hwM = []; for (let m = 0; m < 12; m++) { const s = (Y - 1970) * 12 + m; let v = 0; for (let d = monStart(s); d < monStart(s + 1); d++) v += day(d); hwM.push(v); }
-    const hw = hwM.reduce((a, b) => a + b, 0);
-    const yr = end => sum(c, end - 365, end);
-    const X1 = e >= 365 ? yr(e) : sum(c, 0, e) * 365 / Math.max(60, e);
-    let g = 0;
-    if (e >= 730) { const X0 = yr(e - 365); if (X0 > 0) g = X1 / X0 - 1; }
-    else if (e >= 400) { const a = sum(c, e - 182, e), b = sum(c, e - 364, e - 182); if (b > 0) g = Math.pow(a / b, 2) - 1; }
-    const h = Math.max(0.5, (dn(Y, 6, 2) - (Ld - 182)) / 365);
-    const simple = X1 * Math.pow(1 + clamp(g, -0.6, 1) * 0.5, h);
-    const est = hw > 0 ? (hw + simple) / 2 : simple;
-    const months = hw > 0 ? hwM.map(v => v * est / hw) : sf.map((v, m) => est * v * dim(Y, m) / sf.reduce((a, x, j) => a + x * dim(Y, j), 0));
-    const rs = []; for (let end = e; end - 730 >= 0; end -= 30) { const a = yr(end), b = yr(end - 365); if (a > 0 && b > 0) rs.push(Math.log(a / b)); }
-    let sdv = 0.3; if (rs.length >= 3) { const mu = rs.reduce((x, y) => x + y, 0) / rs.length; sdv = Math.sqrt(rs.reduce((x, y) => x + (y - mu) ** 2, 0) / (rs.length - 1)); }
-    sdv = clamp(sdv, 0.1, 0.8) * (e < 730 ? 1.4 : 1) * Math.sqrt(Math.max(1, h));
-    return { est, months, X1, g, sdv, ny, day, hw, simple };
-  }
-  /* backtest: put ourselves on the same date one year earlier, predict the next full year, compare */
-  const [, Lm, Ld] = ymd(L0), bt = { P: [], M: [], A: [], T: [] }, btRows = [];
-  for (let Y = ymd(f0)[0] + 1; Y <= ymd(L0)[0]; Y++) {
-    const ya = dn(Y, 0, 1), yb = dn(Y + 1, 0, 1); if (ya < f0 || yb - 1 > L0) continue;
-    const cut = Math.min(dn(Y - 1, Lm, Math.min(Ld, 28)), ya - 1), e = cut - f0 + 1; if (e < 365) continue;
-    const row = { Y, cut };
-    for (const k of ['P', 'M', 'A', 'T']) { const f = fc(k, e, Y), act = sum(C[k], ya - f0, yb - f0); row[k] = { pred: f.est, act }; if (f.est > 0 && act > 0) bt[k].push(Math.log(act / f.est)); }
-    btRows.push(row);
-  }
+  /* la prévision, série par série, jusqu'à fin TY */
+  const H = Math.max(24, (TY - 1970) * 12 + 12 - monSerial(L0));
+  const FC = {}; FC.P = fcSeries(SER.P, f0, H); FC.M = fcSeries(SER.M, f0, H, FC.P.lam); FC.A = fcSeries(SER.A, f0, H); FC.T = fcSeries(SER.T, f0, H, FC.A.lam);
+  const tyS = Array.from({ length: 12 }, (_, m) => (TY - 1970) * 12 + m);
   const fin = k => {
-    const f = fc(k, n, TY), es = bt[k], m = es.length;
-    const bias = m ? es.reduce((a, b) => a + b, 0) / m * m / (m + 2) : 0;
-    const rms = m ? Math.sqrt(es.reduce((a, b) => a + b * b, 0) / m) : 0;
-    const sd = Math.max(0.06, m ? Math.sqrt((m * rms * rms + 2 * f.sdv * f.sdv) / (m + 2)) : f.sdv), kk = 1.28 * sd, adj = Math.exp(bias);
-    return { est: f.est * adj, lo: f.est * adj * Math.exp(-kk), hi: f.est * adj * Math.exp(kk), X1: f.X1, g: f.g, months: f.months.map(v => v * adj), sd, ny: f.ny, f, bias };
+    const Y = FC[k].span(tyS), X1 = n >= 365 ? sum(C[k], n - 365, n) : sum(C[k], 0, n) * 365 / Math.max(60, n);
+    let g = 0; if (n >= 730) { const X0 = sum(C[k], n - 730, n - 365); if (X0 > 0) g = X1 / X0 - 1; }
+    return { est: Y.est, lo: Y.lo, hi: Y.hi, sd: Y.sd, X1, g, F: FC[k], months: Y.months };
   };
   const mP = fin('P'), mM = fin('M'), mA = fin('A'), mT = fin('T');
-  const mape = bt.P.length ? bt.P.reduce((a, b) => a + Math.abs(Math.exp(b) - 1), 0) / bt.P.length : null;
+  /* artistes et sons différents : on part de tes 12 derniers mois, ça grandit moins vite que les écoutes */
   const st = nextStamp(2); let uA = 0, uT = 0;
   for (let i = lb(D.day, L0 - 364); i < D.n; i++) { if (!pass(i) || D.m[i] < thr) continue; const t = D.k[i], a = D.ta[t]; if (seenT[t] !== st) { seenT[t] = st; uT++; } if (seenA[a] !== st) { seenA[a] = st; uA++; } }
   const ratio = mP.X1 > 0 ? mP.est / mP.X1 : 1, sc = n >= 365 ? 1 : 365 / Math.max(60, n);
   const like = (v, m) => ({ est: v, lo: v * m.lo / m.est, hi: v * m.hi / m.est });
   const uAm = like(uA * Math.pow(sc * ratio, 0.6), mP), uTm = like(uT * Math.pow(sc * ratio, 0.8), mP);
-  const mk = 1.28 * mP.sd * 1.3;
-  const months = mP.months.map(v => ({ est: v, lo: v * Math.exp(-mk), hi: v * Math.exp(mk) }));
+  const months = mP.months.map(x => ({ est: x.est, lo: x.lo, hi: x.hi }));
+  /* la fin de l'année en cours */
   const CY = ymd(L0)[0], y0 = ymd(f0)[0];
   let end = null;
   if (CY === curY && L0 < dn(CY, 11, 31)) {
     const c0 = dn(CY, 0, 1) - f0, rem = dn(CY + 1, 0, 1) - (L0 + 1), pa = dn(CY - 1, 0, 1) - f0;
     const act = k => sum(C[k], c0, n), prev = k => sum(C[k], pa, c0);
-    const left = M => { let v = 0; for (let d = L0 + 1; d < dn(CY + 1, 0, 1); d++) v += M.f.day(d); return v * Math.exp(M.bias); };
+    const left = k => { let v = 0; for (let d = L0 + 1; d < dn(CY + 1, 0, 1); d++) v += FC[k].day(d); return v; };
     end = { y: CY, rem, actP: act('P'), actM: act('M'), actA: act('A'), actT: act('T'), prevP: prev('P'), prevM: prev('M'), prevA: prev('A'), prevFull: pa >= 0 };
-    end.P = end.actP + left(mP); end.M = end.actM + left(mM); end.A = end.actA + left(mA); end.T = end.actT + left(mT);
+    end.P = end.actP + left('P'); end.M = end.actM + left('M'); end.A = end.actA + left('A'); end.T = end.actT + left('T');
   }
   const years = [];
   for (let y = Math.max(y0, CY - 7); y <= CY; y++) { const a = Math.max(dn(y, 0, 1), f0) - f0, b = Math.min(dn(y + 1, 0, 1), L0 + 1) - f0; years.push({ y, P: sum(C.P, a, b), proj: end && y === end.y ? end.P - end.actP : 0, cur: y === CY }); }
+  /* le bilan du moteur sur ton passé */
+  const btRows = FC.P.yrs.map(r => { const m = FC.M.yrs.find(x => x.Y === r.Y); return { Y: r.Y, P: { pred: r.pred, act: r.act }, M: m ? { pred: m.pred, act: m.act } : null }; });
+  const btOne = FC.P.one.slice(-6).map(r => { const m = FC.M.one.find(x => x.s === r.s); return { s: r.s, P: r, M: m || null }; });
+  /* tes artistes du moment : écoutes par mois sur 2 ans */
   const r90 = k => sum(C[k], n - 90, n) / Math.min(90, n);
-  const cand = new Map();
+  const cand = new Map(), recT = new Map();
   for (let i = lb(D.day, L0 - 729); i < D.n; i++) {
     if (!pass(i) || D.m[i] < thr) continue;
-    const a = D.ta[D.k[i]], mi = Math.floor((L0 - D.day[i]) / 30.44); if (mi > 23) continue;
+    const t = D.k[i], a = D.ta[t], ag = L0 - D.day[i], mi = Math.floor(ag / 30.44); if (mi > 23) continue;
     let c = cand.get(a); if (!c) { c = new Float64Array(24); cand.set(a, c); } c[mi]++;
+    if (ag < 90) { let x = recT.get(t); if (!x) { x = [0, 0, 0]; recT.set(t, x); } x[Math.min(2, Math.floor(ag / 30))]++; }
   }
-  const arr = [], rise = [], fall = [];
+  const arr = [], rise = [], fall = [], nxA = [];
   for (const [a, c] of cand) {
     let ws = 0, wv = 0; for (let k = 0; k < 24; k++) { const w = Math.pow(0.5, k / 4); ws += w; wv += w * c[k]; }
     const r3 = c[0] + c[1] + c[2], p3 = c[3] + c[4] + c[5];
     arr.push({ a, e: 12 * (wv / ws) * Math.pow(clamp((r3 + 1) / (p3 + 1), 0.4, 2.5), 0.5) });
+    if (c[0] + c[1] + c[2] > 0) nxA.push({ a, e: 0.55 * c[0] + 0.3 * c[1] + 0.15 * c[2] });
     let b9 = 0; for (let k = 3; k < 12; k++) b9 += c[k]; const b = b9 / 3;
     if (r3 + b9 < 12) continue;
     const ra = (r3 + 2) / (b + 2);
@@ -4547,41 +4690,106 @@ function predict() {
   }
   rise.sort((x, y) => y.s - x.s); fall.sort((x, y) => y.s - x.s);
   arr.sort((x, y) => y.e - x.e);
-  const top = arr.slice(0, 25), win = new Float64Array(top.length), N = 2000, rnd = mulberry32(D.n * 31 + 7);
-  for (let s = 0; s < N && top.length; s++) {
-    let b = -1, bv = -1;
-    for (let j = 0; j < top.length; j++) { const u1 = rnd() || 1e-9, u2 = rnd(), z = Math.sqrt(-2 * Math.log(u1)) * Math.cos(2 * Math.PI * u2), v = top[j].e * Math.exp(0.55 * z); if (v > bv) { bv = v; b = j; } }
-    win[b]++;
-  }
+  /* ton n°1 de l'année prochaine : 2 000 années simulées, plus la chance que ce soit quelqu'un de nouveau */
+  const top = arr.slice(0, 25);
   let kNew = 0, nYrs = 0;
   for (let y = y0 + 1; y <= CY; y++) {
-    const a = dn(y, 0, 1), b = Math.min(dn(y + 1, 0, 1), L0 + 1); if (a < f0 || b - a < 200) continue;
+    /* une année qui commence moins d'un an après le début de ton historique ne compte pas : tout y paraît « nouveau » */
+    const a = dn(y, 0, 1), b = Math.min(dn(y + 1, 0, 1), L0 + 1); if (a < f0 + 365 || b - a < 200) continue;
     const cnt = new Map(); for (let i = lb(D.day, a), e = lb(D.day, b); i < e; i++) { if (!pass(i) || D.m[i] < thr) continue; const ar = D.ta[D.k[i]]; cnt.set(ar, (cnt.get(ar) || 0) + 1); }
     let ba = -1, bv = 0; for (const [ar, v] of cnt) if (v > bv) { bv = v; ba = ar; }
     if (ba < 0) continue; nYrs++;
     if (G.firstA[ba] >= 0 && D.day[G.firstA[ba]] >= a - 182) kNew++;
   }
   const pNew = clamp((kNew + 0.5) / (nYrs + 2), 0.05, 0.45);
-  const odds = top.map((x, j) => ({ a: x.a, p: win[j] / N * (1 - pNew) })).filter(x => x.p >= 0.005).sort((x, y) => y.p - x.p).slice(0, 5);
+  const odds = simOdds(top, 0.55, 2000, D.n * 31 + 7).map(x => ({ a: x.a, p: x.p * (1 - pNew) })).filter(x => x.p >= 0.005).sort((x, y) => y.p - x.p).slice(0, 5);
+  /* le mois prochain */
+  const sN = Math.max(monSerial(today), monSerial(L0)) + 1;
+  const nx = { s: sN, P: FC.P.month(sN), M: FC.M.month(sN), A: FC.A.month(sN) };
+  /* le n°1 et le son du mois prochain : ton élan des 3 derniers mois, et la chance d'un nouveau venu
+     (combien de fois le n°1 d'un mois était quelqu'un que tu venais de découvrir) */
+  let kmN = 0, kmT = 0, nm = 0;
+  for (let s = Math.max(monSerial(f0) + 1, monSerial(L0) - 24); s < monSerial(L0); s++) {
+    const a = monStart(s), b = monStart(s + 1); if (monStart(s - 1) < f0 + 90) continue;
+    const ca = new Map(), ct = new Map(); for (let i = lb(D.day, a), e = lb(D.day, b); i < e; i++) { if (!pass(i) || D.m[i] < thr) continue; const t = D.k[i]; ct.set(t, (ct.get(t) || 0) + 1); ca.set(D.ta[t], (ca.get(D.ta[t]) || 0) + 1); }
+    let ba = -1, bv = 0; for (const [x, v] of ca) if (v > bv) { bv = v; ba = x; }
+    let bt = -1, btv = 0; for (const [x, v] of ct) if (v > btv) { btv = v; bt = x; }
+    if (ba < 0) continue; nm++;
+    if (G.firstA[ba] >= 0 && D.day[G.firstA[ba]] >= monStart(s - 1)) kmN++;
+    if (bt >= 0 && G.firstT[bt] >= 0 && D.day[G.firstT[bt]] >= monStart(s - 1)) kmT++;
+  }
+  const pNewA = clamp((kmN + 0.5) / (nm + 3), 0.02, 0.3), pNewT = clamp((kmT + 0.5) / (nm + 3), 0.03, 0.45);
+  nxA.sort((x, y) => y.e - x.e);
+  const nxT = [...recT].map(([t, c]) => ({ t, e: 0.55 * c[0] + 0.3 * c[1] + 0.15 * c[2] })).sort((x, y) => y.e - x.e).slice(0, 25);
+  const nxOddsA = simOdds(nxA.slice(0, 25), 0.45, 2000, D.n * 17 + 3).map(x => ({ a: x.a, p: x.p * (1 - pNewA) })).sort((x, y) => y.p - x.p).slice(0, 3);
+  const nxOddsT = simOdds(nxT, 0.55, 2000, D.n * 13 + 5).map(x => ({ t: x.t, p: x.p * (1 - pNewT) })).sort((x, y) => y.p - x.p).slice(0, 3);
+  /* les paliers : au rythme prévu par le moteur (saisons et tendance comprises), sinon à ton rythme des 3 derniers mois */
   const nice = v => { const p = Math.pow(10, Math.floor(Math.log10(Math.max(1, v)))); for (const m of [1, 1.2, 1.5, 2, 2.5, 3, 4, 5, 6, 7, 8, 9, 10]) if (m * p > v + 1e-9) return m * p; return 10 * p; };
-  const today = Math.floor(Date.now() / DAYMS), miles = [];
+  const miles = [];
   const fr = v => (v >= 10 ? fmtN(v) : (Math.round(v * 10) / 10).toString().replace('.', ','));
   const pace = v => v >= 1 ? fr(v) + ' par jour' : v * 7 >= 1 ? fr(v * 7) + ' par semaine' : fr(v * 30.4) + ' par mois';
-  const mile = (t, cur, perDay, unit) => {
-    if (!(perDay > 0)) return;
-    const tgt = nice(cur), days = Math.ceil((tgt - cur) / perDay); if (days > 365 * 3) return;
+  const reach = (F, need, unit) => { let c = 0; for (let k = 1; k <= 1100; k++) { c += F.day(L0 + k) / unit; if (c >= need) return k; } return 0; };
+  const mile = (t, cur, F, unit, perDay, word) => {
+    const tgt = nice(cur), need = tgt - cur, days = F ? reach(F, need, unit) : perDay > 0 ? Math.ceil(need / perDay) : 0;
+    if (!days || days > 1100) return;
     const d = L0 + days, past = d < today;
-    miles.push({ t: t(tgt), d, past, s: `${past ? 'Prévu vers le ' + fmtDay(d) + ', tes données s\'arrêtent avant. ' : ''}Encore ${fmtN(Math.ceil(tgt - cur))} ${unit}, à ton rythme de ${pace(perDay)}.` });
+    miles.push({ t: t(tgt), d, past, s: `${past ? 'Prévu vers le ' + fmtDay(d) + ', tes données s\'arrêtent avant. ' : ''}Encore ${fmtN(Math.ceil(need))} ${word}, à ton rythme de ${pace(need / days)}.` });
   };
-  mile(v => `Ta ${fmtN(v)}e écoute`, G.plays, r90('P'), 'écoutes');
-  mile(v => `Ta ${fmtN(v)}e heure d'écoute`, G.ms / 36e5, r90('M') / 36e5, 'heures');
-  mile(v => isPod() ? `Ta ${fmtN(v)}e émission découverte` : `Ton ${fmtN(v)}e artiste découvert`, G.uA, r90('A'), l.a.toLowerCase());
-  mile(v => `Ton ${fmtN(v)}e ${l.t1} découvert`, G.uT, r90('T'), l.tt);
-  const a1 = G.ordA[0];
-  if (a1 != null) { let c = 0; for (let i = lb(D.day, L0 - 89); i < D.n; i++) if (pass(i) && D.m[i] >= thr && D.ta[D.k[i]] === a1) c++; mile(v => `Ta ${fmtN(v)}e écoute de ${D.artists[a1]}`, G.aP[a1], c / Math.min(90, n), 'écoutes'); }
+  mile(v => `Ta ${fmtN(v)}e écoute`, G.plays, FC.P, 1, 0, 'écoutes');
+  mile(v => `Ta ${fmtN(v)}e heure d'écoute`, G.ms / 36e5, FC.M, 36e5, 0, 'heures');
+  mile(v => isPod() ? `Ta ${fmtN(v)}e émission découverte` : `Ton ${fmtN(v)}e artiste découvert`, G.uA, FC.A, 1, 0, l.a.toLowerCase());
+  mile(v => `Ton ${fmtN(v)}e ${l.t1} découvert`, G.uT, FC.T, 1, 0, l.tt);
+  const pace90 = fn => { let c = 0; for (let i = lb(D.day, L0 - 89); i < D.n; i++) if (pass(i) && D.m[i] >= thr && fn(D.k[i])) c++; return c / Math.min(90, n); };
+  const a1 = G.ordA[0], t1 = G.ordT[0];
+  if (a1 != null) mile(v => `Ta ${fmtN(v)}e écoute de ${D.artists[a1]}`, G.aP[a1], null, 1, pace90(t => D.ta[t] === a1), 'écoutes');
+  if (t1 != null) mile(v => `Ta ${fmtN(v)}e écoute de « ${D.tn[t1]} »`, G.tP[t1], null, 1, pace90(t => t === t1), 'écoutes');
   miles.sort((x, y) => x.d - y.d);
+  /* dépassements dans ton classement de tous les temps, à ton rythme des 3 derniers mois */
+  const ovr = [];
+  {
+    const T25 = G.ordA.slice(0, 30), pc = new Map();
+    for (let i = lb(D.day, L0 - 89); i < D.n; i++) { if (!pass(i) || D.m[i] < thr) continue; const a = D.ta[D.k[i]]; pc.set(a, (pc.get(a) || 0) + 1); }
+    const L1 = T25.map((a, j) => ({ a, r: j + 1, T: G.aP[a], p: (pc.get(a) || 0) / Math.min(90, n) }));
+    for (let j = 1; j < L1.length; j++) for (let i = 0; i < j; i++) {
+      const x = L1[j], y = L1[i]; if (x.p <= y.p * 1.05) continue;
+      const days = Math.ceil((y.T - x.T + 1) / (x.p - y.p)); if (days > 365) continue;
+      ovr.push({ a: x.a, b: y.a, ra: x.r, rb: y.r, d: L0 + Math.max(1, days), past: L0 + days < today });
+    }
+    ovr.sort((x, y) => x.d - y.d || x.rb - y.rb);
+  }
+  const ovrG = [], seen = new Map();
+  for (const o of ovr) { let g = seen.get(o.a); if (!g) { g = { a: o.a, ra: o.ra, ev: [] }; seen.set(o.a, g); ovrG.push(g); } g.ev.push(o); }
+  /* petits paris */
+  const bets = [];
+  {
+    const F = FC.P, full = F.mo.filter(x => x.nd === x.dim), lm = full[full.length - 1];
+    if (lm && sN - lm.s <= 3) bets.push({ k: 'mois', p: F.pGt(sN, lm.v), t: `Faire plus d'écoutes en ${MOL[sN % 12]} qu'en ${MOL[lm.s % 12]}`, s: `${fmtN(lm.v)} en ${MOL[lm.s % 12]}, environ ${fmtN(nx.P.est)} prévues` });
+    const fy = []; for (let y = y0; y <= CY; y++) if (dn(y, 0, 1) >= f0 && dn(y + 1, 0, 1) - 1 <= L0) fy.push({ y, v: sum(C.P, dn(y, 0, 1) - f0, dn(y + 1, 0, 1) - f0) });
+    if (end) fy.push({ y: end.y, v: end.P, est: true });
+    const best = fy.sort((x, y) => y.v - x.v)[0];
+    if (best && mP.est > 0) bets.push({ k: 'annee', p: 1 - nCdf((Math.log(best.v) - Math.log(mP.est)) / mP.sd), t: `Faire de ${TY} ta plus grosse année`, s: `Ton record : ${fmtN(best.v)} écoutes en ${best.y}${best.est ? ' (estimé)' : ''}` });
+    /* ta journée record (en temps d'écoute) : tes jours des 4 derniers mois, au niveau prévu pour le mois prochain */
+    const rec = G.rec.bestDay, dd = []; let z = 0;
+    for (let i = Math.max(0, n - 120); i < n; i++) { const v = G.dMs[i]; if (v > 0) dd.push(Math.log(v)); else z++; }
+    if (rec && rec.ms > 0 && dd.length >= 20) {
+      const mu = dd.reduce((a, b) => a + b, 0) / dd.length, sdv = Math.sqrt(dd.reduce((a, b) => a + (b - mu) ** 2, 0) / (dd.length - 1)), p0 = z / (z + dd.length);
+      const rN = FC.M.month(sN).est / (monStart(sN + 1) - monStart(sN)), rR = sum(C.M, n - 120, n) / Math.min(120, n), adj = rR > 0 ? Math.log(Math.max(rN, 1) / rR) : 0;
+      const pd = (1 - p0) * (1 - nCdf((Math.log(rec.ms) - mu - adj) / Math.max(0.2, sdv)));
+      bets.push({ k: 'record', p: 1 - Math.pow(1 - pd, 12), t: 'Battre ta journée record dans le mois qui vient', s: `${fmtDur(rec.ms)} le ${fmtDay(rec.d)}` });
+    }
+    /* ta série de jours d'écoute, si tes données sont fraîches */
+    const cur = G.rec.cur.n;
+    if (cur >= 2 && today - L0 <= 3) {
+      let on = 0; for (let i = Math.max(0, n - 60); i < n; i++) if (G.dPl[i] > 0) on++;
+      const q = (on + 1) / (Math.min(60, n) + 2), M = [7, 14, 21, 30, 50, 75, 100, 150, 200, 300, 365, 500, 750, 1000].find(x => x > cur);
+      if (M) bets.push({ k: 'serie', p: Math.pow(q, M - cur), t: `Tenir ta série jusqu'à ${fmtN(M)} jours`, s: `${fmtN(cur)} jours d'affilée en ce moment ; tu écoutes ${Math.round(q * 100)} jours sur 100` });
+    }
+    const lam = sum(C.A, n - 60, n) / Math.min(60, n);
+    if (lam > 0) bets.push({ k: 'decouverte', p: 1 - Math.exp(-7 * lam), t: isPod() ? 'Découvrir une nouvelle émission en une semaine' : 'Découvrir un nouvel artiste en une semaine', s: `${cap(pace(lam))} en ce moment` });
+  }
+  /* ton Wrapped, en avance */
   let wr = null;
-  if (CY === curY && new Date().getMonth() >= 9) {
+  if (CY === curY && now.getMonth() >= 9) {
     const a = Math.max(dn(CY, 0, 1), f0), b = Math.min(L0 + 1, dn(CY, 10, 16));
     if (b - a > 60) {
       const X = aggAll(a, b, 'year', true), idx = [];
@@ -4591,7 +4799,7 @@ function predict() {
       wr = { y: CY, ms: X.ms, A: idx.slice(0, 5), aM: X.aM, t: bt2 };
     }
   }
-  return (PD = { key, TY, mP, mM, mA, mT, uA: uAm, uT: uTm, months, ny: mP.ny, years, end, odds, pNew, rise, fall, miles, wr, btRows, mape });
+  return (PD = { key, TY, FC, mP, mM, mA, mT, uA: uAm, uT: uTm, months, years, end, odds, pNew, rise, fall, miles, wr, btRows, btOne, nx, nxOddsA, nxOddsT, pNewA, pNewT, ovr: ovrG, bets });
 }
 function drawYears(svg, items, fmt) {
   fig(svg, () => {
@@ -4622,21 +4830,37 @@ function renderPredict() {
   $('#pdKick').textContent = DEMO ? 'Prédictions, sur l\'exemple fictif' : 'Prédictions';
   $('#pdTitle').textContent = 'Ton ' + TY;
   if (!enough) { setHue(260); $('#pdLead').textContent = 'Pas assez d\'historique pour prédire quoi que ce soit : il faut au moins deux mois d\'écoutes.'; $('#pdNums').innerHTML = ''; return; }
-  const R = predict();
+  const R = predict(), FP = R.FC.P;
   setHue(R.odds.length ? hueA(R.odds[0].a) : 260);
-  const gP = R.mP.g;
-  $('#pdLead').textContent = `Deux méthodes combinées, tirées de ton historique${G.span >= 730 ? ` (${gP >= 0 ? '+' : '−'}${fmtPct(Math.abs(gP))} d'écoutes sur tes 12 derniers mois par rapport aux 12 d'avant)` : ''}${R.btRows.length ? `, puis testées sur ${R.btRows.length} ${pl(R.btRows.length, 'année passée', 'années passées')}` : ''}. Chaque fourchette a environ 8 chances sur 10 de contenir le vrai chiffre.`;
+  const gP = R.mP.g, nMo = FP.mo.length;
+  $('#pdLead').textContent = `Tiré de tes ${fmtN(nMo)} mois d'historique${G.span >= 730 ? ` (${gP >= 0 ? '+' : '−'}${fmtPct(Math.abs(gP))} d'écoutes sur tes 12 derniers mois par rapport aux 12 d'avant)` : ''}${FP.nb[0] ? ', et testé sur ton passé' : ''}. Chaque fourchette a environ 8 chances sur 10 de contenir le vrai chiffre.`;
   const base = R.end ? { P: R.end.P, M: R.end.M, A: R.end.A, T: R.end.T, lbl: 'vs ' + R.end.y + ' (estimé)' } : { P: R.mP.X1, M: R.mM.X1, A: R.mA.X1, T: R.mT.X1, lbl: 'vs tes 12 derniers mois' };
-  const vs = (v, b) => { if (!b) return ''; const d = v / b - 1; if (Math.abs(d) < 0.005) return '<b>stable</b> ' + base.lbl; return `<b class="${d >= 0 ? 'up' : 'dn'}">${d >= 0 ? '+' : '−'}${fmtPct(Math.abs(d))}</b> ${base.lbl}`; };
+  const vs = (v, b) => { if (!(b >= 1)) return ''; const d = v / b - 1; if (Math.abs(d) < 0.005) return '<b>stable</b> ' + base.lbl; return `<b class="${d >= 0 ? 'up' : 'dn'}">${d >= 0 ? '+' : '−'}${fmtPct(Math.abs(d))}</b> ${base.lbl}`; };
   const rN = v => fmtN(v >= 10000 ? Math.round(v / 100) * 100 : v >= 1000 ? Math.round(v / 10) * 10 : Math.round(v));
   const rH = v => fmtN(Math.round(v / 36e5)) + NB + 'h';
   const kp = (k, m, f, b) => `<div class="kpi"><span class="k">${esc(k)}</span><span class="v">${f(m.est)}</span><span class="rg">entre ${f(m.lo)} et ${f(m.hi)}</span><span class="d">${b != null ? vs(m.est, b) : ''}</span></div>`;
   $('#pdNums').innerHTML = kp('Écoutes', R.mP, rN, base.P) + kp('Temps d\'écoute', R.mM, rH, base.M) + kp(cap(l.nan), R.mA, rN, base.A) + kp(cap(l.nt), R.mT, rN, base.T) + kp(cap(l.ad), R.uA, rN, null) + kp(l.t + ' différents', R.uT, rN, null);
-  if (R.btRows.length) {
-    $('#pdBtS').textContent = `Le site s'est remis au ${fmtDay(D.lastDay).replace(/\s\d{4}$/, '')} de chaque année passée, a prédit l'année suivante avec ce qu'il savait à ce moment-là, puis a comparé au vrai. En moyenne, il s'est trompé de ${fmtPct(R.mape)} sur tes écoutes. Les chiffres et les fourchettes du haut sont corrigés avec ces erreurs.`;
-    const gap = (pr, ac) => { const d = ac / pr - 1, a = Math.abs(d); return `<span class="${a <= 0.1 ? 'up' : a > 0.25 ? 'dn' : ''}">${d >= 0 ? '+' : '−'}${fmtPct(a)}</span>`; };
-    $('#pdBt').innerHTML = `<thead><tr><th>Année</th><th class="n">Écoutes prévues</th><th class="n">Réelles</th><th class="n">Écart</th><th class="n">Heures prévues</th><th class="n">Réelles</th><th class="n">Écart</th></tr></thead><tbody>` + R.btRows.slice().reverse().map(r => `<tr><td data-l="Année"><b>${r.Y}</b></td><td class="n" data-l="Écoutes prévues">${rN(r.P.pred)}</td><td class="n" data-l="Réelles">${fmtN(r.P.act)}</td><td class="n" data-l="Écart">${gap(r.P.pred, r.P.act)}</td><td class="n" data-l="Heures prévues">${rH(r.M.pred)}</td><td class="n" data-l="Réelles">${rH(r.M.act)}</td><td class="n" data-l="Écart">${gap(r.M.pred, r.M.act)}</td></tr>`).join('') + '</tbody>';
-  } else { $('#pdBtS').textContent = 'Pour tester le modèle sur ton passé, il faut au moins deux ans d\'historique, dont une année complète. Pour l\'instant, les fourchettes viennent seulement de tes variations.'; $('#pdBt').innerHTML = ''; }
+  /* le mois prochain */
+  const NX = R.nx, mon = cap(MOL[NX.s % 12]) + ' ' + (1970 + Math.floor(NX.s / 12));
+  $('#pdNxT').textContent = `${mon}, le mois prochain`;
+  $('#pdNxS').textContent = NX.P.h <= 2 ? 'Ta prévision la plus sûre : c\'est le plus proche.' : `Tes données s'arrêtent le ${fmtDay(D.lastDay)} : c'est une prévision à ${NX.P.h} mois, donc plus large.`;
+  const bx = (k, m, f) => `<div class="kpi"><span class="k">${esc(k)}</span><span class="v">${f(m.est)}</span><span class="rg">entre ${f(m.lo)} et ${f(m.hi)}</span></div>`;
+  $('#pdNx').innerHTML = bx('Écoutes', NX.P, rN) + bx('Temps d\'écoute', NX.M, rH) + bx(cap(l.nan), NX.A, rN);
+  const pc = p => p < 0.01 ? '<1' + NB + '%' : Math.round(p * 100) + NB + '%';
+  const oddsL = (L1, pNw, nw, row) => { const mx = Math.max(pNw, 0.01, ...L1.map(o => o.p)); return L1.map(o => `<li>${row(o, (o.p / mx * 100).toFixed(1))}</li>`).join('') + `<li><div><span class="nw">?</span><span class="nm"><b>${nw}</b><span class="bar2"><i style="width:${(pNw / mx * 100).toFixed(1)}%"></i></span></span><span class="p">${pc(pNw)}</span></div></li>`; };
+  $('#pdNxA').innerHTML = oddsL(R.nxOddsA, R.pNewA, isPod() ? 'Une nouvelle émission' : 'Quelqu\'un de nouveau', (o, w) => `<button data-open="a:${o.a}">${covA(o.a)}<span class="nm"><b>${esc(D.artists[o.a])}</b><span class="bar2"><i style="width:${w}%"></i></span></span><span class="p">${pc(o.p)}</span></button>`);
+  $('#pdNxSon').innerHTML = oddsL(R.nxOddsT, R.pNewT, 'Un nouveau son', (o, w) => `<button data-open="t:${o.t}">${covT(o.t)}<span class="nm"><b>${esc(D.tn[o.t])}</b><small>${esc(D.artists[D.ta[o.t]])}</small><span class="bar2"><i style="width:${w}%"></i></span></span><span class="p">${pc(o.p)}</span></button>`);
+  /* fiabilité */
+  const ap = FP.mapeR, lab = ['le mois suivant', 'à 2-3 mois', 'à 4-6 mois', 'à un an', 'au-delà d\'un an'], parts = [];
+  for (const b of [0, 2]) if (ap[b] != null && FP.nbR[b] >= 3) parts.push(`${fmtPct(ap[b])} ${b ? lab[b] : 'sur le mois suivant'}`);
+  const gap = (pr, ac) => { const d = ac / pr - 1, a = Math.abs(d); return `<span class="${a <= 0.1 ? 'up' : a > 0.25 ? 'dn' : ''}">${d >= 0 ? '+' : '−'}${fmtPct(a)}</span>`; };
+  if (R.btOne.length) {
+    const yr = R.btRows.length ? ` Sur une année entière, prédite un an avant, il s'est trompé de ${fmtPct(R.btRows.reduce((a, r) => a + Math.abs(r.P.act / r.P.pred - 1), 0) / R.btRows.length)} en moyenne (${R.btRows.map(r => r.Y).join(', ')}).` : '';
+    const why = gP >= 0.5 ? ` Ton écoute a beaucoup grimpé (+${fmtPct(gP)} en un an) : ça rend les fourchettes à long terme plus larges, parce que personne ne pouvait le voir venir.` : gP <= -0.33 ? ` Ton écoute a beaucoup baissé (−${fmtPct(-gP)} en un an) : ça rend les fourchettes à long terme plus larges.` : '';
+    $('#pdBtS').textContent = `Le site s'est remis à chacun de tes mois passés, a prédit la suite avec ce qu'il savait à ce moment-là, puis a comparé au vrai.${parts.length ? ' Sur ta dernière année, son erreur typique : ' + parts.join(', ') + '.' : ''}${yr}${why} Ci-dessous, tes derniers mois prédits le mois d'avant.`;
+    $('#pdBt').innerHTML = `<thead><tr><th>Mois</th><th class="n">Écoutes prévues</th><th class="n">Réelles</th><th class="n">Écart</th><th class="n">Heures prévues</th><th class="n">Réelles</th><th class="n">Écart</th></tr></thead><tbody>` + R.btOne.slice().reverse().map(r => `<tr><td data-l="Mois"><b>${esc(cap(fmtMon(r.s)))}</b></td><td class="n" data-l="Écoutes prévues">${rN(r.P.pred)}</td><td class="n" data-l="Réelles">${fmtN(r.P.act)}</td><td class="n" data-l="Écart">${gap(r.P.pred, r.P.act)}</td>${r.M ? `<td class="n" data-l="Heures prévues">${rH(r.M.pred)}</td><td class="n" data-l="Réelles">${rH(r.M.act)}</td><td class="n" data-l="Écart">${gap(r.M.pred, r.M.act)}</td>` : '<td></td><td></td><td></td>'}</tr>`).join('') + '</tbody>';
+  } else { $('#pdBtS').textContent = 'Pour se tester sur ton passé, il faut au moins 7 mois d\'historique. Pour l\'instant, les fourchettes sont larges par prudence.'; $('#pdBt').innerHTML = ''; }
+  /* années et mois */
   $('#pdYrT').textContent = `${rN(R.mP.est)} écoutes prévues en ${TY}`;
   $('#pdYrS').textContent = `Tes écoutes par année. ${R.end ? `La fin de ${R.end.y} et ${TY} sont estimées.` : `${TY} est estimée.`}`;
   $('#pdYrCap').textContent = 'Hachuré : estimation. Trait vertical : la fourchette.';
@@ -4644,34 +4868,40 @@ function renderPredict() {
   drawYears($('#svgPdYr'), items, rN);
   const mv = R.months.map(x => x.est), svg = $('#svgPdMo');
   $('#pdMoT').textContent = `Mois par mois en ${TY}`;
-  $('#pdMoS').textContent = R.ny ? `Réparti selon tes habitudes sur ${R.ny} ${pl(R.ny, 'année complète', 'années complètes')} d'historique.` : 'Réparti à plat : pas encore d\'année complète pour repérer tes saisons.';
+  const SS = FP.S.map((v, m) => [v, m]).filter(x => Math.abs(x[0]) >= 0.03).sort((a, b) => b[0] - a[0]);
+  const hiM = SS.filter(x => x[0] > 0).slice(0, 2).map(x => MOL[x[1]]), loM = SS.filter(x => x[0] < 0).slice(-2).reverse().map(x => MOL[x[1]]);
+  $('#pdMoS').textContent = SS.length ? `Avec tes saisons, celles qui reviennent chaque année${hiM.length ? ' : plus haut en ' + hiM.join(' et ') : ''}${loM.length ? (hiM.length ? ', plus bas en ' : ' : plus bas en ') + loM.join(' et ') : ''}.` : (FP.mo.length >= 42 ? 'Pas d\'effet de saison : tes mois forts ne reviennent pas d\'une année sur l\'autre.' : 'Sans effet de saison : il faut qu\'un mois fort revienne au moins trois ans de suite pour qu\'il compte.');
   fig(svg, () => drawBars(svg, { vals: mv, unit: '', fmtV: v => rN(v), label: (i, sh, nar) => sh ? (nar ? MOL[i].slice(0, 1).toUpperCase() : MO[i]) : cap(MOL[i]) + ' ' + TY, tip: i => `<b>${rN(mv[i])} écoutes</b><span>${cap(MOL[i])} ${TY}, prévision</span><span>entre ${rN(R.months[i].lo)} et ${rN(R.months[i].hi)}</span>`, click: null }));
+  /* ton n°1 de l'année prochaine */
   $('#pdTopT').textContent = `Qui sera ton n°${NS}1 en ${TY} ?`;
   $('#pdTopS').textContent = `Les chances de chacun d'être ton ${l.a1} le plus écouté.`;
-  const mx = Math.max(R.pNew, 0.01, ...R.odds.map(o => o.p)), pc = p => p < 0.01 ? '<1' + NB + '%' : Math.round(p * 100) + NB + '%';
-  $('#pdTop').innerHTML = R.odds.map(o => `<li><button data-open="a:${o.a}">${covA(o.a)}<span class="nm"><b>${esc(D.artists[o.a])}</b><span class="bar2"><i style="width:${(o.p / mx * 100).toFixed(1)}%"></i></span></span><span class="p">${pc(o.p)}</span></button></li>`).join('') + `<li><div><span class="nw">?</span><span class="nm"><b>${isPod() ? 'Une émission encore inconnue' : 'Un artiste encore inconnu'}</b><span class="bar2"><i style="width:${(R.pNew / mx * 100).toFixed(1)}%"></i></span></span><span class="p">${pc(R.pNew)}</span></div></li>`;
+  $('#pdTop').innerHTML = oddsL(R.odds, R.pNew, isPod() ? 'Une émission encore inconnue' : 'Un artiste encore inconnu', (o, w) => `<button data-open="a:${o.a}">${covA(o.a)}<span class="nm"><b>${esc(D.artists[o.a])}</b><span class="bar2"><i style="width:${w}%"></i></span></span><span class="p">${pc(o.p)}</span></button>`);
   const x10 = v => (Math.round(v * 10) / 10).toString().replace('.', ',');
   $('#pdRise').innerHTML = R.rise.length ? R.rise.slice(0, 6).map((x, j) => arRow(x.a, j + 1, x.b < 3 ? 'nouveau' : '×' + NS + x10(x.ratio), `${fmtN(x.r)} écoutes ces 3 derniers mois`)).join('') : '<li class="empty">Personne ne décolle vraiment en ce moment.</li>';
   $('#pdFall').innerHTML = R.fall.length ? R.fall.slice(0, 6).map((x, j) => arRow(x.a, j + 1, '−' + fmtPct(1 - x.ratio), `${fmtN(Math.round(x.b))} par trimestre avant, ${fmtN(x.r)} ces 3 derniers mois`)).join('') : '<li class="empty">Personne ne décroche vraiment.</li>';
   $('#pdMiles').innerHTML = R.miles.length ? R.miles.map(m => `<li><b>${esc(m.t)}</b><em>${m.past ? 'sûrement déjà fait' : 'vers le ' + fmtDay(m.d)}</em><span>${esc(m.s)}</span></li>`).join('') : '<li class="empty">Pas assez d\'écoutes récentes pour estimer.</li>';
+  /* petits paris et dépassements */
+  $('#pdBets').innerHTML = R.bets.length ? R.bets.map(b => `<li><div><span class="pring" style="--p:${(clamp(b.p, 0, 1) * 100).toFixed(1)}%" aria-hidden="true"></span><span class="nm"><b>${esc(b.t)}</b><small>${esc(b.s)}</small></span><span class="p">${pc(b.p)}</span></div></li>`).join('') : '<li class="empty">Pas assez d\'écoutes récentes pour parier.</li>';
+  const lnA = a => `<button class="lnk" data-open="a:${a}">${esc(D.artists[a])}</button>`, when = o => o.past ? 'sûrement déjà fait' : 'vers le ' + fmtDay(o.d);
+  const andL = L1 => L1.length < 2 ? L1.join('') : L1.slice(0, -1).join(', ') + ' et ' + L1[L1.length - 1];
+  $('#pdOvr').innerHTML = R.ovr.length ? R.ovr.slice(0, 5).map(g => { const e1 = g.ev[0], eK = g.ev[g.ev.length - 1], rk = g.ra - g.ev.length; return `<li><b>${lnA(g.a)} passe devant ${lnA(e1.b)}</b><em>${when(e1)}</em><span>${g.ev.length > 1 ? `Puis ${g.ev.length > 4 ? g.ev.slice(1, 4).map(o => lnA(o.b)).join(', ') + ' et d\'autres' : andL(g.ev.slice(1).map(o => lnA(o.b)))} : n°${NS}${rk} de tous les temps ${eK.past ? 'déjà' : 'vers le ' + fmtDay(eK.d)}${rk === 1 ? ', ton nouveau n°' + NS + '1' : ''}.` : rk === 1 ? 'Et devient ton n°' + NS + '1 de tous les temps.' : `Et passe n°${NS}${rk} de tous les temps.`}</span></li>`; }).join('') : '<li class="empty">Personne ne double personne dans l\'année qui vient : ton classement est bien installé.</li>';
   $('#pdEndB').hidden = !R.end;
   if (R.end) {
     const E = R.end;
     $('#pdEndT').textContent = `Fin ${E.y}, d'ici le 31 décembre`;
-    $('#pdEndS').textContent = `Tes données s'arrêtent le ${fmtDay(D.lastDay)} : les ${fmtN(E.rem)} jours restants sont estimés au rythme de tes 3 derniers mois.`;
+    $('#pdEndS').textContent = `Tes données s'arrêtent le ${fmtDay(D.lastDay)} : les ${fmtN(E.rem)} jours restants sont estimés avec la même méthode, au jour près.`;
     const pv = (v, p) => !E.prevFull || !p ? '' : Math.abs(v / p - 1) < 0.005 ? `, stable vs ${E.y - 1}` : `, <b class="${v >= p ? 'up' : 'dn'}">${v >= p ? '+' : '−'}${fmtPct(Math.abs(v / p - 1))}</b> vs ${E.y - 1}`;
-    const bx = (k, v, now, extra) => `<div class="kpi"><span class="k">${esc(k)}</span><span class="v">${v}</span><span class="d">déjà ${now}${extra}</span></div>`;
-    $('#pdEnd').innerHTML = bx('Écoutes en ' + E.y, rN(E.P), fmtN(E.actP), pv(E.P, E.prevP)) + bx('Temps d\'écoute', rH(E.M), rH(E.actM), pv(E.M, E.prevM)) + bx(cap(l.nan), rN(E.A), fmtN(E.actA), pv(E.A, E.prevA));
+    const bx2 = (k, v, now, extra) => `<div class="kpi"><span class="k">${esc(k)}</span><span class="v">${v}</span><span class="d">déjà ${now}${extra}</span></div>`;
+    $('#pdEnd').innerHTML = bx2('Écoutes en ' + E.y, rN(E.P), fmtN(E.actP), pv(E.P, E.prevP)) + bx2('Temps d\'écoute', rH(E.M), rH(E.actM), pv(E.M, E.prevM)) + bx2(cap(l.nan), rN(E.A), fmtN(E.actA), pv(E.A, E.prevA));
   }
   $('#pdWrB').hidden = !R.wr;
   if (R.wr) {
     const W = R.wr;
     $('#pdWrT').textContent = `Ton Wrapped ${W.y}, en avance`;
-    $('#pdWrS').textContent = `Spotify compte à peu près du 1er janvier à mi-novembre. Sur cette période : ${fmtN(Math.round(W.ms / 6e4))} minutes d'écoute${W.t >= 0 ? `, et ton titre n°${NS}1 devrait être « ${D.tn[W.t]} »` : ''}. Voilà ton top 5 probable.`;
+    $('#pdWrS').textContent = `Spotify compte à peu près du 1er janvier à mi-novembre. Sur cette période : ${fmtN(Math.round(W.ms / 6e4))} minutes d'écoute${W.t >= 0 ? `, et ton titre n°${NS}1 devrait être « ${D.tn[W.t]} »` : ''}. Voilà ton top 5 probable.`;
     $('#pdWr').innerHTML = W.A.map((a, j) => tileA(a, `n°${NS}${j + 1}, ${fmtN(Math.round(W.aM[a] / 6e4))} min`)).join('');
   }
 }
-
 /* ================= rappel mensuel + fusion ================= */
 let notifClosed = false, mergeMode = false;
 function syncBase() { const s = Prefs.data.sync || {}; return s.importedAt || Store.savedAt || (D ? (D.lastDay + 1) * DAYMS : Date.now()); }
