@@ -861,6 +861,15 @@ button.opt:hover:not(:disabled){border-color:var(--chip2)}
 .idtop .cv{width:30px;flex:none}
 .idtop .cv b{font-size:30cqi}
 .idtop small{font-size:13px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.funs{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:8px;margin:0;padding:0;list-style:none}
+.fun{display:flex;flex-direction:column;min-width:0;padding:14px 16px;border-radius:8px;background:var(--card)}
+.fun .fb{font-size:12px;font-weight:600;color:var(--muted)}
+.fun .fn{display:flex;flex-direction:column;margin-top:6px}
+.fun .fv{font:var(--numw) clamp(22px,2.1vw,28px)/1.1 var(--f-num);letter-spacing:-.02em;font-variant-numeric:tabular-nums;overflow-wrap:anywhere}
+.fun .fu{margin-top:2px;font-weight:700;font-size:14px;line-height:1.3;overflow-wrap:anywhere}
+.fun .ft{margin-top:8px;color:var(--muted);font-size:12.5px;line-height:1.4}
+@media (max-width:1100px){.funs{grid-template-columns:repeat(3,minmax(0,1fr))}.fun:nth-child(n+7){display:none}}
+@media (max-width:720px){.funs{grid-template-columns:1fr}.fun:nth-child(n+6){display:none}.fun{padding:12px 14px}.fun .fn{display:block;margin-top:4px}.fun .fv{font-size:22px}.fun .fu{display:inline;margin-left:2px}.fun .ft{margin-top:4px}}
 .habs{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
 .kpi .v.sm{font-size:clamp(17px,1.7vw,21px)}
 .slots{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px}
@@ -1405,6 +1414,7 @@ html.calm .stobars .on i{width:100%}
     <section class="blk"><div class="bh"><div><h2 id="artTitle"></h2><p class="sub" id="artSub"></p></div><button class="more" data-more="art"></button></div><div class="row" id="artList"></div></section>
     <section class="blk"><div class="bh"><div><h2 id="trkTitle"></h2><p class="sub" id="trkSub"></p></div><button class="more" data-more="trk"></button></div><ol class="tl" id="trkList"></ol></section>
     <section class="blk"><div class="bh"><div><h2 id="albTitle"></h2><p class="sub" id="albSub"></p></div><button class="more" data-more="alb"></button></div><div class="row" id="albList"></div></section>
+    <section class="blk" id="funBlk"><div class="bh"><div><h2>Pendant ce temps-là</h2><p class="sub" id="funSub"></p></div><button class="more" id="funMore" aria-label="Afficher d'autres anecdotes">D'autres</button></div><ul class="funs" id="funList"></ul></section>
     <section class="blk"><div class="bh"><div><h2 id="gnTitle">Tes genres</h2><p class="sub" id="gnSub"></p></div></div><div id="gnBody"></div></section>
     <section class="blk card">
       <div class="bh"><div><h2 id="calTitle"></h2><p class="sub" id="calSub"></p></div>
@@ -1747,9 +1757,10 @@ html.calm .stobars .on i{width:100%}
 /* ================= version, nouveautés et services (page À propos) ================= */
 /* à chaque mise à jour : changer SILLON_V et ajouter une ligne en haut de SILLON_LOG.
    X refonte, Y grosse mise à jour, Z correctifs, I première version */
-const SILLON_V = '2.10.0';
+const SILLON_V = '2.11.0';
 const SV_TYPE = { X: 'Refonte', Y: 'Grosse mise à jour', Z: 'Correctifs', I: 'Première version' };
 const SILLON_LOG = [
+  ['2.11.0', 'Y', ['Accueil : « Pendant ce temps-là », ton temps d\'écoute vu autrement. Une trentaine d\'anecdotes (respirations, battements de cœur, tours de la Terre pour l\'ISS, paquets de pâtes…) calculées par jour, par semaine, par mois ou sur la période. Le tirage change chaque jour, et le bouton « D\'autres » en propose d\'autres.']],
   ['2.10.0', 'Y', ['Ton compte : connecte-toi avec Google, ou garde un code de sauvegarde de 20 caractères, et retrouve tes stats sur n\'importe quel appareil sans réimporter ton fichier. Avec Google, tous tes appareils n\'ont plus qu\'une seule fiche dans le groupe.', 'Ta carte : tes artistes selon l\'heure (matin, après-midi, soir, nuit), tes sessions (la plus longue, la durée typique, ton record sans pause) et les albums que tu écoutes d\'une traite.', 'Suggestions : crée une playlist Spotify avec un son de chaque artiste à découvrir.', 'Écran d\'installation sur téléphone : « Ne plus me le proposer » le fait disparaître pour de bon. Tu peux toujours installer l\'appli depuis ta page Toi.']],
   ['2.9.2', 'Z', ['Groupe : une seule fiche par personne. Si tes appareils sont reliés, un seul envoie tes chiffres (celui qui a créé le groupe), l\'autre affiche ta fiche sans en créer une deuxième. Pas reliés ? Le bouton « C\'est moi sur un autre appareil » fait pareil.', 'Groupe : quand une fiche en double est celle qui a créé le groupe, la page explique comment la retirer.']],
   ['2.9.1', 'Z', ['YouTube Music : les clips et les sons des chaînes d\'artistes que tu regardes sur YouTube comptent aussi. Réimporte ton fichier Google Takeout pour les avoir (réglage dans Toi si tu n\'en veux pas).', 'YouTube Music : les sons rangés sous « Release » (artiste qui n\'a pas rempli sa chaîne) retrouvent leur vrai artiste quand c\'est sûr, sinon ils vont dans « Artiste inconnu ».', 'Réimporter un fichier YouTube ne crée plus de doublons, même quand les durées estimées changent.', 'Sur téléphone, le titre de la période en haut ne passe plus sous les boutons.', 'Groupe : les vraies pochettes s\'affichent aussi pour les titres, et pour les artistes que tu n\'écoutes pas toi-même.', 'Groupe : une fiche en double (même pseudo, souvent un ancien appareil ou un test) est signalée, et la personne qui a créé le groupe peut la retirer. Elle n\'apparaît plus dans le Wrapped.', 'Récaps en stories : plus de carré bleu quand tu touches à gauche ou à droite.', 'Tes records : la date de première écoute ne déborde plus de sa case sur téléphone.']],
@@ -2667,7 +2678,7 @@ function render() {
     }
   }
   const ta = topList(P, 'a', 1)[0]; setHue(ta ? hueA(ta.i) : 140);
-  renderPanel(r0, r1); renderNums(Qd); renderMain(); renderRanks(); renderGenres(); renderCal(); renderRhythm(); renderHabits(); renderDisc(); renderRecs(); renderYears(); renderOtd(); renderLog(); renderLive(); renderWrapHome();
+  renderPanel(r0, r1); renderNums(Qd); renderMain(); renderRanks(); renderFun(); renderGenres(); renderCal(); renderRhythm(); renderHabits(); renderDisc(); renderRecs(); renderYears(); renderOtd(); renderLog(); renderLive(); renderWrapHome();
 }
 function renderHead() {
   $('#demoBar').hidden = !DEMO || !booted;
@@ -2965,6 +2976,140 @@ function renderLive() {
   $('#liveTable').innerHTML = '<tbody>' + live.slice(-30).reverse().map(e => `<tr><td class="t">${esc(tf.format(new Date(e.t * 1000)))}</td><td>${esc(e.n)}</td><td>${esc(e.a)}</td></tr>`).join('') + '</tbody>';
 }
 
+/* ================= Pendant ce temps-là : ton temps d'écoute en anecdotes (accueil) ================= */
+/* Une trentaine d'équivalences, toutes des ordres de grandeur. Chacune a sa base préférée :
+   J = par jour en moyenne, S = par semaine en moyenne, M = par mois en moyenne, T = toute la période affichée.
+   Quand la base n'a pas de sens pour la période (« par mois » sur une semaine), on prend la période entière.
+   Le tirage change chaque jour, avec la période affichée, et avec le bouton « D'autres ». */
+const FUN_B = { J: 'Par jour, en moyenne', S: 'Par semaine, en moyenne', M: 'Par mois, en moyenne' };
+const FUN_T = { day: 'Sur la journée', week: 'Sur la semaine', month: 'Sur le mois', year: 'Sur l\'année', all: 'Depuis le début' };
+const FUN_AV = { day: 'T', week: 'JT', month: 'JST', year: 'JSMT', all: 'JSMT' };
+/* des ordres de grandeur : 16 762 devient 17 000, 1 154 devient 1 150 */
+const funSig = (x, n) => { const q = Math.pow(10, Math.floor(Math.log10(x)) - n + 1); return Math.round(x / q) * q; };
+const fmtX = x => x >= 1e4 ? fmtN(funSig(x, 2)) : x >= 1000 ? fmtN(funSig(x, 3)) : x >= 100 ? fmtN(x) : x.toLocaleString('fr-FR', { maximumFractionDigits: x < 10 ? 1 : 0 });
+/* une longueur en mm, dans l'unité qui se lit le mieux */
+function funLen(mm) {
+  if (mm >= 1e6) return [fmtX(mm / 1e6), 'km'];
+  if (mm >= 1000) return [fmtX(mm / 1000), 'm'];
+  if (mm >= 10) return [fmtX(mm / 10), 'cm'];
+  if (mm >= 0.1) return [mm.toLocaleString('fr-FR', { maximumFractionDigits: mm < 1 ? 2 : 1 }), 'mm'];
+  return [fmtN(mm * 1000), 'µm'];
+}
+/* un nombre de choses : « 4,2 millions » + « de respirations », ou « 1 780 » + « respirations » */
+/* le pluriel suit le nombre affiché : 1,96 s'affiche « 2 », donc « 2 millions » */
+const funR = x => x < 10 ? Math.round(x * 10) / 10 : Math.round(x);
+function funCount(v, s, p) {
+  const P2 = p || s + 's', de = w => (/^[aeiouyéèêàâîôœ]/i.test(w) ? 'd\'' : 'de ') + w;
+  if (v >= 1e9) { const x = v / 1e9; return [fmtX(x) + NB + (funR(x) >= 2 ? 'milliards' : 'milliard'), de(P2)]; }
+  if (v >= 1e6) { const x = v / 1e6; return [fmtX(x) + NB + (funR(x) >= 2 ? 'millions' : 'million'), de(P2)]; }
+  return [fmtX(v), pl(funR(v), s, P2)];
+}
+/* r : combien par minute d'écoute. f : calcul à part (longueurs). min : en dessous, l'anecdote ne tombe pas. g : une seule du groupe à la fois */
+const FUN = [
+  // le corps
+  { id: 'resp', c: 'corps', b: 'J', r: 15, s: 'respiration', t: 'Une toutes les 4 secondes, sans même y penser.' },
+  { id: 'coeur', c: 'corps', b: 'J', r: 70, s: 'battement de cœur', p: 'battements de cœur', t: 'Ton cœur tient le tempo, autour de 70 BPM.' },
+  { id: 'yeux', c: 'corps', b: 'J', r: 17, s: 'clignement d\'yeux', p: 'clignements d\'yeux', t: 'Environ 17 par minute, même pendant les refrains.' },
+  { id: 'air', c: 'corps', b: 'S', r: 7.5, s: 'litre d\'air respiré', p: 'litres d\'air respirés', t: 'Un demi-litre à chaque inspiration, ça monte vite.' },
+  { id: 'sang', c: 'corps', b: 'S', r: 5, s: 'litre de sang pompé', p: 'litres de sang pompés', t: 'Ton cœur en fait passer environ 5 par minute.' },
+  { id: 'cheveux', c: 'corps', b: 'M', f: m => funLen(m * 10 / (30 * 1440)), u: 'de cheveux en plus', t: 'Ils poussent d\'environ 1 cm par mois, musique ou pas.' },
+  { id: 'peau', c: 'corps', b: 'J', r: 35000, s: 'cellule de peau perdue', p: 'cellules de peau perdues', t: 'On en perd 30 000 à 40 000 par minute. Elles se renouvellent, t\'inquiète.' },
+  // en route
+  { id: 'pied', c: 'route', b: 'M', g: 'pied', r: 5 / 60, s: 'km à pied', p: 'km à pied', t: 'À 5 km/h, sans t\'arrêter. Le casque sur les oreilles.' },
+  { id: 'velo', c: 'route', b: 'M', g: 'pied', r: 15 / 60, s: 'km à vélo', p: 'km à vélo', t: 'À 15 km/h, sans forcer.' },
+  { id: 'tgv', c: 'route', b: 'S', r: 1 / 120, s: 'Paris-Lyon en TGV', p: 'Paris-Lyon en TGV', t: 'Environ 2 h le trajet. La bande-son, t\'as déjà.' },
+  { id: 'ny', c: 'route', b: 'M', r: 1 / 480, s: 'vol Paris-New York', p: 'vols Paris-New York', t: 'Environ 8 h de vol chacun, playlist comprise.' },
+  { id: 'monde', c: 'route', b: 'T', min: 0.1, r: 1 / 2700, s: 'tour du monde en avion', p: 'tours du monde en avion', t: 'Il faut environ 45 h de vol pour en boucler un.' },
+  { id: 'rotation', c: 'route', b: 'J', r: 1150 / 60, s: 'km parcouru sans bouger', p: 'km parcourus sans bouger', t: 'En France, la Terre tourne à environ 1 150 km/h. Et toi avec.' },
+  // l'espace
+  { id: 'iss', c: 'espace', b: 'S', r: 1 / 92, s: 'tour de la Terre pour l\'ISS', p: 'tours de la Terre pour l\'ISS', t: 'La station spatiale en fait un toutes les 92 minutes.' },
+  { id: 'orbite', c: 'espace', b: 'J', r: 107000 / 60, s: 'km de la Terre autour du Soleil', p: 'km de la Terre autour du Soleil', t: 'Elle file à 107 000 km/h. Ta musique avec.' },
+  { id: 'lune', c: 'espace', b: 'J', g: 'lumiere', r: 60 / 2.56, s: 'aller-retour Terre-Lune', p: 'allers-retours Terre-Lune', t: 'Pour la lumière, qui le fait en 2,6 secondes.' },
+  { id: 'soleil', c: 'espace', b: 'J', g: 'lumiere', r: 60 / 500, s: 'trajet Soleil-Terre', p: 'trajets Soleil-Terre', t: 'Pour la lumière du Soleil, qui met 8 min 20 à arriver.' },
+  { id: 'eloigne', c: 'espace', b: 'T', f: m => funLen(m * 38 / (365.25 * 1440)), u: 'de plus entre la Terre et la Lune', t: 'Elle s\'éloigne d\'environ 3,8 cm par an. Rien à voir avec toi.' },
+  { id: 'voyager', c: 'espace', b: 'J', r: 61000 / 60, s: 'km de plus pour Voyager 1', p: 'km de plus pour Voyager 1', t: 'La sonde la plus lointaine file à 61 000 km/h.' },
+  // écrans et pages
+  { id: 'films', c: 'ecran', b: 'S', g: 'ecran', r: 1 / 120, s: 'film de 2 h', p: 'films de 2 h', t: 'De quoi caler un vrai marathon ciné.' },
+  { id: 'series', c: 'ecran', b: 'S', g: 'ecran', r: 1 / 45, s: 'épisode de série', p: 'épisodes de série', t: 'De 45 minutes, génériques compris.' },
+  { id: 'romans', c: 'ecran', b: 'M', r: 1 / 300, s: 'roman de 300 pages', p: 'romans de 300 pages', t: 'Il faut environ 5 h pour en lire un.' },
+  // sport
+  { id: 'foot', c: 'sport', b: 'S', r: 1 / 90, s: 'match de foot', p: 'matchs de foot', t: '90 minutes chacun, sans les prolongations.' },
+  { id: 'marathon', c: 'sport', b: 'M', r: 1 / 270, s: 'marathon', t: 'Au rythme d\'un coureur moyen, environ 4 h 30 chacun.' },
+  // à la maison
+  { id: 'pates', c: 'maison', b: 'J', r: 1 / 10, s: 'paquet de pâtes cuit', p: 'paquets de pâtes cuits', t: '10 minutes chacun, al dente.' },
+  { id: 'oeufs', c: 'maison', b: 'J', r: 1 / 3, s: 'œuf à la coque', p: 'œufs à la coque', t: '3 minutes chacun, pas une de plus.' },
+  { id: 'nuits', c: 'maison', b: 'M', r: 1 / 480, s: 'nuit de 8 h', p: 'nuits de 8 h', t: 'Autant de nuits complètes, si t\'avais dormi à la place.' },
+  { id: 'dents', c: 'maison', b: 'J', r: 1 / 2, s: 'brossage de dents', p: 'brossages de dents', t: '2 minutes chacun, comme dit le dentiste.' },
+  // musique
+  { id: 'faces', c: 'musique', b: 'J', g: 'vinyle', r: 1 / 20, s: 'face de vinyle', p: 'faces de vinyle', t: 'Environ 20 minutes par face. Faut se lever pour retourner.' },
+  { id: 'platine', c: 'musique', b: 'J', g: 'vinyle', r: 100 / 3, s: 'tour de platine', p: 'tours de platine', t: 'Un 33 tours fait 33 tours et un tiers par minute.' },
+  { id: 'k7', c: 'musique', b: 'S', g: '90', r: 1 / 90, s: 'cassette de 90 minutes', p: 'cassettes de 90 minutes', t: 'Les deux faces, rembobinage pas compris.' },
+  { id: 'concerts', c: 'musique', b: 'S', g: '90', r: 1 / 90, s: 'concert entier', p: 'concerts entiers', t: 'D\'1 h 30, rappels compris.' },
+  { id: 'albums', c: 'musique', b: 'J', r: 1 / 45, s: 'album entier', p: 'albums entiers', t: 'Un album dure environ 45 minutes.' },
+  { id: 'boucle', c: 'musique', b: 'T', top: 1, min: 2, t: 'Ton son le plus écouté sur la période, en boucle.' },
+  // nature
+  { id: 'bambou', c: 'nature', b: 'S', f: m => funLen(m * 900 / 1440), u: 'de bambou', t: 'Certaines espèces poussent jusqu\'à 90 cm par jour.' },
+  { id: 'escargot', c: 'nature', b: 'J', f: m => funLen(m * 60), u: 'parcourus par un escargot', t: 'À 1 mm par seconde, il prend son temps.' },
+  { id: 'colibri', c: 'nature', b: 'J', r: 3000, s: 'battement d\'ailes de colibri', p: 'battements d\'ailes de colibri', t: 'Environ 50 par seconde. Ça, c\'est du BPM.' }
+];
+let FUN_SH = 0;
+/* durée d'un titre : sa plus longue écoute (jamais plus de 20 min) */
+function funTrackLen(t) {
+  let mx = 0; for (let j = 0; j < D.n; j++) if (D.k[j] === t && D.m[j] > mx) mx = D.m[j];
+  return mx >= 30000 ? Math.min(mx, 12e5) : 0;
+}
+/* toutes les anecdotes possibles pour la période affichée (sans tirage) */
+function funItems() {
+  if (!P || !P.ms) return [];
+  const g = S.gran, cover = Math.max(1, Math.min(P.r1, D.lastDay + 1) - Math.max(P.r0, D.firstDay)), day = P.ms / cover;
+  const base = { T: P.ms, J: day, S: day * 7, M: day * 30.44 }, av = FUN_AV[g] || 'T';
+  const out = [];
+  for (const f of FUN) {
+    const b = av.includes(f.b) ? f.b : 'T', mins = base[b] / 6e4, lab = b === 'T' ? FUN_T[g] : FUN_B[b];
+    let big, unit, v;
+    if (f.top) {
+      const tp = topList(P, 't', 1)[0], len = tp ? funTrackLen(tp.i) : 0;
+      if (!len) continue;
+      v = base[b] / len; if (v < f.min) continue;
+      big = fmtX(v); unit = `fois « ${D.tn[tp.i]} » d'affilée`;
+    } else if (f.f) {
+      [big, unit] = f.f(mins); unit = unit + ' ' + f.u; v = mins;
+    } else {
+      v = mins * f.r; if (v < (f.min || 1)) continue;
+      [big, unit] = funCount(v, f.s, f.p);
+    }
+    out.push({ id: f.id, c: f.c, g: f.g, b, v, lab, big, unit, t: f.t });
+  }
+  return out;
+}
+/* le tirage : stable sur la journée et la période, varié (pas deux du même groupe, deux par thème au plus) */
+function funPick(items, n) {
+  let h = 2166136261;
+  const key = new Date().toDateString() + '|' + S.gran + '|' + (P ? P.r0 : 0) + '|' + FUN_SH + '|' + (S.focus ? S.focus.type + S.focus.id : '');
+  for (let i = 0; i < key.length; i++) { h ^= key.charCodeAt(i); h = Math.imul(h, 16777619); }
+  const R = mulberry32(h >>> 0), order = items.map(x => [R(), x]).sort((a, b) => a[0] - b[0]).map(x => x[1]);
+  const out = [], grp = new Set(), cat = {};
+  for (const x of order) {
+    if (out.length >= n) break;
+    if ((x.g && grp.has(x.g)) || (cat[x.c] || 0) >= 2) continue;
+    out.push(x); if (x.g) grp.add(x.g); cat[x.c] = (cat[x.c] || 0) + 1;
+  }
+  return out;
+}
+function renderFun() {
+  const sec = $('#funBlk'); if (!sec || !P) return;
+  const items = funItems();
+  if (!P.ms || P.ms < 6e4 || items.length < 5) { sec.hidden = true; return; }
+  sec.hidden = false;
+  const g = S.gran, cover = Math.max(1, Math.min(P.r1, D.lastDay + 1) - Math.max(P.r0, D.firstDay));
+  const where = { day: 'de la journée', week: 'sur la semaine', month: 'sur le mois', year: 'sur l\'année', all: 'depuis le début' }[g];
+  $('#funSub').textContent = `Tes ${fmtDur(P.ms)} d'écoute ${where}${g === 'day' ? '' : `, soit ${fmtDur(P.ms / cover)} par jour`}${S.focus ? ', rien que pour ' + focusName() : ''}, vues autrement. Des ordres de grandeur, évidemment.`;
+  /* 10 sur grand écran, 6 sur tablette, 5 sur téléphone : le reste est caché en CSS */
+  $('#funList').innerHTML = funPick(items, 10).map(x => `<li class="fun" data-fun="${x.id}"><span class="fb">${esc(x.lab)}</span><span class="fn"><b class="fv">${esc(x.big)}</b> <span class="fu">${esc(x.unit)}</span></span><small class="ft">${esc(x.t)}</small></li>`).join('');
+}
+function wireFun() {
+  const b = $('#funMore'); if (b) b.addEventListener('click', () => { FUN_SH++; renderFun(); });
+}
 /* ================= classements ================= */
 function artistStatsRange(r0, r1) {
   const na = D.na, p = new Uint32Array(na), ms = new Float64Array(na), sk = new Uint32Array(na), n = new Uint32Array(na), tr = new Uint32Array(na), al = new Uint32Array(na), mo = new Uint32Array(na), first = new Int32Array(na).fill(-1), lm = new Int32Array(na).fill(-1);
@@ -8002,7 +8147,7 @@ function wire() {
   $('#rcGo').addEventListener('click', () => openRecap(S.gran, S.anchor));
   $('#rcPrev').addEventListener('click', () => rcGo(-1));
   $('#rcNext').addEventListener('click', () => rcGo(1));
-  wireStories(); wireGuide(); wireGroup(); wireInstall(); wireLink(); wireAcct(); wireMe(); wireSugg(); wireSettings(); wireWelcome(); wireUpd(); wireWrapped(); wireTour();
+  wireStories(); wireGuide(); wireGroup(); wireInstall(); wireLink(); wireAcct(); wireMe(); wireFun(); wireSugg(); wireSettings(); wireWelcome(); wireUpd(); wireWrapped(); wireTour();
   if (SA) $$('.sao').forEach(e => { e.hidden = false; });
   document.addEventListener('click', e => { if (e.target.closest('#howBody a[href^="#guide"]')) closeAll(); });
   $('#rcPng').addEventListener('click', async () => { if (!RC || !RC.R) return; const b = await posterPng(RC.R); if (b) saveFile(`sillon-recap-${tagOf(RC.g, RC.a)}.png`, b); });
